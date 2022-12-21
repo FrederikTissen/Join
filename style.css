@@ -1,0 +1,42 @@
+.sidebar-header {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    background-color: #2A3647;
+    width: 232px;
+    height: 1024px;
+}
+
+.sidebar-top {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 66px 20px;
+}
+
+.sidebar-top img {
+    width: 100px;
+}
+
+.sidebar-mid {
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-link {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 8px 53px;
+    height: 46px;
+
+}
+
+.sidebar-mid a {
+    color: white;
+    text-decoration: none;
+}
+
+.sidebar-link img {
+    padding-right: 20px;
+}
