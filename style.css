@@ -2,6 +2,10 @@ body {
     font-family: 'inter', sans-serif;
 }
 
+/*
+    #### CSS - HEADER ####
+*/
+
 .sidebar-header {
     position: absolute;
     left: 0px;
@@ -45,6 +49,9 @@ body {
     border-radius: 100%;
 }
 
+/*
+    #### CSS - SIDEBAR ####
+*/
 
 .sidebar-top {
     display: flex;
@@ -98,4 +105,26 @@ body {
     color: white;
     font-size: 16px;
     font-weight: 400;
+}
+
+.headline-index {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+    gap: 30px;
+    position: absolute;
+    width: 679px;
+    height: 73px;
+    left: 355px;
+    top: 171px;
+}
+
+.headline-index p {
+    font-size: 27px;
+}
+
+.headline-index span {
+    font-size: 61px;
 }
