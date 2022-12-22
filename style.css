@@ -97,6 +97,11 @@ body {
     padding-right: 20px;
 }
 
+.sidebar-mid div:first-child {
+    background-color: #091931;
+    padding-right: 68px;
+}
+
 .sidebar-bottom {
     display: flex;
     align-items: flex-start;
@@ -187,7 +192,6 @@ body {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    padding: 28px 48px;
     gap: 61px;
     width: 580px;
     height: 150px;
@@ -215,5 +219,24 @@ body {
     justify-content: center;
     align-items: center;
     height: 75px;
+    text-align: center;
+}
+
+.sum-mid-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 13px;
+}
+
+.sum-mid-span-top {
+    font-size: 21px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.sum-mid-span-bottom {
+    font-size: 16px;
     text-align: center;
 }
