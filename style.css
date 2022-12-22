@@ -1,5 +1,6 @@
 body {
     font-family: 'inter', sans-serif;
+    background-color: #F5F5F5;
 }
 
 /*
@@ -27,9 +28,10 @@ body {
     height: 89px;
     left: 0px;
     top: 0px;
-    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
     font-weight: 400;
     font-size: 21px;
+    background-color: #ffffff;
 }
 
 .head-container-right {
@@ -107,6 +109,11 @@ body {
     font-weight: 400;
 }
 
+.sidebar-bottom span {
+    margin-top: 2px;
+    padding-left: 10px;
+}
+
 .headline-index {
     display: flex;
     flex-direction: row;
@@ -127,4 +134,86 @@ body {
 
 .headline-index span {
     font-size: 61px;
+}
+
+.summary-overview {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 35px;
+    position: absolute;
+    width: 580px;
+    height: 540px;
+    left: 355px;
+    top: 331px;
+}
+
+.sum-task-top {
+    display: flex;
+    flex-direction: row;
+    gap: 35px;
+}
+
+.sum-task-overview {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
+    width: 170px;
+    height: 170px;
+    border-radius: 30px;
+    text-align: center;
+    background-color: #ffffff;
+}
+
+.sum-task-number {
+    width: 41px;
+    height: 77px;
+    font-size: 64px;
+    font-weight: 600;
+}
+
+.sum-task {
+    width: 87px;
+    height: 50px;
+    font-size: 21px;
+    font-weight: 300;
+}
+
+.sum-task-mid {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 28px 48px;
+    gap: 61px;
+    width: 580px;
+    height: 150px;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 30px;
+}
+
+.sum-mid-left {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px;
+    gap: 18px;
+    height: 75px;
+}
+
+.sum-mid-left img {
+    object-fit: cover;
+}
+
+.sum-mid-overview {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 75px;
+    text-align: center;
 }

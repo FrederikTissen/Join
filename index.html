@@ -12,14 +12,14 @@
 </head>
 
 <body>
-    <div class="sidebar-header" id="sidebar-header">
-        <div class="header">
-            <span>Kanban Project Management Tool </span>
-            <div class="head-container-right">
-                <img src="./assets/img/question.png">
-                <img class="head-profile-img" src="./assets/img/profile-img.png">
-            </div>
+    <div class="header">
+        <span>Kanban Project Management Tool </span>
+        <div class="head-container-right">
+            <img src="./assets/img/question.png">
+            <img class="head-profile-img" src="./assets/img/profile-img.png">
         </div>
+    </div>
+    <div class="sidebar-header" id="sidebar-header">
 
         <!--        BACKGROUND-COLOR BEIM JEWEILIGEN HTML ÄNDERN ZU #091931   
                     CSS: sidebar-mid:nth-child(0)                                -->
@@ -28,19 +28,19 @@
             <img class="join-logo" src="./assets/img/join-logo-white.png">
         </div>
         <div class="sidebar-mid">
-            <div class="sidebar-link" id="sidebar-link">
+            <div class="sidebar-link" id="sidebar-link0">
                 <a href="./summary.html">Summary</a>
                 <img src="./assets/img/summary-logo.png">
             </div>
-            <div class="sidebar-link" id="sidebar-link">
+            <div class="sidebar-link" id="sidebar-link1">
                 <a href="./board.html">Board</a>
                 <img src="./assets/img/board-logo.png">
             </div>
-            <div class="sidebar-link" id="sidebar-link">
+            <div class="sidebar-link" id="sidebar-link2">
                 <a href="./add-task.html"> Add Task</a>
                 <img src="./assets/img/add-task-logo.png">
             </div>
-            <div class="sidebar-link" id="sidebar-link">
+            <div class="sidebar-link" id="sidebar-link3">
                 <a href="./contacts.html">Contacts</a>
                 <img src="./assets/img/contacts-logo.png">
             </div>
@@ -53,8 +53,39 @@
         <div class="headline-index">
             <span>Summary</span>
             <img src="./assets/img/headline-bar.png">
-            <p>Everything in a nutshell</p>
+            <p>Everything in a nutshell!</p>
+        </div>
 
+        <div class="summary-overview" id="summary-overview">
+            <div class="sum-task-top">
+                <div class="sum-task-overview">
+                    <div class="sum-task-number" id="sum-task1">5</div> <!-- FONT-SIZE PASST NICHT -->
+                    <div class="sum-task">Tasks in Board</div>
+                </div>
+                <div class="sum-task-overview">
+                    <div class="sum-task-number" id="sum-task2">2</div>
+                    <div class="sum-task">Tasks in Progress</div>
+                </div>
+                <div class="sum-task-overview">
+                    <div class="sum-task-number" id="sum-task3">2</div>
+                    <div class="sum-task">Awaiting Feedback</div>
+                </div>
+            </div>
+            <div class="sum-task-mid">
+                <div class="sum-mid-left">
+                    <img src="./assets/img/urgent-round.png">
+                    <div class="sum-mid-overview">
+                        <div class="sum-task-number" id="sum-task3">1</div>
+                        <div class="sum-task">Urgent</div>
+                    </div>
+                </div>
+                <img src="./assets/img/sum-task-bar.png">
+                <div class="sum-mid-right">
+                    <span> January 4, 2022</span>
+                    <span> Upcoming Deadline</span>
+                </div>
+            </div>
+            <div></div>
         </div>
 
 
