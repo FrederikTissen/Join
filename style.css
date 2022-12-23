@@ -119,6 +119,10 @@ body {
     padding-left: 10px;
 }
 
+/*
+    ####    END SIDEBAR - HEADER    ####
+*/
+
 .headline-index {
     display: flex;
     flex-direction: row;
@@ -187,6 +191,11 @@ body {
     font-weight: 300;
 }
 
+.sum-mid-all {
+    display: flex;
+    flex-direction: row;
+}
+
 .sum-task-mid {
     display: flex;
     flex-direction: row;
@@ -230,6 +239,26 @@ body {
     gap: 13px;
 }
 
+.sum-mid-greeting {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    margin-left: 150px;
+    width: 385px;
+}
+
+.sum-mid-span-greeting {
+    font-size: 47px;
+    font-weight: 500;
+}
+
+.sum-mid-span-username {
+    font-size: 64px;
+    font-weight: 700;
+    color: #29ABE2;
+}
+
 .sum-mid-span-top {
     font-size: 21px;
     font-weight: 700;
@@ -238,5 +267,35 @@ body {
 
 .sum-mid-span-bottom {
     font-size: 16px;
+    text-align: center;
+}
+
+.sum-bottom-overview {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 35px;
+    width: 580px;
+    height: 150px;
+}
+
+.sum-bottom-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 18px;
+    background-color: #FFFFFF;
+    width: 272.5px;
+    height: 150px;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 30px;
+}
+
+.sum-bottom-right-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     text-align: center;
 }
