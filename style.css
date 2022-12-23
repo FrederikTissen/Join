@@ -299,3 +299,28 @@ body {
     align-items: center;
     text-align: center;
 }
+
+.addTaskContent{
+    margin-top: 200px;
+    margin-left: 450px;
+
+}
+
+.taskContent{
+    display: flex;
+    flex-direction: row;
+}
+
+.addToTaskTaskText{
+    padding: 5px;
+}
+
+.prioButton{
+    width: 70px;
+    height: 25px;
+}
+
+.taskContentLeft{
+    width: 400px;
+    border-right: 0.2px solid black ;
+}
