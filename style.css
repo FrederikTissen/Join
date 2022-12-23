@@ -97,7 +97,12 @@ body {
     padding-right: 20px;
 }
 
-.sidebar-mid div:first-child {
+/*.sidebar-mid div:first-child {
+    background-color: #091931;
+    padding-right: 68px;
+}*/
+
+.sidebar-active {
     background-color: #091931;
     padding-right: 68px;
 }
@@ -126,12 +131,12 @@ body {
 .headline-index {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     padding: 0px;
-    gap: 30px;
+    /* gap: 30px; */
     position: absolute;
-    width: 679px;
+    width: 630px;
     height: 73px;
     left: 355px;
     top: 171px;
@@ -300,27 +305,38 @@ body {
     text-align: center;
 }
 
-.addTaskContent{
+.addTaskContent {
     margin-top: 200px;
     margin-left: 450px;
 
 }
 
-.taskContent{
+.taskContent {
     display: flex;
     flex-direction: row;
 }
 
-.addToTaskTaskText{
+.addToTaskTaskText {
     padding: 5px;
 }
 
-.prioButton{
+.prioButton {
     width: 70px;
     height: 25px;
 }
 
-.taskContentLeft{
+.taskContentLeft {
     width: 400px;
-    border-right: 0.2px solid black ;
+    border-right: 0.2px solid black;
+}
+
+.content {
+    display: flex;
+    position: absolute;
+    flex-direction: column;
+}
+
+.page {
+    display: flex;
+    justify-content: center;
 }
