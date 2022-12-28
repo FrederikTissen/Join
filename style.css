@@ -107,14 +107,25 @@ body {
 
 .sidebar-bottom {
     display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
     align-items: flex-start;
-    justify-content: center;
-    margin-top: 243px;
-    width: 232px;
+    padding: 117px 0px 0px;
+    gap: 15px;
+    width: 160px;
+    height: 289px;
     color: white;
-    font-size: 16px;
-    font-weight: 400;
-    padding: 8px 0px;
+}
+
+.imprint {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    gap: 20px;
+    width: 160px;
+    height: 46px;
 }
 
 .sidebar-bottom span {
