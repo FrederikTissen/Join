@@ -347,6 +347,8 @@ body {
     width: 969px;
     left: 347px;
     top: 292px;
+    height: 735px;
+    overflow-y: scroll;
 }
 
 .arrow-left {
