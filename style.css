@@ -3,12 +3,6 @@ body {
     background-color: #F5F5F5;
 }
 
-.body {
-    position: relative;
-    width: 1440px;
-    height: 1024px;
-}
-
 /*
     #### CSS - HEADER ####
 */
@@ -103,11 +97,6 @@ body {
     padding-right: 20px;
 }
 
-/*.sidebar-mid div:first-child {
-    background-color: #091931;
-    padding-right: 68px;
-}*/
-
 .sidebar-active {
     background-color: #091931;
     padding-right: 68px;
@@ -116,13 +105,13 @@ body {
 .sidebar-bottom {
     display: flex;
     align-items: flex-start;
-    justify-content: flex-end;
-    padding-top: 243px;
-    width: 160px;
-    height: 289px;
+    justify-content: center;
+    margin-top: 243px;
+    width: 232px;
     color: white;
     font-size: 16px;
     font-weight: 400;
+    padding: 8px 0px;
 }
 
 .sidebar-bottom span {
@@ -358,4 +347,12 @@ body {
     width: 969px;
     left: 347px;
     top: 292px;
+}
+
+.arrow-left {
+    position: absolute;
+    width: 25px;
+    height: 24px;
+    left: 1281px;
+    top: 165px;
 }
