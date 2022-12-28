@@ -25,7 +25,6 @@ body {
     gap: 34px;
     position: absolute;
     width: 1208px;
-    height: 89px;
     left: 0px;
     top: 0px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
@@ -129,7 +128,6 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 0px;
-    /* gap: 30px; */
     position: absolute;
     width: 630px;
     height: 73px;
@@ -139,10 +137,13 @@ body {
 
 .headline-index p {
     font-size: 27px;
+    font-weight: 400;
+
 }
 
 .headline-index span {
     font-size: 61px;
+    font-weight: 700;
 }
 
 .summary-overview {
@@ -337,7 +338,7 @@ body {
 }
 
 /*
-    legal notice css    // extra css datei ?
+    LEGAL NOTICE
 */
 
 .legal-overview {
@@ -357,4 +358,46 @@ body {
     height: 24px;
     left: 1281px;
     top: 165px;
+}
+
+/*
+    CONTACTS
+*/
+
+.contact-overview {
+    background-color: #29ABE2;
+    position: absolute;
+    width: 453px;
+    height: 935px;
+    left: 232px;
+    top: 89px;
+    overflow-y: scroll;
+}
+
+.contact-main {
+    background-color: #2A3647;
+}
+
+.headline-index-contact {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0px;
+    gap: 30px;
+    position: absolute;
+    width: 569px;
+    height: 73px;
+    left: 743px;
+    top: 171px;
+}
+
+.headline-index-contact p {
+    font-size: 27px;
+    font-weight: 400;
+}
+
+.headline-index-contact span {
+    font-size: 61px;
+    font-weight: 700;
 }
