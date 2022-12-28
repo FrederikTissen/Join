@@ -3,6 +3,10 @@ body {
     background-color: #F5F5F5;
 }
 
+.d-none {
+    display: none;
+}
+
 /*
     #### CSS - HEADER ####
 */
@@ -400,4 +404,141 @@ body {
 .headline-index-contact span {
     font-size: 61px;
     font-weight: 700;
+}
+
+.contact-list-overview {
+    position: absolute;
+    width: 453px;
+    height: 935px;
+    left: 232px;
+    top: 89px;
+    background: #FFFFFF;
+    box-shadow: 4px 0px 6px rgba(0, 0, 0, 0.08);
+    overflow-y: scroll;
+}
+
+.contact-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0px;
+    position: absolute;
+    width: 357px;
+    height: 1072px;
+    left: 48px;
+    top: 2px;
+}
+
+.first-char {
+    width: 323px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #d1d1d1;
+    padding-bottom: 24px;
+    margin-bottom: 32px;
+    margin-top: 10px;
+    padding-left: 37.5px;
+}
+
+.contact-card {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 15px 25px;
+    gap: 35px;
+    width: 357px;
+    height: 79px;
+    border-radius: 10px;
+}
+
+.contact-card:hover {
+    background-color: #2A3647;
+    color: white;
+}
+
+.contact-img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid white;
+    border-radius: 50%;
+    width: 42px;
+    height: 42px;
+    margin-left: 20px;
+}
+
+.contact-color-1 {
+    color: white;
+    background-color: #FF7A00;
+}
+
+.contact-color-2 {
+    background-color: #9327FF;
+    color: white;
+}
+
+.contact-color-3 {
+    background-color: #29ABE2;
+    color: white;
+}
+
+.contact-color-4 {
+    background-color: #FC71FF;
+    color: white;
+}
+
+.contact-color-5 {
+    background-color: #02CF2F;
+    color: white;
+}
+
+.contact-color-6 {
+    background-color: #AF1616;
+    color: white;
+}
+
+.contact-color-7 {
+    background-color: #462F8A;
+    color: white;
+}
+
+.contact-color-8 {
+    background-color: #FFC700;
+    color: white;
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    width: 140px;
+    height: 49px;
+}
+
+.contact-info span {
+    font-size: 21px;
+    font-weight: 400;
+    width: max-content;
+}
+
+.contact-info p {
+    font-size: 16px;
+    color: #007cee;
+    margin: 5px 0 0 0;
+}
+
+.show-contact {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 21px;
+    position: absolute;
+    width: 461px;
+    height: 364px;
+    left: 750px;
+    top: 326px;
+
 }
