@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="fonts.css">
+</head>
+
+<style>
+    body {
+        font-family: 'inter', sans-serif;
+        margin: 0;
+    }
+
+    input {
+        border: none;
+        width: 422px;
+        height: 51px;
+        font-size: 21px;
+        font-weight: 400;
+    }
+
+    .full-container {
+        position: relative;
+        width: 1212px;
+        height: 594px;
+        display: flex;
+    }
+
+    .left-container {
+        background-color: #2A3647;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        padding-left: 46px;
+        gap: 12px;
+        width: 463px;
+        left: 0px;
+        top: 0px;
+        color: white;
+    }
+
+    .blue-bar {
+        width: 90px;
+    }
+
+    .join-logo {
+        width: 55px;
+        height: 66px;
+        position: absolute;
+        Top: 145px;
+    }
+
+    .left-container h1 {
+        font-size: 61px;
+        font-weight: 700;
+        margin-bottom: 12px;
+        margin-top: 12px;
+    }
+
+    .left-container span {
+        font-size: 27px;
+        font-weight: 400;
+    }
+
+    .right-container {
+        display: flex;
+        width: 749px;
+    }
+
+    .img-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        width: 120px;
+        height: 120px;
+        left: 533px;
+        top: 204px;
+        border: 3px solid white;
+        background-color: #d1d1d1;
+        border-radius: 70px;
+    }
+
+    .x-container {
+        position: absolute;
+        width: 21.65px;
+        height: 21.65px;
+        left: 1141.31px;
+        top: 26px;
+        cursor: pointer;
+    }
+
+    #profile-img {
+        width: 62px;
+        height: 62px;
+        object-fit: cover;
+    }
+
+    .log-in-input {
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        border: 1px solid #d1d1d1;
+        padding: 5px 15px;
+        border-radius: 10px;
+        width: 422px;
+    }
+
+    .input {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 0px;
+        gap: 49px;
+        position: absolute;
+        width: 422px;
+        height: 271px;
+        left: 737px;
+        top: 129px;
+    }
+
+    .button-container {
+        display: flex;
+        flex-direction: row;
+        gap: 25px;
+    }
+
+    .secondary-btn {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding: 18px 10px;
+        gap: 10px;
+        width: 136px;
+        height: 61px;
+        border: 1px solid #2A3647;
+        border-radius: 10px;
+        background-color: white;
+        font-weight: 400;
+        font-size: 21px;
+    }
+
+    .primary-btn {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding: 18px 10px;
+        gap: 10px;
+        width: 208px;
+        height: 61px;
+        background: #2A3647;
+        border-radius: 10px;
+        color: white;
+        font-weight: 600;
+        font-size: 21px;
+        border: none;
+    }
+</style>
+
+<body>
+    <div class="full-container">
+        <div class="left-container">
+            <img class="join-logo" src="./assets/img/join-logo-white.png">
+            <h1>Add contact</h1>
+            <span>Tasks are better with a team!</span>
+            <img class="blue-bar" src="./assets/img/blue-bar-horizontal.png">
+        </div>
+        <div class="right-container">
+            <span onclick="" class="x-container">X</span>
+            <div class="img-container">
+                <img id="profile-img" src="./assets/img/user-white.png">
+            </div>
+            <div class="input">
+                <div class="log-in-input">
+                    <input placeholder="Name" type="text">
+                    <img src="./assets/img/body-logo.png">
+                </div>
+                <div class="log-in-input">
+                    <input placeholder="Email" type="text">
+                    <img src="./assets/img/mail-logo.png">
+                </div>
+                <div class="log-in-input">
+                    <input placeholder="Phone" type="text">
+                    <img src="./assets/img/phone-logo.png">
+                </div>
+                <div class="button-container">
+                    <button class="secondary-btn">Cancel <img src="./assets/img/x.png"></button>
+                    <button class="primary-btn">Create contact <img src="./assets/img/done-white-btn.png"></button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+
+</html>
