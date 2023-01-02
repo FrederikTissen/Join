@@ -474,46 +474,7 @@ input {
     width: 42px;
     height: 42px;
     margin-left: 20px;
-}
-
-.contact-color-1 {
-    color: white;
-    background-color: #FF7A00;
-}
-
-.contact-color-2 {
-    background-color: #9327FF;
-    color: white;
-}
-
-.contact-color-3 {
-    background-color: #29ABE2;
-    color: white;
-}
-
-.contact-color-4 {
-    background-color: #FC71FF;
-    color: white;
-}
-
-.contact-color-5 {
-    background-color: #02CF2F;
-    color: white;
-}
-
-.contact-color-6 {
-    background-color: #AF1616;
-    color: white;
-}
-
-.contact-color-7 {
-    background-color: #462F8A;
-    color: white;
-}
-
-.contact-color-8 {
-    background-color: #FFC700;
-    color: white;
+    padding: 5px;
 }
 
 .contact-info {
@@ -601,7 +562,6 @@ input {
 
 .search-task {
     display: flex;
-    
     flex-direction: row;
     align-items: center;
     padding-left: 13px;
