@@ -7,6 +7,8 @@ button {
     border: unset;
 }
 
+
+
 input {
     padding: unset;
 }
@@ -637,3 +639,19 @@ input {
     font-weight: 700;
     padding-bottom: 100px;
 }
+
+/*
+    HELP
+*/
+
+.help-texts{
+    box-sizing: border-box;
+}
+
+.help-number{
+    font-size: 1.5em;
+    font-weight: bold;
+    padding-right: 35px;
+    box-sizing: border-box;
+}
+
