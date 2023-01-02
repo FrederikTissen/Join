@@ -40,30 +40,50 @@ let contacts = [{
     phone: "015137294744"
 }];
 
-function renderAllContacts() {
+function setRandomColor(i) {
+    let randomColor = Math.floor(Math.random() * 16777215).toString(16);
+    document.getElementById(`contact-img${i}`).style.backgroundColor = '#' + randomColor;
+}
+
+function renderAllContacts(i) {
     let contactSection = document.getElementById('contact-list');
-    let charSection = document.getElementById(`char-section`);
 
     for (let i = 0; i < contacts.length; i++) {
         const contact = contacts[i];
         let firstChar = contact['firstName'].charAt(0);
         let secondChar = contact['name'].charAt(0);
+        let randomColor = Math.floor(Math.random() * 16777215).toString(16);
 
         contactSection.innerHTML += `
 
         <div id="char-section${i}" class="first-char">${firstChar}</div>
-        <div class="contact-card">
-            <div class="contact-img contact-color">${firstChar} ${secondChar}</div>
-            <div class="contact-info">
-                <span>${contact['firstName']} ${contact['name']}</span>
+        <div onclick="showContact(${i})" id="contact-card${i}" class="contact-card">
+            <div id="contact-img${i}" class="contact-img">${firstChar} ${secondChar}</div>
+            <div id="contactInfo${i}" class="contact-info">
+                <span>${contact['firstName']}  ${contact['name']}</span>
                 <p>${contact['mail']}</p>
             </div>
         </div>`;
-    }
 
-    if (charSection === charSection) {
-        charSection.classList.add = 'd-none';
+        setRandomColor(i);
     }
+}
+
+function showContact(i) {
+    let firstChar = contacts[i]['firstName'].charAt(0);
+    let secondChar = contacts[i]['name'].charAt(0);
+    let contactfield = document.getElementById(`show-contact`);
+    // let contact = document.getElementById(`contact-card${i}`);
+    // let contactImage = document.getElementById(`contact-img${i}`);
+    // let 
+
+    contactfield.innerHTML = `
+        <div>
+            <div id="contact-img${i}" class="contact-img">${firstChar} ${secondChar}</div>
+            <h1> ${contacts[i]['firstName']} ${contacts[i]['name']} </h1>
+        </div>
+    `;
+    setRandomColor(i);
 }
 
 // if firstChar === ist, nicht ausführen

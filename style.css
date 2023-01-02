@@ -475,6 +475,8 @@ input {
     height: 42px;
     margin-left: 20px;
     padding: 5px;
+    color: black;
+    text-shadow: 0 0 10px white;
 }
 
 .contact-info {
