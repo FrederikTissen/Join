@@ -208,6 +208,70 @@ input {
     font-weight: 600;
 }
 
+/*Start of Style for add-task.html */
+
+.addToTaskInputSection{
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-right: 20px;
+}
+
+.addToTaskInputSectionRight{
+    padding-left: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+.addTaskContent {
+    margin-top: 200px;
+    margin-left: 450px;
+}
+
+.taskContent {
+    display: flex;
+    flex-direction: row;
+}
+
+.taskContentLeft {
+    width: 400px;
+    border-right: 0.2px solid black;
+}
+
+.addToTaskTaskText {
+    padding: 5px;
+}
+
+.prioButton {
+    width: 70px;
+    height: 25px;
+}
+
+.addTotaskInputField{
+    min-width: 349px;
+    max-width: 350px;
+}
+
+.btn{
+    border: solid 1px black;
+    border-radius: 5px;
+    width: 90px;
+    height: 30px;
+}
+
+.btn:hover{
+    cursor: pointer;
+    background-color: #091931;
+    color: white;
+}
+.btnRow{
+    padding-left: 590px;
+    padding-top: 40px;
+}
+
+
+/*End of Style for add-task.html */
+
+
+
 .sum-task {
     width: 87px;
     height: 50px;
@@ -324,30 +388,10 @@ input {
     text-align: center;
 }
 
-.addTaskContent {
-    margin-top: 200px;
-    margin-left: 450px;
 
-}
 
-.taskContent {
-    display: flex;
-    flex-direction: row;
-}
 
-.addToTaskTaskText {
-    padding: 5px;
-}
 
-.prioButton {
-    width: 70px;
-    height: 25px;
-}
-
-.taskContentLeft {
-    width: 400px;
-    border-right: 0.2px solid black;
-}
 
 /*
     LEGAL NOTICE
