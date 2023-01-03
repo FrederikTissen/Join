@@ -52,7 +52,6 @@ function renderAllContacts(i) {
         const contact = contacts[i];
         let firstChar = contact['firstName'].charAt(0);
         let secondChar = contact['name'].charAt(0);
-        let randomColor = Math.floor(Math.random() * 16777215).toString(16);
 
         contactSection.innerHTML += `
 
