@@ -11,7 +11,7 @@
     <script src="js/scriptAddTask.js"></script>
 </head>
 
-<body>
+<body onload="loadAllTasks()">
     <div class="header">
         <span>Kanban Project Management Tool </span>
         <div class="head-container-right">
@@ -59,14 +59,14 @@
         <div id="taskContent" class="taskContent">
             <div id="taskContentLeft" class="taskContentLeft">
 
-                <div id="title" class="addToTaskInputSection">
+                <div  class="addToTaskInputSection">
                     <span>Title</span><br><br>
-                    <input placeholder="Enter a title" class="addTotaskInputField">
+                    <input placeholder="Enter a title" class="addTotaskInputField" id="title">
                 </div>
 
-                <div id="description" class="addToTaskInputSection">
+                <div  class="addToTaskInputSection">
                     <span>Description</span><br><br>
-                    <textarea placeholder="Enter a Description" class="addTotaskInputField "> </textarea>
+                    <textarea placeholder="Enter a Description" class="addTotaskInputField " id="description"> </textarea>
                 </div>
 
                 <div id="category" class="addToTaskInputSection">
@@ -80,48 +80,50 @@
                 </div>
                 <div id="assignedTo" class="addToTaskInputSection">
                     <span>Assigned to</span><br><br>
-                    <select id="assignedToSelect" class="addTotaskInputField">
-                        <option value="" disabled selected>Select contacts to assign</option>
-                        <option id="assignedToKubilay">Kubilay</option>
-                        <option id="assignedToFelix">Felix</option>
-                        <option id="assignedToFrederik">Frederik</option>
-                    </select>
+
+                    <input type="checkbox" id="assignedToKubilay" name="assignedToKubilay" value="assignedToKubilay">
+                    <label for="assignedToKubilay">Kubilay</label><br>
+
+                    <input type="checkbox" id="assignedToFelix" name="assignedToFelix" value="assignedToFelix">
+                    <label for="assignedToFelix">Felix</label><br>
+
+                    <input type="checkbox" id="assignedToFrederik" name="assignedToFrederik" value="assignedToFrederik">
+                    <label for="assignedToFrederik">Frederik</label>
+
                 </div>
             </div>
             <div id="taskContentRight" class="taskContentRight">
                 <div class="addToTaskInputSectionRight">
                     <span>Due date</span><br><br>
-                    <input type="date" placeholder="dd/mm/yyyy" class="addTotaskInputField">
+                    <input type="date" placeholder="dd/mm/yyyy" class="addTotaskInputField" id="date">
                 </div>
                 <div id="prio" class="prio addToTaskInputSectionRight">
                     <span>Prio</span><br><br>
-                    <button id="prioUrgent" class="prioButton">
-                        <span>Urgent</span>
-                        <img>
-                    </button>
 
-                    <button id="prioMedium" class="prioButton">
-                        <span>Medium</span>
-                        <img>
-                    </button>
+                    <input type="checkbox" id="prioUrgent" name="prioUrgent" value="prioUrgent">
+                    <label for="prioUrgent">Urgent</label><br>
 
-                    <button id="prioLow" class="prioButton">
-                        <span>Low</span>
-                        <img>
-                    </button>
+                    <input type="checkbox" id="prioMedium" name="prioMedium" value="prioMedium">
+                    <label for="prioMedium">Medium</label><br>
+
+                    <input type="checkbox" id="prioLow" name="prioLow" value="prioLow">
+                    <label for="prioLow">Low</label>
+
                 </div>
                 <div id="Subtask" class="Subtask addToTaskInputSectionRight">
                     <span>Subtasks</span><br><br>
                     <input placeholder="Add new subtask" class="addTotaskInputField"><br>
                     <input type="checkbox" id="subtask1" name="subtask1">
                     <label for="subtask1"> Subtask 1</label><br>
-                    <p><a href="./sub-task.html" onclick="centeredPopup(this.href,'myWindow','800','600','yes');return false">Open Subtask Mask</a></p>
+                    <p><a href="./sub-task.html"
+                            onclick="centeredPopup(this.href,'myWindow','800','600','yes');return false">Open Subtask
+                            Mask</a></p>
                 </div>
             </div>
         </div>
         <div class="btnRow">
-            <button id="addToTaskClearBtn" class="btn addToTaskClearBtn">Clear  x</button>
-            <button id="addToTaskCreateBtn" class="btn addToTaskCreateBtn">Create Task</button>
+            <button id="addToTaskClearBtn" class="btn addToTaskClearBtn">Clear x</button>
+            <button onclick="addTask()" id="addToTaskCreateBtn" class="btn addToTaskCreateBtn">Create Task</button>
         </div>
     </div>
 </body>
