@@ -281,6 +281,24 @@ input {
     background-color: #091931;
 }
 
+.subTaskPopUp{
+    position: absolute;
+    right: 250px;
+    top: 150px;
+    width: 850px;
+    height: 600px;
+    border: solid black 1px;
+    border-radius: 15px;
+    background-color: #36393c;
+}
+
+.subTaskPopUpWindow{
+    padding: 10px;
+}
+
+.d-none{
+    display: none;
+}
 
 /*End of Style for add-task.html */
 

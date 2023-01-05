@@ -1,30 +1,20 @@
 let allTasks = [];
 
 
-var popupWindow = null;
-
-
-function centeredPopup(url, winName, w, h, scroll) {
-    LeftPosition = (screen.width) ? (screen.width - w) / 2 : 0;
-    TopPosition = (screen.height) ? (screen.height - h) / 2 : 0;
-    settings =
-        'height=' + h + ',width=' + w + ',top=' + TopPosition + ',left=' + LeftPosition + ',scrollbars=' + scroll + ',resizable'
-    popupWindow = window.open(url, winName, settings)
-}
-
 
 function addTask() {
-    let title = document.getElementById('title').value;
-    let description = document.getElementById('description').value;
-    let date = document.getElementById('date').value;
-
-    
+    let title = document.getElementById('title');
+    let description = document.getElementById('description');
+    let date = document.getElementById('date');
 
     let task = {
-        'title': title,
-        'description': description,
-        'date': date,
+        'title': title.value,
+        'description': description.value,
+        'date': date.value,
     };
+
+    console.log(task);
+
 
     allTasks.push(task);
 
@@ -34,7 +24,39 @@ function addTask() {
 }
 
 
-function loadAllTasks(){
-   let allTasksAsString = localStorage.getItem('allTasks');
-   allTasks = JSON.parse(allTasksAsString);
+function loadAllTasks() {
+    let allTasksAsString = localStorage.getItem('allTasks');
+    allTasks = JSON.parse(allTasksAsString);
+}
+
+
+function openSubTaskMask() {
+    document.getElementById('subTaskPopUp').classList.remove('d-none');
+}
+
+
+function closeSubTask() {
+    document.getElementById('subTaskPopUp').classList.add('d-none');
+}
+
+
+function addTaskFromSubTask() {
+    let title = document.getElementById('titleSubMask');
+    let description = document.getElementById('descriptionSubMask');
+    let date = document.getElementById('dateSubMask');
+
+
+    let task = {
+        'titleSubMask': title.value,
+        'descriptionSubMask': description.value,
+        'dateSubMask': date.value,
+    };
+
+    console.log(task);
+
+
+    allTasks.push(task);
+
+    let allTasksAsString = JSON.stringify(allTasks);
+    localStorage.setItem('allTasks', allTasksAsString);
 }

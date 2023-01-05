@@ -17,7 +17,7 @@
         <title>JOIN</title>
         <link rel="stylesheet" href="style.css">
         <link rel="stylesheet" href="fonts.css"> <!-- FONTS ORDNER RICHTIG ? -->
-        <script src="js/script.js"></script>
+        <script src="js/scriptAddTask.js"></script>
     </head>
 
     <body>
@@ -65,7 +65,7 @@
                     <span>Board</span>
                     <div class="add-search-bar">
                         <input class="search-task" type="text"  placeholder="Find task">
-                        <button class="add-task-btn"></button>
+                        <button onclick="openSubTaskMask()" class="add-task-btn"></button>
                     </div>
                 </div>
                 <div class="task-sections">
@@ -84,6 +84,74 @@
                     <div class="task">
                         <span>Done</span>
                         <img src="/assets/img/plus-button.png">
+                    </div>
+                </div>
+                <div id="subTaskPopUp" class="subTaskPopUp d-none">
+                    <div id="addTaskContent" class="subTaskPopUpWindow">
+                        <div id="mainHeadline" class="mainHeadline">
+                            <h1>Add task</h1>
+                        </div>
+                        <div id="taskContent" class="taskContent">
+                            <div id="taskContentLeft" class="taskContentLeft">
+                
+                                <div  class="addToTaskInputSection">
+                                    <span>Title</span><br><br>
+                                    <input id="titleSubMask" placeholder="Enter a title" class="addTotaskInputField">
+                                </div>
+                
+                                <div  class="addToTaskInputSection">
+                                    <span>Description</span><br><br>
+                                    <textarea id="descriptionSubMask" placeholder="Enter a Description" class="addTotaskInputField "> </textarea>
+                                </div>
+                
+                                <div id="categorySubMask" class="addToTaskInputSection">
+                                    <span>Category</span><br><br>
+                                    <select id="categorySelect" class="addTotaskInputField">
+                                        <option value="" disabled selected>Select your option</option>
+                                        <option id="categoryOperation">Operation</option>
+                                        <option id="categoryTodo">To do</option>
+                                        <option id="categoryEvent">Event</option>
+                                    </select>
+                                </div>
+                                <div id="assignedToSubMask" class="addToTaskInputSection">
+                                    <span>Assigned to</span><br><br>
+                                    <select id="assignedToSelect" class="addTotaskInputField">
+                                        <option value="" disabled selected>Select contacts to assign</option>
+                                        <option id="assignedToKubilay">Kubilay</option>
+                                        <option id="assignedToFelix">Felix</option>
+                                        <option id="assignedToFrederik">Frederik</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div id="taskContentRight" class="taskContentRight">
+                                <div class="addToTaskInputSectionRight">
+                                    <span>Due date</span><br><br>
+                                    <input type="date" placeholder="dd/mm/yyyy" class="addTotaskInputField" id="dateSubMask">
+                                </div>
+                                <div id="prioSubMask" class="prio addToTaskInputSectionRight">
+                                    <span>Prio</span><br><br>
+                                    <button id="prioUrgentSubMask" class="prioButton">
+                                        <span>Urgent</span>
+                                        <img>
+                                    </button>
+                
+                                    <button id="prioMediumSubMask" class="prioButton">
+                                        <span>Medium</span>
+                                        <img>
+                                    </button>
+                
+                                    <button id="prioLowSubMask" class="prioButton">
+                                        <span>Low</span>
+                                        <img>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="btnRow">
+                            <button id="addToTaskClearBtn" class="btn addToTaskClearBtn">Clear x</button>
+                            <button id="addToTaskCreateBtn" onclick="addTaskFromSubTask()"  class="btn addToTaskCreateBtn">Create Task</button>
+                            <button onclick="closeSubTask()" class="btn">Close x</button>
+                        </div>
                     </div>
                 </div>
             </div>
