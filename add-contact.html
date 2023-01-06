@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="fonts.css">
+    <script src="./js/contacts-script.js"></script>
 </head>
 
 <style>
@@ -110,6 +110,7 @@
         padding: 5px 15px;
         border-radius: 10px;
         width: 422px;
+        background-color: white;
     }
 
     .input {
@@ -145,6 +146,7 @@
         background-color: white;
         font-weight: 400;
         font-size: 21px;
+        cursor: pointer;
     }
 
     .primary-btn {
@@ -162,11 +164,12 @@
         font-weight: 600;
         font-size: 21px;
         border: none;
+        cursor: pointer;
     }
 </style>
 
 <body>
-    <div class="full-container d-none">         <!-- ACHTUNG D-NONE -->
+    <div class="full-container">
         <div class="left-container">
             <img class="join-logo" src="./assets/img/join-logo-white.png">
             <h1>Add contact</h1>
@@ -192,8 +195,8 @@
                     <img src="./assets/img/phone-logo.png">
                 </div>
                 <div class="button-container">
-                    <button class="secondary-btn">Cancel <img src="./assets/img/x.png"></button>
-                    <button class="primary-btn">Create contact <img src="./assets/img/done-white-btn.png"></button>
+                    <button onclick="cancelAction()" class="secondary-btn">Cancel <img src="./assets/img/x.png"></button>
+                    <button onclick="createContact()" class="primary-btn">Create contact <img src="./assets/img/done-white-btn.png"></button>
                 </div>
             </div>
 

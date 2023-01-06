@@ -7,8 +7,6 @@ button {
     border: unset;
 }
 
-
-
 input {
     padding: unset;
 }
@@ -761,3 +759,34 @@ input {
     padding-right: 35px;
     box-sizing: border-box;
 }
+
+/*
+    ####    POP-UP CSS    ####
+*/
+
+.show {
+    visibility: visible;
+    animation: slide-in 1s;
+}
+
+iframe {
+    width: 1212px;
+    height: 594px;
+    position: absolute;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    border-radius: 30px;
+    scale: 0.7;
+    top: -100px;
+    left: -220px;
+    z-index: 999;
+    background-color: #F5F5F5;
+}
+
+@keyframes slide-in {
+    from {
+      transform: translateX(1000%);
+    }
+    to {
+      transform: translateX(0%);
+    }
+  }

@@ -62,20 +62,28 @@ function renderAllContacts() {
         let firstChar = contact['firstName'].charAt(0);
         let secondChar = contact['name'].charAt(0);
 
-        contactSection.innerHTML += `
-
-        <div id="char-section${i}" class="first-char">${firstChar}</div>
-        <div onclick="showContact(${i})" id="contact-card${i}" class="contact-card">
-            <div id="contact-img${i}" class="contact-img">${firstChar} ${secondChar}</div>
-            <div id="contactInfo${i}" class="contact-info">
-                <span>${contact['firstName']}  ${contact['name']}</span>
-                <p>${contact['mail']}</p>
-            </div>
-        </div>`;
+        contactSection.innerHTML += generateAllContactsHtml(contact, firstChar, secondChar, i);
 
     setRandomColor(i);
-
     }
+}
+
+/** 
+ * returns generate HTML to showContact function
+ * 
+ * 
+ * @returns
+ */
+function generateAllContactsHtml(contact, firstChar, secondChar, i) {
+    return `
+    <div id="char-section${i}" class="first-char">${firstChar}</div>
+    <div onclick="showContact(${i})" id="contact-card${i}" class="contact-card">
+        <div id="contact-img${i}" class="contact-img">${firstChar} ${secondChar}</div>
+        <div id="contactInfo${i}" class="contact-info">
+            <span>${contact['firstName']}  ${contact['name']}</span>
+            <p>${contact['mail']}</p>
+        </div>
+    </div>`
 }
 
 /**
@@ -86,10 +94,20 @@ function renderAllContacts() {
 function showContact(i) {
     let firstChar = contacts[i]['firstName'].charAt(0);
     let secondChar = contacts[i]['name'].charAt(0);
-    let contactfield = document.getElementById(`show-contact`);
     let randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
+    let contactfield = document.getElementById('show-contact');
 
-    contactfield.innerHTML =/*html*/`
+    contactfield.innerHTML = generateContactfield(i, firstChar, secondChar, randomColor);
+}
+
+/**
+ * returns generate HTML to showContact function
+ * 
+ * 
+ * @returns 
+ */
+function generateContactfield(i, firstChar, secondChar, randomColor) {
+    return `
     <div class="show-contact-headline">
         <div id="contact-img${i}" class="contact-img-big" style="background-color:${randomColor}">${firstChar} ${secondChar}</div>
         <div class="show-contact-headline-right"> 
@@ -108,7 +126,36 @@ function showContact(i) {
         <span class="blue-font" style="padding-bottom: 22px;">${contacts[i]['mail']}</span>
         <span style="font-size: 16px; font-weight: 700; padding-bottom: 15px;">Phone</span>
         <span>${contacts[i]['phone']}</span>
-    </div>
+    </div> `
+}
 
+function addNewContact() {
+    document.getElementById('show-contact').innerHTML += /*html*/`
+        <iframe id="popup-show" src="./add-contact.html">
     `;
+
+    let showPopup = document.getElementById("popup-show");
+    showPopup.classList.toggle("show");
+
+}
+
+function editContact() {
+    document.getElementById('show-contact').innerHTML += /*html*/`
+        <iframe id="popup-edit" src="./edit-contact.html">
+    `;
+
+    let editPopup = document.getElementById("popup-edit");
+    editPopup.classList.toggle("show");
+}
+
+function cancelAction() {
+
+}
+
+function createContact() {
+
+}
+
+function saveEditContact() {
+    
 }

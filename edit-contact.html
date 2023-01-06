@@ -110,6 +110,7 @@
         padding: 5px 15px;
         border-radius: 10px;
         width: 422px;
+        background-color: white;
     }
 
     .input {
@@ -149,7 +150,7 @@
 </style>
 
 <body>
-    <div class="full-container d-none">         <!-- ACHTUNG D-NONE -->
+    <div class="full-container">
         <div class="left-container">
             <img class="join-logo" src="./assets/img/join-logo-white.png">
             <h1>Edit contact</h1>
@@ -173,7 +174,7 @@
                     <img src="./assets/img/phone-logo.png">
                 </div>
 
-                <button class="primary-btn">Save</button>
+                <button onclick="saveEditContact()" class="primary-btn">Save</button>
 
             </div>
 
