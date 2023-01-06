@@ -206,17 +206,18 @@ input {
 
 /*Start of Style for add-task.html */
 
-.addToTaskInputSection{
+.addToTaskInputSection {
     padding-top: 20px;
     padding-bottom: 20px;
     padding-right: 20px;
 }
 
-.addToTaskInputSectionRight{
+.addToTaskInputSectionRight {
     padding-left: 20px;
     padding-top: 20px;
     padding-bottom: 20px;
 }
+
 .addTaskContent {
     margin-top: 200px;
     margin-left: 450px;
@@ -241,29 +242,30 @@ input {
     height: 25px;
 }
 
-.addTotaskInputField{
+.addTotaskInputField {
     min-width: 349px;
     max-width: 350px;
 }
 
-.btn{
+.btn {
     border: solid 1px black;
     border-radius: 5px;
     width: 90px;
     height: 30px;
 }
 
-.btn:hover{
+.btn:hover {
     cursor: pointer;
     background-color: #091931;
     color: white;
 }
-.btnRow{
+
+.btnRow {
     padding-left: 20px;
     padding-top: 40px;
 }
 
-.sidebarBottomLegalNotice{
+.sidebarBottomLegalNotice {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -277,11 +279,11 @@ input {
 }
 
 
-.sidebarBottomLegalNotice:hover{
+.sidebarBottomLegalNotice:hover {
     background-color: #091931;
 }
 
-.subTaskPopUp{
+.subTaskPopUp {
     position: absolute;
     right: 250px;
     top: 150px;
@@ -292,11 +294,11 @@ input {
     background-color: #36393c;
 }
 
-.subTaskPopUpWindow{
+.subTaskPopUpWindow {
     padding: 10px;
 }
 
-.d-none{
+.d-none {
     display: none;
 }
 
@@ -551,8 +553,23 @@ input {
     height: 42px;
     margin-left: 20px;
     padding: 5px;
-    color: black;
-    text-shadow: 0 0 10px white;
+    color: white;
+}
+
+.contact-img-big {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 3px solid white;
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    margin-left: 20px;
+    padding: 5px;
+    color: white;
+    font-size: 47px;
+    letter-spacing: -5px;
+    margin-left: 0;
 }
 
 .contact-info {
@@ -587,6 +604,66 @@ input {
     height: 364px;
     left: 750px;
     top: 326px;
+}
+
+.show-contact-headline {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 47px;
+    font-weight: 500;
+}
+
+.show-contact-headline-right {
+    display: flex;
+    flex-direction: column;
+    margin-left: 54px;
+    gap: 13px;
+}
+
+.show-contact-middle {
+    display: flex;
+    padding-top: 22px;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 22px;
+    font-size: 21px;
+    font-weight: 400;
+}
+
+.edit-contact {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.new-contact {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 18px 10px;
+    gap: 10px;
+    position: absolute;
+    width: 193px;
+    height: 53px;
+    left: 1195px;
+    top: 907px;
+    background: #2A3647;
+    border: 1px solid #2A3647;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.blue-font {
+    color: #29ABE2;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.blue-font:hover {
+    text-decoration: underline;
+    cursor: pointer;
 }
 
 /*
@@ -674,14 +751,13 @@ input {
     HELP
 */
 
-.help-texts{
+.help-texts {
     box-sizing: border-box;
 }
 
-.help-number{
+.help-number {
     font-size: 1.5em;
     font-weight: bold;
     padding-right: 35px;
     box-sizing: border-box;
 }
-
