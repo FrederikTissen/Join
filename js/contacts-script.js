@@ -129,6 +129,10 @@ function generateContactfield(i, firstChar, secondChar, randomColor) {
     </div> `
 }
 
+/**
+ * Pop-up window to create a new contact
+ * 
+ */
 function addNewContact() {
     document.getElementById('show-contact').innerHTML += /*html*/`
         <iframe id="popup-show" src="./add-contact.html">
@@ -139,6 +143,10 @@ function addNewContact() {
 
 }
 
+/**
+ * Pop-up window to edit a contact
+ * 
+ */
 function editContact() {
     document.getElementById('show-contact').innerHTML += /*html*/`
         <iframe id="popup-edit" src="./edit-contact.html">
@@ -148,14 +156,26 @@ function editContact() {
     editPopup.classList.toggle("show");
 }
 
+/**
+ * cancel pop-up window
+ * 
+ */
 function cancelAction() {
 
 }
 
+/**
+ * create the new contact
+ * 
+ */
 function createContact() {
 
 }
 
+/**
+ * edit a contact
+ * 
+ */
 function saveEditContact() {
-    
+
 }

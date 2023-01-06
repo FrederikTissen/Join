@@ -766,7 +766,7 @@ input {
 
 .show {
     visibility: visible;
-    animation: slide-in 1s;
+    animation: slide-in 0.8s;
 }
 
 iframe {
