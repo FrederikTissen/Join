@@ -5,20 +5,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>JOIN</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="fonts.css"> <!-- FONTS ORDNER RICHTIG ? -->
+    <script src="js/scriptAddTask.js"></script>
 </head>
 
-<body>
 
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>JOIN</title>
-        <link rel="stylesheet" href="style.css">
-        <link rel="stylesheet" href="fonts.css"> <!-- FONTS ORDNER RICHTIG ? -->
-        <script src="js/scriptAddTask.js"></script>
-    </head>
+
+
 
     <body>
         <div class="header">
@@ -64,7 +59,7 @@
                 <div class="headline-board">
                     <span>Board</span>
                     <div class="add-search-bar">
-                        <input class="search-task" type="text"  placeholder="Find task">
+                        <input class="search-task" type="text" placeholder="Find task">
                         <button onclick="openSubTaskMask()" class="add-task-btn"></button>
                     </div>
                 </div>
@@ -93,17 +88,18 @@
                         </div>
                         <div id="taskContent" class="taskContent">
                             <div id="taskContentLeft" class="taskContentLeft">
-                
-                                <div  class="addToTaskInputSection">
+
+                                <div class="addToTaskInputSection">
                                     <span>Title</span><br><br>
                                     <input id="titleSubMask" placeholder="Enter a title" class="addTotaskInputField">
                                 </div>
-                
-                                <div  class="addToTaskInputSection">
+
+                                <div class="addToTaskInputSection">
                                     <span>Description</span><br><br>
-                                    <textarea id="descriptionSubMask" placeholder="Enter a Description" class="addTotaskInputField "> </textarea>
+                                    <textarea id="descriptionSubMask" placeholder="Enter a Description"
+                                        class="addTotaskInputField "> </textarea>
                                 </div>
-                
+
                                 <div id="categorySubMask" class="addToTaskInputSection">
                                     <span>Category</span><br><br>
                                     <select id="categorySelect" class="addTotaskInputField">
@@ -126,7 +122,8 @@
                             <div id="taskContentRight" class="taskContentRight">
                                 <div class="addToTaskInputSectionRight">
                                     <span>Due date</span><br><br>
-                                    <input type="date" placeholder="dd/mm/yyyy" class="addTotaskInputField" id="dateSubMask">
+                                    <input type="date" placeholder="dd/mm/yyyy" class="addTotaskInputField"
+                                        id="dateSubMask">
                                 </div>
                                 <div id="prioSubMask" class="prio addToTaskInputSectionRight">
                                     <span>Prio</span><br><br>
@@ -134,12 +131,12 @@
                                         <span>Urgent</span>
                                         <img>
                                     </button>
-                
+
                                     <button id="prioMediumSubMask" class="prioButton">
                                         <span>Medium</span>
                                         <img>
                                     </button>
-                
+
                                     <button id="prioLowSubMask" class="prioButton">
                                         <span>Low</span>
                                         <img>
@@ -149,7 +146,8 @@
                         </div>
                         <div class="btnRow">
                             <button id="addToTaskClearBtn" class="btn addToTaskClearBtn">Clear x</button>
-                            <button id="addToTaskCreateBtn" onclick="addTaskFromSubTask()"  class="btn addToTaskCreateBtn">Create Task</button>
+                            <button id="addToTaskCreateBtn" onclick="addTaskFromSubTask()"
+                                class="btn addToTaskCreateBtn">Create Task</button>
                             <button onclick="closeSubTask()" class="btn">Close x</button>
                         </div>
                     </div>
