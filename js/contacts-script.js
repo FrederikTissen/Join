@@ -47,7 +47,7 @@ let contacts = [{
  */
 function setRandomColor(i) {
     let randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
-    document.getElementById(`contact-img${i}`).style= `background-color: ${randomColor};`;
+    document.getElementById(`contact-img${i}`).style = `background-color: ${randomColor};`;
 }
 
 /**
@@ -64,7 +64,7 @@ function renderAllContacts() {
 
         contactSection.innerHTML += generateAllContactsHtml(contact, firstChar, secondChar, i);
 
-    setRandomColor(i);
+        setRandomColor(i);
     }
 }
 
@@ -134,11 +134,11 @@ function generateContactfield(i, firstChar, secondChar, randomColor) {
  * 
  */
 function addNewContact() {
-    document.getElementById('show-contact').innerHTML += /*html*/`
-        <iframe id="popup-show" src="./add-contact.html">
+    document.getElementById('show-contact').innerHTML += `
+        <iframe id="popup-add" src="./add-contact.html">
     `;
 
-    let showPopup = document.getElementById("popup-show");
+    let showPopup = document.getElementById("popup-add");
     showPopup.classList.toggle("show");
 
 }
@@ -161,7 +161,8 @@ function editContact() {
  * 
  */
 function cancelAction() {
-
+    document.getElementById('popup-add').classList.remove('show');
+    document.getElementById('popup-add').classList.add('hide');
 }
 
 /**
@@ -169,7 +170,23 @@ function cancelAction() {
  * 
  */
 function createContact() {
+    let inputName = document.getElementById('input-name');
+    let inputFirstName = document.getElementById('input-first-name');
+    let inputMail = document.getElementById('input-email');
+    let inputPhone = document.getElementById('input-phone');
 
+    let newContact = {
+        name: inputName.value,
+        firstName: inputFirstName.value,
+        mail: inputMail.value,
+        phone: inputPhone.value
+    }
+    contacts.push(newContact);
+    
+    inputName.value = '';
+    inputFirstName.value = '';
+    inputMail.value = '';
+    inputPhone.value = '';
 }
 
 /**

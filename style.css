@@ -769,6 +769,11 @@ input {
     animation: slide-in 0.8s;
 }
 
+.hide {
+    visibility: hidden;
+    animation: slide-out 0.5s;
+}
+
 iframe {
     width: 1212px;
     height: 594px;
@@ -789,4 +794,13 @@ iframe {
     to {
       transform: translateX(0%);
     }
-  }
+}
+
+@keyframes slide-out {
+    from {
+      transform: translateX(0%);
+    }
+    to {
+      transform: translateX(1000%);
+    }
+}
