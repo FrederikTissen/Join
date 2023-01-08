@@ -169,7 +169,7 @@
 </style>
 
 <body>
-    <div class="full-container">
+    <div id="full-container" class="full-container">
         <div class="left-container">
             <img class="join-logo" src="./assets/img/join-logo-white.png">
             <h1>Add contact</h1>
@@ -183,7 +183,7 @@
             </div>
             <div class="input">
                 <div class="log-in-input">
-                    <input id="input-name" placeholder="Name" type="text">
+                    <input id="input-name" placeholder="Last name" type="text">
                     <img src="./assets/img/body-logo.png">
                 </div>
                 <div class="log-in-input">
@@ -191,15 +191,15 @@
                     <img src="./assets/img/body-logo.png">
                 </div>
                 <div class="log-in-input">
-                    <input id="input-email" placeholder="Email" type="text">
+                    <input id="input-email" type="email" placeholder="Email">
                     <img src="./assets/img/mail-logo.png">
                 </div>
                 <div class="log-in-input">
-                    <input id="input-phone" placeholder="Phone" type="text">
+                    <input id="input-phone" placeholder="Phone" type="number">
                     <img src="./assets/img/phone-logo.png">
                 </div>
                 <div class="button-container">
-                    <button onclick="cancelAction()" class="secondary-btn">Cancel <img src="./assets/img/x.png"></button>
+                    <button onclick="cancelPopupAdd()" class="secondary-btn">Cancel <img src="./assets/img/x.png"></button>
                     <button onclick="createContact()" class="primary-btn">Create contact <img src="./assets/img/done-white-btn.png"></button>
                 </div>
             </div>

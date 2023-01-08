@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="fonts.css">
+    <script src="./js/contacts-script.js"></script>
 </head>
 
 <style>
@@ -118,7 +118,7 @@
         flex-direction: column;
         align-items: flex-start;
         padding: 0px;
-        gap: 49px;
+        gap: 30px;
         position: absolute;
         width: 422px;
         height: 271px;
@@ -156,25 +156,29 @@
             <h1>Edit contact</h1>
         </div>
         <div class="right-container">
-            <span onclick="" class="x-container">X</span>
+            <span onclick="cancelPopupEdit()" class="x-container">X</span>
             <div class="img-container">
                 <img id="profile-img" src="./assets/img/user-white.png">    <!-- IMG SRC: JS -->
             </div>
             <div class="input">
                 <div class="log-in-input">
-                    <input id="input1" placeholder="Name" type="text">
+                    <input id="edit-input-lastname" placeholder="Last name" type="text">
                     <img src="./assets/img/body-logo.png">
                 </div>
                 <div class="log-in-input">
-                    <input id="input2" placeholder="Email" type="text">
+                    <input id="edit-input-firstname" placeholder="First name" type="text">
+                    <img src="./assets/img/body-logo.png">
+                </div>
+                <div class="log-in-input">
+                    <input id="edit-input-mail" placeholder="Email" type="email">
                     <img src="./assets/img/mail-logo.png">
                 </div>
                 <div class="log-in-input">
-                    <input id="input3" placeholder="Phone" type="text">
+                    <input id="edit-input-phone" placeholder="Phone" type="number">
                     <img src="./assets/img/phone-logo.png">
                 </div>
 
-                <button onclick="saveEditContact()" class="primary-btn">Save</button>
+                <button onclick="saveEditContact(i)" class="primary-btn">Save</button>
 
             </div>
 

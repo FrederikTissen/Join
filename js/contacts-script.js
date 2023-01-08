@@ -40,6 +40,8 @@ let contacts = [{
     phone: "015137294748"
 }];
 
+let createdContact = true;
+
 /**
  * Pictures of the contacts will be randomly colored.
  * 
@@ -48,6 +50,7 @@ let contacts = [{
 function setRandomColor(i) {
     let randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
     document.getElementById(`contact-img${i}`).style = `background-color: ${randomColor};`;
+
 }
 
 /**
@@ -56,6 +59,8 @@ function setRandomColor(i) {
  */
 function renderAllContacts() {
     let contactSection = document.getElementById('contact-list');
+
+    contactSection.innerHTML = '';
 
     for (let i = 0; i < contacts.length; i++) {
         const contact = contacts[i];
@@ -98,6 +103,7 @@ function showContact(i) {
     let contactfield = document.getElementById('show-contact');
 
     contactfield.innerHTML = generateContactfield(i, firstChar, secondChar, randomColor);
+
 }
 
 /**
@@ -134,13 +140,15 @@ function generateContactfield(i, firstChar, secondChar, randomColor) {
  * 
  */
 function addNewContact() {
-    document.getElementById('show-contact').innerHTML += `
-        <iframe id="popup-add" src="./add-contact.html">
-    `;
+    if (createdContact) {
 
-    let showPopup = document.getElementById("popup-add");
-    showPopup.classList.toggle("show");
+        document.getElementById('show-contact').innerHTML += `
+        <iframe id="popup-add" src="./add-contact.html">`;
 
+        let showPopup = document.getElementById("popup-add");
+        showPopup.classList.toggle("show");
+    }
+    createdContact = false;
 }
 
 /**
@@ -160,9 +168,15 @@ function editContact() {
  * cancel pop-up window
  * 
  */
-function cancelAction() {
+function cancelPopupAdd() {
     document.getElementById('popup-add').classList.remove('show');
     document.getElementById('popup-add').classList.add('hide');
+    
+    createdContact = true;
+}
+
+function cancelPopupEdit() {
+    document.getElementById('popup-edit').classList.add('hide');
 }
 
 /**
@@ -175,24 +189,71 @@ function createContact() {
     let inputMail = document.getElementById('input-email');
     let inputPhone = document.getElementById('input-phone');
 
+
     let newContact = {
         name: inputName.value,
         firstName: inputFirstName.value,
         mail: inputMail.value,
         phone: inputPhone.value
     }
+
     contacts.push(newContact);
-    
+
     inputName.value = '';
     inputFirstName.value = '';
     inputMail.value = '';
     inputPhone.value = '';
+
+    createdContact = true;
+    renderAllContacts();
 }
 
-/**
- * edit a contact
- * 
- */
-function saveEditContact() {
+///*
 
+function saveEditContact(i) { //edit currently shown contact
+    let contact = contacts[i];
+    //only change if input is not empty
+    if (inputContainsValue('edit-input-lastname')) {
+        contact['name'] = document.getElementById('name-input').value;
+    }
+    if (inputContainsValue('edit-input-firstname')) {
+        contact['email'] = document.getElementById('email-input').value;
+    }
+    if (inputContainsValue('edit-input-mail')) {
+        contact['phone'] = document.getElementById('phone-input').value;
+    }
+    if (inputContainsValue('edit-input-phone')) {
+        contact['phone'] = document.getElementById('phone-input').value;
+    }
 }
+
+function inputContainsValue(id) {
+    document.getElementById(id).value != '';
+}
+
+
+function prepareEdit() { //load contact data and adjust onclick event of edit button
+    let contact = contacts[getIndexOf(document.getElementById('name').textContent)];
+    document.getElementById("name-input-edit").setAttribute('value', contact['name']);
+    document.getElementById("email-input-edit").setAttribute('value', contact['email']);
+    document.getElementById("phone-input-edit").setAttribute('value', contact['phone']);
+
+    let i = getIndexOf(contact['name']);
+    document.getElementById('edit-button').setAttribute('onclick', editContact(i))
+}
+
+
+function createBigSection(name, email, letter, color, firstLetter, i) {
+    let contactList = document.getElementById(`contactLetter-${firstLetter}`);
+    if (!contactList) {
+        contactList = document.createElement('div');
+        contactList.id = `contactLetter-${firstLetter}`;
+        document.getElementById('contactList').appendChild(contactList);
+    }
+    if (!firstLetter || firstLetter == firstLetter) {
+        let contactDiv = showContactDiv(name, email, letter, color, i);
+        contactList.innerHTML += contactDiv;
+    }
+}
+
+//*/
