@@ -21,12 +21,39 @@ function addTask() {
     let allTasksAsString = JSON.stringify(allTasks);
     localStorage.setItem('allTasks', allTasksAsString);
 
+
+
+}
+
+function renderTasks() {
+
+    loadAllTasks();
+    
+
+    for (let i = 0; i < allTasks.length; i++) {
+        currentTask = allTasks[i];
+        let title = allTasks[i]['title'];
+        let description = allTasks[i]['description'];
+
+        let newTask = document.getElementById('todo-box');
+
+        newTask.innerHTML += /*html*/ `
+            <div class="current-task">
+                <p>${title}</p>
+                <p>${description}</p>
+            </div>
+        `
+    }
+
+
 }
 
 
 function loadAllTasks() {
     let allTasksAsString = localStorage.getItem('allTasks');
-    allTasks = JSON.parse(allTasksAsString);
+    if (allTasksAsString) {
+        allTasks = JSON.parse(allTasksAsString);
+    }
 }
 
 

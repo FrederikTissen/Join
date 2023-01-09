@@ -9,78 +9,92 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="fonts.css"> <!-- FONTS ORDNER RICHTIG ? -->
     <script src="js/scriptAddTask.js"></script>
+    <script src="js/scriptboard.js"></script>
 </head>
 
 
 
 
 
-    <body>
-        <div class="header">
-            <span>Kanban Project Management Tool </span>
-            <div class="head-container-right">
-                <img src="./assets/img/question.png">
-                <img class="head-profile-img" src="./assets/img/profile-img.png">
+<body onload="renderTasks()">
+    <div class="header">
+        <span>Kanban Project Management Tool </span>
+        <div class="head-container-right">
+            <img src="./assets/img/question.png">
+            <img class="head-profile-img" src="./assets/img/profile-img.png">
+        </div>
+    </div>
+
+    <div class="page">
+        <div class="sidebar-header" id="sidebar-header">
+            <div class="sidebar-top">
+                <img class="join-logo" src="./assets/img/join-logo-white.png">
+            </div>
+            <div class="sidebar-mid">
+                <div class="sidebar-link" id="sidebar-link0">
+                    <a href="./index.html">Summary</a>
+                    <img src="./assets/img/summary-logo.png">
+                </div>
+                <div class="sidebar-link sidebar-active" id="sidebar-link1">
+                    <a href="./board.html">Board</a>
+                    <img src="./assets/img/board-logo.png">
+                </div>
+                <div class="sidebar-link" id="sidebar-link2">
+                    <a href="./add-task.html"> Add Task</a>
+                    <img src="./assets/img/add-task-logo.png">
+                </div>
+                <div class="sidebar-link" id="sidebar-link3">
+                    <a href="./contacts.html">Contacts</a>
+                    <img src="./assets/img/contacts-logo.png">
+                </div>
+            </div>
+            <div class="sidebar-bottom">
+                <div class="sidebarBottomLegalNotice ">
+                    <a href="./legal-notice.html">
+                        <img src="./assets/img/info-logo.png" alt=""> <span>Legal notice</span>
+                    </a>
+                </div>
             </div>
         </div>
-
-        <div class="page">
-            <div class="sidebar-header" id="sidebar-header">
-                <div class="sidebar-top">
-                    <img class="join-logo" src="./assets/img/join-logo-white.png">
-                </div>
-                <div class="sidebar-mid">
-                    <div class="sidebar-link" id="sidebar-link0">
-                        <a href="./index.html">Summary</a>
-                        <img src="./assets/img/summary-logo.png">
-                    </div>
-                    <div class="sidebar-link sidebar-active" id="sidebar-link1">
-                        <a href="./board.html">Board</a>
-                        <img src="./assets/img/board-logo.png">
-                    </div>
-                    <div class="sidebar-link" id="sidebar-link2">
-                        <a href="./add-task.html"> Add Task</a>
-                        <img src="./assets/img/add-task-logo.png">
-                    </div>
-                    <div class="sidebar-link" id="sidebar-link3">
-                        <a href="./contacts.html">Contacts</a>
-                        <img src="./assets/img/contacts-logo.png">
-                    </div>
-                </div>
-                <div class="sidebar-bottom">
-                    <div class="sidebarBottomLegalNotice ">
-                        <a href="./legal-notice.html">
-                            <img src="./assets/img/info-logo.png" alt=""> <span>Legal notice</span>
-                        </a>
-                    </div>
+        <div class="content">
+            <div class="headline-board">
+                <span>Board</span>
+                <div class="add-search-bar">
+                    <input class="search-task" type="text" placeholder="Find task">
+                    <button onclick="openSubTaskMask()" class="add-task-btn"></button>
                 </div>
             </div>
-            <div class="content">
-                <div class="headline-board">
-                    <span>Board</span>
-                    <div class="add-search-bar">
-                        <input class="search-task" type="text" placeholder="Find task">
-                        <button onclick="openSubTaskMask()" class="add-task-btn"></button>
-                    </div>
-                </div>
-                <div class="task-sections">
-                    <div class="task">
+            <div class="task-sections">
+                <div class="task">
+                    <div class="section-header">
                         <span>To do</span>
                         <img src="/assets/img/plus-button.png">
                     </div>
-                    <div class="task">
+                    <div id="todo-box" class="task-box"></div>
+                </div>
+                <div class="task">
+                    <div class="section-header">
                         <span>In progress</span>
                         <img src="/assets/img/plus-button.png">
                     </div>
-                    <div class="task">
+                    <div id="inprogress-box" class="task-box"></div>
+                </div>
+                <div class="task">
+                    <div class="section-header">
                         <span>Awaiting Feedback</span>
                         <img src="/assets/img/plus-button.png">
                     </div>
-                    <div class="task">
+                    <div id="feedback-box" class="task-box"></div>
+                </div>
+                <div class="task">
+                    <div class="section-header">>
                         <span>Done</span>
                         <img src="/assets/img/plus-button.png">
                     </div>
-                </div>
+                    <div id="done-box" class="task-box">
+                 </div>
+            </div>
+
                 <div id="subTaskPopUp" class="subTaskPopUp d-none">
                     <div id="addTaskContent" class="subTaskPopUpWindow">
                         <div id="mainHeadline" class="mainHeadline">
@@ -147,13 +161,14 @@
                         <div class="btnRow">
                             <button id="addToTaskClearBtn" class="btn addToTaskClearBtn">Clear x</button>
                             <button id="addToTaskCreateBtn" onclick="addTaskFromSubTask()"
-                                class="btn addToTaskCreateBtn">Create Task</button>
+                                class="btn addToTaskCreateBtn">Create
+                                Task</button>
                             <button onclick="closeSubTask()" class="btn">Close x</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </body>
+</body>
 
 </html>
