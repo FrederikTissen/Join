@@ -41,6 +41,27 @@ let contacts = [{
 }];
 
 let createdContact = true;
+let contactColor = true;
+
+
+async function init() {
+    await includeHTMLaddContact();
+    document.getElementById('show-contact').innerHTML += ``;
+}
+
+async function includeHTMLaddContact() {
+    let includeElements = document.querySelectorAll('[w3-include-html]');
+    for (let i = 0; i < includeElements.length; i++) {
+        const element = includeElements[i];
+        file = element.getAttribute("w3-include-html");
+        let resp = await fetch(file);
+        if (resp.ok) {
+            element.innerHTML = await resp.text();
+        } else {
+            element.innerHTML = 'Page not found';
+        }
+    }
+}
 
 /**
  * Pictures of the contacts will be randomly colored.
@@ -50,8 +71,8 @@ let createdContact = true;
 function setRandomColor(i) {
     let randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
     document.getElementById(`contact-img${i}`).style = `background-color: ${randomColor};`;
-
 }
+
 
 /**
  * Render all contacts from JSON Array "contacts"
@@ -79,11 +100,11 @@ function renderAllContacts() {
  * 
  * @returns
  */
-function generateAllContactsHtml(contact, firstChar, secondChar, i) {
+function generateAllContactsHtml(contact, firstChar, secondChar, i, randomColor) {
     return `
     <div id="char-section${i}" class="first-char">${firstChar}</div>
     <div onclick="showContact(${i})" id="contact-card${i}" class="contact-card">
-        <div id="contact-img${i}" class="contact-img">${firstChar} ${secondChar}</div>
+        <div id="contact-img${i}" class="contact-img" style.background-color="${randomColor}";>${firstChar} ${secondChar}</div>
         <div id="contactInfo${i}" class="contact-info">
             <span>${contact['firstName']}  ${contact['name']}</span>
             <p>${contact['mail']}</p>
@@ -135,6 +156,7 @@ function generateContactfield(i, firstChar, secondChar, randomColor) {
     </div> `
 }
 
+
 /**
  * Pop-up window to create a new contact
  * 
@@ -142,9 +164,7 @@ function generateContactfield(i, firstChar, secondChar, randomColor) {
 function addNewContact() {
     if (createdContact) {
 
-        document.getElementById('show-contact').innerHTML += `
-        <iframe id="popup-add" src="./add-contact.html">`;
-
+        document.getElementById('show-contact').innerHTML += includeHTMLaddContact();
         let showPopup = document.getElementById("popup-add");
         showPopup.classList.toggle("show");
     }
@@ -156,7 +176,7 @@ function addNewContact() {
  * 
  */
 function editContact() {
-    document.getElementById('show-contact').innerHTML += /*html*/`
+    document.getElementById('show-contact').innerHTML += `
         <iframe id="popup-edit" src="./edit-contact.html">
     `;
 
@@ -208,7 +228,7 @@ function createContact() {
     renderAllContacts();
 }
 
-///*
+/*
 
 function saveEditContact(i) { //edit currently shown contact
     let contact = contacts[i];
@@ -226,6 +246,7 @@ function saveEditContact(i) { //edit currently shown contact
         contact['phone'] = document.getElementById('phone-input').value;
     }
 }
+
 
 function inputContainsValue(id) {
     document.getElementById(id).value != '';
@@ -256,4 +277,4 @@ function createBigSection(name, email, letter, color, firstLetter, i) {
     }
 }
 
-//*/
+*/
