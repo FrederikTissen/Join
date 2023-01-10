@@ -449,7 +449,7 @@ input {
 }
 
 /*
-    CONTACTS
+    #####       CONTACTS        ######
 */
 
 .contact-overview {
@@ -746,17 +746,17 @@ input {
     padding-bottom: 100px;
 }
 
-.task-box{
+.task-box {
     display: flex;
     flex-direction: column;
     width: 100%;
 }
 
 .section-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;  
-        width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
 }
 
 .current-task {
@@ -793,7 +793,7 @@ input {
     animation: slide-out 0.5s;
 }
 
-iframe {
+#popup-add {
     width: 1212px;
     height: 594px;
     position: absolute;
@@ -806,20 +806,35 @@ iframe {
     background-color: #F5F5F5;
 }
 
+/* iframe {
+    width: 1212px;
+    height: 594px;
+    position: absolute;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    border-radius: 30px;
+    scale: 0.7;
+    top: -100px;
+    left: -220px;
+    z-index: 999;
+    background-color: #F5F5F5;
+} */
+
 @keyframes slide-in {
     from {
-      transform: translateX(1000%);
+        transform: translateX(1000%);
     }
+
     to {
-      transform: translateX(0%);
+        transform: translateX(0%);
     }
 }
 
 @keyframes slide-out {
     from {
-      transform: translateX(0%);
+        transform: translateX(0%);
     }
+
     to {
-      transform: translateX(1000%);
+        transform: translateX(1000%);
     }
 }

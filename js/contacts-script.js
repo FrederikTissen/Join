@@ -162,11 +162,9 @@ function generateContactfield(i, firstChar, secondChar, randomColor) {
 function addNewContact() {
     if (createdContact) {
         document.getElementById('show-contact').innerHTML = `
-            <div w3-include-html ="../add-contact.html"></div>`;
-
-        let showPopup = document.getElementById("popup-add");
-        showPopup.classList.toggle("show");
+        <div w3-include-html="add-contact.html"></div>`;
     }
+    includeHTMLaddContact();
     createdContact = false;
 }
 
@@ -227,53 +225,15 @@ function createContact() {
     renderAllContacts();
 }
 
-/*
-
-function saveEditContact(i) { //edit currently shown contact
-    let contact = contacts[i];
-    //only change if input is not empty
-    if (inputContainsValue('edit-input-lastname')) {
-        contact['name'] = document.getElementById('name-input').value;
-    }
-    if (inputContainsValue('edit-input-firstname')) {
-        contact['email'] = document.getElementById('email-input').value;
-    }
-    if (inputContainsValue('edit-input-mail')) {
-        contact['phone'] = document.getElementById('phone-input').value;
-    }
-    if (inputContainsValue('edit-input-phone')) {
-        contact['phone'] = document.getElementById('phone-input').value;
-    }
-}
-
-
-function inputContainsValue(id) {
-    document.getElementById(id).value != '';
-}
-
-
-function prepareEdit() { //load contact data and adjust onclick event of edit button
-    let contact = contacts[getIndexOf(document.getElementById('name').textContent)];
-    document.getElementById("name-input-edit").setAttribute('value', contact['name']);
-    document.getElementById("email-input-edit").setAttribute('value', contact['email']);
-    document.getElementById("phone-input-edit").setAttribute('value', contact['phone']);
-
-    let i = getIndexOf(contact['name']);
-    document.getElementById('edit-button').setAttribute('onclick', editContact(i))
-}
-
-
-function createBigSection(name, email, letter, color, firstLetter, i) {
-    let contactList = document.getElementById(`contactLetter-${firstLetter}`);
-    if (!contactList) {
-        contactList = document.createElement('div');
-        contactList.id = `contactLetter-${firstLetter}`;
-        document.getElementById('contactList').appendChild(contactList);
-    }
-    if (!firstLetter || firstLetter == firstLetter) {
-        let contactDiv = showContactDiv(name, email, letter, color, i);
-        contactList.innerHTML += contactDiv;
-    }
-}
-
-*/
+// function sortJsonAlphabetically(contacts) {
+//     contacts.sort(function (a, b) {
+//         if (a['name'] < b['name']) {
+//             return -1;
+//         }
+//         if (a['name'] > b['name']) {
+//             return 1;
+//         }
+//         return 0;
+//     });
+//     return contacts;
+// }
