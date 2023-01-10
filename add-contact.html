@@ -169,41 +169,45 @@
 </style>
 
 <body>
-    <div id="popup-add" class="full-container">
-        <div class="left-container">
-            <img class="join-logo" src="./assets/img/join-logo-white.png">
-            <h1>Add contact</h1>
-            <span>Tasks are better with a team!</span>
-            <img class="blue-bar" src="./assets/img/blue-bar-horizontal.png">
-        </div>
-        <div class="right-container">
-            <span onclick="" class="x-container">X</span>
-            <div class="img-container">
-                <img id="profile-img" src="./assets/img/user-white.png">
+    <div id="w3">
+        <div id="popup-add" class="full-container">
+            <div class="left-container">
+                <img class="join-logo" src="./assets/img/join-logo-white.png">
+                <h1>Add contact</h1>
+                <span>Tasks are better with a team!</span>
+                <img class="blue-bar" src="./assets/img/blue-bar-horizontal.png">
             </div>
-            <div class="input">
-                <div class="log-in-input">
-                    <input id="input-name" placeholder="Last name" type="text">
-                    <img src="./assets/img/body-logo.png">
+            <div class="right-container">
+                <span onclick="" class="x-container">X</span>
+                <div class="img-container">
+                    <img id="profile-img" src="./assets/img/user-white.png">
                 </div>
-                <div class="log-in-input">
-                    <input id="input-first-name" placeholder="First name" type="text">
-                    <img src="./assets/img/body-logo.png">
+                <div class="input">
+                    <div class="log-in-input">
+                        <input id="input-name" placeholder="Last name" type="text">
+                        <img src="./assets/img/body-logo.png">
+                    </div>
+                    <div class="log-in-input">
+                        <input id="input-first-name" placeholder="First name" type="text">
+                        <img src="./assets/img/body-logo.png">
+                    </div>
+                    <div class="log-in-input">
+                        <input id="input-email" type="email" placeholder="Email">
+                        <img src="./assets/img/mail-logo.png">
+                    </div>
+                    <div class="log-in-input">
+                        <input id="input-phone" placeholder="Phone" type="number">
+                        <img src="./assets/img/phone-logo.png">
+                    </div>
+                    <div class="button-container">
+                        <button onclick="cancelPopupAdd()" class="secondary-btn">Cancel <img
+                                src="./assets/img/x.png"></button>
+                        <button onclick="createContact()" class="primary-btn">Create contact <img
+                                src="./assets/img/done-white-btn.png"></button>
+                    </div>
                 </div>
-                <div class="log-in-input">
-                    <input id="input-email" type="email" placeholder="Email">
-                    <img src="./assets/img/mail-logo.png">
-                </div>
-                <div class="log-in-input">
-                    <input id="input-phone" placeholder="Phone" type="number">
-                    <img src="./assets/img/phone-logo.png">
-                </div>
-                <div class="button-container">
-                    <button onclick="cancelPopupAdd()" class="secondary-btn">Cancel <img src="./assets/img/x.png"></button>
-                    <button onclick="createContact()" class="primary-btn">Create contact <img src="./assets/img/done-white-btn.png"></button>
-                </div>
-            </div>
 
+            </div>
         </div>
     </div>
 </body>

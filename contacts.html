@@ -10,7 +10,7 @@
     <script src="./js/contacts-script.js"></script>
 </head>
 
-<body onload="renderAllContacts(), init()">
+<body onload="renderAllContacts()">
     <div class="header">
         <span>Kanban Project Management Tool </span>
         <div class="head-container-right">
@@ -66,7 +66,7 @@
                 
             </div>
         </div>
-        <button id="add-new-contact-btn" onclick="addNewContact()" class="new-contact">
+        <button id="add-new-contact-btn" onclick="addNewContact(), init()" class="new-contact">
             <img src="./assets/img/new-contact.png">
         </button>
     </div>

@@ -46,8 +46,8 @@ let contactColor = true;
 
 async function init() {
     await includeHTMLaddContact();
-    document.getElementById('show-contact').innerHTML += ``;
 }
+
 
 async function includeHTMLaddContact() {
     let includeElements = document.querySelectorAll('[w3-include-html]');
@@ -63,10 +63,12 @@ async function includeHTMLaddContact() {
     }
 }
 
+
 /**
  * Pictures of the contacts will be randomly colored.
  * 
  * @param {param} i - 
+ * 
  */
 function setRandomColor(i) {
     let randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
@@ -96,15 +98,14 @@ function renderAllContacts() {
 
 /** 
  * returns generate HTML to showContact function
- * 
- * 
+ *
  * @returns
  */
 function generateAllContactsHtml(contact, firstChar, secondChar, i, randomColor) {
     return `
     <div id="char-section${i}" class="first-char">${firstChar}</div>
     <div onclick="showContact(${i})" id="contact-card${i}" class="contact-card">
-        <div id="contact-img${i}" class="contact-img" style.background-color="${randomColor}";>${firstChar} ${secondChar}</div>
+        <div id="contact-img${i}" class="contact-img">${firstChar} ${secondChar}</div>
         <div id="contactInfo${i}" class="contact-info">
             <span>${contact['firstName']}  ${contact['name']}</span>
             <p>${contact['mail']}</p>
@@ -124,7 +125,6 @@ function showContact(i) {
     let contactfield = document.getElementById('show-contact');
 
     contactfield.innerHTML = generateContactfield(i, firstChar, secondChar, randomColor);
-
 }
 
 /**
@@ -163,8 +163,9 @@ function generateContactfield(i, firstChar, secondChar, randomColor) {
  */
 function addNewContact() {
     if (createdContact) {
-
-        document.getElementById('show-contact').innerHTML += includeHTMLaddContact();
+        document.getElementById('show-contact').innerHTML =`
+            <div w3-include-html ="../add-contact.html"></div>`;
+            
         let showPopup = document.getElementById("popup-add");
         showPopup.classList.toggle("show");
     }
