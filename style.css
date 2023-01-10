@@ -5,6 +5,7 @@ body {
 
 button {
     border: unset;
+    cursor: pointer;
 }
 
 input {
@@ -12,7 +13,7 @@ input {
 }
 
 .d-none {
-    display: none;
+    display: none !important;
 }
 
 /*
@@ -296,9 +297,7 @@ input {
     padding: 10px;
 }
 
-.d-none {
-    display: none;
-}
+
 
 /*End of Style for add-task.html */
 
@@ -761,9 +760,32 @@ input {
 
 .current-task {
     padding: 10px;
+    cursor: pointer;
     border: 1px solid grey;
     border-radius: 10px;
     margin-top: 10px;
+}
+
+.showTask {
+    display: flex;
+    width: 623px;
+    
+    border: 1px solid grey;
+    border-radius: 15px;
+    flex-direction: column;
+    background-color: white;
+    padding: 15px;
+}
+
+.show-Task-Background {
+    display: flex;
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
 }
 
 /*
