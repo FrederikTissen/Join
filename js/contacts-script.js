@@ -44,6 +44,7 @@ let createdContact = true;
 let contactColor = true;
 
 
+
 async function init() {
     await includeHTMLaddContact();
 }
@@ -70,9 +71,9 @@ async function includeHTMLaddContact() {
  * @param {param} i - 
  * 
  */
-function setRandomColor(i) {
-    let randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
-    document.getElementById(`contact-img${i}`).style = `background-color: ${randomColor};`;
+function setRandomColor() {
+    let randomColor= '#' + Math.floor(Math.random() * 16777215).toString(16);
+    return randomColor;
 }
 
 
@@ -86,13 +87,12 @@ function renderAllContacts() {
     contactSection.innerHTML = '';
 
     for (let i = 0; i < contacts.length; i++) {
+        let randomColor = setRandomColor();
         const contact = contacts[i];
         let firstChar = contact['firstName'].charAt(0);
         let secondChar = contact['name'].charAt(0);
+        contactSection.innerHTML += generateAllContacts(contact, firstChar, secondChar, i, randomColor);
 
-        contactSection.innerHTML += generateAllContactsHtml(contact, firstChar, secondChar, i);
-
-        setRandomColor(i);
     }
 }
 
@@ -101,11 +101,11 @@ function renderAllContacts() {
  *
  * @returns
  */
-function generateAllContactsHtml(contact, firstChar, secondChar, i, randomColor) {
+function generateAllContacts(contact, firstChar, secondChar, i, randomColor) {
     return `
     <div id="char-section${i}" class="first-char">${firstChar}</div>
-    <div onclick="showContact(${i})" id="contact-card${i}" class="contact-card">
-        <div id="contact-img${i}" class="contact-img">${firstChar} ${secondChar}</div>
+    <div onclick="showContact(${i}, '${randomColor}')" id="contact-card${i}" class="contact-card">
+        <div id="contact-img${i}" class="contact-img" style='background-color: ${randomColor};'>${firstChar} ${secondChar}</div>
         <div id="contactInfo${i}" class="contact-info">
             <span>${contact['firstName']}  ${contact['name']}</span>
             <p>${contact['mail']}</p>
@@ -118,12 +118,10 @@ function generateAllContactsHtml(contact, firstChar, secondChar, i, randomColor)
  * 
  * 
  */
-function showContact(i) {
+function showContact(i, randomColor) {
     let firstChar = contacts[i]['firstName'].charAt(0);
     let secondChar = contacts[i]['name'].charAt(0);
-    let randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
     let contactfield = document.getElementById('show-contact');
-
     contactfield.innerHTML = generateContactfield(i, firstChar, secondChar, randomColor);
 }
 
@@ -163,9 +161,9 @@ function generateContactfield(i, firstChar, secondChar, randomColor) {
  */
 function addNewContact() {
     if (createdContact) {
-        document.getElementById('show-contact').innerHTML =`
+        document.getElementById('show-contact').innerHTML = `
             <div w3-include-html ="../add-contact.html"></div>`;
-            
+
         let showPopup = document.getElementById("popup-add");
         showPopup.classList.toggle("show");
     }
@@ -192,7 +190,7 @@ function editContact() {
 function cancelPopupAdd() {
     document.getElementById('popup-add').classList.remove('show');
     document.getElementById('popup-add').classList.add('hide');
-    
+
     createdContact = true;
 }
 
