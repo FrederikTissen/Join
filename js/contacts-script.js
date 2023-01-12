@@ -44,6 +44,10 @@ let createdContact = true;
 let contactColor = true;
 
 
+async function init() {
+    await downloadFromServer();
+    users = JSON.parse(backend.getItem('contacts')) || [];
+}
 
 async function includeHTMLaddContact() {
     let includeElements = document.querySelectorAll('[w3-include-html]');
@@ -58,7 +62,6 @@ async function includeHTMLaddContact() {
         }
     }
 }
-
 
 /**
  * Pictures of the contacts will be randomly colored.
@@ -204,7 +207,6 @@ function createContact() {
     let inputMail = document.getElementById('input-email');
     let inputPhone = document.getElementById('input-phone');
 
-
     let newContact = {
         name: inputName.value,
         firstName: inputFirstName.value,
@@ -214,14 +216,38 @@ function createContact() {
 
     contacts.push(newContact);
 
+    createdContact = true;
+
+    renderAllContacts();
+    clearInputfields(inputName, inputFirstName, inputMail, inputPhone)
+    addContactToBackend(newContact);
+    
+    showSuccessBtn();
+}
+
+function showSuccessBtn() {
+    let btnSuccess = document.getElementById('btn-successfully');
+    // btnSuccess.classList.remove('d-none');
+    const myWindow = window.open(btnSuccess.classList.remove('d-none'), "width=200, height=100");
+    setTimeout(function() {myWindow.close()}, 3000);
+}
+
+function clearInputfields(inputName, inputFirstName, inputMail, inputPhone) {
     inputName.value = '';
     inputFirstName.value = '';
     inputMail.value = '';
     inputPhone.value = '';
-
-    createdContact = true;
-    renderAllContacts();
 }
+
+async function addContactToBackend(newContact) {
+    contacts.push(newContact);
+    await addContactToBackend.setItem('contacts', JSON.stringify(contacts));
+}
+
+async function deleteUser(name) {
+    await backend.deleteItem('users');
+}
+
 
 // function sortJsonAlphabetically(contacts) {
 //     contacts.sort(function (a, b) {

@@ -462,7 +462,8 @@ input {
 }
 
 .contact-main {
-    background-color: #2A3647;
+    width: 1208px;
+    height: 1024px;
 }
 
 .headline-index-contact {
@@ -651,6 +652,25 @@ input {
     border: 1px solid #2A3647;
     border-radius: 10px;
     cursor: pointer;
+}
+
+.btn-contact-create {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 1195px;
+    width: 326px;
+    height: 74px;
+    padding: 18px 10px;
+    gap: 10px;
+    background: #2A3647;
+    border: 1px solid #2A3647;
+    border-radius: 10px;
+    cursor: pointer;
+    color: white;
+    font-size: 21px;
 }
 
 .blue-font {
