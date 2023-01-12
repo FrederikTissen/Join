@@ -1,16 +1,21 @@
 let allTasks = [];
-
+let selectionPrio;
 
 
 function addTask() {
     let title = document.getElementById('title');
     let description = document.getElementById('description');
     let date = document.getElementById('date');
+    let selectionCategory = document.getElementById('categorySelect');
+
 
     let task = {
         'title': title.value,
         'description': description.value,
         'date': date.value,
+        'categorySelect': selectionCategory.value,
+        'prioSelect': selectionPrio,
+
     };
 
     console.log(task);
@@ -18,11 +23,7 @@ function addTask() {
 
     allTasks.push(task);
 
-    let allTasksAsString = JSON.stringify(allTasks);
-    localStorage.setItem('allTasks', allTasksAsString);
-
-
-
+    save();
 }
 
 function renderTasks() {
@@ -36,7 +37,7 @@ function renderTasks() {
         let description = allTasks[i]['description'];
 
         let newTask = document.getElementById('todo-box');
-        
+
 
         newTask.innerHTML += /*html*/ `
             <div onclick="openShowTask(${i})" class="current-task">
@@ -47,16 +48,28 @@ function renderTasks() {
     }
 }
 
+function choosePrio(prio) {
+    if (prio == 1) {
+        selectionPrio = 1
+    }
+    if (prio == 2) {
+        selectionPrio = 2
+    }
+    if (prio == 3) {
+        selectionPrio = 3
+    }
+}
+
 function closeShowTask() {
-    document.getElementById('show-Task-Background').classList= 'show-Task-Background d-none';
+    document.getElementById('show-Task-Background').classList = 'show-Task-Background d-none';
 }
 
 function openShowTask(i) {
     let title = allTasks[`${i}`]['title'];
     let description = allTasks[`${i}`]['description'];
     let date = allTasks[`${i}`]['date'];
-    
-    document.getElementById('show-Task-Background').classList= 'show-Task-Background';
+
+    document.getElementById('show-Task-Background').classList = 'show-Task-Background';
 
     document.getElementById('showTask').innerHTML = /*html*/ `
                 <p>Category</p>
@@ -72,7 +85,7 @@ function openShowTask(i) {
 }
 
 function deleteTask(i) {
-    allTasks.splice(i,1);
+    allTasks.splice(i, 1);
     save();
     closeShowTask();
     renderTasks();
