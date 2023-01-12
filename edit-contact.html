@@ -42,6 +42,7 @@
         left: 0px;
         top: 0px;
         color: white;
+        border-radius: 30px 0 0 30px;
     }
 
     .blue-bar {
@@ -70,6 +71,7 @@
     .right-container {
         display: flex;
         width: 749px;
+        border-radius: 0 30px 30px 0;
     }
 
     .img-container {
@@ -146,42 +148,43 @@
         font-size: 21px;
         border: none;
     }
-    
 </style>
 
 <body>
-    <div class="full-container">
-        <div class="left-container">
-            <img class="join-logo" src="./assets/img/join-logo-white.png">
-            <h1>Edit contact</h1>
-        </div>
-        <div class="right-container">
-            <span onclick="cancelPopupEdit()" class="x-container">X</span>
-            <div class="img-container">
-                <img id="profile-img" src="./assets/img/user-white.png">    <!-- IMG SRC: JS -->
+    <div id="w3-edit">
+        <div class="full-container show">
+            <div class="left-container">
+                <img class="join-logo" src="./assets/img/join-logo-white.png">
+                <h1>Edit contact</h1>
             </div>
-            <div class="input">
-                <div class="log-in-input">
-                    <input id="edit-input-lastname" placeholder="Last name" type="text">
-                    <img src="./assets/img/body-logo.png">
+            <div class="right-container">
+                <span onclick="cancelPopupEdit()" class="x-container">X</span>
+                <div class="img-container">
+                    <img id="profile-img" src="./assets/img/user-white.png"> <!-- IMG SRC: JS -->
                 </div>
-                <div class="log-in-input">
-                    <input id="edit-input-firstname" placeholder="First name" type="text">
-                    <img src="./assets/img/body-logo.png">
-                </div>
-                <div class="log-in-input">
-                    <input id="edit-input-mail" placeholder="Email" type="email">
-                    <img src="./assets/img/mail-logo.png">
-                </div>
-                <div class="log-in-input">
-                    <input id="edit-input-phone" placeholder="Phone" type="number">
-                    <img src="./assets/img/phone-logo.png">
-                </div>
+                <div class="input">
+                    <div class="log-in-input">
+                        <input id="edit-input-lastname" placeholder="Last name" type="text">
+                        <img src="./assets/img/body-logo.png">
+                    </div>
+                    <div class="log-in-input">
+                        <input id="edit-input-firstname" placeholder="First name" type="text">
+                        <img src="./assets/img/body-logo.png">
+                    </div>
+                    <div class="log-in-input">
+                        <input id="edit-input-mail" placeholder="Email" type="email">
+                        <img src="./assets/img/mail-logo.png">
+                    </div>
+                    <div class="log-in-input">
+                        <input id="edit-input-phone" placeholder="Phone" type="number">
+                        <img src="./assets/img/phone-logo.png">
+                    </div>
 
-                <button onclick="saveEditContact(i)" class="primary-btn">Save</button>
+                    <button onclick="saveEditContact(i)" class="primary-btn">Save</button>
+
+                </div>
 
             </div>
-
         </div>
     </div>
 </body>

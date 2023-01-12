@@ -45,11 +45,6 @@ let contactColor = true;
 
 
 
-async function init() {
-    await includeHTMLaddContact();
-}
-
-
 async function includeHTMLaddContact() {
     let includeElements = document.querySelectorAll('[w3-include-html]');
     for (let i = 0; i < includeElements.length; i++) {
@@ -173,12 +168,12 @@ function addNewContact() {
  * 
  */
 function editContact() {
-    document.getElementById('show-contact').innerHTML += `
-        <iframe id="popup-edit" src="./edit-contact.html">
-    `;
-
-    let editPopup = document.getElementById("popup-edit");
-    editPopup.classList.toggle("show");
+    if (createdContact) {
+        document.getElementById('show-contact').innerHTML = `
+        <div w3-include-html="edit-contact.html"></div>`;
+    }
+    includeHTMLaddContact();
+    createdContact = false;
 }
 
 /**
@@ -186,14 +181,17 @@ function editContact() {
  * 
  */
 function cancelPopupAdd() {
-    document.getElementById('popup-add').classList.remove('show');
-    document.getElementById('popup-add').classList.add('hide');
+    document.getElementById('w3-add').classList.remove('show');
+    document.getElementById('w3-add').classList.add('d-none');
 
     createdContact = true;
 }
 
 function cancelPopupEdit() {
-    document.getElementById('popup-edit').classList.add('hide');
+    document.getElementById('w3-edit').classList.remove('show');
+    document.getElementById('w3-edit').classList.add('d-none');
+
+    createdContact = true;
 }
 
 /**

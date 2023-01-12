@@ -626,6 +626,7 @@ input {
     padding-bottom: 22px;
     font-size: 21px;
     font-weight: 400;
+    gap: 100px;
 }
 
 .edit-contact {
@@ -808,38 +809,21 @@ input {
 */
 
 .show {
-    animation: slide-in 0.8s;
+    animation: slide-in 0.5s;
 }
 
-.hide {
-    animation: slide-out 0.5s;
-}
-
-#popup-add {
+.full-container {
     width: 1212px;
     height: 594px;
     position: absolute;
     border: 1px solid rgba(0, 0, 0, 0.3);
-    border-radius: 30px;
     scale: 0.7;
     top: -100px;
     left: -220px;
     z-index: 999;
+    border-radius: 30px; 
     background-color: #F5F5F5;
 }
-
-/* iframe {
-    width: 1212px;
-    height: 594px;
-    position: absolute;
-    border: 1px solid rgba(0, 0, 0, 0.3);
-    border-radius: 30px;
-    scale: 0.7;
-    top: -100px;
-    left: -220px;
-    z-index: 999;
-    background-color: #F5F5F5;
-} */
 
 @keyframes slide-in {
     from {
@@ -848,15 +832,5 @@ input {
 
     to {
         transform: translateX(0%);
-    }
-}
-
-@keyframes slide-out {
-    from {
-        transform: translateX(0%);
-    }
-
-    to {
-        transform: translateX(1000%);
     }
 }

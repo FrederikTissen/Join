@@ -42,6 +42,7 @@
         left: 0px;
         top: 0px;
         color: white;
+        border-radius: 30px 0 0 30px;
     }
 
     .blue-bar {
@@ -70,6 +71,7 @@
     .right-container {
         display: flex;
         width: 749px;
+        border-radius: 0 30px 30px 0;
     }
 
     .img-container {
@@ -169,8 +171,8 @@
 </style>
 
 <body>
-    <div id="w3">
-        <div id="popup-add" class="full-container show">
+    <div id="w3-add">
+        <div class="full-container show">
             <div class="left-container">
                 <img class="join-logo" src="./assets/img/join-logo-white.png">
                 <h1>Add contact</h1>
@@ -178,7 +180,7 @@
                 <img class="blue-bar" src="./assets/img/blue-bar-horizontal.png">
             </div>
             <div class="right-container">
-                <span onclick="" class="x-container">X</span>
+                <span onclick="cancelPopupAdd()" class="x-container">X</span>
                 <div class="img-container">
                     <img id="profile-img" src="./assets/img/user-white.png">
                 </div>
