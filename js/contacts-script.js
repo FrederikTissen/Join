@@ -81,7 +81,6 @@ function setRandomColor() {
  */
 function renderAllContacts() {
     let contactSection = document.getElementById('contact-list');
-
     contactSection.innerHTML = '';
 
     for (let i = 0; i < contacts.length; i++) {
@@ -90,7 +89,6 @@ function renderAllContacts() {
         let firstChar = contact['firstName'].charAt(0);
         let secondChar = contact['name'].charAt(0);
         contactSection.innerHTML += generateAllContacts(contact, firstChar, secondChar, i, randomColor);
-
     }
 }
 
@@ -140,7 +138,7 @@ function generateContactfield(i, firstChar, secondChar, randomColor) {
     </div>
     <div class="show-contact-middle">
         <span>Contact Information</span> 
-        <div class="edit-contact" onclick="editContact()">
+        <div class="edit-contact" onclick='editContact(${i})'>
             <img style="width: 30px; height: 30px; object-fit: contain;" src="./assets/img/pen.png"><p> Edit Contact</p>
         </div>
     </div>
@@ -170,13 +168,26 @@ function addNewContact() {
  * Pop-up window to edit a contact
  * 
  */
-function editContact() {
+async function editContact(i) {
     if (createdContact) {
         document.getElementById('show-contact').innerHTML = `
         <div w3-include-html="edit-contact.html"></div>`;
+        await includeHTMLaddContact();
     }
-    includeHTMLaddContact();
+    editContactValues(i);
     createdContact = false;
+}
+
+function editContactValues(i) {
+    let editLastname = document.getElementById(`edit-input-lastname`);
+    let editFirstname = document.getElementById(`edit-input-firstname`);
+    let editMail = document.getElementById(`edit-input-mail`);
+    let editPhone = document.getElementById(`edit-input-phone`);
+
+    editLastname.value = contacts[i]['name'];
+    editFirstname.value = contacts[i]['firstName'];
+    editMail.value = contacts[i]['mail'];
+    editPhone.value = contacts[i]['phone'];
 }
 
 /**
@@ -195,6 +206,10 @@ function cancelPopupEdit() {
     document.getElementById('w3-edit').classList.add('d-none');
 
     createdContact = true;
+}
+
+function cancelButtonSuccessfully() {
+    document.getElementById('myModal').classList.add('d-none');
 }
 
 /**
@@ -220,16 +235,20 @@ function createContact() {
 
     renderAllContacts();
     clearInputfields(inputName, inputFirstName, inputMail, inputPhone)
-    addContactToBackend(newContact);
+    //addContactToBackend(newContact);
     
     showSuccessBtn();
 }
 
 function showSuccessBtn() {
     let btnSuccess = document.getElementById('btn-successfully');
-    // btnSuccess.classList.remove('d-none');
-    const myWindow = window.open(btnSuccess.classList.remove('d-none'), "width=200, height=100");
-    setTimeout(function() {myWindow.close()}, 3000);
+    let modal = document.getElementById('myModal');
+    btnSuccess.classList.remove('d-none');
+    modal.style.display = 'block';
+
+
+    // const myWindow = window.alert(btnSuccess.classList.remove('d-none'), "width=200, height=100");
+    // setTimeout(function() {myWindow.close()}, 3000);
 }
 
 function clearInputfields(inputName, inputFirstName, inputMail, inputPhone) {
@@ -244,9 +263,9 @@ async function addContactToBackend(newContact) {
     await addContactToBackend.setItem('contacts', JSON.stringify(contacts));
 }
 
-async function deleteUser(name) {
-    await backend.deleteItem('users');
-}
+// async function deleteUser(name) {
+//     await backend.deleteItem('users');
+// }
 
 
 // function sortJsonAlphabetically(contacts) {

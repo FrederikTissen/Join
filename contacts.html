@@ -68,7 +68,11 @@
         <button id="add-new-contact-btn" onclick="addNewContact()" class="new-contact">
             <img src="./assets/img/new-contact.png">
         </button>
-        <button id="btn-successfully" class="btn-contact-create d-none">Contact succesfully created</button>
+        <div id="myModal" class="modal">
+            <div class="modal-content">
+                <button onclick="cancelButtonSuccessfully()" id="btn-successfully" class="btn-contact-create d-none">Contact succesfully created</button>
+            </div>
+        </div>
     </div>
 </body>
 </html>
