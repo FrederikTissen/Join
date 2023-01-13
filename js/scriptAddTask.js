@@ -15,7 +15,6 @@ function addTask() {
         'date': date.value,
         'categorySelect': selectionCategory.value,
         'prioSelect': selectionPrio,
-
     };
 
     console.log(task);
