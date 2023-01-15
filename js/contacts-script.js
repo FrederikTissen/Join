@@ -70,7 +70,7 @@ async function includeHTMLaddContact() {
  * 
  */
 function setRandomColor() {
-    let randomColor= '#' + Math.floor(Math.random() * 16777215).toString(16);
+    let randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
     return randomColor;
 }
 
@@ -190,6 +190,20 @@ function editContactValues(i) {
     editPhone.value = contacts[i]['phone'];
 }
 
+async function saveEditContact(editLastname, editFirstname, editMail, editPhone) {
+    let changedContact = contacts[i];
+    
+    changedContact = {
+        name: editLastname.value,
+        firstName: editFirstname.value,
+        mail: editMail.value,
+        phone: editPhone.value
+    }
+
+    contacts.push(changedContact);
+    await backend.setItem('contacts', JSON.stringify(contacts));
+}
+
 /**
  * cancel pop-up window
  * 
@@ -221,22 +235,17 @@ function createContact() {
     let inputFirstName = document.getElementById('input-first-name');
     let inputMail = document.getElementById('input-email');
     let inputPhone = document.getElementById('input-phone');
-
     let newContact = {
         name: inputName.value,
         firstName: inputFirstName.value,
         mail: inputMail.value,
         phone: inputPhone.value
     }
-
     contacts.push(newContact);
-
     createdContact = true;
-
     renderAllContacts();
     clearInputfields(inputName, inputFirstName, inputMail, inputPhone)
-    //addContactToBackend(newContact);
-    
+    addContactToBackend(newContact);
     showSuccessBtn();
 }
 
@@ -245,10 +254,6 @@ function showSuccessBtn() {
     let modal = document.getElementById('myModal');
     btnSuccess.classList.remove('d-none');
     modal.style.display = 'block';
-
-
-    // const myWindow = window.alert(btnSuccess.classList.remove('d-none'), "width=200, height=100");
-    // setTimeout(function() {myWindow.close()}, 3000);
 }
 
 function clearInputfields(inputName, inputFirstName, inputMail, inputPhone) {
@@ -260,8 +265,9 @@ function clearInputfields(inputName, inputFirstName, inputMail, inputPhone) {
 
 async function addContactToBackend(newContact) {
     contacts.push(newContact);
-    await addContactToBackend.setItem('contacts', JSON.stringify(contacts));
+    await backend.setItem('contacts', JSON.stringify(contacts));
 }
+
 
 // async function deleteUser(name) {
 //     await backend.deleteItem('users');
