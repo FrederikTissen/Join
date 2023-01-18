@@ -80,9 +80,9 @@ input {
     font-weight: 400;
 }
 
-.sidebar-top img {
+/* .sidebar-top img {
     width: 100px;
-}
+} */
 
 .sidebar-mid {
     display: flex;
@@ -937,6 +937,7 @@ input {
 
 .show {
     animation: slide-in 0.5s;
+    display: block;
 }
 
 .full-container {
