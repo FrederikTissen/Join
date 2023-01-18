@@ -1,6 +1,6 @@
 let allTasks = [];
 let selectionPrio;
-
+let allCategories = [];
 
 function addTask() {
     let title = document.getElementById('title');
@@ -22,7 +22,7 @@ function addTask() {
 
     allTasks.push(task);
 
-    save();
+    saveTask();
 }
 
 function renderTasks() {
@@ -47,6 +47,45 @@ function renderTasks() {
     }
 }
 
+function rederCategories() {
+    saveCategory();
+    loadAllCategories();
+
+    document.getElementById('category').innerHTML = /*html*/ `
+    <span>Category</span><br><br>
+    <div  id="category-box" class="category-box">
+        <p onclick="closeSelection()" class="select-category">Select task category</p>
+        <div onclick="openInput()" class="selection-category">
+            <div>New category</div>
+        </div>
+    </div>
+    `;
+
+    for (let i = 0; i < allCategories.length;) {
+        currentCategory = allCategories[i];
+        let category = allCategories[i]['category'];
+        let color = allCategories[i]['color'];
+
+        let newCategory = document.getElementById('category-box');
+
+
+        newCategory.innerHTML += /*html*/ `
+            <div class="selection-category">
+                <div>${category}</div>
+                <div>${color}</div>
+            </div>
+        `
+    }
+}
+
+function openInput() {
+    document.getElementById('category').innerHTML = '';
+    document.getElementById('category').innerHTML = /*html*/ `
+    <span>Category</span><br><br>
+    <input id="input-category"  placeholder="Select task category" class="addTotaskInputField" type="text">
+    `;
+}
+
 function choosePrio(prio) {
     if (prio == 1) {
         selectionPrio = 1
@@ -61,6 +100,16 @@ function choosePrio(prio) {
 
 function closeShowTask() {
     document.getElementById('show-Task-Background').classList = 'show-Task-Background d-none';
+}
+
+function closeSelection() {
+    document.getElementById('category').innerHTML = '';
+    document.getElementById('category').innerHTML = /*html*/ `
+    <span>Category</span><br><br>
+    <div onclick="rederCategories()" id="category-box" class="category-box">
+        <p class="select-category">Select task category</p>
+    </div>
+    `;
 }
 
 function openShowTask(i) {
@@ -90,12 +139,22 @@ function deleteTask(i) {
     renderTasks();
 }
 
-function save() {
+function saveTask() {
     let allTasksAsString = JSON.stringify(allTasks);
     localStorage.setItem('allTasks', allTasksAsString);
 }
 
+function saveCategory() {
+    let allCategoriesAsString = JSON.stringify(allCategories);
+    localStorage.setItem('allCategories', allCategoriesAsString);
+}
 
+function loadAllCategories() {
+    let allCategoriesAsString = localStorage.getItem('allCategories');
+    if (allCategoriesAsString) {
+        allCategories = JSON.parse(allCategoriesAsString);
+    }
+}
 
 
 function loadAllTasks() {

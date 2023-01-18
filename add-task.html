@@ -71,18 +71,34 @@
 
                 <div class="addToTaskInputSection">
                     <span>Description</span><br><br>
-                    <textarea id="description" placeholder="Enter a Description" class="addTotaskInputField"></textarea>
+                    <textarea id="description" placeholder="Enter a Description" class="input-description"></textarea>
                 </div>
 
                 <div id="category" class="addToTaskInputSection">
                     <span>Category</span><br><br>
+                    <div onclick="rederCategories()" id="category-box" class="category-box">
+                        <p class="select-category">Select task category</p>
+                    </div>
+
+                </div>
+
+                <!--  
+                <div id="category" class="addToTaskInputSection">
+                    <span>Category</span><br><br>
                     <select id="categorySelect" class="addTotaskInputField">
-                        <option value="" disabled selected>Select your option</option>
+                        <option disabled selected>Select task category</option>
+                        <option onclick="newCategory()" value="" >New category</option>
                         <option id="categoryOperation">Operation</option>
-                        <option id="categoryTodo">To do</option>
-                        <option id="categoryEvent">Event</option>
+                        <option id="categorySales">Sales</option>
+                        <option id="categoryMarketing">Marketing</option>
+                        <option id="categoryOther">Other</option>
                     </select>
                 </div>
+-->
+
+
+
+
                 <div id="assignedTo" class="addToTaskInputSection">
                     <span>Assigned to</span><br><br>
 
@@ -96,6 +112,8 @@
                     <label for="assignedToFrederik">Frederik</label>
 
                 </div>
+
+
 
             </div>
             <div id="taskContentRight" class="taskContentRight">
@@ -112,17 +130,6 @@
                         <img onclick="choosePrio(3)" class="prio-icon" src="./assets/img/Low-white.png" alt="">
                     </div>
 
-
-                    <!--
-                    <input type="checkbox" id="prioUrgent" name="prioUrgent" value= "1">
-                    <label for="prioUrgent">Urgent</label><br>
-
-                    <input type="checkbox" id="prioMedium" name="prioMedium" value="2">
-                    <label for="prioMedium">Medium</label><br>
-
-                    <input type="checkbox" id="prioLow" name="prioLow" value="3">
-                    <label for="prioLow">Low</label>
-                    -->
                 </div>
                 <div id="Subtask" class="Subtask addToTaskInputSectionRight">
                     <span>Subtasks</span><br><br>

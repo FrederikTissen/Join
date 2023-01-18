@@ -16,6 +16,10 @@ input {
     display: none !important;
 }
 
+.pointer {
+    cursor: pointer;
+}
+
 /*
     #### CSS - HEADER ####
 */
@@ -248,13 +252,13 @@ input {
     /* Auto layout */
 
     display: flex;
-    flex-direction: row;
+    /*flex-direction: row;*/
     align-items: center;
     padding: 13px 21px;
-    gap: 10px;
+    /*gap: 10px;*/
 
     width: 422px;
-    height: 51px ; 
+    min-height: 51px ; 
 
     background: #FFFFFF;
     /* Style */
@@ -274,6 +278,27 @@ input {
     flex-grow: 0;
 }
 
+.input-description {
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    padding: 13px 21px;
+    width: 422px;
+    min-height: 119px ; 
+    background: #FFFFFF;
+    border: 1px solid #D1D1D1;
+    border-radius: 10px;
+    line-height: 120%;
+}
+
+.input-description::placeholder {
+    font-weight: 400;
+    font-size: 21px;
+    color: #D1D1D1;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
 
 
 .btn {
@@ -329,6 +354,42 @@ input {
 
 .prio-icon {
     cursor: pointer;
+}
+
+.category-box {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    box-sizing: border-box;
+    padding: 13px 0px;
+    width: 422px;
+    min-height: 51px ; 
+    background: #FFFFFF;
+    border: 1px solid #D1D1D1;
+    border-radius: 10px;
+    line-height: 120%;
+    cursor: pointer;
+}
+
+.category-box div:hover{
+    background-color: red;
+}
+
+.selection-category {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    width: 380px;
+    padding-left: 21px;
+    padding-right: 21px;
+}
+
+.select-category {
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    width: 380px;
+    padding-left: 21px;
+    padding-right: 21px;
+    margin: unset;
 }
 
 
