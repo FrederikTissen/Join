@@ -138,7 +138,7 @@ function generateContactfield(i, firstChar, secondChar, randomColor) {
     </div>
     <div class="show-contact-middle">
         <span>Contact Information</span> 
-        <div class="edit-contact" onclick='editContact(${i})'>
+        <div class="edit-contact" onclick="editContact(${i}, '${randomColor}')">
             <img style="width: 30px; height: 30px; object-fit: contain;" src="./assets/img/pen.png"><p> Edit Contact</p>
         </div>
     </div>
@@ -168,26 +168,32 @@ function addNewContact() {
  * Pop-up window to edit a contact
  * 
  */
-async function editContact(i) {
+async function editContact(i, randomColor) {
     if (createdContact) {
         document.getElementById('show-contact').innerHTML = `
         <div w3-include-html="edit-contact.html"></div>`;
         await includeHTMLaddContact();
     }
-    editContactValues(i);
+    editContactValues(i, randomColor);
     createdContact = false;
 }
 
-function editContactValues(i) {
+function editContactValues(i, randomColor) {
     let editLastname = document.getElementById(`edit-input-lastname`);
     let editFirstname = document.getElementById(`edit-input-firstname`);
     let editMail = document.getElementById(`edit-input-mail`);
     let editPhone = document.getElementById(`edit-input-phone`);
+    let editImage = document.getElementById(`edit-img`);
+    let firstChar = contacts[i]['firstName'].charAt(0);
+    let secondChar = contacts[i]['name'].charAt(0);
+
 
     editLastname.value = contacts[i]['name'];
     editFirstname.value = contacts[i]['firstName'];
     editMail.value = contacts[i]['mail'];
     editPhone.value = contacts[i]['phone'];
+    editImage.innerHTML += `${firstChar} ${secondChar}`;
+    editImage.style = `background-color:${randomColor};`;
 }
 
 async function saveEditContact(i) {
