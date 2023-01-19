@@ -190,18 +190,23 @@ function editContactValues(i) {
     editPhone.value = contacts[i]['phone'];
 }
 
-async function saveEditContact(editLastname, editFirstname, editMail, editPhone) {
-    let changedContact = contacts[i];
+async function saveEditContact(i) {
+    let editLastname = document.getElementById(`edit-input-lastname`);
+    let editFirstname = document.getElementById(`edit-input-firstname`);
+    let editMail = document.getElementById(`edit-input-mail`);
+    let editPhone = document.getElementById(`edit-input-phone`);
     
-    changedContact = {
-        name: editLastname.value,
-        firstName: editFirstname.value,
-        mail: editMail.value,
-        phone: editPhone.value
-    }
+    
+    
+    // let changedContact = {
+    //     name: editLastname.value,
+    //     firstName: editFirstname.value,
+    //     mail: editMail.value,
+    //     phone: editPhone.value
+    // }
 
-    contacts.push(changedContact);
-    await backend.setItem('contacts', JSON.stringify(contacts));
+    // contacts.push(changedContact);
+    await backend.setItem('contacts', JSON.stringify(changedContact));
 }
 
 /**
