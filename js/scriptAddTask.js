@@ -47,8 +47,7 @@ function renderTasks() {
     }
 }
 
-function rederCategories() {
-    saveCategory();
+function renderCategories() {
     loadAllCategories();
 
     document.getElementById('category').innerHTML = /*html*/ `
@@ -61,10 +60,11 @@ function rederCategories() {
     </div>
     `;
 
+if(allCategories.length < 0) {
     for (let i = 0; i < allCategories.length;) {
         currentCategory = allCategories[i];
-        let category = allCategories[i]['category'];
-        let color = allCategories[i]['color'];
+        let category = allCategories[i]['categoryName'];
+        /*let color = allCategories[i]['color'];*/
 
         let newCategory = document.getElementById('category-box');
 
@@ -72,17 +72,52 @@ function rederCategories() {
         newCategory.innerHTML += /*html*/ `
             <div class="selection-category">
                 <div>${category}</div>
-                <div>${color}</div>
             </div>
         `
     }
 }
+}
+
 
 function openInput() {
     document.getElementById('category').innerHTML = '';
     document.getElementById('category').innerHTML = /*html*/ `
     <span>Category</span><br><br>
-    <input id="input-category"  placeholder="Select task category" class="addTotaskInputField" type="text">
+    <input id="input-category"  placeholder="New category name" class="addTotaskInputField" type="text">
+    <div id="input-nav-box" class="input-nav-box">
+                            <img onclick="closeInputCategory()" class="x-black" src="/assets/img/x-black.png">
+                            <img class="line" src="/assets/img/line.png">
+                            <img onclick="pushNewCategory()" class="hook" src="/assets/img/hook.png">
+                        </div>
+    `;
+}
+
+function pushNewCategory() {
+    let categoryName = document.getElementById('input-category');
+
+    let newCategory = {
+        'categoryName': categoryName.value,
+    };
+
+    
+
+
+    allCategories.push(newCategory);
+
+    saveCategory();
+    loadAllCategories();
+
+    document.getElementById('input-category').value = '';
+
+}
+
+function closeInputCategory() {
+    document.getElementById('category').innerHTML = '';
+    document.getElementById('category').innerHTML = /*html*/ `
+    <span>Category</span>
+    <div onclick="renderCategories()" id="category-box" class="category-box">
+                        <p class="select-category">Select task category</p>
+                    </div>
     `;
 }
 
@@ -106,7 +141,7 @@ function closeSelection() {
     document.getElementById('category').innerHTML = '';
     document.getElementById('category').innerHTML = /*html*/ `
     <span>Category</span><br><br>
-    <div onclick="rederCategories()" id="category-box" class="category-box">
+    <div onclick="renderCategories()" id="category-box" class="category-box">
         <p class="select-category">Select task category</p>
     </div>
     `;
