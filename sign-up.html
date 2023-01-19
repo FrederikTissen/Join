@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JOIN</title>
+    <script src="./js/register.js"></script>
 </head>
 <style>
     body {
@@ -148,6 +149,12 @@
         border: none;
         cursor: pointer;
     }
+
+    form {
+        gap: 16px;
+        display: flex;
+        flex-direction: column;
+    }
 </style>
 
 <body>
@@ -158,21 +165,23 @@
             <h1>Sign up</h1>
             <img src="./assets/img/blue-bar-horizontal.png">
         </div>
-        <div class="log-in-input">
-            <input placeholder="Name" type="text">
-            <img src="./assets/img/body-logo.png">
-        </div>
-        <div class="log-in-input">
-            <input placeholder="Email" type="text">
-            <img src="./assets/img/mail-logo.png">
-        </div>
-        <div class="log-in-input">
-            <input placeholder="Password" type="text">
-            <img src="./assets/img/padlock.png">
-        </div>
-        <button class="log-in-btn">Sign up</button>
+        <form onsubmit="addUser(); return false;">
+            <div class="log-in-input">
+                <input placeholder="Name" type="text">
+                <img src="./assets/img/body-logo.png">
+            </div>
+            <div class="log-in-input">
+                <input id="register-email" placeholder="Email" type="email">
+                <img src="./assets/img/mail-logo.png">
+            </div>
+            <div class="log-in-input">
+                <input id="register-password" placeholder="Password" type="password">
+                <img src="./assets/img/padlock.png">
+            </div>
+            <button class="log-in-btn">Sign up</button>
+        </form>
     </div>
-    </div>
+
 </body>
 
 </html>
