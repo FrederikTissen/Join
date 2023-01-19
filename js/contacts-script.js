@@ -206,6 +206,7 @@ async function saveEditContact(i) {
     // }
 
     // contacts.push(changedContact);
+    
     await backend.setItem('contacts', JSON.stringify(changedContact));
 }
 
