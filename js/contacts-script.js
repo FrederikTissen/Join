@@ -39,14 +39,13 @@ let contacts = [{
     mail: "wolf@gmail.com",
     phone: "015137294748"
 }];
-
 let createdContact = true;
 let contactColor = true;
 
 
 async function init() {
     await downloadFromServer();
-    users = JSON.parse(backend.getItem('contacts')) || [];
+    users = JSON.parse(backend.getItem('users')) || [];
 }
 
 async function includeHTMLaddContact() {
@@ -61,6 +60,11 @@ async function includeHTMLaddContact() {
             element.innerHTML = 'Page not found';
         }
     }
+}
+
+function addUser() {
+    users.push(x);
+    backend.setItem('users', JSON.stringify(users))
 }
 
 /**
@@ -85,7 +89,7 @@ function renderAllContacts() {
 
     for (let i = 0; i < contacts.length; i++) {
         let randomColor = setRandomColor();
-        const contact = contacts[i];
+        let contact = contacts[i];
         let firstChar = contact['firstName'].charAt(0);
         let secondChar = contact['name'].charAt(0);
         contactSection.innerHTML += generateAllContacts(contact, firstChar, secondChar, i, randomColor);
@@ -93,7 +97,7 @@ function renderAllContacts() {
 }
 
 /** 
- * returns generate HTML to showContact function
+ * returns generate HTML to showContact container
  *
  * @returns
  */
@@ -278,6 +282,17 @@ function clearInputfields(inputName, inputFirstName, inputMail, inputPhone) {
 async function addContactToBackend(newContact) {
     contacts.push(newContact);
     await backend.setItem('contacts', JSON.stringify(contacts));
+}
+
+function loadLetters() {
+    for (let i = 0; i < users[activeUser]['contacts'].length; i++) {
+        let name = users[activeUser]['contacts'][i]['contactName'];
+        let firstLetter = name.charAt(0);
+        if (!letters.includes(firstLetter)) {
+            letters.push(firstLetter);
+            letters.sort();
+        }
+    }
 }
 
 
