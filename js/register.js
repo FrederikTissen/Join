@@ -6,5 +6,5 @@ function addUser() {
     email.value = '';
     password.value = '';
 
-    //backend.setItem('users', JSON.stringify(users));
+    backend.setItem('users', JSON.stringify(users));
 }
