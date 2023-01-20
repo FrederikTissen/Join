@@ -32,6 +32,10 @@
         font-weight: 400;
     }
 
+    .d-none {
+        display: none;
+    }
+
     .head-row {
         width: 100vw;
     }
@@ -171,6 +175,21 @@
         border: 1px solid #2A3647;
         cursor: pointer;
     }
+
+    #msgBox {
+        position: absolute;
+        top: 144px;
+        left: 550px;
+        font-size: 23px;
+        background-color: #d5d5d5;
+        width: 400px;
+        height: 100px;
+        border-radius: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        opacity: 0.6;
+    }
 </style>
 
 <body>
@@ -178,7 +197,7 @@
         <img class="join-logo" src="./assets/img/join-logo.png">
         <div class="sign-up-div">
             <span>Not a Join user?</span>
-            <button onclick= "window.open('sign-up.html')" class="sign-up-btn">Sign up</button>
+            <button onclick="window.open('sign-up.html')" class="sign-up-btn">Sign up</button>
         </div>
     </div>
     <form onsubmit="login(); return false;" class="log-in-container">

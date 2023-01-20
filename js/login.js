@@ -14,6 +14,8 @@ let activeUser;
 
 if (msg) {
     document.getElementById('msgBox').innerHTML = msg;
+} else {
+    document.getElementById('msgBox').classList.add('d-none');
 }
 
 function login() {

@@ -5,6 +5,5 @@ function addUser() {
     window.location.href = 'log-in.html?msg=Du hast dich erfolgreich registriert';
     email.value = '';
     password.value = '';
-
     backend.setItem('users', JSON.stringify(users));
 }
