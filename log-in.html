@@ -6,29 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="./js/register.js"></script>
+    <script src="./js/login.js"></script>
+    <script src="./js/mini_backend.js"></script>
     <link rel="stylesheet" href="style.css">
-    <script>
-
-        const urlparams = new URLSearchParams(window.location.search);
-        const msg = urlparams.get('msg');
-        let msgBox = document.getElementById('msgBox');
-
-        if(msg) {
-            msgBox.innerHTML = msg;
-        }
-
-        function login() {
-            let email = document.getElementById('login-email');
-            let password = document.getElementById('login-password');
-            let user = users.find(u => u.email == email.value && u.password == password.value);
-            console.log(user);
-
-            if(user) {
-                console.log('User gefunden');
-            }
-        }
-
-    </script>
     <title>JOIN</title>
 </head>
 <style>
@@ -50,6 +30,10 @@
         height: 50px;
         font-size: 21px;
         font-weight: 400;
+    }
+
+    .d-none {
+        display: none;
     }
 
     .head-row {
@@ -191,6 +175,21 @@
         border: 1px solid #2A3647;
         cursor: pointer;
     }
+
+    #msgBox {
+        position: absolute;
+        top: 144px;
+        left: 550px;
+        font-size: 23px;
+        background-color: #d5d5d5;
+        width: 400px;
+        height: 100px;
+        border-radius: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        opacity: 0.6;
+    }
 </style>
 
 <body>
@@ -198,7 +197,7 @@
         <img class="join-logo" src="./assets/img/join-logo.png">
         <div class="sign-up-div">
             <span>Not a Join user?</span>
-            <button onclick= "window.open('sign-up.html')" class="sign-up-btn">Sign up</button>
+            <button onclick="window.open('sign-up.html')" class="sign-up-btn">Sign up</button>
         </div>
     </div>
     <form onsubmit="login(); return false;" class="log-in-container">

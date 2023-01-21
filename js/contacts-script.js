@@ -39,14 +39,13 @@ let contacts = [{
     mail: "wolf@gmail.com",
     phone: "015137294748"
 }];
-
 let createdContact = true;
 let contactColor = true;
 
 
 async function init() {
     await downloadFromServer();
-    users = JSON.parse(backend.getItem('contacts')) || [];
+    users = JSON.parse(backend.getItem('users')) || [];
 }
 
 async function includeHTMLaddContact() {
@@ -61,6 +60,11 @@ async function includeHTMLaddContact() {
             element.innerHTML = 'Page not found';
         }
     }
+}
+
+function addUser() {
+    users.push(x);
+    backend.setItem('users', JSON.stringify(users))
 }
 
 /**
@@ -85,7 +89,7 @@ function renderAllContacts() {
 
     for (let i = 0; i < contacts.length; i++) {
         let randomColor = setRandomColor();
-        const contact = contacts[i];
+        let contact = contacts[i];
         let firstChar = contact['firstName'].charAt(0);
         let secondChar = contact['name'].charAt(0);
         contactSection.innerHTML += generateAllContacts(contact, firstChar, secondChar, i, randomColor);
@@ -93,7 +97,7 @@ function renderAllContacts() {
 }
 
 /** 
- * returns generate HTML to showContact function
+ * returns generate HTML to showContact container
  *
  * @returns
  */
@@ -138,7 +142,7 @@ function generateContactfield(i, firstChar, secondChar, randomColor) {
     </div>
     <div class="show-contact-middle">
         <span>Contact Information</span> 
-        <div class="edit-contact" onclick='editContact(${i})'>
+        <div class="edit-contact" onclick="editContact(${i}, '${randomColor}')">
             <img style="width: 30px; height: 30px; object-fit: contain;" src="./assets/img/pen.png"><p> Edit Contact</p>
         </div>
     </div>
@@ -168,26 +172,32 @@ function addNewContact() {
  * Pop-up window to edit a contact
  * 
  */
-async function editContact(i) {
+async function editContact(i, randomColor) {
     if (createdContact) {
         document.getElementById('show-contact').innerHTML = `
         <div w3-include-html="edit-contact.html"></div>`;
         await includeHTMLaddContact();
     }
-    editContactValues(i);
+    editContactValues(i, randomColor);
     createdContact = false;
 }
 
-function editContactValues(i) {
+function editContactValues(i, randomColor) {
     let editLastname = document.getElementById(`edit-input-lastname`);
     let editFirstname = document.getElementById(`edit-input-firstname`);
     let editMail = document.getElementById(`edit-input-mail`);
     let editPhone = document.getElementById(`edit-input-phone`);
+    let editImage = document.getElementById(`edit-img`);
+    let firstChar = contacts[i]['firstName'].charAt(0);
+    let secondChar = contacts[i]['name'].charAt(0);
+
 
     editLastname.value = contacts[i]['name'];
     editFirstname.value = contacts[i]['firstName'];
     editMail.value = contacts[i]['mail'];
     editPhone.value = contacts[i]['phone'];
+    editImage.innerHTML += `${firstChar} ${secondChar}`;
+    editImage.style = `background-color:${randomColor};`;
 }
 
 async function saveEditContact(i) {
@@ -272,6 +282,17 @@ function clearInputfields(inputName, inputFirstName, inputMail, inputPhone) {
 async function addContactToBackend(newContact) {
     contacts.push(newContact);
     await backend.setItem('contacts', JSON.stringify(contacts));
+}
+
+function loadLetters() {
+    for (let i = 0; i < users[activeUser]['contacts'].length; i++) {
+        let name = users[activeUser]['contacts'][i]['contactName'];
+        let firstLetter = name.charAt(0);
+        if (!letters.includes(firstLetter)) {
+            letters.push(firstLetter);
+            letters.sort();
+        }
+    }
 }
 
 
