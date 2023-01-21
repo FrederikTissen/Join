@@ -12,7 +12,7 @@
 </head>
 
 
-<body onload="loadAllTasks()">
+<body onload="onload()">
     <div class="header">
         <span>Kanban Project Management Tool </span>
         <div class="head-container-right">
@@ -74,18 +74,13 @@
                     <textarea id="description" placeholder="Enter a Description" class="input-description"></textarea>
                 </div>
 
-                <div id="category" class="addToTaskInputSection">
-                    <span>Category</span>
-                    <div onclick="renderCategories()" id="category-box" class="category-box">
-                        <p class="select-category">Select task category</p>
-                    </div>
-
-                </div>
+                <div id="category" class="addToTaskInputSection"></div>
 
 
                 <div id="assignedTo" class="addToTaskInputSection">
-                    <span>Assigned to</span><br><br>
 
+
+                    <!--
                     <input type="checkbox" id="assignedToKubilay" name="assignedToKubilay" value="assignedToKubilay">
                     <label for="assignedToKubilay">Kubilay</label><br>
 
@@ -94,7 +89,7 @@
 
                     <input type="checkbox" id="assignedToFrederik" name="assignedToFrederik" value="assignedToFrederik">
                     <label for="assignedToFrederik">Frederik</label>
-
+                    -->
                 </div>
 
 
@@ -104,14 +99,28 @@
 
                 <div class="addToTaskInputSectionRight">
                     <span>Due date</span><br><br>
-                    <input type="date" placeholder="dd/mm/yyyy" class="addTotaskInputField" id="date">
+                    <input type="date" placeholder="" class="addTotaskInputField" id="date">
                 </div>
                 <div id="prio" class="prio addToTaskInputSectionRight">
                     <span>Prio</span><br><br>
-                    <div>
-                        <img onclick="choosePrio(1)" class="prio-icon" src="./assets/img/urgent-white.png" alt="">
+                    <div class="prio-box">
+                        <div onclick="choosePrio(1)" class="prio-icon">
+                            <p class="margin-none no-scale">Urgent</p>
+                            <img class="no-scale" src="/assets/img/Urgent-solo.png" alt="">
+                        </div>
+                        <div onclick="choosePrio(2)" class="prio-icon ">
+                            <p class="margin-none no-scale">Medium</p>
+                            <img src="/assets/img/Medium-Solo.png" alt="">
+                        </div>
+                        <div onclick="choosePrio(3)" class="prio-icon">
+                            <p class="margin-none no-scale">Low</p>
+                            <img class="no-scale" src="/assets/img/Low-solo.png" alt="">
+                        </div>
+
+<!--
                         <img onclick="choosePrio(2)" class="prio-icon" src="./assets/img/medium-white.png" alt="">
                         <img onclick="choosePrio(3)" class="prio-icon" src="./assets/img/Low-white.png" alt="">
+                        -->
                     </div>
 
                 </div>
