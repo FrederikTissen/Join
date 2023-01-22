@@ -368,7 +368,7 @@ input {
     background-color: unset;
 }
 
-.prio-box :hover{
+.prio-box :hover {
     cursor: pointer;
     transform: scale(1.1);
     transition: all 75ms ease-in-out;
@@ -378,6 +378,20 @@ input {
 .no-scale {
     transform: scale(1) !important;
     box-shadow: unset !important;
+}
+
+.prio-icons {
+    transform: scale(1) !important;
+    box-shadow: unset !important;
+    width: 20px;
+    height: 14px;
+}
+
+.prio-icon-medium {
+    transform: scale(1) !important;
+    box-shadow: unset !important;
+    width: 20px;
+    height: 7px;
 }
 
 .category-box {
@@ -406,6 +420,7 @@ input {
     width: 380px;
     padding-left: 21px;
     padding-right: 21px;
+    display: flex;
 }
 
 .selection-contacts {
@@ -423,6 +438,7 @@ input {
     padding-left: 21px;
     padding-right: 21px;
     margin: unset;
+    
 }
 
 .input-nav-box {
@@ -450,7 +466,50 @@ input {
     height: 10.5px;
 }
 
+.urgent {
+    background-color: rgb(255, 61, 0);
+    transform: scale(1.1);
+    transition: all 75ms ease-in-out;
+    box-shadow: 2px 3px 1px rgba(0, 0, 0, 0.1);
+    color: white;
+    font-weight: bold;
+}
 
+.medium {
+    background-color: rgb(255, 168, 0);
+    transform: scale(1.1);
+    transition: all 75ms ease-in-out;
+    box-shadow: 2px 3px 1px rgba(0, 0, 0, 0.1);
+    color: white;
+    font-weight: bold;
+}
+
+.low {
+    background-color: rgb(122, 226, 41);
+    transform: scale(1.1);
+    transition: all 75ms ease-in-out;
+    box-shadow: 2px 3px 1px rgba(0, 0, 0, 0.1);
+    color: white;
+    font-weight: bold;
+}
+
+.color-box {
+    display: flex;
+    justify-content: space-around;
+    width: 250px;
+    position: relative;
+    left: 10px;
+    top: -15px;
+    
+}
+
+.colors {
+    /*padding: 5px;*/
+    cursor: pointer;
+    width: 18px;
+    height: 18px;
+    padding-left: 5px;
+}
 
 /*End of Style for add-task.html */
 

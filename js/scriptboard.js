@@ -46,3 +46,7 @@ function deleteTask(i) {
     closeShowTask();
     renderTasks();
 }
+
+function closeShowTask() {
+    document.getElementById('show-Task-Background').classList = 'show-Task-Background d-none';
+}

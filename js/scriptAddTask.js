@@ -2,6 +2,7 @@ let allTasks = [];
 let selectionPrio;
 let allCategories = [];
 let allContacts = [];
+let color;
 
 
 function onload() {
@@ -9,14 +10,15 @@ function onload() {
     loadAllContacts();
     renderCategoryBox();
     renderContactBox();
+    renderPrios();
     clock();
 }
 
-function clock(){
-var date = new Date();
-var currentDate = date.toISOString().slice(0,10);
+function clock() {
+    var date = new Date();
+    var currentDate = date.toISOString().slice(0, 10);
 
-document.getElementById('date').value = currentDate;
+    document.getElementById('date').value = currentDate;
 }
 
 function addTask() {
@@ -55,12 +57,13 @@ function renderCategories() {
     for (let i = 0; i < allCategories.length; i++) {
         currentCategory = allCategories[i];
         let category = allCategories[i]['categoryName'];
-        /*let color = allCategories[i]['color'];*/
+        let color = allCategories[i]['categoryColor']
         let newCategory = document.getElementById('category-box');
 
         newCategory.innerHTML += /*html*/ `
             <div class="selection-category">
                 <div id="category${i}" onclick="acceptCategory(${i})">${category}</div>
+                <img class="colors" src="/assets/img/${color}.png" alt="">
             </div>
         `
     }
@@ -78,23 +81,39 @@ function acceptCategory(i) {
 
 
 function openInput() {
+    
     document.getElementById('category').innerHTML = '';
     document.getElementById('category').innerHTML = /*html*/ `
     <span>Category</span><br><br>
     <input id="input-category"  placeholder="New category name" class="addTotaskInputField" type="text">
     <div id="input-nav-box" class="input-nav-box">
-                            <img onclick="renderCategoryBox()" class="x-black" src="/assets/img/x-black.png">
-                            <img class="line" src="/assets/img/line.png">
-                            <img onclick="pushNewCategory()" class="hook" src="/assets/img/hook.png">
-                        </div>
+        <img onclick="renderCategoryBox()" class="x-black" src="/assets/img/x-black.png">
+        <img class="line" src="/assets/img/line.png">
+        <img onclick="pushNewCategory()" class="hook" src="/assets/img/hook.png">
+    </div>
+    <div class="color-box">
+        <img onclick="chooseColor('turquoise')" class="colors" src="/assets/img/turquoise.png" alt="">
+        <img onclick="chooseColor('red')" class="colors" src="/assets/img/red.png" alt="">
+        <img onclick="chooseColor('green')" class="colors" src="/assets/img/green.png" alt="">
+        <img onclick="chooseColor('orange')" class="colors" src="/assets/img/orange.png" alt="">
+        <img onclick="chooseColor('purple')" class="colors" src="/assets/img/purple.png" alt="">
+        <img onclick="chooseColor('blue')" class="colors" src="/assets/img/blue.png" alt="">
+
+    </div>      
     `;
+}
+
+function chooseColor(colorOfCategory) {
+    color = colorOfCategory;
 }
 
 function pushNewCategory() {
     let categoryName = document.getElementById('input-category');
+    
 
     let newCategory = {
         'categoryName': categoryName.value,
+        'categoryColor': color,
     };
 
 
@@ -118,6 +137,7 @@ function renderCategoryBox(i) {
     `;
 }
 
+/*
 function choosePrio(prio) {
     if (prio == 1) {
         selectionPrio = 1
@@ -129,6 +149,7 @@ function choosePrio(prio) {
         selectionPrio = 3
     }
 }
+*/
 
 function renderContacts() {
     loadAllContacts();
@@ -208,9 +229,58 @@ function renderContactBox(i) {
     `;
 }
 
-function closeShowTask() {
-    document.getElementById('show-Task-Background').classList = 'show-Task-Background d-none';
+function renderPrios() {
+    document.getElementById('prio').innerHTML = /*html*/ `
+    <span>Prio</span><br><br>
+                    <div class="prio-box">
+                        <div id="prio-urgent" onclick="choosePrio('urgent', 'arrows-up')" class="prio-icon">
+                            <p class="margin-none no-scale">Urgent</p>
+                            <img id="icon-urgent" class="prio-icons" src="/assets/img/Urgent-solo.png">
+                        </div>
+                        <div id="prio-medium" onclick="choosePrio('medium', 'equal-white')" class="prio-icon ">
+                            <p class="margin-none no-scale">Medium</p>
+                            <img id="icon-medium" class="prio-icon-medium" src="/assets/img/Medium-Solo.png" alt="">
+                        </div>
+                        <div id="prio-low" onclick="choosePrio('low', 'arrow-down-white')" class="prio-icon">
+                            <p class="margin-none no-scale">Low</p>
+                            <img id="icon-low" class="prio-icons" src="/assets/img/Low-solo.png" alt="">
+                        </div>
+                    </div>
+    `
 }
+
+function resetPrios() {
+    document.getElementById('prio').innerHTML = /*html*/ `
+    <span>Prio</span><br><br>
+                    <div class="prio-box">
+                        <div id="prio-urgent" onclick="renderPrios();" class="prio-icon">
+                            <p class="margin-none no-scale">Urgent</p>
+                            <img id="icon-urgent" class="prio-icons" src="/assets/img/Urgent-solo.png">
+                        </div>
+                        <div id="prio-medium" onclick="renderPrios();" class="prio-icon ">
+                            <p class="margin-none no-scale">Medium</p>
+                            <img id="icon-medium" class="prio-icon-medium" src="/assets/img/Medium-Solo.png" alt="">
+                        </div>
+                        <div id="prio-low" onclick="renderPrios();" class="prio-icon">
+                            <p class="margin-none no-scale">Low</p>
+                            <img id="icon-low" class="prio-icons" src="/assets/img/Low-solo.png" alt="">
+                        </div>
+                    </div>
+    `
+}
+
+function choosePrio(prio, img) {
+    resetPrios();
+    let prioId = document.getElementById(`prio-${prio}`);
+    let icon = document.getElementById(`icon-${prio}`);
+    prioId.classList.add(`${prio}`);
+    icon.src = `/assets/img/${img}.png`;
+}
+
+
+
+
+
 
 
 
