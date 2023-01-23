@@ -260,6 +260,7 @@ input {
     border: 1px solid #D1D1D1;
     border-radius: 10px;
     line-height: 120%;
+    
 }
 
 .addTotaskInputField::placeholder {
@@ -448,6 +449,8 @@ input {
     padding-left: 21px;
     padding-right: 21px;
     display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .selection-contacts {
@@ -458,6 +461,7 @@ input {
     width: 380px;
     padding-left: 21px;
     padding-right: 21px;
+    align-items: center;
 }
 
 .select-category {
@@ -465,14 +469,14 @@ input {
     padding-left: 21px;
     padding-right: 21px;
     margin: unset;
-    
+
 }
 
 .accept-category {
     padding-left: 21px;
     padding-right: 21px;
     margin: unset;
-    
+
 }
 
 .input-nav-box {
@@ -536,7 +540,7 @@ input {
     top: -15px;
 }
 
-.color-box :hover{
+.color-box :hover {
     transform: scale(1.1);
     transition: all 75ms ease-in-out;
     box-shadow: 2px 3px 1px rgba(0, 0, 0, 0.1);
@@ -583,6 +587,34 @@ input {
     left: 390px;
     top: 34px;
     z-index: -10;
+}
+
+.searched-emails {
+    box-sizing: border-box;
+    display: flex;
+    position: relative;
+    bottom: 31px;
+    flex-direction: column;
+    align-items: center;
+    width: 422px;
+    padding: 13px 21px;
+    /* padding-top: 26px; */
+    background: #FFFFFF;
+    border: 1px solid #D1D1D1;
+    border-radius: 10px;
+
+}
+
+.searched-emails :hover {
+    cursor: pointer;
+    background: #862424;
+}
+
+
+.checkbox {
+    width: 11px;
+    height: 11px;
+    padding-right: 5px;
 }
 
 /*End of Style for add-task.html */

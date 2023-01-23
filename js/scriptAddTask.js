@@ -4,6 +4,9 @@ let allCategories = [];
 let allContacts = [];
 let color;
 let currentCategory;
+let currentContact;
+let category;
+let priority;
 
 
 function onload() {
@@ -14,6 +17,8 @@ function onload() {
     renderPrios();
     clock();
 }
+
+
 
 function clock() {
     var date = new Date();
@@ -32,8 +37,11 @@ function addTask() {
         'title': title.value,
         'description': description.value,
         'date': date.value,
-        'categorySelect': selectionCategory.value,
-        'prioSelect': selectionPrio,
+        'categorySelect': category,
+        'categoryColor': color,
+        'priority': priority,
+
+
     };
     allTasks.push(task);
 
@@ -61,8 +69,8 @@ function renderCategories() {
 
     for (let i = 0; i < allCategories.length; i++) {
         currentCategory = allCategories[i];
-        let category = currentCategory['categoryName'];
-        let color = currentCategory['categoryColor']
+        category = currentCategory['categoryName'];
+        color = currentCategory['categoryColor']
         let newCategory = document.getElementById('category-box');
 
         newCategory.innerHTML += /*html*/ `
@@ -76,8 +84,8 @@ function renderCategories() {
 
 function acceptCategory(i) {
     currentCategory = allCategories[i];
-    let category = currentCategory['categoryName'];
-    let color = currentCategory['categoryColor'];
+    category = currentCategory['categoryName'];
+    color = currentCategory['categoryColor'];
     let newCategory = document.getElementById('category');
 
     newCategory.innerHTML = /*html*/ `
@@ -189,62 +197,89 @@ function renderContacts() {
     loadAllContacts();
 
     document.getElementById('assignedTo').innerHTML = /*html*/ `
-        <span>Assigned to</span><br><br>
-    <div  id="contact-box" class="category-box">
+    <span>Assigned to</span><br><br>
+    <img onclick="renderContactBox()" class="arrow-icon"  src="/assets/img/arrow-down.png" alt="">
+    <div   id="contact-box" class="category-box">
         <p onclick="renderContactBox()" class="select-category">Select contacts to assign</p>
         <div onclick="openInputContact()" class="selection-category">
             <div>Invite new contact</div>
+            <img src="/assets/img/contact-logo.png" alt="">
         </div>
     </div>
+    <div id="contact-icons"></div>
     `;
 
     for (let i = 0; i < allContacts.length; i++) {
-        currentContact = allContacts[i];
-        let contact = allContacts[i]['contactName'];
-        /*let color = allCategories[i]['color'];*/
+        actualyContact = allContacts[i];
+        let contactFirstname = allContacts[i]['firstName'];
+        let contactLastName = allContacts[i]['name'];
+        /*let firstLetter = allContacts[i]['firstName'].charAt(0);
+        let secondLetter = allContacts[i]['name'].charAt(0);
+
+        let color = allCategories[i]['color'];*/
         let newContact = document.getElementById('contact-box');
 
         newContact.innerHTML += /*html*/ `
-            <div class="selection-contacts">
-                <div id="contact${i}" onclick="acceptContact(${i})">${contact}</div>
-                <input type="checkbox" id="assignedTo${i}" name="assignedTo${i}" value="assignedTo${i}">
+            <div id="selection-contacts${i}" class="selection-contacts">
+                <div id="contact${i}" >${contactFirstname}  ${contactLastName}</div>
+                <img id="checkbox${i}" onclick="acceptContact(${i})" class="checkbox" src="/assets/img/checkbox-contact.png" alt="">
             </div>
         `
     }
+
+
 }
 
+/*
 function acceptContact(i) {
     selectedContact = document.getElementById(`contact${i}`);
-    document.getElementById('assignedTo').innerHTML = /*html*/ `
+    document.getElementById('assignedTo').innerHTML =  `
     <span>Assigned to</span><br><br>
+    <img onclick="renderContacts()" class="arrow-icon"  src="/assets/img/arrow-down.png" alt="">
     <div onclick="renderContacts()" id="contact-box" class="category-box">
                         <p class="select-category">${selectedContact.innerHTML}</p>
                     </div>
     `;
+}
+*/
+
+function acceptContact(i) {
+    selectedContact = document.getElementById(`contact${i}`);
+    document.getElementById(`checkbox${i}`).src = "/assets/img/checkbox-contact-full.png";
+
+
+
+/*
+    let shortName = document.getElementById('contact-icons').value
+    document.getElementById(`assignedTo${i}`).innerHTML = /*html `
+    <div>${shortName}</div>
+    `;*/
 }
 
 
 function openInputContact() {
     document.getElementById('assignedTo').innerHTML = '';
     document.getElementById('assignedTo').innerHTML = /*html*/ `
-    <span>Assigned to</span>
-    <input id="input-contact"  placeholder="New contact" class="addTotaskInputField" type="text">
+    <span>Assigned to</span><br><br>
+    <img class="arrow-d-none" src="/assets/img/arrow-down.png" alt="">
+    <input id="input-contact" onkeyup="filterContacts()" placeholder="Search New contact..." class="addTotaskInputField" type="text">
+    
     <div id="input-nav-box-contact" class="input-nav-box">
                             <img onclick="renderContactBox()" class="x-black" src="/assets/img/x-black.png">
                             <img class="line" src="/assets/img/line.png">
                             <img onclick="pushNewContact()" class="hook" src="/assets/img/hook.png">
                         </div>
+    <div id="searched-emails" class="searched-emails"></div>
+    
     `;
+
+    document.getElementById('searched-emails').classList.add('d-none');
 }
 
 function pushNewContact() {
-    let contactName = document.getElementById('input-contact');
 
-    let newContact = {
-        'contactName': contactName.value,
-    };
 
-    allContacts.push(newContact);
+    allContacts.push(currentContact);
 
     saveContact();
     loadAllContacts();
@@ -257,11 +292,80 @@ function renderContactBox(i) {
     document.getElementById('assignedTo').innerHTML = '';
     document.getElementById('assignedTo').innerHTML = /*html*/ `
     <span>Assigned to</span><br><br>
+    <img onclick="renderContacts()" class="arrow-icon"  src="/assets/img/arrow-down.png" alt="">
     <div onclick="renderContacts()" id="contact-box" class="category-box">
                         <p class="select-category">Select contact to assign</p>
                     </div>
     `;
 }
+
+
+
+
+
+/*
+function filterContacts() {
+    let search = document.getElementById('searchPokemon').value;
+    hideDarkmodeBox(search);
+    search = search.toLowerCase();
+    document.getElementById('pokedex').innerHTML = '';
+    for (let i = 0; i < allpokemon.length; i++) {
+        currentPokemon = allPokemon[i];
+        
+        updateGlobalVaribles();
+        if (currentPokemon['name'].toLowerCase().includes(search))
+        renderPokemonCardFilter(i);
+    }
+}*/
+
+function filterContacts() {
+    document.getElementById('searched-emails').classList.remove('d-none');
+    let search = document.getElementById('input-contact').value;
+    //hideDarkmodeBox(search);
+    search = search.toLowerCase();
+
+    document.getElementById('searched-emails').innerHTML = '';
+    for (let i = 0; i < contacts.length; i++) {
+        currentContact = contacts[i];
+        currentContactMail = currentContact['mail'];
+
+
+        if (currentContactMail.toLowerCase().includes(search)) {
+            renderSearchedContacts(i, currentContactMail);
+        }
+
+    }
+
+}
+
+
+function renderSearchedContacts(i, currentContactMail) {
+    document.getElementById('searched-emails').innerHTML += /*html*/ `
+    <div onclick="takeEmail(${i})" class="selection-contacts">
+        <div id="contact${i}" >${currentContactMail}</div>
+    </div>
+`
+}
+
+function takeEmail(i) {
+    let takenEmail = document.getElementById(`contact${i}`).innerHTML;
+    currentContact = contacts[i];
+    document.getElementById('input-contact').value = takenEmail;
+    document.getElementById('searched-emails').classList.add('d-none');
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 function renderPrios() {
     document.getElementById('prio').innerHTML = /*html*/ `
@@ -309,6 +413,7 @@ function choosePrio(prio, img) {
     let icon = document.getElementById(`icon-${prio}`);
     prioId.classList.add(`${prio}`);
     icon.src = `/assets/img/${img}.png`;
+    priority = prio;
 }
 
 
