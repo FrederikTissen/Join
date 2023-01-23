@@ -410,6 +410,33 @@ input {
     cursor: pointer;
 }
 
+.category-box-standard {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 13px 0px;
+    width: 422px;
+    min-height: 24px;
+    background: #FFFFFF;
+    border: 1px solid #D1D1D1;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.category-box-render {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 5px;
+    /* padding: 13px 0px; */
+    width: 422px;
+    /* min-height: 24px; */
+    background: #FFFFFF !important;
+    /* border: 1px solid #D1D1D1; */
+    /* border-radius: 10px; */
+    cursor: pointer;
+}
+
 .category-box div:hover {
     background-color: red;
 }
@@ -435,6 +462,13 @@ input {
 
 .select-category {
     width: 380px;
+    padding-left: 21px;
+    padding-right: 21px;
+    margin: unset;
+    
+}
+
+.accept-category {
     padding-left: 21px;
     padding-right: 21px;
     margin: unset;
@@ -500,15 +534,55 @@ input {
     position: relative;
     left: 10px;
     top: -15px;
-    
+}
+
+.color-box :hover{
+    transform: scale(1.1);
+    transition: all 75ms ease-in-out;
+    box-shadow: 2px 3px 1px rgba(0, 0, 0, 0.1);
 }
 
 .colors {
-    /*padding: 5px;*/
     cursor: pointer;
     width: 18px;
     height: 18px;
-    padding-left: 5px;
+    margin-left: 5px;
+    border-radius: 100%;
+}
+
+.color-box-hover {
+    transform: scale(1.1);
+    transition: all 75ms ease-in-out;
+    box-shadow: 2px 3px 1px rgba(0, 0, 0, 0.1);
+}
+
+.accepted-category {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 13px 0px;
+    width: 422px;
+    min-height: 24px;
+    background: #FFFFFF;
+    border: 1px solid #D1D1D1;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.arrow-icon {
+    padding-right: 15px;
+    position: relative;
+    left: 390px;
+    top: 34px;
+    cursor: pointer;
+}
+
+.arrow-d-none {
+    padding-right: 15px;
+    position: relative;
+    left: 390px;
+    top: 34px;
+    z-index: -10;
 }
 
 /*End of Style for add-task.html */

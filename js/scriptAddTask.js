@@ -3,6 +3,7 @@ let selectionPrio;
 let allCategories = [];
 let allContacts = [];
 let color;
+let currentCategory;
 
 
 function onload() {
@@ -46,8 +47,12 @@ function renderCategories() {
 
     document.getElementById('category').innerHTML = /*html*/ `
     <span>Category</span><br><br>
+    <img onclick="renderCategoryBox()" class="arrow-icon" src="/assets/img/arrow-down.png" alt="">
     <div  id="category-box" class="category-box">
-        <p onclick="renderCategoryBox()" class="select-category">Select task category</p>
+        <div onclick="renderCategoryBox()" class="category-box-render">
+            <p  class="select-category">Select task category</p>
+            
+        </div>
         <div onclick="openInput()" class="selection-category">
             <div>New category</div>
         </div>
@@ -56,13 +61,13 @@ function renderCategories() {
 
     for (let i = 0; i < allCategories.length; i++) {
         currentCategory = allCategories[i];
-        let category = allCategories[i]['categoryName'];
-        let color = allCategories[i]['categoryColor']
+        let category = currentCategory['categoryName'];
+        let color = currentCategory['categoryColor']
         let newCategory = document.getElementById('category-box');
 
         newCategory.innerHTML += /*html*/ `
-            <div class="selection-category">
-                <div id="category${i}" onclick="acceptCategory(${i})">${category}</div>
+            <div onclick="acceptCategory(${i})" class="selection-category">
+                <div id="category${i}" >${category}</div>
                 <img class="colors" src="/assets/img/${color}.png" alt="">
             </div>
         `
@@ -70,21 +75,39 @@ function renderCategories() {
 }
 
 function acceptCategory(i) {
-    selectedCategory = document.getElementById(`category${i}`);
+    currentCategory = allCategories[i];
+    let category = currentCategory['categoryName'];
+    let color = currentCategory['categoryColor'];
+    let newCategory = document.getElementById('category');
+
+    newCategory.innerHTML = /*html*/ `
+    <span>Category</span><br><br>
+    <img onclick="renderCategories()" class="arrow-icon"  src="/assets/img/arrow-down.png" alt="">
+    <div onclick="renderCategories()" id="category-box" class="accepted-category">
+        <p class="accept-category">${category} </p>
+        <img class="colors" src="/assets/img/${color}.png" alt="">
+    </div>
+    `;
+}
+
+function acceptNewCategory(newCategoryName) {
     document.getElementById('category').innerHTML = /*html*/ `
     <span>Category</span><br><br>
-    <div onclick="renderCategories()" id="category-box" class="category-box">
-                        <p class="select-category">${selectedCategory.innerHTML}</p>
-                    </div>
+    <img onclick="renderCategories()" class="arrow-icon" src="/assets/img/arrow-down.png" alt="">
+    <div onclick="renderCategories()" id="category-box" class="accepted-category">
+        <p class="accept-category">${newCategoryName} </p>
+        <img class="colors" src="/assets/img/${color}.png" alt="">
+    </div>
     `;
 }
 
 
 function openInput() {
-    
+
     document.getElementById('category').innerHTML = '';
     document.getElementById('category').innerHTML = /*html*/ `
     <span>Category</span><br><br>
+    <img class="arrow-d-none" src="/assets/img/arrow-down.png" alt="">
     <input id="input-category"  placeholder="New category name" class="addTotaskInputField" type="text">
     <div id="input-nav-box" class="input-nav-box">
         <img onclick="renderCategoryBox()" class="x-black" src="/assets/img/x-black.png">
@@ -92,27 +115,36 @@ function openInput() {
         <img onclick="pushNewCategory()" class="hook" src="/assets/img/hook.png">
     </div>
     <div class="color-box">
-        <img onclick="chooseColor('turquoise')" class="colors" src="/assets/img/turquoise.png" alt="">
-        <img onclick="chooseColor('red')" class="colors" src="/assets/img/red.png" alt="">
-        <img onclick="chooseColor('green')" class="colors" src="/assets/img/green.png" alt="">
-        <img onclick="chooseColor('orange')" class="colors" src="/assets/img/orange.png" alt="">
-        <img onclick="chooseColor('purple')" class="colors" src="/assets/img/purple.png" alt="">
-        <img onclick="chooseColor('blue')" class="colors" src="/assets/img/blue.png" alt="">
-
+        <img id="turquoise" onclick="chooseColor('turquoise')" class="colors" src="/assets/img/turquoise.png" alt="">
+        <img id="red" onclick="chooseColor('red')" class="colors" src="/assets/img/red.png" alt="">
+        <img id="green" onclick="chooseColor('green')" class="colors" src="/assets/img/green.png" alt="">
+        <img id="orange" onclick="chooseColor('orange')" class="colors" src="/assets/img/orange.png" alt="">
+        <img id="purple" onclick="chooseColor('purple')" class="colors" src="/assets/img/purple.png" alt="">
+        <img id="blue" onclick="chooseColor('blue')" class="colors" src="/assets/img/blue.png" alt="">
     </div>      
     `;
 }
 
 function chooseColor(colorOfCategory) {
+    document.getElementById('turquoise').classList.remove('color-box-hover');
+    document.getElementById('red').classList.remove('color-box-hover');
+    document.getElementById('green').classList.remove('color-box-hover');
+    document.getElementById('orange').classList.remove('color-box-hover');
+    document.getElementById('purple').classList.remove('color-box-hover');
+    document.getElementById('blue').classList.remove('color-box-hover');
+
     color = colorOfCategory;
+    let id = colorOfCategory;
+    document.getElementById(id).classList.add('color-box-hover');
+
 }
 
 function pushNewCategory() {
-    let categoryName = document.getElementById('input-category');
-    
+    let newcCategoryName = document.getElementById('input-category').value;
+
 
     let newCategory = {
-        'categoryName': categoryName.value,
+        'categoryName': newcCategoryName,
         'categoryColor': color,
     };
 
@@ -122,8 +154,8 @@ function pushNewCategory() {
 
     saveCategory();
     loadAllCategories();
-
-    document.getElementById('input-category').value = '';
+    acceptNewCategory(`${newcCategoryName}`);
+    ;
 
 }
 
@@ -131,9 +163,11 @@ function renderCategoryBox(i) {
     document.getElementById('category').innerHTML = '';
     document.getElementById('category').innerHTML = /*html*/ `
     <span>Category</span><br><br>
-    <div onclick="renderCategories()" id="category-box" class="category-box">
-                        <p class="select-category">Select task category</p>
-                    </div>
+    <img onclick="renderCategories()" class="arrow-icon" src="/assets/img/arrow-down.png" alt="">
+    <div onclick="renderCategories()" id="category-box" class="category-box-standard">
+        <p class="select-category">Select task category</p>
+        
+    </div>
     `;
 }
 
