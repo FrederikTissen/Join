@@ -260,7 +260,7 @@ input {
     border: 1px solid #D1D1D1;
     border-radius: 10px;
     line-height: 120%;
-    
+
 }
 
 .addTotaskInputField::placeholder {
@@ -615,6 +615,24 @@ input {
     width: 11px;
     height: 11px;
     padding-right: 5px;
+}
+
+.contact-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    border-radius: 100%;
+    background-color: #862424;
+    color: white;
+    margin-top: 20px;
+    margin-right: 8px;
+}
+
+.contact-icons {
+    display: flex; 
+    
 }
 
 /*End of Style for add-task.html */

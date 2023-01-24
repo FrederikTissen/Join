@@ -7,10 +7,12 @@ let currentCategory;
 let currentContact;
 let category;
 let priority;
+let selectedContacts = [];
 
 
 function onload() {
     loadAllTasks();
+    deleteAllSelectedContact();
     loadAllContacts();
     renderCategoryBox();
     renderContactBox();
@@ -40,8 +42,7 @@ function addTask() {
         'categorySelect': category,
         'categoryColor': color,
         'priority': priority,
-
-
+        'AssignedTo': selectedContacts,
     };
     allTasks.push(task);
 
@@ -195,6 +196,7 @@ function choosePrio(prio) {
 
 function renderContacts() {
     loadAllContacts();
+    deleteAllSelectedContact();
 
     document.getElementById('assignedTo').innerHTML = /*html*/ `
     <span>Assigned to</span><br><br>
@@ -206,7 +208,7 @@ function renderContacts() {
             <img src="/assets/img/contact-logo.png" alt="">
         </div>
     </div>
-    <div id="contact-icons"></div>
+    <div id="contact-icons" class="contact-icons"></div>
     `;
 
     for (let i = 0; i < allContacts.length; i++) {
@@ -230,30 +232,58 @@ function renderContacts() {
 
 }
 
-/*
+
 function acceptContact(i) {
-    selectedContact = document.getElementById(`contact${i}`);
-    document.getElementById('assignedTo').innerHTML =  `
-    <span>Assigned to</span><br><br>
-    <img onclick="renderContacts()" class="arrow-icon"  src="/assets/img/arrow-down.png" alt="">
-    <div onclick="renderContacts()" id="contact-box" class="category-box">
-                        <p class="select-category">${selectedContact.innerHTML}</p>
-                    </div>
-    `;
+    let contactFirstname = allContacts[i]['firstName'];
+    let contactLastName = allContacts[i]['name'];
+    
+
+    document.getElementById(`selection-contacts${i}`).innerHTML = /*html*/ `
+    <div id="contact${i}" >${contactFirstname}  ${contactLastName}</div>
+    <img id="checkbox${i}" onclick="acceptNotContact(${i})" class="checkbox" src="/assets/img/checkbox-contact-full.png" alt="">
+    `
+    pushSelctedContact(i);
+    renderContactIcon();
 }
-*/
 
-function acceptContact(i) {
-    selectedContact = document.getElementById(`contact${i}`);
-    document.getElementById(`checkbox${i}`).src = "/assets/img/checkbox-contact-full.png";
+function renderContactIcon() {
+    document.getElementById('contact-icons').innerHTML = '';
+
+    for (let i = 0; i < selectedContacts.length; i++) {
+        currentSelectedContact = selectedContacts[i];
+        let firstLetter = selectedContacts[i]['firstName'].charAt(0);
+        let secondLetter = selectedContacts[i]['name'].charAt(0);
+
+        /*let color = allCategories[i]['color'];*/
+        let contactIcons = document.getElementById('contact-icons');
+
+        contactIcons.innerHTML += /*html*/ `
+            <div id="contact-icon${i}" class="contact-icon">${firstLetter}${secondLetter}</div>
+        `
+    }
+}
 
 
+function acceptNotContact(i) {
+    selectedContacts = [];
+    saveSelectedContact();
+    loadSelectedAllContacts();
 
-/*
-    let shortName = document.getElementById('contact-icons').value
-    document.getElementById(`assignedTo${i}`).innerHTML = /*html `
-    <div>${shortName}</div>
-    `;*/
+    renderContacts();
+
+}
+
+function pushSelctedContact(i) {
+    currentContact = allContacts[i];
+    selectedContacts.push(currentContact);
+    saveSelectedContact();
+    loadSelectedAllContacts();
+}
+
+function deleteAllSelectedContact() {
+    selectedContacts = [];
+    saveSelectedContact();
+    loadSelectedAllContacts();
 }
 
 
@@ -277,26 +307,24 @@ function openInputContact() {
 }
 
 function pushNewContact() {
-
-
     allContacts.push(currentContact);
-
     saveContact();
     loadAllContacts();
-
     document.getElementById('input-contact').value = '';
-
 }
+
 
 function renderContactBox(i) {
     document.getElementById('assignedTo').innerHTML = '';
     document.getElementById('assignedTo').innerHTML = /*html*/ `
     <span>Assigned to</span><br><br>
-    <img onclick="renderContacts()" class="arrow-icon"  src="/assets/img/arrow-down.png" alt="">
-    <div onclick="renderContacts()" id="contact-box" class="category-box">
-                        <p class="select-category">Select contact to assign</p>
-                    </div>
+        <img onclick="renderContacts()" class="arrow-icon"  src="/assets/img/arrow-down.png" alt="">
+        <div onclick="renderContacts()" id="contact-box" class="category-box">
+            <p class="select-category">Select contacts to assign</p>
+        </div>
+        <div id="contact-icons" class="contact-icons"></div>
     `;
+    renderContactIcon();
 }
 
 
@@ -456,10 +484,23 @@ function loadAllContacts() {
     }
 }
 
+
 function loadAllTasks() {
     let allTasksAsString = localStorage.getItem('allTasks');
     if (allTasksAsString) {
         allTasks = JSON.parse(allTasksAsString);
+    }
+}
+
+function saveSelectedContact() {
+    let allSelectedContactsAsString = JSON.stringify(selectedContacts);
+    localStorage.setItem('selectedContacts', allSelectedContactsAsString);
+}
+
+function loadSelectedAllContacts() {
+    let allSelectedContactsAsString = localStorage.getItem('selectedContacts');
+    if (allSelectedContactsAsString) {
+        selectedContacts = JSON.parse(allSelectedContactsAsString);
     }
 }
 
