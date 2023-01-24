@@ -504,6 +504,15 @@ input {
     height: 10.5px;
 }
 
+.x-black-subtask {
+    width: 24px;
+    height: 24px;
+    position: relative;
+    display: flex;
+    left: 386px;
+    top: 38px;
+}
+
 .urgent {
     background-color: rgb(255, 61, 0);
     transform: scale(1.1);
@@ -632,7 +641,25 @@ input {
 
 .contact-icons {
     display: flex; 
-    
+}
+
+.checkbox-empty {
+    width: 16px;
+    height: 16px;
+    margin-right: 10px;
+}
+
+.allSubtasks {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.subtask-box {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: 5px;
 }
 
 /*End of Style for add-task.html */

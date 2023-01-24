@@ -42,7 +42,7 @@ function openShowTask(i) {
 
 function deleteTask(i) {
     allTasks.splice(i, 1);
-    save();
+    saveTask();
     closeShowTask();
     renderTasks();
 }

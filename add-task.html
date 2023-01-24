@@ -80,17 +80,6 @@
 
                 <div id="assignedTo" class="addToTaskInputSection">
 
-
-                    <!--
-                    <input type="checkbox" id="assignedToKubilay" name="assignedToKubilay" value="assignedToKubilay">
-                    <label for="assignedToKubilay">Kubilay</label><br>
-
-                    <input type="checkbox" id="assignedToFelix" name="assignedToFelix" value="assignedToFelix">
-                    <label for="assignedToFelix">Felix</label><br>
-
-                    <input type="checkbox" id="assignedToFrederik" name="assignedToFrederik" value="assignedToFrederik">
-                    <label for="assignedToFrederik">Frederik</label>
-                    -->
                 </div>
 
 
@@ -102,19 +91,18 @@
                     <span>Due date</span><br><br>
                     <input type="date" placeholder="" class="addTotaskInputField" id="date">
                 </div>
-                <div id="prio" class="prio addToTaskInputSectionRight">
-                    
+                <div id="prio" class="prio addToTaskInputSectionRight"></div>
 
+
+                <div id="subtask" class="Subtask addToTaskInputSectionRight">
+                   
                 </div>
-                <div id="Subtask" class="Subtask addToTaskInputSectionRight">
-                    <span>Subtasks</span><br><br>
-                    <input placeholder="Add new subtask" class="addTotaskInputField"><br>
-                    <input type="checkbox" id="subtask1" name="subtask1">
-                    <label for="subtask1"> Subtask 1</label><br>
-                    <button class="btn" onclick="openSubTaskMask()">+</button>
-                </div>
+
+
+
+
                 <div class="btnRow">
-                    <button id="addToTaskClearBtn" class="btn addToTaskClearBtn">Clear x</button>
+                    <button id="addToTaskClearBtn" onclick="onload()" class="btn addToTaskClearBtn">Clear x</button>
                     <button id="addToTaskCreateBtn" onclick="addTask()" class="btn addToTaskCreateBtn">Create
                         Task</button>
                 </div>

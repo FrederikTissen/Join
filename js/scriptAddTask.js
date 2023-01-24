@@ -8,15 +8,18 @@ let currentContact;
 let category;
 let priority;
 let selectedContacts = [];
+let allSubTasks = [];
 
 
 function onload() {
     loadAllTasks();
     deleteAllSelectedContact();
+    deleteAllSubTasks();
     loadAllContacts();
     renderCategoryBox();
     renderContactBox();
     renderPrios();
+    renderSubTask();
     clock();
 }
 
@@ -43,10 +46,12 @@ function addTask() {
         'categoryColor': color,
         'priority': priority,
         'AssignedTo': selectedContacts,
+        'subTasks': allSubTasks,
     };
     allTasks.push(task);
 
     saveTask();
+    onload();
 }
 
 
@@ -215,10 +220,8 @@ function renderContacts() {
         actualyContact = allContacts[i];
         let contactFirstname = allContacts[i]['firstName'];
         let contactLastName = allContacts[i]['name'];
-        /*let firstLetter = allContacts[i]['firstName'].charAt(0);
-        let secondLetter = allContacts[i]['name'].charAt(0);
 
-        let color = allCategories[i]['color'];*/
+        /*let color = allCategories[i]['color'];*/
         let newContact = document.getElementById('contact-box');
 
         newContact.innerHTML += /*html*/ `
@@ -236,7 +239,7 @@ function renderContacts() {
 function acceptContact(i) {
     let contactFirstname = allContacts[i]['firstName'];
     let contactLastName = allContacts[i]['name'];
-    
+
 
     document.getElementById(`selection-contacts${i}`).innerHTML = /*html*/ `
     <div id="contact${i}" >${contactFirstname}  ${contactLastName}</div>
@@ -253,8 +256,6 @@ function renderContactIcon() {
         currentSelectedContact = selectedContacts[i];
         let firstLetter = selectedContacts[i]['firstName'].charAt(0);
         let secondLetter = selectedContacts[i]['name'].charAt(0);
-
-        /*let color = allCategories[i]['color'];*/
         let contactIcons = document.getElementById('contact-icons');
 
         contactIcons.innerHTML += /*html*/ `
@@ -328,24 +329,6 @@ function renderContactBox(i) {
 }
 
 
-
-
-
-/*
-function filterContacts() {
-    let search = document.getElementById('searchPokemon').value;
-    hideDarkmodeBox(search);
-    search = search.toLowerCase();
-    document.getElementById('pokedex').innerHTML = '';
-    for (let i = 0; i < allpokemon.length; i++) {
-        currentPokemon = allPokemon[i];
-        
-        updateGlobalVaribles();
-        if (currentPokemon['name'].toLowerCase().includes(search))
-        renderPokemonCardFilter(i);
-    }
-}*/
-
 function filterContacts() {
     document.getElementById('searched-emails').classList.remove('d-none');
     let search = document.getElementById('input-contact').value;
@@ -361,7 +344,6 @@ function filterContacts() {
         if (currentContactMail.toLowerCase().includes(search)) {
             renderSearchedContacts(i, currentContactMail);
         }
-
     }
 
 }
@@ -382,16 +364,6 @@ function takeEmail(i) {
     document.getElementById('searched-emails').classList.add('d-none');
 
 }
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -443,6 +415,71 @@ function choosePrio(prio, img) {
     icon.src = `/assets/img/${img}.png`;
     priority = prio;
 }
+
+
+
+function renderSubTask() {
+    document.getElementById('subtask').innerHTML = '';
+    document.getElementById('subtask').innerHTML = /*html*/ `
+    <span>Subtasks</span><br><br>
+    <img class="arrow-d-none" src="/assets/img/arrow-down.png" alt="">
+    <input id="input-SubTask" placeholder="Add new subtask..." class="addTotaskInputField" type="text">
+    
+    <div id="input-nav-box-Subtask" class="input-nav-box">
+        <img onclick="clearInputField()" class="x-black" src="/assets/img/x-black.png">
+        <img class="line" src="/assets/img/line.png">
+        <img onclick="pushNewSubTask()" class="hook" src="/assets/img/hook.png">
+    </div>
+    <div id="allSubtasks" class="allSubtasks"></div>
+    
+    `;
+}
+
+function clearInputField() {
+    document.getElementById('input-SubTask').value = '';
+}
+
+function pushNewSubTask() {
+    let currentSubTask = document.getElementById('input-SubTask').value;
+    allSubTasks.push(currentSubTask);
+    saveSubTasks();
+    loadAllSubTasks();
+    document.getElementById('input-SubTask').value = '';
+    renderAllSubTasks();
+
+}
+
+function deleteAllSubTasks() {
+    allSubTasks = [];
+    saveSubTasks();
+    loadAllSubTasks();
+}
+
+function renderAllSubTasks() {
+    document.getElementById('allSubtasks').innerHTML = '';
+
+    for (let i = 0; i < allSubTasks.length; i++) {
+        currentSubTask = allSubTasks[i];
+        let toDo = allSubTasks[i];
+
+
+        document.getElementById('allSubtasks').innerHTML += /*html*/ `
+        <div class="subtask-box">
+            <img class="checkbox-empty" src="/assets/img/checkbox-emoty.png" alt="">
+            <div id="todo${i}" class="todo">${toDo}</div>
+        </div>
+        `
+    }
+}
+
+
+
+
+
+
+
+
+
 
 
 
@@ -501,6 +538,18 @@ function loadSelectedAllContacts() {
     let allSelectedContactsAsString = localStorage.getItem('selectedContacts');
     if (allSelectedContactsAsString) {
         selectedContacts = JSON.parse(allSelectedContactsAsString);
+    }
+}
+
+function saveSubTasks() {
+    let allSubTasksAsString = JSON.stringify(allSubTasks);
+    localStorage.setItem('allSubTasks', allSubTasksAsString);
+}
+
+function loadAllSubTasks() {
+    let allSubTasksAsString = localStorage.getItem('allSubTasks');
+    if (allSubTasksAsString) {
+        allSubTasks = JSON.parse(allSubTasksAsString);
     }
 }
 
