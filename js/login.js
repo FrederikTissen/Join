@@ -10,7 +10,7 @@ let users = [{
     'email': 'frederik@test.de',
     'password': 'test123'
 }];
-let activeUser;
+let activeUser = {};
 
 if (msg) {
     document.getElementById('msgBox').innerHTML = msg;
@@ -26,5 +26,6 @@ function login() {
 
     if (user) {
         console.log('User gefunden');
+        user.push(activeUser);
     }
 }
