@@ -640,7 +640,7 @@ input {
 }
 
 .contact-icons {
-    display: flex; 
+    display: flex;
 }
 
 .checkbox-empty {
@@ -1182,6 +1182,88 @@ input {
     left: 0px;
     right: 0px;
 }
+
+.current-Task-Category {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 25px;
+    padding-right: 25px;
+    height: 27px;
+    width: min-content;
+    border-radius: 8px;
+    color: white;
+}
+
+.turquoise {
+    background-color: rgb(138, 164, 255);
+}
+
+.red {
+    background-color: rgb(255, 0, 0);
+}
+
+.green {
+    background-color: rgb(42, 211, 0);
+}
+
+.orange {
+    background-color: rgb(255, 138, 0);
+}
+
+.purple {
+    background-color: rgb(226, 0, 190);
+}
+
+.blue {
+    background-color: rgb(0, 56, 255);
+}
+
+.progress-bar {
+    background-color: #F4F4F4;
+    border-radius: 2px;
+    width: 138px;
+    height: 8px;
+}
+
+.progress-bar-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.assignedto-prio-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.contact-in-task {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 35px;
+    height: 35px;
+    border: 1px solid #FFFFFF;;
+    border-radius: 100%;
+    background-color: #862424;
+    color: white;
+    
+    margin-right: 8px;
+}
+
+.assigned-to-currentTask{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.prio-Task-png {
+    width: 131px;
+    height: 33px;
+}
+
+
 
 /*
     HELP

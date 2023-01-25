@@ -36,14 +36,16 @@ function addTask() {
     let title = document.getElementById('title');
     let description = document.getElementById('description');
     let date = document.getElementById('date');
-    let selectionCategory = document.getElementById('categorySelect');
+    
 
     let task = {
         'title': title.value,
         'description': description.value,
         'date': date.value,
-        'categorySelect': category,
+        //'categorySelect': category,
+        'category': category,
         'categoryColor': color,
+
         'priority': priority,
         'AssignedTo': selectedContacts,
         'subTasks': allSubTasks,
@@ -51,7 +53,24 @@ function addTask() {
     allTasks.push(task);
 
     saveTask();
-    onload();
+    reset();
+}
+
+function reset() {
+    loadAllTasks();
+    deleteAllSelectedContact();
+    deleteAllSubTasks();
+    loadAllContacts();
+
+    document.getElementById('title').value = '';
+    document.getElementById('description').value = '';
+    document.getElementById('input-SubTask').value = '';
+
+    renderCategoryBox();
+    renderContactBox();
+    renderPrios();
+    renderSubTask();
+
 }
 
 
@@ -75,7 +94,7 @@ function renderCategories() {
 
     for (let i = 0; i < allCategories.length; i++) {
         currentCategory = allCategories[i];
-        category = currentCategory['categoryName'];
+        let category = currentCategory['categoryName'];
         color = currentCategory['categoryColor']
         let newCategory = document.getElementById('category-box');
 
@@ -104,12 +123,14 @@ function acceptCategory(i) {
     `;
 }
 
-function acceptNewCategory(newCategoryName) {
+function acceptNewCategory() {
+    
+
     document.getElementById('category').innerHTML = /*html*/ `
     <span>Category</span><br><br>
     <img onclick="renderCategories()" class="arrow-icon" src="/assets/img/arrow-down.png" alt="">
     <div onclick="renderCategories()" id="category-box" class="accepted-category">
-        <p class="accept-category">${newCategoryName} </p>
+        <p class="accept-category">${category} </p>
         <img class="colors" src="/assets/img/${color}.png" alt="">
     </div>
     `;
@@ -154,11 +175,11 @@ function chooseColor(colorOfCategory) {
 }
 
 function pushNewCategory() {
-    let newcCategoryName = document.getElementById('input-category').value;
+    category = document.getElementById('input-category').value;
 
 
     let newCategory = {
-        'categoryName': newcCategoryName,
+        'categoryName': category,
         'categoryColor': color,
     };
 
@@ -168,7 +189,7 @@ function pushNewCategory() {
 
     saveCategory();
     loadAllCategories();
-    acceptNewCategory(`${newcCategoryName}`);
+    acceptNewCategory();
     ;
 
 }
