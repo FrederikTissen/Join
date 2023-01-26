@@ -640,7 +640,7 @@ input {
 }
 
 .contact-icons {
-    display: flex; 
+    display: flex;
 }
 
 .checkbox-empty {
@@ -1042,6 +1042,20 @@ input {
 .blue-font:hover {
     text-decoration: underline;
     cursor: pointer;
+}
+select {
+    width: 420px;
+    height: 60px;
+    font-size: 22px !important;
+    color: grey;
+    border: 1px solid #d1d1d1;
+    border-radius: 10px;
+    padding-left: 5px;
+    appearance: none;
+}
+
+optgroup {
+    font-size:10px; 
 }
 
 /*

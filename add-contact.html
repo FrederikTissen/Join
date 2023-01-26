@@ -120,12 +120,11 @@
         flex-direction: column;
         align-items: flex-start;
         padding: 0px;
-        gap: 30px;
+        gap: 25px;
         position: absolute;
         width: 422px;
-        height: 271px;
         left: 737px;
-        top: 129px;
+        top: 82px;
     }
 
     .button-container {
@@ -201,11 +200,36 @@
                         <input required id="input-phone" placeholder="Phone" type="number">
                         <img src="./assets/img/phone-logo.png">
                     </div>
+
+                    <select name="colors" id="colors">
+                        <option selected disabled>Choose a color</option>
+                        <option value="turquoise">Turquoise
+                            <!--<img id="turquoise" onclick="" class="colors" src="/assets/img/turquoise.png">-->
+                        </option>
+                        <option value="red">Red
+                            <!--<img id="red" onclick="" class="colors" src="/assets/img/red.png">-->
+                        </option>
+                        <option value="green">Green
+                            <!--<img id="green" onclick="" class="colors" src="/assets/img/green.png">-->
+                        </option>
+                        <option value="orange">Orange
+                            <!--<img id="orange" onclick="" class="colors" src="/assets/img/orange.png">-->
+                        </option>
+                        <option value="purple">Purple
+                           <!-- <img id="purple" onclick="" class="colors" src="/assets/img/purple.png">-->
+                        </option>
+                        <option value="blue">Blue
+                           <!-- <img id="blue" onclick="" class="colors" src="/assets/img/blue.png">-->
+                        </option>
+                    </select>
+
                     <div class="button-container">
-                        <button onclick="cancelPopupAdd()" class="secondary-btn">Cancel <img
-                                src="./assets/img/x.png"></button>
-                        <button onclick="createContact()" class="primary-btn">Create contact <img
-                                src="./assets/img/done-white-btn.png"></button>
+                        <button onclick="cancelPopupAdd()" class="secondary-btn">Cancel
+                            <img src="./assets/img/x.png">
+                        </button>
+                        <button onclick="createContact()" class="primary-btn">Create contact
+                            <img src="./assets/img/done-white-btn.png">
+                        </button>
                     </div>
                 </div>
 
