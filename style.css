@@ -20,6 +20,10 @@ input {
     display: none !important;
 }
 
+.d-block {
+    display: block;
+}
+
 .pointer {
     cursor: pointer;
 }
@@ -1263,6 +1267,8 @@ optgroup {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
+    gap: 80px;
 }
 
 

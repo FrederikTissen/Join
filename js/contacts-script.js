@@ -50,15 +50,6 @@ let contacts = [{
 let createdContact = true;
 let contactColor = true;
 
-/*
-    blue = #0038FF
-    pink = #E201BE
-    orange = #FF8A01
-    green = #29D300
-    red = #FF0100
-    turquoise = #8BA4FF
-*/
-
 
 async function init() {
     await downloadFromServer();
@@ -255,10 +246,6 @@ function cancelPopupEdit() {
     createdContact = true;
 }
 
-function cancelButtonSuccessfully() {
-    document.getElementById('myModal').classList.add('d-none');
-}
-
 /**
  * create the new contact
  * 
@@ -268,25 +255,30 @@ function createContact() {
     let inputFirstName = document.getElementById('input-first-name');
     let inputMail = document.getElementById('input-email');
     let inputPhone = document.getElementById('input-phone');
+    let inputColor = document.getElementById('colors');
     let newContact = {
         name: inputName.value,
         firstName: inputFirstName.value,
         mail: inputMail.value,
-        phone: inputPhone.value
+        phone: inputPhone.value,
+        color: inputColor.value
     }
     contacts.push(newContact);
     createdContact = true;
     renderAllContacts();
-    clearInputfields(inputName, inputFirstName, inputMail, inputPhone)
+    clearInputfields(inputName, inputFirstName, inputMail, inputPhone);
     addContactToBackend(newContact);
     showSuccessBtn();
 }
 
 function showSuccessBtn() {
-    let btnSuccess = document.getElementById('btn-successfully');
     let modal = document.getElementById('myModal');
-    btnSuccess.classList.remove('d-none');
     modal.style.display = 'block';
+}
+
+function closeSuccessBtn() {
+    document.getElementById('myModal').classList.add('d-none');
+    document.getElementById('w3-add').classList.add('d-none');
 }
 
 function clearInputfields(inputName, inputFirstName, inputMail, inputPhone) {
