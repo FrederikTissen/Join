@@ -368,6 +368,8 @@ input {
     transition: all 75ms ease-in-out;
 }
 
+
+
 .prio-box {
     display: flex;
     background-color: unset;
@@ -1047,6 +1049,7 @@ input {
     text-decoration: underline;
     cursor: pointer;
 }
+
 select {
     width: 420px;
     height: 60px;
@@ -1059,7 +1062,7 @@ select {
 }
 
 optgroup {
-    font-size:10px; 
+    font-size: 10px;
 }
 
 /*
@@ -1256,21 +1259,27 @@ optgroup {
     align-items: center;
 }
 
+.priority-bar-row {
+    display: flex;
+    align-items: center;
+}
+
 .contact-in-task {
     display: flex;
     align-items: center;
     justify-content: center;
     width: 35px;
     height: 35px;
-    border: 1px solid #FFFFFF;;
+    border: 1px solid #FFFFFF;
+    ;
     border-radius: 100%;
     background-color: #862424;
     color: white;
-    
-    margin-right: 8px;
+
+    margin-right: -5px;
 }
 
-.assigned-to-currentTask{
+.assigned-to-currentTask {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -1279,6 +1288,61 @@ optgroup {
 .prio-Task-png {
     width: 131px;
     height: 33px;
+}
+
+.prio-full-task {
+    width: 131px;
+    height: 33px;
+    display: flex;
+    /* flex-direction: row; */
+    justify-content: center;
+    align-items: center;
+    margin-left: 25px;
+    gap: 10px;
+    border-radius: 10px;
+
+}
+
+.urgent-full-task {
+    background-color: rgb(255, 61, 0);
+    color: white;
+}
+
+.medium-full-task {
+    background-color: rgb(255, 168, 0);
+    color: white;
+}
+
+.low-full-task {
+    background-color: rgb(122, 226, 41);
+    color: white;
+}
+
+.icon-full-task {
+    width: 17px;
+}
+
+.assigned-box {
+    display: flex;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.assigned-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    border-radius: 100%;
+    background-color: #862424;
+    color: white;
+
+    margin-right: 8px;
+}
+
+.line-throug {
+    text-decoration: line-through;
 }
 
 
