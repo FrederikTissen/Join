@@ -120,12 +120,11 @@
         flex-direction: column;
         align-items: flex-start;
         padding: 0px;
-        gap: 30px;
+        gap: 25px;
         position: absolute;
         width: 422px;
-        height: 271px;
         left: 737px;
-        top: 129px;
+        top: 82px;
     }
 
     .button-container {
@@ -201,11 +200,24 @@
                         <input required id="input-phone" placeholder="Phone" type="number">
                         <img src="./assets/img/phone-logo.png">
                     </div>
+
+                    <select name="colors" id="colors">
+                        <option selected disabled>Choose a color</option>
+                        <option value="#8BA4FF">Turquoise</option>
+                        <option value="#FF0100">Red</option>
+                        <option value="#29D300">Green</option>
+                        <option value="#FF8A01">Orange</option>
+                        <option value="#E201BE">Purple</option>
+                        <option value="#0038FF">Blue</option>
+                    </select>
+
                     <div class="button-container">
-                        <button onclick="cancelPopupAdd()" class="secondary-btn">Cancel <img
-                                src="./assets/img/x.png"></button>
-                        <button onclick="createContact()" class="primary-btn">Create contact <img
-                                src="./assets/img/done-white-btn.png"></button>
+                        <button onclick="cancelPopupAdd()" class="secondary-btn">Cancel
+                            <img src="./assets/img/x.png">
+                        </button>
+                        <button onclick="createContact()" class="primary-btn">Create contact
+                            <img src="./assets/img/done-white-btn.png">
+                        </button>
                     </div>
                 </div>
 

@@ -2,42 +2,50 @@ let contacts = [{
     name: "Mayer",
     firstName: "Anton",
     mail: "antom@gmail.com",
-    phone: "015137294741"
+    phone: "015137294741",
+    color: "#0038FF"
 }, {
     name: "Schulz",
     firstName: "Anja",
     mail: "schulz@hotmail.com",
-    phone: "015137294742"
+    phone: "015137294742",
+    color: "#E201BE"
 }, {
     name: "Eisenberg",
     firstName: "David",
     mail: "davidberg@gmail.com",
-    phone: "015137294743"
+    phone: "015137294743",
+    color: "#FF8A01"
 }, {
     name: "Ziegler",
     firstName: "Benedikt",
     mail: "benedikt@gmail.com",
-    phone: "015137294744"
+    phone: "015137294744",
+    color: "#29D300"
 }, {
     name: "Fischer",
     firstName: "Eva",
     mail: "eva@gmail.com",
-    phone: "015137294745"
+    phone: "015137294745",
+    color: "#FF0100"
 }, {
     name: "Mauer",
     firstName: "Emanuel",
     mail: "emmanuelMa@gmail.com",
-    phone: "015137294746"
+    phone: "015137294746",
+    color: "#8BA4FF"
 }, {
     name: "Bauer",
     firstName: "Marcel",
     mail: "bauer@gmail.com",
-    phone: "015137294747"
+    phone: "015137294747",
+    color: "#0038FF"
 }, {
     name: "Wolf",
     firstName: "Tanja",
     mail: "wolf@gmail.com",
-    phone: "015137294748"
+    phone: "015137294748",
+    color: "#E201BE"
 }];
 let createdContact = true;
 let contact = true;
@@ -88,11 +96,11 @@ function renderAllContacts() {
     contactSection.innerHTML = '';
 
     for (let i = 0; i < contacts.length; i++) {
-        let random = setRandom();
+        let color = contacts[i]['color'];
         let contact = contacts[i];
         let firstChar = contact['firstName'].charAt(0);
         let secondChar = contact['name'].charAt(0);
-        contactSection.innerHTML += generateAllContacts(contact, firstChar, secondChar, i, random);
+        contactSection.innerHTML += generateAllContacts(contact, firstChar, secondChar, i, color);
     }
 }
 
@@ -101,11 +109,11 @@ function renderAllContacts() {
  *
  * @returns
  */
-function generateAllContacts(contact, firstChar, secondChar, i, random) {
+function generateAllContacts(contact, firstChar, secondChar, i, color) {
     return `
     <div id="char-section${i}" class="first-char">${firstChar}</div>
-    <div onclick="showContact(${i}, '${random}')" id="contact-card${i}" class="contact-card">
-        <div id="contact-img${i}" class="contact-img" style='background-: ${random};'>${firstChar} ${secondChar}</div>
+    <div onclick="showContact(${i}, '${color}')" id="contact-card${i}" class="contact-card">
+        <div id="contact-img${i}" class="contact-img" style='background-color: ${color};'>${firstChar} ${secondChar}</div>
         <div id="contactInfo${i}" class="contact-info">
             <span>${contact['firstName']}  ${contact['name']}</span>
             <p>${contact['mail']}</p>
@@ -118,11 +126,11 @@ function generateAllContacts(contact, firstChar, secondChar, i, random) {
  * 
  * 
  */
-function showContact(i, random) {
+function showContact(i, color) {
     let firstChar = contacts[i]['firstName'].charAt(0);
     let secondChar = contacts[i]['name'].charAt(0);
     let contactfield = document.getElementById('show-contact');
-    contactfield.innerHTML = generateContactfield(i, firstChar, secondChar, random);
+    contactfield.innerHTML = generateContactfield(i, firstChar, secondChar, color);
 }
 
 /**
@@ -131,10 +139,10 @@ function showContact(i, random) {
  * 
  * @returns 
  */
-function generateContactfield(i, firstChar, secondChar, random) {
+function generateContactfield(i, firstChar, secondChar, color) {
     return `
     <div class="show-contact-headline">
-        <div id="contact-img${i}" class="contact-img-big" style="background-:${random}">${firstChar} ${secondChar}</div>
+        <div id="contact-img${i}" class="contact-img-big" style="background-color:${color}">${firstChar} ${secondChar}</div>
         <div class="show-contact-headline-right"> 
             <div>${contacts[i]['firstName']} ${contacts[i]['name']}</div>
             <div id="add-task" class="blue-font"> + Add Task </div>
@@ -142,7 +150,7 @@ function generateContactfield(i, firstChar, secondChar, random) {
     </div>
     <div class="show-contact-middle">
         <span>Contact Information</span> 
-        <div class="edit-contact" onclick="editContact(${i}, '${random}')">
+        <div class="edit-contact" onclick="editContact(${i}, '${color}')">
             <img style="width: 30px; height: 30px; object-fit: contain;" src="./assets/img/pen.png"><p> Edit Contact</p>
         </div>
     </div>
@@ -172,17 +180,17 @@ function addNewContact() {
  * Pop-up window to edit a contact
  * 
  */
-async function editContact(i, random) {
+async function editContact(i, color) {
     if (createdContact) {
         document.getElementById('show-contact').innerHTML = `
         <div w3-include-html="edit-contact.html"></div>`;
         await includeHTMLaddContact();
     }
-    editContactValues(i, random);
+    editContactValues(i, color);
     createdContact = false;
 }
 
-function editContactValues(i, random) {
+function editContactValues(i, color) {
     let editLastname = document.getElementById(`edit-input-lastname`);
     let editFirstname = document.getElementById(`edit-input-firstname`);
     let editMail = document.getElementById(`edit-input-mail`);
@@ -197,7 +205,7 @@ function editContactValues(i, random) {
     editMail.value = contacts[i]['mail'];
     editPhone.value = contacts[i]['phone'];
     editImage.innerHTML += `${firstChar} ${secondChar}`;
-    editImage.style = `background-:${random};`;
+    editImage.style = `background-color:${color};`;
 }
 
 async function saveEditContact(i) {
@@ -238,10 +246,6 @@ function cancelPopupEdit() {
     createdContact = true;
 }
 
-function cancelButtonSuccessfully() {
-    document.getElementById('myModal').classList.add('d-none');
-}
-
 /**
  * create the new contact
  * 
@@ -251,25 +255,30 @@ function createContact() {
     let inputFirstName = document.getElementById('input-first-name');
     let inputMail = document.getElementById('input-email');
     let inputPhone = document.getElementById('input-phone');
+    let inputColor = document.getElementById('colors');
     let newContact = {
         name: inputName.value,
         firstName: inputFirstName.value,
         mail: inputMail.value,
-        phone: inputPhone.value
+        phone: inputPhone.value,
+        color: inputColor.value
     }
     contacts.push(newContact);
     createdContact = true;
     renderAllContacts();
-    clearInputfields(inputName, inputFirstName, inputMail, inputPhone)
+    clearInputfields(inputName, inputFirstName, inputMail, inputPhone);
     addContactToBackend(newContact);
     showSuccessBtn();
 }
 
 function showSuccessBtn() {
-    let btnSuccess = document.getElementById('btn-successfully');
     let modal = document.getElementById('myModal');
-    btnSuccess.classList.remove('d-none');
     modal.style.display = 'block';
+}
+
+function closeSuccessBtn() {
+    document.getElementById('myModal').classList.add('d-none');
+    document.getElementById('w3-add').classList.add('d-none');
 }
 
 function clearInputfields(inputName, inputFirstName, inputMail, inputPhone) {
