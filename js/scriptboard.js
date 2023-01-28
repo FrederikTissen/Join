@@ -55,9 +55,6 @@ function renderAssignedTo(i) {
         <div class="contact-in-task">${firstLetter}${secondLetter}</div>
         `;
     }
-
-
-
 }
 
 
@@ -163,6 +160,53 @@ function renderAssignedBox(assignedTo) {
         `
     }
 }
+
+function filterTasks() {
+    //document.getElementById('searched-emails').classList.remove('d-none');
+    let search = document.getElementById('search-task').value;
+    //hideDarkmodeBox(search);
+    search = search.toLowerCase();
+
+    document.getElementById('todo-box').innerHTML = '';
+    for (let i = 0; i < allTasks.length; i++) {
+        let currentTask = allTasks[i];
+        let currentTitle = currentTask['title'];
+        let description = currentTask['description'];
+        let priority = currentTask['priority'];
+        let category = currentTask['category'];
+        let categoryColor = currentTask['categoryColor'];
+
+
+        if (currentTitle.toLowerCase().includes(search)) {
+            renderSearchedTasks(i, currentTitle, description, priority, category, categoryColor);
+        }
+    }
+
+}
+
+function renderSearchedTasks(i, currentTitle, description, priority, category, categoryColor) {
+    document.getElementById('todo-box').innerHTML += /*html*/ `
+
+     
+            <div draggable="true" onclick="openShowTask(${i})" class="current-task">
+                <div class="current-Task-Category ${categoryColor}">${category}</div>
+                <p>${currentTitle}</p>
+                <p class="margin-none">${description}</p>
+                <div class="progress-bar-row">
+                    <div class="progress-bar"></div>
+                    <p class="margin-none">0/3 Done</p>
+                </div>
+                <div class="assignedto-prio-row">
+                    <div id="assigned-to-currentTask${i}" class="assigned-to-currentTask" ></div>
+                    <img class="current-Task-Prio" src="/assets/img/${priority}-solo.png" alt="">
+                </div>
+            </div>
+        `
+        renderAssignedTo(i);
+
+    }
+
+
 
 function deleteTask(i) {
     allTasks.splice(i, 1);
