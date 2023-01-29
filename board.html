@@ -16,7 +16,7 @@
 
 
 
-<body onload="renderTasks()">
+<body onload="updateHTML()">
     <div class="header">
         <span>Kanban Project Management Tool </span>
         <div class="head-container-right">
@@ -65,33 +65,33 @@
                 </div>
             </div>
             <div class="task-sections">
-                <div class="task">
+                <div id="todo" class="task" ondrop="moveTo('todo-box')" ondragover="allowDrop(event)">
                     <div class="section-header">
                         <span>To do</span>
                         <img src="/assets/img/plus-button.png">
                     </div>
-                    <div id="todo-box" class="task-box"></div>
+                    <div id="todo-box"  class="task-box"></div>
                 </div>
-                <div class="task">
+                <div id="in-progress" class="task" ondrop="moveTo('inprogress-box')" ondragover="allowDrop(event)">
                     <div class="section-header">
                         <span>In progress</span>
                         <img src="/assets/img/plus-button.png">
                     </div>
-                    <div id="inprogress-box" class="task-box"></div>
+                    <div id="inprogress-box"  class="task-box"></div>
                 </div>
-                <div class="task">
+                <div id="awaiting-feedback" class="task" ondrop="moveTo('feedback-box')" ondragover="allowDrop(event)">
                     <div class="section-header">
                         <span>Awaiting Feedback</span>
                         <img src="/assets/img/plus-button.png">
                     </div>
-                    <div id="feedback-box" class="task-box"></div>
+                    <div id="feedback-box"  class="task-box"></div>
                 </div>
-                <div class="task">
+                <div id="done" class="task" ondrop="moveTo('done-box')" ondragover="allowDrop(event)" class="task-box">
                     <div class="section-header">
                         <span>Done</span>
                         <img src="/assets/img/plus-button.png">
                     </div>
-                    <div id="done-box" class="task-box">
+                    <div id="done-box" >
                     </div>
                 </div>
 

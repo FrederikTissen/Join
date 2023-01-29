@@ -1,26 +1,19 @@
 
+let currentDragedElement;
 
-function renderTasks() {
+function generateTodoHTML(element, index) {
 
-    loadAllTasks();
-    document.getElementById('todo-box').innerHTML = '';
+        let title = element['title'];
+        let description = element['description'];
+        let priority = element['priority'];
+        let category = element['category'];
+        let categoryColor = element['categoryColor'];
 
-    for (let i = 0; i < allTasks.length; i++) {
-        currentTask = allTasks[i];
-        let title = allTasks[i]['title'];
-        let description = allTasks[i]['description'];
-        let priority = allTasks[i]['priority'];
-        let category = allTasks[i]['category'];
-        let categoryColor = allTasks[i]['categoryColor'];
+        
 
 
-
-
-        let newTask = document.getElementById('todo-box');
-
-
-        newTask.innerHTML += /*html*/ `
-            <div draggable="true" onclick="openShowTask(${i})" class="current-task">
+        return /*html*/ `
+            <div draggable="true" ondragstart="startDragging(${index})" onclick="openShowTask(${index})" class="current-task">
                 <div class="current-Task-Category ${categoryColor}">${category}</div>
                 <p>${title}</p>
                 <p class="margin-none">${description}</p>
@@ -29,29 +22,81 @@ function renderTasks() {
                     <p class="margin-none">0/3 Done</p>
                 </div>
                 <div class="assignedto-prio-row">
-                    <div id="assigned-to-currentTask${i}" class="assigned-to-currentTask" ></div>
+                    <div id="assigned-to-currentTask${index}" class="assigned-to-currentTask" ></div>
                     <img class="current-Task-Prio" src="/assets/img/${priority}-solo.png" alt="">
                 </div>
             </div>
         `
-        renderAssignedTo(i);
+        
+}
 
+function updateHTML() {
+    loadAllTasks(); 
+
+    let todo = allTasks.filter(t => t['split'] == 'todo-box');
+    document.getElementById('todo-box').innerHTML = '';
+    for (let index = 0; index < todo.length; index++) {
+        let element = todo[index];
+        document.getElementById('todo-box').innerHTML += generateTodoHTML(element, index);
+        renderAssignedTo(index, element);
+    }
+
+    let inprogressBox = allTasks.filter(t => t['split'] == 'inprogress-box');
+    document.getElementById('inprogress-box').innerHTML = '';
+    for (let index = 0; index < inprogressBox.length; index++) {
+        const element = inprogressBox[index];
+        document.getElementById('inprogress-box').innerHTML += generateTodoHTML(element, index);
+        renderAssignedTo(index, element);
+    }
+
+    let feedbackBox = allTasks.filter(t => t['split'] == 'feedback-box');
+    document.getElementById('feedback-box').innerHTML = '';
+    for (let index = 0; index < feedbackBox.length; index++) {
+        const element = feedbackBox[index];
+        document.getElementById('feedback-box').innerHTML += generateTodoHTML(element, index);
+        renderAssignedTo(index, element);
+    }
+
+    let doneBox = allTasks.filter(t => t['split'] == 'done-box');
+    document.getElementById('done-box').innerHTML = '';
+    for (let index = 0; index < doneBox.length; index++) {
+        const element = doneBox[index];
+        document.getElementById('done-box').innerHTML += generateTodoHTML(element, index);
+        renderAssignedTo(index, element);
     }
 
 }
 
-function renderAssignedTo(i) {
+function startDragging(i) {
+    currentDragedElement = i;
+}
 
-    let AssignedTo = allTasks[i]['AssignedTo'];
+function allowDrop(ev) {
+    ev.preventDefault();
+}
 
-    document.getElementById(`assigned-to-currentTask${i}`).innerHTML = '';
+function moveTo(split) {
+    allTasks[currentDragedElement]['split'] = split;
+    saveTask();
+    updateHTML();
+    
+}
+
+
+
+
+function renderAssignedTo(index, element) {
+
+    let AssignedTo = element['AssignedTo'];
+
+    document.getElementById(`assigned-to-currentTask${index}`).innerHTML = '';
 
     for (let j = 0; j < AssignedTo.length; j++) {
         let thisContact = AssignedTo[j];
         let firstLetter = thisContact['firstName'].charAt(0);
         let secondLetter = thisContact['name'].charAt(0);
 
-        document.getElementById(`assigned-to-currentTask${i}`).innerHTML += /*html*/`
+        document.getElementById(`assigned-to-currentTask${index}`).innerHTML += /*html*/`
         <div class="contact-in-task">${firstLetter}${secondLetter}</div>
         `;
     }
@@ -202,9 +247,9 @@ function renderSearchedTasks(i, currentTitle, description, priority, category, c
                 </div>
             </div>
         `
-        renderAssignedTo(i);
+    renderAssignedTo(i);
 
-    }
+}
 
 
 

@@ -42,13 +42,12 @@ function addTask() {
         'title': title.value,
         'description': description.value,
         'date': date.value,
-        //'categorySelect': category,
         'category': category,
         'categoryColor': color,
-
         'priority': priority,
         'AssignedTo': selectedContacts,
         'subTasks': allSubTasks,
+        'split': 'todo-box',
     };
     allTasks.push(task);
 
