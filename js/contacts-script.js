@@ -208,24 +208,25 @@ function editContactValues(i, color) {
     editImage.style = `background-color:${color};`;
 }
 
-async function saveEditContact(i) {
+async function saveEditContact(color) {
     let editLastname = document.getElementById(`edit-input-lastname`);
     let editFirstname = document.getElementById(`edit-input-firstname`);
     let editMail = document.getElementById(`edit-input-mail`);
     let editPhone = document.getElementById(`edit-input-phone`);
+    let editImage = document.getElementById(`edit-img`);
     
-    
-    
-    // let changedContact = {
-    //     name: editLastname.value,
-    //     firstName: editFirstname.value,
-    //     mail: editMail.value,
-    //     phone: editPhone.value
-    // }
+    let changedContact = {
+        name: editLastname.value,
+        firstName: editFirstname.value,
+        mail: editMail.value,
+        phone: editPhone.value,
+        color: color
+    }
 
-    // contacts.push(changedContact);
-    
-    await backend.setItem('contacts', JSON.stringify(changedContact));
+    contacts.push(changedContact);
+    renderAllContacts();
+    addContactToBackend(changedContact);
+    deleteUser(i);
 }
 
 /**
@@ -305,9 +306,9 @@ function loadLetters() {
 }
 
 
-// async function deleteUser(name) {
-//     await backend.deleteItem('users');
-// }
+async function deleteUser(name) {
+    await backend.deleteItem('users');
+}
 
 
 // function sortJsonAlphabetically(contacts) {
