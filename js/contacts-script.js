@@ -49,11 +49,14 @@ let contacts = [{
 }];
 let createdContact = true;
 let contact = true;
+let initials = [];
 
 
 async function init() {
     await downloadFromServer();
     users = JSON.parse(backend.getItem('users')) || [];
+    contacts = JSON.parse(backend.getItem('contacts')) || [];
+    activeUser = JSON.parse(backend.getItem('activeUser')) || [];
 }
 
 async function includeHTMLaddContact() {
@@ -101,6 +104,8 @@ function renderAllContacts() {
         let firstChar = contact['firstName'].charAt(0);
         let secondChar = contact['name'].charAt(0);
         contactSection.innerHTML += generateAllContacts(contact, firstChar, secondChar, i, color);
+        initials = getFirstChar();
+        renderFirstChar(i);
     }
 }
 
@@ -111,7 +116,8 @@ function renderAllContacts() {
  */
 function generateAllContacts(contact, firstChar, secondChar, i, color) {
     return `
-    <div id="char-section${i}" class="first-char">${firstChar}</div>
+    <!-- <div id="char-section${i}" class="first-char"></div> -->
+    <div id="char${i}"> </div>
     <div onclick="showContact(${i}, '${color}')" id="contact-card${i}" class="contact-card">
         <div id="contact-img${i}" class="contact-img" style='background-color: ${color};'>${firstChar} ${secondChar}</div>
         <div id="contactInfo${i}" class="contact-info">
@@ -199,7 +205,6 @@ function editContactValues(i, color) {
     let firstChar = contacts[i]['firstName'].charAt(0);
     let secondChar = contacts[i]['name'].charAt(0);
 
-
     editLastname.value = contacts[i]['name'];
     editFirstname.value = contacts[i]['firstName'];
     editMail.value = contacts[i]['mail'];
@@ -208,13 +213,13 @@ function editContactValues(i, color) {
     editImage.style = `background-color:${color};`;
 }
 
-async function saveEditContact(color) {
+async function saveEditContact() {
     let editLastname = document.getElementById(`edit-input-lastname`);
     let editFirstname = document.getElementById(`edit-input-firstname`);
     let editMail = document.getElementById(`edit-input-mail`);
     let editPhone = document.getElementById(`edit-input-phone`);
-    let editImage = document.getElementById(`edit-img`);
-    
+
+
     let changedContact = {
         name: editLastname.value,
         firstName: editFirstname.value,
@@ -294,20 +299,36 @@ async function addContactToBackend(newContact) {
     await backend.setItem('contacts', JSON.stringify(contacts));
 }
 
-function loadLetters() {
-    for (let i = 0; i < users[activeUser]['contacts'].length; i++) {
-        let name = users[activeUser]['contacts'][i]['contactName'];
-        let firstLetter = name.charAt(0);
-        if (!letters.includes(firstLetter)) {
-            letters.push(firstLetter);
-            letters.sort();
-        }
-    }
-}
-
 
 async function deleteUser(name) {
     await backend.deleteItem('users');
+}
+
+function renderFirstChar(i) {
+    let contactList = document.getElementById(`char${i}`);
+    contactList.innerHTML = '';
+    for (let i = 0; i < initials.length; i++) {
+        let initial = initials[i];
+        contactList.innerHTML += `
+            <div id="char-section${i}" class="first-char">${initial}</div>
+        `;
+    }
+}
+
+function getFirstChar() {
+    initials = [];
+    for (let i = 0; i < contacts.length; i++) {
+        let contact = contacts[i];
+        let initial = firstLetterOf(contact);
+        if (!initials.includes(initial)) {
+            initials.push(initial);
+        }
+    }
+    return initials;
+}
+
+function firstLetterOf(contact) {
+    return contact['firstName'].charAt(0).toUpperCase();
 }
 
 
