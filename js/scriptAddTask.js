@@ -39,6 +39,7 @@ function addTask() {
     
 
     let task = {
+        'id': allTasks.length,
         'title': title.value,
         'description': description.value,
         'date': date.value,

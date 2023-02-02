@@ -13,7 +13,7 @@ function generateTodoHTML(element, index) {
 
 
         return /*html*/ `
-            <div draggable="true" ondragstart="startDragging(${index})" onclick="openShowTask(${index})" class="current-task">
+            <div draggable="true" ondragstart="startDragging(${element['id']})" onclick="openShowTask(${element['id']})" class="current-task">
                 <div class="current-Task-Category ${categoryColor}">${category}</div>
                 <p>${title}</p>
                 <p class="margin-none">${description}</p>
@@ -22,7 +22,7 @@ function generateTodoHTML(element, index) {
                     <p class="margin-none">0/3 Done</p>
                 </div>
                 <div class="assignedto-prio-row">
-                    <div id="assigned-to-currentTask${index}" class="assigned-to-currentTask" ></div>
+                    <div id="assigned-to-currentTask${element['id']}" class="assigned-to-currentTask" ></div>
                     <img class="current-Task-Prio" src="/assets/img/${priority}-solo.png" alt="">
                 </div>
             </div>
@@ -36,8 +36,8 @@ function updateHTML() {
     let todo = allTasks.filter(t => t['split'] == 'todo-box');
     document.getElementById('todo-box').innerHTML = '';
     for (let index = 0; index < todo.length; index++) {
-        let element = todo[index];
-        document.getElementById('todo-box').innerHTML += generateTodoHTML(element, index);
+        const element = todo[index];
+        document.getElementById('todo-box').innerHTML += generateTodoHTML(element);
         renderAssignedTo(index, element);
     }
 
@@ -45,7 +45,7 @@ function updateHTML() {
     document.getElementById('inprogress-box').innerHTML = '';
     for (let index = 0; index < inprogressBox.length; index++) {
         const element = inprogressBox[index];
-        document.getElementById('inprogress-box').innerHTML += generateTodoHTML(element, index);
+        document.getElementById('inprogress-box').innerHTML += generateTodoHTML(element);
         renderAssignedTo(index, element);
     }
 
@@ -53,7 +53,7 @@ function updateHTML() {
     document.getElementById('feedback-box').innerHTML = '';
     for (let index = 0; index < feedbackBox.length; index++) {
         const element = feedbackBox[index];
-        document.getElementById('feedback-box').innerHTML += generateTodoHTML(element, index);
+        document.getElementById('feedback-box').innerHTML += generateTodoHTML(element);
         renderAssignedTo(index, element);
     }
 
@@ -61,7 +61,7 @@ function updateHTML() {
     document.getElementById('done-box').innerHTML = '';
     for (let index = 0; index < doneBox.length; index++) {
         const element = doneBox[index];
-        document.getElementById('done-box').innerHTML += generateTodoHTML(element, index);
+        document.getElementById('done-box').innerHTML += generateTodoHTML(element);
         renderAssignedTo(index, element);
     }
 
@@ -89,14 +89,14 @@ function renderAssignedTo(index, element) {
 
     let AssignedTo = element['AssignedTo'];
 
-    document.getElementById(`assigned-to-currentTask${index}`).innerHTML = '';
+    document.getElementById(`assigned-to-currentTask${element['id']}`).innerHTML = '';
 
     for (let j = 0; j < AssignedTo.length; j++) {
         let thisContact = AssignedTo[j];
         let firstLetter = thisContact['firstName'].charAt(0);
         let secondLetter = thisContact['name'].charAt(0);
 
-        document.getElementById(`assigned-to-currentTask${index}`).innerHTML += /*html*/`
+        document.getElementById(`assigned-to-currentTask${element['id']}`).innerHTML += /*html*/`
         <div class="contact-in-task">${firstLetter}${secondLetter}</div>
         `;
     }
