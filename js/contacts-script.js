@@ -103,8 +103,8 @@ function renderAllContacts() {
         let contact = contacts[i];
         let firstChar = contact['firstName'].charAt(0);
         let secondChar = contact['name'].charAt(0);
+
         contactSection.innerHTML += generateAllContacts(contact, firstChar, secondChar, i, color);
-        initials = getFirstChar();
         renderFirstChar(i);
     }
 }
@@ -305,42 +305,28 @@ async function deleteUser(name) {
 }
 
 function renderFirstChar(i) {
-    let contactList = document.getElementById(`char${i}`);
-    contactList.innerHTML = '';
-    for (let i = 0; i < initials.length; i++) {
-        let initial = initials[i];
-        contactList.innerHTML += `
-            <div id="char-section${i}" class="first-char">${initial}</div>
+    let charList = document.getElementById(`char${i}`);
+    charList.innerHTML = '';
+    for (let i = 0; i < contacts.length; i++) {
+        let char = contacts[i].firstName.charAt(0);
+        if (!initials.includes(char)) {      // if id="char-section" = leer, pushe ${char}
+            initials.push(char);
+        }
+        charList.innerHTML += `
+            <div id="char-section${i}" class="first-char">${initials[i]}</div>
         `;
     }
 }
 
-function getFirstChar() {
-    initials = [];
-    for (let i = 0; i < contacts.length; i++) {
-        let contact = contacts[i];
-        let initial = firstLetterOf(contact);
-        if (!initials.includes(initial)) {
-            initials.push(initial);
+function sortUserAlphabetically(contacts) {
+    contacts.sort(function (a, b) {
+        if (a['name'] < b['name']) {
+            return -1;
         }
-    }
-    return initials;
+        if (a['name'] > b['name']) {
+            return 1;
+        }
+        return 0;
+    });
+    return contacts;
 }
-
-function firstLetterOf(contact) {
-    return contact['firstName'].charAt(0).toUpperCase();
-}
-
-
-// function sortJsonAlphabetically(contacts) {
-//     contacts.sort(function (a, b) {
-//         if (a['name'] < b['name']) {
-//             return -1;
-//         }
-//         if (a['name'] > b['name']) {
-//             return 1;
-//         }
-//         return 0;
-//     });
-//     return contacts;
-// }
