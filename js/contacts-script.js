@@ -78,6 +78,7 @@ function addUser() {
     backend.setItem('users', JSON.stringify(users))
 }
 
+
 /**
  * Pictures of the contacts will be randomly ed.
  * 
@@ -97,15 +98,21 @@ function setRandom() {
 function renderAllContacts() {
     let contactSection = document.getElementById('contact-list');
     contactSection.innerHTML = '';
+    sortUserAlphabetically(contacts);
 
     for (let i = 0; i < contacts.length; i++) {
         let color = contacts[i]['color'];
         let contact = contacts[i];
         let firstChar = contact['firstName'].charAt(0);
         let secondChar = contact['name'].charAt(0);
-
+        let charSection = document.getElementById(`char-section${i}`);
+        
         contactSection.innerHTML += generateAllContacts(contact, firstChar, secondChar, i, color);
-        renderFirstChar(i);
+        //renderFirstChar(i);
+
+        if (!initials.includes(charSection)) {
+            initials.push(charSection);
+        }
     }
 }
 
@@ -116,12 +123,11 @@ function renderAllContacts() {
  */
 function generateAllContacts(contact, firstChar, secondChar, i, color) {
     return `
-    <!-- <div id="char-section${i}" class="first-char"></div> -->
-    <div id="char${i}"> </div>
+    <div id="char-section${i}" class="first-char">${firstChar}</div>
     <div onclick="showContact(${i}, '${color}')" id="contact-card${i}" class="contact-card">
         <div id="contact-img${i}" class="contact-img" style='background-color: ${color};'>${firstChar} ${secondChar}</div>
         <div id="contactInfo${i}" class="contact-info">
-            <span>${contact['firstName']}  ${contact['name']}</span>
+            <span>${contact['firstName']} ${contact['name']}</span>
             <p>${contact['mail']}</p>
         </div>
     </div>`
@@ -218,20 +224,19 @@ async function saveEditContact() {
     let editFirstname = document.getElementById(`edit-input-firstname`);
     let editMail = document.getElementById(`edit-input-mail`);
     let editPhone = document.getElementById(`edit-input-phone`);
-
+    let newColor = contacts[i].color;
 
     let changedContact = {
         name: editLastname.value,
         firstName: editFirstname.value,
         mail: editMail.value,
         phone: editPhone.value,
-        color: color
+        color: newColor
     }
 
     contacts.push(changedContact);
     renderAllContacts();
     addContactToBackend(changedContact);
-    deleteUser(i);
 }
 
 /**
@@ -304,26 +309,26 @@ async function deleteUser(name) {
     await backend.deleteItem('users');
 }
 
-function renderFirstChar(i) {
-    let charList = document.getElementById(`char${i}`);
-    charList.innerHTML = '';
-    for (let i = 0; i < contacts.length; i++) {
-        let char = contacts[i].firstName.charAt(0);
-        if (!initials.includes(char)) {      // if id="char-section" = leer, pushe ${char}
-            initials.push(char);
-        }
-        charList.innerHTML += `
-            <div id="char-section${i}" class="first-char">${initials[i]}</div>
-        `;
-    }
-}
+// function renderFirstChar(i) {
+//     let charList = document.getElementById(`char${i}`);
+//     charList.innerHTML = '';
+//     for (let i = 0; i < contacts.length; i++) {
+//         let char = contacts[i].firstName.charAt(0);
+//         if (!initials.includes(char)) {      // if id="char-section" = leer, pushe ${char}
+//             initials.push(char);
+//         }
+//         charList.innerHTML += `
+//             <div id="char-section${i}" class="first-char">${initials[i]}</div>
+//         `;
+//     }
+// }
 
 function sortUserAlphabetically(contacts) {
     contacts.sort(function (a, b) {
-        if (a['name'] < b['name']) {
+        if (a['firstName'] < b['firstName']) {
             return -1;
         }
-        if (a['name'] > b['name']) {
+        if (a['firstName'] > b['firstName']) {
             return 1;
         }
         return 0;
