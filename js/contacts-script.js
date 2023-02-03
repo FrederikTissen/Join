@@ -50,6 +50,7 @@ let contacts = [{
 let createdContact = true;
 let contact = true;
 let initials = [];
+let editedContact;
 
 
 async function init() {
@@ -217,9 +218,12 @@ function editContactValues(i, color) {
     editPhone.value = contacts[i]['phone'];
     editImage.innerHTML += `${firstChar} ${secondChar}`;
     editImage.style = `background-color:${color};`;
+
+    editedContact = i;
 }
 
 async function saveEditContact() {
+    let i = editedContact;
     let editLastname = document.getElementById(`edit-input-lastname`);
     let editFirstname = document.getElementById(`edit-input-firstname`);
     let editMail = document.getElementById(`edit-input-mail`);
@@ -235,8 +239,10 @@ async function saveEditContact() {
     }
 
     contacts.push(changedContact);
+    editedContact = '';
     renderAllContacts();
     addContactToBackend(changedContact);
+
 }
 
 /**
