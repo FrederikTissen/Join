@@ -79,6 +79,8 @@ input {
     #### CSS - SIDEBAR ####
 */
 
+
+
 .sidebar-top {
     display: flex;
     justify-content: center;
@@ -117,8 +119,8 @@ input {
     text-decoration: none;
 }
 
-.sidebar-link img {
-    padding-right: 20px;
+.sidebar-link div {
+    width: 50px;
 }
 
 
@@ -1089,7 +1091,7 @@ optgroup {
 }
 
 .task {
-    
+
     flex-direction: column;
     justify-content: space-between;
     align-items: center;

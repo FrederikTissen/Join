@@ -1,18 +1,18 @@
 
 let currentDragedElement;
 
-function generateTodoHTML(element, index) {
+function generateHTML(element, index) {
 
-        let title = element['title'];
-        let description = element['description'];
-        let priority = element['priority'];
-        let category = element['category'];
-        let categoryColor = element['categoryColor'];
-
-        
+    let title = element['title'];
+    let description = element['description'];
+    let priority = element['priority'];
+    let category = element['category'];
+    let categoryColor = element['categoryColor'];
 
 
-        return /*html*/ `
+
+
+    return /*html*/ `
             <div draggable="true" ondragstart="startDragging(${element['id']})" onclick="openShowTask(${element['id']})" class="current-task">
                 <div class="current-Task-Category ${categoryColor}">${category}</div>
                 <p>${title}</p>
@@ -27,42 +27,42 @@ function generateTodoHTML(element, index) {
                 </div>
             </div>
         `
-        
+
 }
 
 function updateHTML() {
-    loadAllTasks(); 
+    loadAllTasks();
 
     let todo = allTasks.filter(t => t['split'] == 'todo-box');
     document.getElementById('todo-box').innerHTML = '';
     for (let index = 0; index < todo.length; index++) {
-        const element = todo[index];
-        document.getElementById('todo-box').innerHTML += generateTodoHTML(element);
-        renderAssignedTo(index, element);
+        const currentTask = todo[index];
+        document.getElementById('todo-box').innerHTML += generateHTML(currentTask);
+        renderAssignedTo(index, currentTask);
     }
 
     let inprogressBox = allTasks.filter(t => t['split'] == 'inprogress-box');
     document.getElementById('inprogress-box').innerHTML = '';
     for (let index = 0; index < inprogressBox.length; index++) {
-        const element = inprogressBox[index];
-        document.getElementById('inprogress-box').innerHTML += generateTodoHTML(element);
-        renderAssignedTo(index, element);
+        const currentTask = inprogressBox[index];
+        document.getElementById('inprogress-box').innerHTML += generateHTML(currentTask);
+        renderAssignedTo(index, currentTask);
     }
 
     let feedbackBox = allTasks.filter(t => t['split'] == 'feedback-box');
     document.getElementById('feedback-box').innerHTML = '';
     for (let index = 0; index < feedbackBox.length; index++) {
-        const element = feedbackBox[index];
-        document.getElementById('feedback-box').innerHTML += generateTodoHTML(element);
-        renderAssignedTo(index, element);
+        const currentTask = feedbackBox[index];
+        document.getElementById('feedback-box').innerHTML += generateHTML(currentTask);
+        renderAssignedTo(index, currentTask);
     }
 
     let doneBox = allTasks.filter(t => t['split'] == 'done-box');
     document.getElementById('done-box').innerHTML = '';
     for (let index = 0; index < doneBox.length; index++) {
-        const element = doneBox[index];
-        document.getElementById('done-box').innerHTML += generateTodoHTML(element);
-        renderAssignedTo(index, element);
+        const currentTask = doneBox[index];
+        document.getElementById('done-box').innerHTML += generateHTML(currentTask);
+        renderAssignedTo(index, currentTask);
     }
 
 }
@@ -79,7 +79,7 @@ function moveTo(split) {
     allTasks[currentDragedElement]['split'] = split;
     saveTask();
     updateHTML();
-    
+
 }
 
 
@@ -206,6 +206,64 @@ function renderAssignedBox(assignedTo) {
     }
 }
 
+
+
+function updateSearchedHTML() {
+    loadAllTasks();
+
+    let search = document.getElementById('search-task').value;
+    search = search.toLowerCase();
+
+    let todo = allTasks.filter(t => t['split'] == 'todo-box');
+    document.getElementById('todo-box').innerHTML = '';
+    for (let index = 0; index < todo.length; index++) {
+        const currentTask = todo[index];
+        let currentTitle = currentTask['title'];
+        if (currentTitle.toLowerCase().includes(search)) {
+            document.getElementById('todo-box').innerHTML += generateHTML(currentTask);
+            renderAssignedTo(index, currentTask);
+        }
+
+    }
+
+    let inprogressBox = allTasks.filter(t => t['split'] == 'inprogress-box');
+    document.getElementById('inprogress-box').innerHTML = '';
+    for (let index = 0; index < inprogressBox.length; index++) {
+        const currentTask = inprogressBox[index];
+        let currentTitle = currentTask['title'];
+        if (currentTitle.toLowerCase().includes(search)) {
+            document.getElementById('inprogress-box').innerHTML += generateHTML(currentTask);
+            renderAssignedTo(index, currentTask);
+        }
+    }
+
+    let feedbackBox = allTasks.filter(t => t['split'] == 'feedback-box');
+    document.getElementById('feedback-box').innerHTML = '';
+    for (let index = 0; index < feedbackBox.length; index++) {
+        const currentTask = feedbackBox[index];
+        let currentTitle = currentTask['title'];
+        if (currentTitle.toLowerCase().includes(search)) {
+            document.getElementById('feedback-box').innerHTML += generateHTML(currentTask);
+            renderAssignedTo(index, currentTask);
+        }
+    }
+
+    let doneBox = allTasks.filter(t => t['split'] == 'done-box');
+    document.getElementById('done-box').innerHTML = '';
+    for (let index = 0; index < doneBox.length; index++) {
+        const currentTask = doneBox[index];
+        let currentTitle = currentTask['title'];
+        if (currentTitle.toLowerCase().includes(search)) {
+            document.getElementById('done-box').innerHTML += generateHTML(currentTask);
+            renderAssignedTo(index, currentTask);
+        }
+    }
+
+}
+
+
+
+/*
 function filterTasks() {
     //document.getElementById('searched-emails').classList.remove('d-none');
     let search = document.getElementById('search-task').value;
@@ -230,7 +288,7 @@ function filterTasks() {
 }
 
 function renderSearchedTasks(i, currentTitle, description, priority, category, categoryColor) {
-    document.getElementById('todo-box').innerHTML += /*html*/ `
+    document.getElementById('todo-box').innerHTML += /*html `
 
      
             <div draggable="true" onclick="openShowTask(${i})" class="current-task">
@@ -248,8 +306,8 @@ function renderSearchedTasks(i, currentTitle, description, priority, category, c
             </div>
         `
     renderAssignedTo(i);
-
 }
+*/
 
 
 
