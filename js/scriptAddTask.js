@@ -12,10 +12,9 @@ let allSubTasks = [];
 
 
 function onload() {
-    loadAllTasks();
+    onloadBackup();
     deleteAllSelectedContact();
     deleteAllSubTasks();
-    loadAllContacts();
     renderCategoryBox();
     renderContactBox();
     renderPrios();
@@ -23,11 +22,25 @@ function onload() {
     clock();
 }
 
+async function onloadBackup() {
+    await downloadFromServer();
+  
+
+    allTasks = JSON.parse(backend.getItem('allTasks')) || [];
+    allCategories = JSON.parse(backend.getItem('allCategories')) || [];
+    allContacts = JSON.parse(backend.getItem('allContacts')) || [];
+    selectedContacts = JSON.parse(backend.getItem('selectedContacts')) || [];
+    allSubTasks = JSON.parse(backend.getItem('allSubTasks')) || [];
+
+
+
+}
+
 
 
 function clock() {
     var date = new Date();
-    var currentDate = date.toISOString().slice(0, 10);
+    currentDate = date.toISOString().slice(0, 10);
 
     document.getElementById('date').value = currentDate;
 }
@@ -50,17 +63,15 @@ function addTask() {
         'subTasks': allSubTasks,
         'split': 'todo-box',
     };
-    allTasks.push(task);
+    
 
-    saveTask();
+    saveTask(task);
     reset();
 }
 
 function reset() {
-    loadAllTasks();
     deleteAllSelectedContact();
     deleteAllSubTasks();
-    loadAllContacts();
 
     document.getElementById('title').value = '';
     document.getElementById('description').value = '';
@@ -76,7 +87,6 @@ function reset() {
 
 
 function renderCategories() {
-    loadAllCategories();
 
     document.getElementById('category').innerHTML = /*html*/ `
     <span>Category</span><br><br>
@@ -185,10 +195,9 @@ function pushNewCategory() {
 
 
 
-    allCategories.push(newCategory);
+    
 
-    saveCategory();
-    loadAllCategories();
+    saveCategory(newCategory);
     acceptNewCategory();
     ;
 
@@ -221,7 +230,6 @@ function choosePrio(prio) {
 */
 
 function renderContacts() {
-    loadAllContacts();
     deleteAllSelectedContact();
 
     document.getElementById('assignedTo').innerHTML = /*html*/ `
@@ -288,8 +296,7 @@ function renderContactIcon() {
 
 function acceptNotContact(i) {
     selectedContacts = [];
-    saveSelectedContact();
-    loadSelectedAllContacts();
+    saveSelectedContact(i);
 
     renderContacts();
 
@@ -297,15 +304,14 @@ function acceptNotContact(i) {
 
 function pushSelctedContact(i) {
     currentContact = allContacts[i];
-    selectedContacts.push(currentContact);
-    saveSelectedContact();
+    
+    saveSelectedContact(currentContact);
     loadSelectedAllContacts();
 }
 
 function deleteAllSelectedContact() {
     selectedContacts = [];
     saveSelectedContact();
-    loadSelectedAllContacts();
 }
 
 
@@ -328,13 +334,13 @@ function openInputContact() {
     document.getElementById('searched-emails').classList.add('d-none');
 }
 
+/*
 function pushNewContact() {
-    allContacts.push(currentContact);
-    saveContact();
+    saveContact(currentContact);
     loadAllContacts();
     document.getElementById('input-contact').value = '';
 }
-
+*/
 
 function renderContactBox(i) {
     document.getElementById('assignedTo').innerHTML = '';
@@ -462,9 +468,8 @@ function clearInputField() {
 
 function pushNewSubTask() {
     let currentSubTask = document.getElementById('input-SubTask').value;
-    allSubTasks.push(currentSubTask);
-    saveSubTasks();
-    loadAllSubTasks();
+    
+    saveSubTasks(currentSubTask);
     document.getElementById('input-SubTask').value = '';
     renderAllSubTasks();
 
@@ -472,8 +477,8 @@ function pushNewSubTask() {
 
 function deleteAllSubTasks() {
     allSubTasks = [];
-    saveSubTasks();
-    loadAllSubTasks();
+    /*saveSubTasks();*/
+
 }
 
 function renderAllSubTasks() {
@@ -498,41 +503,71 @@ function renderAllSubTasks() {
 
 
 
+/*
 
 
-
-
-
-
-
-
-
-
-
-
-
-function saveTask() {
-    let allTasksAsString = JSON.stringify(allTasks);
-    localStorage.setItem('allTasks', allTasksAsString);
-}
-
-function saveCategory() {
-    let allCategoriesAsString = JSON.stringify(allCategories);
-    localStorage.setItem('allCategories', allCategoriesAsString);
+async function addContactToBackendr(newContact) {
+    contacts.push(newContact);
+    await backend.setItem('contacts', JSON.stringify(contacts));
 }
 
 
+async function deleteUserf(name) {
+    await backend.deleteItem('users');
+}
+
+*/
+
+
+
+
+
+
+
+async function saveTask(task) {
+    allTasks.push(task);
+    await backend.setItem('allTasks', JSON.stringify(allTasks));
+}
+
+async function saveCategory(newCategory) {
+    allCategories.push(newCategory);
+    await backend.setItem('allCategories', JSON.stringify(allCategories));
+}
+
+async function saveContact(currentContact) {
+    allContacts.push(currentContact);
+    await backend.setItem('allContacts', JSON.stringify(allContacts));
+}
+
+async function saveSelectedContact(currentContact) {
+    selectedContacts.push(currentContact);
+    await backend.setItem('selectedContacts', JSON.stringify(selectedContacts));
+}
+
+
+async function saveSubTasks(currentSubTask) {
+    allSubTasks.push(currentSubTask);
+    await backend.setItem('allSubTasks', JSON.stringify(allSubTasks));
+}
+
+
+
+
+/*
+
+
+function loadAllSubTasks() {
+    let allSubTasksAsString = localStorage.getItem('allSubTasks');
+    if (allSubTasksAsString) {
+        allSubTasks = JSON.parse(allSubTasksAsString);
+    }
+}
 
 function loadAllCategories() {
     let allCategoriesAsString = localStorage.getItem('allCategories');
     if (allCategoriesAsString) {
         allCategories = JSON.parse(allCategoriesAsString);
     }
-}
-
-function saveContact() {
-    let allContactsAsString = JSON.stringify(allContacts);
-    localStorage.setItem('allContacts', allContactsAsString);
 }
 
 function loadAllContacts() {
@@ -550,11 +585,6 @@ function loadAllTasks() {
     }
 }
 
-function saveSelectedContact() {
-    let allSelectedContactsAsString = JSON.stringify(selectedContacts);
-    localStorage.setItem('selectedContacts', allSelectedContactsAsString);
-}
-
 function loadSelectedAllContacts() {
     let allSelectedContactsAsString = localStorage.getItem('selectedContacts');
     if (allSelectedContactsAsString) {
@@ -562,25 +592,8 @@ function loadSelectedAllContacts() {
     }
 }
 
-function saveSubTasks() {
-    let allSubTasksAsString = JSON.stringify(allSubTasks);
-    localStorage.setItem('allSubTasks', allSubTasksAsString);
-}
 
-function loadAllSubTasks() {
-    let allSubTasksAsString = localStorage.getItem('allSubTasks');
-    if (allSubTasksAsString) {
-        allSubTasks = JSON.parse(allSubTasksAsString);
-    }
-}
-
-
-
-
-
-
-
-
+*/
 
 
 

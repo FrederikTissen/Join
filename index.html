@@ -8,7 +8,10 @@
     <title>JOIN</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="fonts.css"> <!-- FONTS ORDNER RICHTIG ? -->
-    <script src="js/script.js"></script>
+    <script src="js/scriptSummery.js"></script>
+    <script src="js/scriptAddTask.js"></script>
+    <script src="js/scriptboard.js"></script>
+    <script src="./js/mini_backend.js"></script>
 </head>
 
 <body onload="init()">
@@ -69,16 +72,16 @@
         <div class="summary-overview" id="summary-overview">
             <div class="sum-task-top">
                 <div class="sum-task-overview">
-                    <div class="sum-task-number" id="sum-task1">5</div> <!--    FONT-SIZE PASST NICHT   -->
-                    <div class="sum-task">Tasks in Board</div>
+                    <div id="tasks-in-board" class="sum-task-number" id="sum-task1">5</div> <!--    FONT-SIZE PASST NICHT   -->
+                    <div  class="sum-task">Tasks in Board</div>
                 </div>
                 <div class="sum-task-overview">
-                    <div class="sum-task-number" id="sum-task2">2</div>
-                    <div class="sum-task">Tasks in Progress</div>
+                    <div id="tasks-in-progress" class="sum-task-number" id="sum-task2">2</div>
+                    <div  class="sum-task">Tasks in Progress</div>
                 </div>
                 <div class="sum-task-overview">
-                    <div class="sum-task-number" id="sum-task3">2</div>
-                    <div class="sum-task">Awaiting Feedback</div>
+                    <div id="tasks-awaiting-feedback" class="sum-task-number" id="sum-task3">2</div>
+                    <div  class="sum-task">Awaiting Feedback</div>
                 </div>
             </div>
             <div class="sum-mid-all">
@@ -92,7 +95,7 @@
                     </div>
                     <img src="./assets/img/sum-task-bar.png">
                     <div class="sum-mid-right">
-                        <span class="sum-mid-span-top"> January 4, 2022</span>
+                        <span id="dateSummary" class="sum-mid-span-top"> January 4, 2022</span>
                         <span class="sum-mid-span-bottom"> Upcoming Deadline</span>
                     </div>
                 </div>
@@ -105,15 +108,15 @@
                 <div class="sum-bottom-div"> <!--left-->
                     <img src="./assets/img/to-do.png">
                     <div class="sum-bottom-right-section">
-                        <div class="sum-task-number">1</div>
-                        <div class="sum-task">To-do</div>
+                        <div id="tasks-todo" class="sum-task-number">1</div>
+                        <div  class="sum-task">To-do</div>
                     </div>
                 </div>
                 <div class="sum-bottom-div"> <!--right-->
                     <img src="./assets/img/done-color-round.png">
                     <div class="sum-bottom-right-section">
-                        <div class="sum-task-number">1</div>
-                        <div class="sum-task">Done</div>
+                        <div id="tasks-done" class="sum-task-number">1</div>
+                        <div  class="sum-task">Done</div>
                     </div>
                 </div>
             </div>

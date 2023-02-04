@@ -1,5 +1,9 @@
 
 let currentDragedElement;
+let todoCount;
+let inprogressBoxCount;
+let feedbackBoxCount;
+let doneBoxCount;
 
 function generateHTML(element, index) {
 
@@ -34,6 +38,7 @@ function updateHTML() {
     loadAllTasks();
 
     let todo = allTasks.filter(t => t['split'] == 'todo-box');
+    todoCount = todo.length;
     document.getElementById('todo-box').innerHTML = '';
     for (let index = 0; index < todo.length; index++) {
         const currentTask = todo[index];
@@ -42,6 +47,7 @@ function updateHTML() {
     }
 
     let inprogressBox = allTasks.filter(t => t['split'] == 'inprogress-box');
+    inprogressBoxCount = inprogressBox.length;
     document.getElementById('inprogress-box').innerHTML = '';
     for (let index = 0; index < inprogressBox.length; index++) {
         const currentTask = inprogressBox[index];
@@ -50,19 +56,24 @@ function updateHTML() {
     }
 
     let feedbackBox = allTasks.filter(t => t['split'] == 'feedback-box');
+    feedbackBoxCount = feedbackBox.length;
+    saveFeedback();
     document.getElementById('feedback-box').innerHTML = '';
     for (let index = 0; index < feedbackBox.length; index++) {
         const currentTask = feedbackBox[index];
         document.getElementById('feedback-box').innerHTML += generateHTML(currentTask);
         renderAssignedTo(index, currentTask);
+
     }
 
     let doneBox = allTasks.filter(t => t['split'] == 'done-box');
+    doneBoxCount = doneBox.length;
     document.getElementById('done-box').innerHTML = '';
     for (let index = 0; index < doneBox.length; index++) {
         const currentTask = doneBox[index];
         document.getElementById('done-box').innerHTML += generateHTML(currentTask);
         renderAssignedTo(index, currentTask);
+        
     }
 
 }
@@ -320,4 +331,54 @@ function deleteTask(i) {
 
 function closeShowTask() {
     document.getElementById('show-Task-Background').classList = 'show-Task-Background d-none';
+}
+
+
+
+function saveTodos() {
+    let allTodosAsString = JSON.stringify(todoCount);
+    localStorage.setItem('todoCount', allTodosAsString);
+}
+
+function loadTodos() {
+    let allTodosAsString = localStorage.getItem('todoCount');
+    if (allTodosAsString) {
+        todoCount = JSON.parse(allTodosAsString);
+    }
+}
+
+function saveInProgress() {
+    let allInProgressAsString = JSON.stringify(inprogressBoxCount);
+    localStorage.setItem('inprogressBoxCount', allInProgressAsString);
+}
+
+function loadInProgress() {
+    let allInProgressAsString = localStorage.getItem('inprogressBoxCount');
+    if (allInProgressAsString) {
+        inprogressBoxCount = JSON.parse(allInProgressAsString);
+    }
+}
+
+function saveFeedback() {
+    let allFeedbackString = JSON.stringify(feedbackBoxCount);
+    localStorage.setItem('feedbackBoxCount', allFeedbackString);
+}
+
+function saveFeedback() {
+    let allFeedbackString = localStorage.getItem('feedbackBoxCount');
+    if (allFeedbackString) {
+        feedbackBoxCount = JSON.parse(allFeedbackString);
+    }
+}
+
+function saveDone() {
+    let allDoneAsString = JSON.stringify(doneBoxCount);
+    localStorage.setItem('doneBoxCount', allDoneAsString);
+}
+
+function loadDone() {
+    let allDoneAsString = localStorage.getItem('doneBoxCount');
+    if (allDoneAsString) {
+        doneBoxCount = JSON.parse(allDoneAsString);
+    }
 }

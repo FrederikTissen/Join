@@ -58,6 +58,7 @@ async function init() {
     users = JSON.parse(backend.getItem('users')) || [];
     contacts = JSON.parse(backend.getItem('contacts')) || [];
     activeUser = JSON.parse(backend.getItem('activeUser')) || [];
+
 }
 
 async function includeHTMLaddContact() {
