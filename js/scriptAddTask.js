@@ -1,3 +1,5 @@
+
+
 let allTasks = [];
 let selectionPrio;
 let allCategories = [];
@@ -12,19 +14,28 @@ let allSubTasks = [];
 
 
 function onload() {
-    onloadBackup();
-    deleteAllSelectedContact();
-    deleteAllSubTasks();
+    
+    /*deleteAllSelectedContact();
+    deleteAllSubTasks();*/
     renderCategoryBox();
     renderContactBox();
     renderPrios();
     renderSubTask();
     clock();
+    
+}
+/*
+async function init() {
+    await downloadFromServer();
+    users = JSON.parse(backend.getItem('users')) || [];
+    contacts = JSON.parse(backend.getItem('contacts')) || [];
+    activeUser = JSON.parse(backend.getItem('activeUser')) || [];
 }
 
-async function onloadBackup() {
+
+async function onloadBackend() {
     await downloadFromServer();
-  
+    
 
     allTasks = JSON.parse(backend.getItem('allTasks')) || [];
     allCategories = JSON.parse(backend.getItem('allCategories')) || [];
@@ -32,9 +43,10 @@ async function onloadBackup() {
     selectedContacts = JSON.parse(backend.getItem('selectedContacts')) || [];
     allSubTasks = JSON.parse(backend.getItem('allSubTasks')) || [];
 
-
-
 }
+*/
+
+
 
 
 
