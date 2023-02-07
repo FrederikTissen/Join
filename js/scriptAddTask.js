@@ -14,7 +14,7 @@ let allSubTasks = [];
 
 
 function onload() {
-
+    init();
     
     deleteAllSubTasks();
     renderCategoryBox();

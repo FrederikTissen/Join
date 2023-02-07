@@ -34,8 +34,15 @@ function generateHTML(element, index) {
 
 }
 
+function onloadBoard() {
+    //init();
+    updateHTML();
+
+}
+
 function updateHTML() {
-    loadAllTasks();
+    //loadAllTasks();
+    init();
 
     let todo = allTasks.filter(t => t['split'] == 'todo-box');
     todoCount = todo.length;
