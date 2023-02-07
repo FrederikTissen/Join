@@ -60,6 +60,12 @@ async function init() {
     contacts = JSON.parse(backend.getItem('contacts')) || [];
     activeUser = JSON.parse(backend.getItem('activeUser')) || [];
 
+
+    allTasks = JSON.parse(backend.getItem('allTasks')) || [];
+    allCategories = JSON.parse(backend.getItem('allCategories')) || [];
+    allContacts = JSON.parse(backend.getItem('allContacts')) || [];
+    selectedContacts = JSON.parse(backend.getItem('selectedContacts')) || [];
+    allSubTasks = JSON.parse(backend.getItem('allSubTasks')) || [];
 }
 
 async function includeHTMLaddContact() {

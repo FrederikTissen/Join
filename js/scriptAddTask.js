@@ -14,40 +14,16 @@ let allSubTasks = [];
 
 
 function onload() {
+
     
-    /*deleteAllSelectedContact();
-    deleteAllSubTasks();*/
+    deleteAllSubTasks();
     renderCategoryBox();
     renderContactBox();
     renderPrios();
     renderSubTask();
     clock();
-    
-}
-/*
-async function init() {
-    await downloadFromServer();
-    users = JSON.parse(backend.getItem('users')) || [];
-    contacts = JSON.parse(backend.getItem('contacts')) || [];
-    activeUser = JSON.parse(backend.getItem('activeUser')) || [];
-}
-
-
-async function onloadBackend() {
-    await downloadFromServer();
-    
-
-    allTasks = JSON.parse(backend.getItem('allTasks')) || [];
-    allCategories = JSON.parse(backend.getItem('allCategories')) || [];
-    allContacts = JSON.parse(backend.getItem('allContacts')) || [];
-    selectedContacts = JSON.parse(backend.getItem('selectedContacts')) || [];
-    allSubTasks = JSON.parse(backend.getItem('allSubTasks')) || [];
 
 }
-*/
-
-
-
 
 
 function clock() {
@@ -61,7 +37,7 @@ function addTask() {
     let title = document.getElementById('title');
     let description = document.getElementById('description');
     let date = document.getElementById('date');
-    
+
 
     let task = {
         'id': allTasks.length,
@@ -75,19 +51,21 @@ function addTask() {
         'subTasks': allSubTasks,
         'split': 'todo-box',
     };
-    
+
 
     saveTask(task);
     reset();
 }
 
 function reset() {
-    deleteAllSelectedContact();
+    
     deleteAllSubTasks();
 
     document.getElementById('title').value = '';
     document.getElementById('description').value = '';
     document.getElementById('input-SubTask').value = '';
+    document.getElementById('contact-icons').innerHTML = '';
+
 
     renderCategoryBox();
     renderContactBox();
@@ -146,7 +124,7 @@ function acceptCategory(i) {
 }
 
 function acceptNewCategory() {
-    
+
 
     document.getElementById('category').innerHTML = /*html*/ `
     <span>Category</span><br><br>
@@ -207,7 +185,7 @@ function pushNewCategory() {
 
 
 
-    
+
 
     saveCategory(newCategory);
     acceptNewCategory();
@@ -273,20 +251,21 @@ function renderContacts() {
         `
     }
 
-
+    selectedContacts = [];
 }
 
 
 function acceptContact(i) {
-    let contactFirstname = allContacts[i]['firstName'];
-    let contactLastName = allContacts[i]['name'];
+    currentContact = allContacts[i];
+    let contactFirstname = currentContact['firstName'];
+    let contactLastName = currentContact['name'];
 
 
     document.getElementById(`selection-contacts${i}`).innerHTML = /*html*/ `
     <div id="contact${i}" >${contactFirstname}  ${contactLastName}</div>
     <img id="checkbox${i}" onclick="acceptNotContact(${i})" class="checkbox" src="/assets/img/checkbox-contact-full.png" alt="">
     `
-    pushSelctedContact(i);
+    pushSelctedContact(currentContact);
     renderContactIcon();
 }
 
@@ -314,11 +293,11 @@ function acceptNotContact(i) {
 
 }
 
-function pushSelctedContact(i) {
-    currentContact = allContacts[i];
-    
+function pushSelctedContact(currentContact) {
+
+
     saveSelectedContact(currentContact);
-    loadSelectedAllContacts();
+    //loadSelectedAllContacts();
 }
 
 function deleteAllSelectedContact() {
@@ -346,15 +325,15 @@ function openInputContact() {
     document.getElementById('searched-emails').classList.add('d-none');
 }
 
-/*
+
 function pushNewContact() {
     saveContact(currentContact);
-    loadAllContacts();
+    //loadAllContacts();
     document.getElementById('input-contact').value = '';
 }
-*/
 
-function renderContactBox(i) {
+
+function renderContactBox() {
     document.getElementById('assignedTo').innerHTML = '';
     document.getElementById('assignedTo').innerHTML = /*html*/ `
     <span>Assigned to</span><br><br>
@@ -480,7 +459,7 @@ function clearInputField() {
 
 function pushNewSubTask() {
     let currentSubTask = document.getElementById('input-SubTask').value;
-    
+
     saveSubTasks(currentSubTask);
     document.getElementById('input-SubTask').value = '';
     renderAllSubTasks();
@@ -565,7 +544,7 @@ async function saveSubTasks(currentSubTask) {
 
 
 
-/*
+
 
 
 function loadAllSubTasks() {
@@ -605,7 +584,7 @@ function loadSelectedAllContacts() {
 }
 
 
-*/
+
 
 
 
