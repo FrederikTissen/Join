@@ -34,15 +34,15 @@ function generateHTML(element, index) {
 
 }
 
-function onloadBoard() {
-    //init();
+async function onloadBoard() {
+    
+    await init();
     updateHTML();
-
 }
 
 function updateHTML() {
     //loadAllTasks();
-    init();
+    
 
     let todo = allTasks.filter(t => t['split'] == 'todo-box');
     todoCount = todo.length;
@@ -50,7 +50,7 @@ function updateHTML() {
     for (let index = 0; index < todo.length; index++) {
         const currentTask = todo[index];
         document.getElementById('todo-box').innerHTML += generateHTML(currentTask);
-        renderAssignedTo(index, currentTask);
+        renderAssignedTo(currentTask);
     }
 
     let inprogressBox = allTasks.filter(t => t['split'] == 'inprogress-box');
@@ -59,7 +59,7 @@ function updateHTML() {
     for (let index = 0; index < inprogressBox.length; index++) {
         const currentTask = inprogressBox[index];
         document.getElementById('inprogress-box').innerHTML += generateHTML(currentTask);
-        renderAssignedTo(index, currentTask);
+        renderAssignedTo(currentTask);
     }
 
     let feedbackBox = allTasks.filter(t => t['split'] == 'feedback-box');
@@ -69,7 +69,7 @@ function updateHTML() {
     for (let index = 0; index < feedbackBox.length; index++) {
         const currentTask = feedbackBox[index];
         document.getElementById('feedback-box').innerHTML += generateHTML(currentTask);
-        renderAssignedTo(index, currentTask);
+        renderAssignedTo(currentTask);
 
     }
 
@@ -79,7 +79,7 @@ function updateHTML() {
     for (let index = 0; index < doneBox.length; index++) {
         const currentTask = doneBox[index];
         document.getElementById('done-box').innerHTML += generateHTML(currentTask);
-        renderAssignedTo(index, currentTask);
+        renderAssignedTo(currentTask);
         
     }
 
@@ -95,7 +95,7 @@ function allowDrop(ev) {
 
 function moveTo(split) {
     allTasks[currentDragedElement]['split'] = split;
-    saveTask();
+    //saveTask();
     updateHTML();
 
 }
@@ -103,7 +103,7 @@ function moveTo(split) {
 
 
 
-function renderAssignedTo(index, element) {
+function renderAssignedTo(element) {
 
     let AssignedTo = element['AssignedTo'];
 
@@ -239,7 +239,7 @@ function updateSearchedHTML() {
         let currentTitle = currentTask['title'];
         if (currentTitle.toLowerCase().includes(search)) {
             document.getElementById('todo-box').innerHTML += generateHTML(currentTask);
-            renderAssignedTo(index, currentTask);
+            renderAssignedTo(currentTask);
         }
 
     }
@@ -251,7 +251,7 @@ function updateSearchedHTML() {
         let currentTitle = currentTask['title'];
         if (currentTitle.toLowerCase().includes(search)) {
             document.getElementById('inprogress-box').innerHTML += generateHTML(currentTask);
-            renderAssignedTo(index, currentTask);
+            renderAssignedTo(currentTask);
         }
     }
 
@@ -262,7 +262,7 @@ function updateSearchedHTML() {
         let currentTitle = currentTask['title'];
         if (currentTitle.toLowerCase().includes(search)) {
             document.getElementById('feedback-box').innerHTML += generateHTML(currentTask);
-            renderAssignedTo(index, currentTask);
+            renderAssignedTo(currentTask);
         }
     }
 
@@ -273,7 +273,7 @@ function updateSearchedHTML() {
         let currentTitle = currentTask['title'];
         if (currentTitle.toLowerCase().includes(search)) {
             document.getElementById('done-box').innerHTML += generateHTML(currentTask);
-            renderAssignedTo(index, currentTask);
+            renderAssignedTo(currentTask);
         }
     }
 
@@ -331,9 +331,8 @@ function renderSearchedTasks(i, currentTitle, description, priority, category, c
 
 function deleteTask(i) {
     allTasks.splice(i, 1);
-    saveTask();
     closeShowTask();
-    renderTasks();
+    generateHTML();
 }
 
 function closeShowTask() {

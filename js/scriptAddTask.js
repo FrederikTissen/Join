@@ -13,8 +13,9 @@ let selectedContacts = [];
 let allSubTasks = [];
 
 
-function onload() {
-    init();
+async function onload() {
+    await init();
+    //deleteAllTasks();
     
     deleteAllSubTasks();
     renderCategoryBox();
@@ -24,6 +25,8 @@ function onload() {
     clock();
 
 }
+
+
 
 
 function clock() {
@@ -52,21 +55,21 @@ function addTask() {
         'split': 'todo-box',
     };
 
-
     saveTask(task);
     reset();
 }
 
-function reset() {
-    
-    deleteAllSubTasks();
-
+ async function reset() {
+    //await deleteAllTasks();
+    await deleteAllSubTasks();
+    await deleteSelectedAllContacts();
+    await deleteAllCategories();
     document.getElementById('title').value = '';
     document.getElementById('description').value = '';
     document.getElementById('input-SubTask').value = '';
     document.getElementById('contact-icons').innerHTML = '';
 
-
+    
     renderCategoryBox();
     renderContactBox();
     renderPrios();
@@ -581,6 +584,23 @@ function loadSelectedAllContacts() {
     if (allSelectedContactsAsString) {
         selectedContacts = JSON.parse(allSelectedContactsAsString);
     }
+}
+
+
+async function deleteAllTasks() {
+    await backend.deleteItem('allTasks');
+}
+
+async function deleteAllSubTasks() {
+    await backend.deleteItem('allSubTasks');
+}
+
+async function deleteSelectedAllContacts() {
+    await backend.deleteItem('selectedContacts');
+}
+
+async function deleteAllCategories() {
+    await backend.deleteItem('allCategories');
 }
 
 

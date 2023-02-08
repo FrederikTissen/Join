@@ -5,7 +5,8 @@
 
 
 
-function updatePage() {
+async function updatePage() {
+    await init();
     updateDate();
     updateCountOfTasks();
 }
@@ -22,7 +23,7 @@ function updateDate() {
 }
 
 function updateCountOfTasks() {
-   
+
 
     let tasksInBoard = allTasks.length;
 
