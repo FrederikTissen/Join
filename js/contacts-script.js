@@ -259,19 +259,19 @@ async function saveEditContact() {
 //  * cancel pop-up window
 //  * 
 //  */
-// function cancelPopupAdd() {
-//     document.getElementById('w3-add').classList.remove('show');
-//     document.getElementById('w3-add').classList.add('d-none');
+function cancelPopupAdd() {
+    document.getElementById('w3-add').classList.remove('show');
+    document.getElementById('w3-add').classList.add('d-none');
 
-//     createdContact = true;
-// }
+    createdContact = true;
+}
 
-// function cancelPopupEdit() {
-//     document.getElementById('w3-edit').classList.remove('show');
-//     document.getElementById('w3-edit').classList.add('d-none');
+function cancelPopupEdit() {
+    document.getElementById('w3-edit').classList.remove('show');
+    document.getElementById('w3-edit').classList.add('d-none');
 
-//     createdContact = true;
-// }
+    createdContact = true;
+}
 
 /**
  * create the new contact
