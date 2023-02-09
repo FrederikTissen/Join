@@ -57,7 +57,7 @@ let editedContact;
 async function init() {
     await downloadFromServer();
     users = JSON.parse(backend.getItem('users')) || [];
-    contacts = JSON.parse(backend.getItem('contacts')) || [];
+    //contacts = JSON.parse(backend.getItem('contacts')) || [];
     activeUser = JSON.parse(backend.getItem('activeUser')) || [];
 
 

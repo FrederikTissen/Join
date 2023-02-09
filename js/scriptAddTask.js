@@ -16,7 +16,7 @@ let allSubTasks = [];
 async function onload() {
     await init();
     //deleteAllTasks();
-    
+
     deleteAllSubTasks();
     renderCategoryBox();
     renderContactBox();
@@ -59,17 +59,18 @@ function addTask() {
     reset();
 }
 
- async function reset() {
+async function reset() {
     //await deleteAllTasks();
-    await deleteAllSubTasks();
+    deleteAllSubTasks();
     await deleteSelectedAllContacts();
-    await deleteAllCategories();
+    //selectedContacts = [];
     document.getElementById('title').value = '';
     document.getElementById('description').value = '';
     document.getElementById('input-SubTask').value = '';
     document.getElementById('contact-icons').innerHTML = '';
-
     
+
+
     renderCategoryBox();
     renderContactBox();
     renderPrios();
@@ -298,7 +299,6 @@ function acceptNotContact(i) {
 
 function pushSelctedContact(currentContact) {
 
-
     saveSelectedContact(currentContact);
     //loadSelectedAllContacts();
 }
@@ -346,7 +346,12 @@ function renderContactBox() {
         </div>
         <div id="contact-icons" class="contact-icons"></div>
     `;
-    renderContactIcon();
+
+
+    if (selectedContacts.length > 0) {
+        renderContactIcon();
+    }
+
 }
 
 
