@@ -13,6 +13,7 @@ let users = [{
 let activeUser = {};
 
 if (msg) {
+    document.getElementById('msgBox').classList.remove('d-none');
     document.getElementById('msgBox').innerHTML = msg;
 } else {
     document.getElementById('msgBox').classList.add('d-none');

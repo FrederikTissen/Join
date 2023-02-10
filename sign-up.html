@@ -37,16 +37,29 @@
         font-weight: 400;
     }
 
-    .head-row {
+    .full-login-content {
         width: 100vw;
+        height: 100vh;
+    }
+
+    .login-content {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+    }
+
+    .head-row {
+        display: flex;
+        width: 100vw;
+        height: 225px;
+        flex-direction: row;
+        justify-content: space-between;
     }
 
     .join-logo {
-        position: absolute;
-        top: 80px;
-        left: 77px;
         width: 100px;
-        height: 120px;
+        margin-top: 30px;
+        margin-left: 30px;
         object-fit: contain;
     }
 
@@ -72,11 +85,8 @@
         align-items: center;
         padding: 35px 0px;
         gap: 35px;
-        position: absolute;
         width: 652px;
-        height: 513px;
-        left: 394px;
-        top: 274px;
+        height: 570px;
         background: #FFFFFF;
         box-shadow: 0px 0px 14px 3px rgba(0, 0, 0, 0.04);
         border-radius: 30px;
@@ -157,32 +167,77 @@
         display: flex;
         flex-direction: column;
     }
+
+    .button-container {
+        display: flex;
+        justify-content: center;
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    @media (max-width: 1300px) {}
+
+    @media (max-width: 1100px) {
+
+        .log-in-container {
+            width: 400px;
+            height: 600px;
+        }
+
+        .log-in-input {
+            width: 380px;
+        }
+
+    }
+
+    @media (max-width: 800px) {
+        .login-content {
+            margin-top: 50px;
+        }
+
+        .log-in-checkbox {
+            font-size: 18px;
+        }
+    }
 </style>
 
 <body>
-    <img class="join-logo" src="./assets/img/join-logo.png">
-    <div class="log-in-container">
-        <img class="arrow-blue" src="./assets/img/blue-arrow-left.png">
-        <div class="log-in">
-            <h1>Sign up</h1>
-            <img src="./assets/img/blue-bar-horizontal.png">
+    <div class="full-login-content">
+        <div class="head-row">
+            <img class="join-logo" src="./assets/img/join-logo.png">
         </div>
-        <form onsubmit="addUser(); return false;">
-            <div class="log-in-input">
-                <input placeholder="Name" type="text">
-                <img src="./assets/img/body-logo.png">
+        <div class="login-content">
+            <div class="log-in-container">
+                <img class="arrow-blue" src="./assets/img/blue-arrow-left.png">
+                <div class="log-in">
+                    <h1>Sign up</h1>
+                    <img src="./assets/img/blue-bar-horizontal.png">
+                </div>
+                <form onsubmit="addUser(); return false;">
+                    <div class="log-in-input">
+                        <input placeholder="Last Name" type="text">
+                        <img src="./assets/img/body-logo.png">
+                    </div>
+                    <div class="log-in-input">
+                        <input placeholder="First Name" type="text">
+                        <img src="./assets/img/body-logo.png">
+                    </div>
+                    <div class="log-in-input">
+                        <input id="register-email" placeholder="Email" type="email">
+                        <img src="./assets/img/mail-logo.png">
+                    </div>
+                    <div class="log-in-input">
+                        <input id="register-password" placeholder="Password" type="password">
+                        <img src="./assets/img/padlock.png">
+                    </div>
+                    <div class="button-container">
+                        <button class="log-in-btn">Sign up</button>
+                    </div>
+                </form>
             </div>
-            <div class="log-in-input">
-                <input id="register-email" placeholder="Email" type="email">
-                <img src="./assets/img/mail-logo.png">
-            </div>
-            <div class="log-in-input">
-                <input id="register-password" placeholder="Password" type="password">
-                <img src="./assets/img/padlock.png">
-            </div>
-            <button class="log-in-btn">Sign up</button>
-        </form>
+        </div>
     </div>
+
 
 </body>
 
