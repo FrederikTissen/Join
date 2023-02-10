@@ -64,7 +64,7 @@ function updateHTML() {
 
     let feedbackBox = allTasks.filter(t => t['split'] == 'feedback-box');
     feedbackBoxCount = feedbackBox.length;
-    saveFeedback();
+    //saveFeedback();
     document.getElementById('feedback-box').innerHTML = '';
     for (let index = 0; index < feedbackBox.length; index++) {
         const currentTask = feedbackBox[index];
@@ -86,6 +86,7 @@ function updateHTML() {
 }
 
 function startDragging(i) {
+
     currentDragedElement = i;
 }
 
@@ -94,9 +95,14 @@ function allowDrop(ev) {
 }
 
 function moveTo(split) {
+
     allTasks[currentDragedElement]['split'] = split;
     //saveTask();
+
+    saveAllTasks();
     updateHTML();
+    
+
 
 }
 
@@ -329,11 +335,14 @@ function renderSearchedTasks(i, currentTitle, description, priority, category, c
 
 
 
-function deleteTask(i) {
+/*function deleteTask(i) {
+    //let task = allTasks[i];
     allTasks.splice(i, 1);
+    saveAllTasks();
     closeShowTask();
-    generateHTML();
+    updateHTML();
 }
+*/
 
 function closeShowTask() {
     document.getElementById('show-Task-Background').classList = 'show-Task-Background d-none';

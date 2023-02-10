@@ -16,12 +16,13 @@ let allSubTasks = [];
 async function onload() {
     await init();
     //deleteAllTasks();
-
+    selectedContacts = 0;
     deleteAllSubTasks();
     renderCategoryBox();
     renderContactBox();
     renderPrios();
     renderSubTask();
+    
     clock();
 
 }
@@ -62,15 +63,14 @@ function addTask() {
 async function reset() {
     //await deleteAllTasks();
     deleteAllSubTasks();
-    await deleteSelectedAllContacts();
-    //selectedContacts = [];
+    //await deleteSelectedAllContacts();
+    //await deleteAllCategories();
+    selectedContacts = 0;
     document.getElementById('title').value = '';
     document.getElementById('description').value = '';
     document.getElementById('input-SubTask').value = '';
     document.getElementById('contact-icons').innerHTML = '';
     
-
-
     renderCategoryBox();
     renderContactBox();
     renderPrios();
@@ -528,6 +528,11 @@ async function saveTask(task) {
     await backend.setItem('allTasks', JSON.stringify(allTasks));
 }
 
+async function saveAllTasks() {
+    await backend.setItem('allTasks', JSON.stringify(allTasks));
+}
+
+
 async function saveCategory(newCategory) {
     allCategories.push(newCategory);
     await backend.setItem('allCategories', JSON.stringify(allCategories));
@@ -595,6 +600,11 @@ function loadSelectedAllContacts() {
 async function deleteAllTasks() {
     await backend.deleteItem('allTasks');
 }
+
+async function deleteTask(task) {
+    await backend.deleteItem('allTasks'/task);
+}
+
 
 async function deleteAllSubTasks() {
     await backend.deleteItem('allSubTasks');
