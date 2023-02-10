@@ -68,7 +68,7 @@ async function init() {
     allSubTasks = JSON.parse(backend.getItem('allSubTasks')) || [];
 }
 
-async function includeHTMLaddContact() {
+async function includeHTMLContact() {
     let includeElements = document.querySelectorAll('[w3-include-html]');
     for (let i = 0; i < includeElements.length; i++) {
         const element = includeElements[i];
@@ -166,7 +166,7 @@ function generateContactfield(i, firstChar, secondChar, color) {
         <div id="contact-img${i}" class="contact-img-big" style="background-color:${color}">${firstChar} ${secondChar}</div>
         <div class="show-contact-headline-right"> 
             <div>${contacts[i]['firstName']} ${contacts[i]['name']}</div>
-            <div id="add-task" class="blue-font"> + Add Task </div>
+            <div id="add-task" class="blue-font"><p onclick="addTaskToContact()"> + Add Task </p></div> 
         </div>
     </div>
     <div class="show-contact-middle">
@@ -193,7 +193,19 @@ function addNewContact() {
         document.getElementById('show-contact').innerHTML = `
         <div w3-include-html="add-contact.html"></div>`;
     }
-    includeHTMLaddContact();
+    includeHTMLContact();
+    createdContact = false;
+}
+
+async function addTaskToContact(i) {
+    editedContact = i; // editedContact ist ausgewählter contact und muss in selectedContact [] rein
+    if (createdContact) {
+        document.getElementById('add-new-contact-btn').classList.add('d-none');
+        document.getElementById('contact-headline').classList.add('d-none');
+        document.getElementById('show-contact').innerHTML = `
+            <div w3-include-html="add-task-popup.html"></div>`;
+        await includeHTMLContact();
+    }
     createdContact = false;
 }
 
@@ -205,7 +217,7 @@ async function editContact(i, color) {
     if (createdContact) {
         document.getElementById('show-contact').innerHTML = `
         <div w3-include-html="edit-contact.html"></div>`;
-        await includeHTMLaddContact();
+        await includeHTMLContact();
     }
     document.getElementById('w3-edit').classList.remove('d-none');
     editContactValues(i, color);
@@ -290,12 +302,13 @@ function createContact() {
         phone: inputPhone.value,
         color: inputColor.value
     }
-    contacts.push(newContact);
     createdContact = true;
-    renderAllContacts();
     clearInputfields(inputName, inputFirstName, inputMail, inputPhone);
     addContactToBackend(newContact);
     showSuccessBtn();
+    sortUserAlphabetically(contacts);
+    setTimeout(closeSuccessBtn, 1500);
+    renderAllContacts();
 }
 
 function showSuccessBtn() {
@@ -320,24 +333,28 @@ async function addContactToBackend(newContact) {
     await backend.setItem('contacts', JSON.stringify(contacts));
 }
 
-
-async function deleteUser(name) {
+async function deleteUser() {
+    let i = editedContact;
+    contacts.splice(i, 1);
+    editedContact = '';
     await backend.deleteItem('users');
+    renderAllContacts();
+    cancelPopupEdit();
 }
 
-// function renderFirstChar(i) {
-//     let charList = document.getElementById(`char${i}`);
-//     charList.innerHTML = '';
-//     for (let i = 0; i < contacts.length; i++) {
-//         let char = contacts[i].firstName.charAt(0);
-//         if (!initials.includes(char)) {      // if id="char-section" = leer, pushe ${char}
-//             initials.push(char);
-//         }
-//         charList.innerHTML += `
-//             <div id="char-section${i}" class="first-char">${initials[i]}</div>
-//         `;
-//     }
-// }
+function renderFirstChar(i) {
+    let charList = document.getElementById(`char${i}`);
+    charList.innerHTML = '';
+    for (let i = 0; i < contacts.length; i++) {
+        let char = contacts[i].firstName.charAt(0);
+        if (!initials.includes(char)) {      // if id="char-section" = leer, pushe ${char}
+            initials.push(char);
+        }
+        charList.innerHTML += `
+            <div id="char-section${i}" class="first-char">${initials[i]}</div>
+        `;
+    }
+}
 
 function sortUserAlphabetically(contacts) {
     contacts.sort(function (a, b) {

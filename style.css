@@ -1417,6 +1417,7 @@ optgroup {
     align-items: center;
     flex-direction: column;
     gap: 80px;
+    font-size: 31px;
 }
 
 

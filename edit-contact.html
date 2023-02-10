@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="./js/contacts-script.js"></script>
+    <script src="js/mini_backend.js"></script>
+
 </head>
 
 <style>
@@ -139,15 +141,34 @@
         align-items: center;
         padding: 18px 10px;
         gap: 10px;
-        width: 208px;
+        width: 190px;
         height: 61px;
-        background: #2A3647;
+        background-color: #2A3647;
         border-radius: 10px;
         color: white;
         font-weight: 600;
         font-size: 21px;
         border: none;
     }
+
+    .edit-button {
+        display: flex;
+        justify-content: center;
+        align-items: end;
+        margin-bottom: 25px;
+        width: 720px;
+        gap: 35px;
+        margin-left: 218px;
+    }
+
+    .primary-btn:hover {
+        background-color: #29abe2 !important;
+    }
+
+    .edit-button-red:hover {
+        background-color: red !important;
+    }
+
 </style>
 
 <body>
@@ -180,10 +201,12 @@
                         <img src="./assets/img/phone-logo.png">
                     </div>
 
-                    <button onclick="saveEditContact()" class="primary-btn">Save</button>
-
                 </div>
 
+                <div class="edit-button">
+                    <button onclick="deleteUser()" class="primary-btn edit-button-red">Delete Contact</button>
+                    <button onclick="saveEditContact()" class="primary-btn">Save Contact</button>
+                </div>
             </div>
         </div>
     </div>

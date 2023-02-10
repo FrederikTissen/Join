@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="style.css">
     <script src="./js/contacts-script.js"></script>
     <script src="./js/mini_backend.js"></script>
+    <script src="js/scriptAddTask.js"></script>
+
 </head>
 
 <body onload="renderAllContacts()">
@@ -65,21 +67,19 @@
     </div>
 
     <div class="contact-main">
-        <div class="headline-index-contact">
+        <div id="contact-headline" class="headline-index-contact">
             <span>Contacts</span>
             <img src="./assets/img/headline-bar.png">
             <p>Better with a team</p>
         </div>
-        <div id="show-contact" class="show-contact">
+        <div id="show-contact" class="show-contact"></div>
 
-        </div>
         <button id="add-new-contact-btn" onclick="addNewContact()" class="new-contact">
             <img src="./assets/img/new-contact.png">
         </button>
         <div id="myModal" class="modal">
             <div class="modal-content">
                 <h3>Contact successfully created!</h3>
-                <button onclick="closeSuccessBtn()" id="btn-successfully" class="btn-contact-create">Close</button>
             </div>
         </div>
     </div>
