@@ -35,6 +35,7 @@ function generateHTML(element, index) {
 }
 
 async function onloadBoard() {
+    await deleteSelectedAllContacts();
     
     await init();
     updateHTML();

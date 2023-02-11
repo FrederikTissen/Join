@@ -60,7 +60,6 @@ async function init() {
     //contacts = JSON.parse(backend.getItem('contacts')) || [];
     activeUser = JSON.parse(backend.getItem('activeUser')) || [];
 
-
     allTasks = JSON.parse(backend.getItem('allTasks')) || [];
     allCategories = JSON.parse(backend.getItem('allCategories')) || [];
     allContacts = JSON.parse(backend.getItem('allContacts')) || [];
@@ -72,10 +71,8 @@ async function init() {
     doneBoxCount = JSON.parse(backend.getItem('doneBoxCount')) || [];
     urgentTasksCount = JSON.parse(backend.getItem('urgentTasksCount')) || [];
 
-
-
-
 }
+
 
 async function includeHTMLaddContact() {
     let includeElements = document.querySelectorAll('[w3-include-html]');
