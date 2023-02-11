@@ -66,6 +66,15 @@ async function init() {
     allContacts = JSON.parse(backend.getItem('allContacts')) || [];
     selectedContacts = JSON.parse(backend.getItem('selectedContacts')) || [];
     allSubTasks = JSON.parse(backend.getItem('allSubTasks')) || [];
+    todoCount = JSON.parse(backend.getItem('todoCount')) || [];
+    inprogressBoxCount = JSON.parse(backend.getItem('inprogressBoxCount')) || [];
+    feedbackBoxCount = JSON.parse(backend.getItem('feedbackBoxCount')) || [];
+    doneBoxCount = JSON.parse(backend.getItem('doneBoxCount')) || [];
+    urgentTasksCount = JSON.parse(backend.getItem('urgentTasksCount')) || [];
+
+
+
+
 }
 
 async function includeHTMLaddContact() {

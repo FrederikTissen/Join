@@ -45,7 +45,9 @@ function updateHTML() {
     
 
     let todo = allTasks.filter(t => t['split'] == 'todo-box');
-    todoCount = todo.length;
+    //todoCount = todo.length;
+    //deleteTodoCount();
+    //saveTodoCount(todoCount);
     document.getElementById('todo-box').innerHTML = '';
     for (let index = 0; index < todo.length; index++) {
         const currentTask = todo[index];
@@ -54,7 +56,9 @@ function updateHTML() {
     }
 
     let inprogressBox = allTasks.filter(t => t['split'] == 'inprogress-box');
-    inprogressBoxCount = inprogressBox.length;
+    //inprogressBoxCount = inprogressBox.length;
+    //deleteInprogressBoxCount();
+    //saveInprogressBoxCount(inprogressBoxCount);
     document.getElementById('inprogress-box').innerHTML = '';
     for (let index = 0; index < inprogressBox.length; index++) {
         const currentTask = inprogressBox[index];
@@ -63,8 +67,9 @@ function updateHTML() {
     }
 
     let feedbackBox = allTasks.filter(t => t['split'] == 'feedback-box');
-    feedbackBoxCount = feedbackBox.length;
-    //saveFeedback();
+    //feedbackBoxCount = feedbackBox.length;
+    //deleteFeedbackBoxCount();
+    //saveFeedbackBoxCount(feedbackBoxCount);
     document.getElementById('feedback-box').innerHTML = '';
     for (let index = 0; index < feedbackBox.length; index++) {
         const currentTask = feedbackBox[index];
@@ -74,16 +79,62 @@ function updateHTML() {
     }
 
     let doneBox = allTasks.filter(t => t['split'] == 'done-box');
-    doneBoxCount = doneBox.length;
+    //doneBoxCount = doneBox.length;
+    //deleteDoneBoxCount();
+    //saveDoneBoxCount(doneBoxCount);
     document.getElementById('done-box').innerHTML = '';
     for (let index = 0; index < doneBox.length; index++) {
         const currentTask = doneBox[index];
         document.getElementById('done-box').innerHTML += generateHTML(currentTask);
         renderAssignedTo(currentTask);
-        
     }
 
+    
+    countOfAllUrgentTasks();
+    countOfAllTasks();
 }
+
+async function saveTodoCount(todoCount) {
+    await backend.setItem('todoCount', JSON.stringify(todoCount));
+}
+async function deleteTodoCount() {
+    await backend.deleteItem('todoCount');
+}
+
+async function saveInprogressBoxCount(inprogressBoxCount) {
+    await backend.setItem('inprogressBoxCount', JSON.stringify(inprogressBoxCount));
+}
+async function deleteInprogressBoxCount() {
+    await backend.deleteItem('inprogressBoxCount');
+}
+
+
+async function saveFeedbackBoxCount(feedbackBoxCount) {
+    await backend.setItem('feedbackBoxCount', JSON.stringify(feedbackBoxCount));
+}
+async function deleteFeedbackBoxCount() {
+    await backend.deleteItem('feedbackBoxCount');
+}
+
+async function saveDoneBoxCount(doneBoxCount) {
+    await backend.setItem('doneBoxCount', JSON.stringify(doneBoxCount));
+}
+async function deleteDoneBoxCount() {
+    await backend.deleteItem('doneBoxCount');
+}
+
+async function saveUrgentTasksCount(urgentTasksCount) {
+    await backend.setItem('urgentTasksCount', JSON.stringify(urgentTasksCount));
+}
+async function deleteUrgentTasksCount() {
+    await backend.deleteItem('urgentTasksCount');
+}
+
+
+
+
+
+
 
 function startDragging(i) {
 
@@ -119,9 +170,11 @@ function renderAssignedTo(element) {
         let thisContact = AssignedTo[j];
         let firstLetter = thisContact['firstName'].charAt(0);
         let secondLetter = thisContact['name'].charAt(0);
+        let contactColor = thisContact['color'];
+
 
         document.getElementById(`assigned-to-currentTask${element['id']}`).innerHTML += /*html*/`
-        <div class="contact-in-task">${firstLetter}${secondLetter}</div>
+        <div class="contact-in-task" style ="background-color: ${contactColor}">${firstLetter}${secondLetter}</div>
         `;
     }
 }
@@ -220,10 +273,13 @@ function renderAssignedBox(assignedTo) {
         let firstName = currentPerson['firstName'];
         let lastName = currentPerson['name'];
         let AssignedToBox = document.getElementById('assigned-box');
+        let contactColor = currentPerson['color'];
+
+        
 
         AssignedToBox.innerHTML += /*html*/ `
         <div class="assigned-box">
-            <div id="assigned-icon${i}" class="assigned-icon">${firstLetter}${secondLetter}</div>
+            <div id="assigned-icon${i}" class="assigned-icon" style ="background-color: ${contactColor}">${firstLetter}${secondLetter}</div>
             <div id="assigned-name">${firstName} ${lastName}</div>
         </div>
         `

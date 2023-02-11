@@ -11,9 +11,12 @@ let category;
 let priority;
 let selectedContacts = [];
 let allSubTasks = [];
+let urgentTasksCount;
 
 
 async function onload() {
+    await deleteSelectedAllContacts();
+
     await init();
     //deleteAllTasks();
     selectedContacts = 0;
@@ -25,9 +28,45 @@ async function onload() {
     renderSubTask();
     
     clock();
-
 }
 
+function countOfAllUrgentTasks() {
+    let allUrgentTasks = allTasks.filter(t => t['priority'] == 'urgent');
+    urgentTasksCount = allUrgentTasks.length;  
+
+    deleteUrgentTasksCount();
+    saveUrgentTasksCount(urgentTasksCount);
+}
+
+function countOfAllTasks() {
+    let todo = allTasks.filter(t => t['split'] == 'todo-box');
+    let inprogressBox = allTasks.filter(t => t['split'] == 'inprogress-box');
+    let feedbackBox = allTasks.filter(t => t['split'] == 'feedback-box');
+    let doneBox = allTasks.filter(t => t['split'] == 'done-box');
+    
+    
+    doneBoxCount = doneBox.length;
+    deleteDoneBoxCount();
+    saveDoneBoxCount(doneBoxCount);
+    
+    
+    feedbackBoxCount = feedbackBox.length;
+    deleteFeedbackBoxCount();
+    saveFeedbackBoxCount(feedbackBoxCount);
+    
+    
+    
+    inprogressBoxCount = inprogressBox.length;
+    deleteInprogressBoxCount();
+    saveInprogressBoxCount(inprogressBoxCount);
+
+
+    todoCount = todo.length;
+    deleteTodoCount();
+    saveTodoCount(todoCount);
+
+
+}
 
 
 
@@ -58,6 +97,7 @@ function addTask() {
     };
 
     saveTask(task);
+    countOfAllUrgentTasks();
     reset();
 }
 
@@ -66,6 +106,7 @@ async function reset() {
     //deleteAllSubTasks();
     //await deleteSelectedAllContacts();
     //await deleteAllCategories();
+    //await deleteAllCountsForSummery();
 
     selectedContacts = 0;
     allSubTasks = [];
@@ -253,7 +294,7 @@ function renderContacts() {
         newContact.innerHTML += /*html*/ `
             <div id="selection-contacts${i}" class="selection-contacts">
                 <div id="contact${i}" >${contactFirstname}  ${contactLastName}</div>
-                <img id="checkbox${i}" onclick="acceptContact(${i})" class="checkbox" src="/assets/img/checkbox-contact.png" alt="">
+                <img id="checkbox${i}" onclick="acceptContact(${i})" class="checkbox"  src="/assets/img/checkbox-contact.png" alt="">
             </div>
         `
     }
@@ -284,9 +325,11 @@ function renderContactIcon() {
         let firstLetter = selectedContacts[i]['firstName'].charAt(0);
         let secondLetter = selectedContacts[i]['name'].charAt(0);
         let contactIcons = document.getElementById('contact-icons');
+        let contactColor = selectedContacts[i]['color'];
+
 
         contactIcons.innerHTML += /*html*/ `
-            <div id="contact-icon${i}" class="contact-icon">${firstLetter}${secondLetter}</div>
+            <div id="contact-icon${i}" class="contact-icon" style ="background-color: ${contactColor}">${firstLetter}${secondLetter}</div>
         `
     }
 }
@@ -619,6 +662,15 @@ async function deleteSelectedAllContacts() {
 
 async function deleteAllCategories() {
     await backend.deleteItem('allCategories');
+}
+
+async function deleteAllCountsForSummery() {
+    await backend.deleteItem('todoCount');
+    await backend.deleteItem('inprogressBoxCount');
+    await backend.deleteItem('feedbackBoxCount');
+    await backend.deleteItem('doneBoxCount');
+    await backend.deleteItem('urgentTasksCount');
+
 }
 
 

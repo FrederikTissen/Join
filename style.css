@@ -641,7 +641,7 @@ input {
     width: 45px;
     height: 45px;
     border-radius: 100%;
-    background-color: #862424;
+    /*background-color: #862424;*/
     color: white;
     margin-top: 20px;
     margin-right: 8px;
