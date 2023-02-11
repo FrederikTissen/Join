@@ -15,11 +15,11 @@ let urgentTasksCount;
 
 
 async function onload() {
-    await deleteSelectedAllContacts();
+    //await deleteSelectedAllContacts();
 
     await init();
     //deleteAllTasks();
-    selectedContacts = 0;
+    //selectedContacts = [];
     allSubTasks = [];
     deleteAllSubTasks();
     renderCategoryBox();
@@ -104,7 +104,7 @@ function addTask() {
 async function reset() {
     //await deleteAllTasks();
     //deleteAllSubTasks();
-    //await deleteSelectedAllContacts();
+    await deleteSelectedAllContacts();
     //await deleteAllCategories();
     //await deleteAllCountsForSummery();
 

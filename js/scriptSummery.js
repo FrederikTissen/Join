@@ -6,7 +6,7 @@
 
 
 async function updatePage() {
-    await deleteSelectedAllContacts();
+    //await deleteSelectedAllContacts();
 
     await init();
     updateDate();
