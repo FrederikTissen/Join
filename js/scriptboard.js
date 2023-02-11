@@ -19,8 +19,8 @@ function generateHTML(element, index) {
     return /*html*/ `
             <div draggable="true" ondragstart="startDragging(${element['id']})" onclick="openShowTask(${element['id']})" class="current-task">
                 <div class="current-Task-Category ${categoryColor}">${category}</div>
-                <p>${title}</p>
-                <p class="margin-none">${description}</p>
+                <p class="task-title">${title}</p>
+                <p class="task-decription">${description}</p>
                 <div class="progress-bar-row">
                     <div class="progress-bar"></div>
                     <p class="margin-none">0/3 Done</p>
@@ -157,23 +157,23 @@ function openShowTask(i) {
     document.getElementById('show-Task-Background').classList = 'show-Task-Background';
 
     document.getElementById('showTask').innerHTML = /*html*/ `
-                <div class="current-Task-Category ${categoryColor}">${category}</div>
-                <h3>${title}</h3>
-                <p>${description}</p>
-                <p>Due date: ${date}</p>
-                <div class="priority-bar-row" >Priority: 
-                    <div id="prio-full-task" class="prio-full-task ${priority}-full-task">
-                        <p class="margin-none no-scale">${capitalizedPriority}</p>
+                <div class="showTask-Category ${categoryColor}">${category}</div>
+                <div class="showTask-exitButton"><img onclick="closeShowTask()" src="/assets/img/exit.png" alt=""></div>
+                <h3 class="showTask-title">${title}</h3>
+                <p class="showTask-description">${description}</p>
+                <p class="showTask-headers">Due date: ${date}</p>
+                <div class="priority-bar-row showTask-headers" >Priority: 
+                    <div id="prio-full-task" class="showTask-headers prio-full-task ${priority}-full-task">
+                        <p class="margin-none no-scale ">${capitalizedPriority}</p>
                         <img id="icon-prio" class="icon-full-task" src="/assets/img/${priorityImg}.png">
                     </div>
                 </div>
-                <p>Subtasks:</p>
-                <div id="subTask-box"></div>
-                <p>Assigned To:</p>
+                <p class="showTask-headers">Subtasks:</p>
+                <div id="subTask-box" class="showTask-subtasks"></div>
+                <p class="showTask-headers">Assigned To:</p>
                 <div id="assigned-box" ></div>
+                <div id="modify-task" class="modyfy-button" ><img src="/assets/img/edit-button.png" alt=""></div>
 
-                <button onclick="deleteTask(${i})">delete</button>
-                <button onclick="closeShowTask()">close</button>
     `
     renderAssignedBox(assignedTo);
     renderSubTaskBox(subTask);

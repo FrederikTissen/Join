@@ -17,6 +17,7 @@ async function onload() {
     await init();
     //deleteAllTasks();
     selectedContacts = 0;
+    allSubTasks = [];
     deleteAllSubTasks();
     renderCategoryBox();
     renderContactBox();
@@ -62,10 +63,12 @@ function addTask() {
 
 async function reset() {
     //await deleteAllTasks();
-    deleteAllSubTasks();
+    //deleteAllSubTasks();
     //await deleteSelectedAllContacts();
     //await deleteAllCategories();
+
     selectedContacts = 0;
+    allSubTasks = [];
     document.getElementById('title').value = '';
     document.getElementById('description').value = '';
     document.getElementById('input-SubTask').value = '';

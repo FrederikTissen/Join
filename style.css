@@ -1071,6 +1071,55 @@ optgroup {
     BOARD
 */
 
+.modyfy-button {
+    display: flex;
+    justify-content: end;
+    position: relative;
+    bottom: 40px;
+    cursor: pointer;
+}
+.showTask-title {
+    margin-top: 0px;
+    font-weight: 700;
+    font-size: 61px;
+    margin-bottom: unset;
+    color: #2A3647;
+    word-wrap: break-word;
+}
+
+.showTask-description {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 21px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+.showTask-headers {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 21px;
+}
+
+.showTask-subtasks {
+    word-wrap: break-word;
+
+}
+
+
+.task-title {
+    font-weight: 700;
+    font-size: 16px;
+    margin-bottom: unset;
+}
+
+.task-decription {
+    font-weight: 400;
+    font-size: 16px;
+    color: #A8A8A8;
+    margin: unset;
+}
+
 .content {
     display: flex;
     position: absolute;
@@ -1186,13 +1235,16 @@ optgroup {
 
 .showTask {
     display: flex;
-    width: 623px;
-
-    border: 1px solid grey;
+    width: 523px;
+    margin-top: 299px;
     border-radius: 15px;
     flex-direction: column;
     background-color: white;
-    padding: 15px;
+    /* padding: 50px; */
+    padding-top: 50px;
+    padding-right: 50px;
+    padding-bottom: 0px;
+    padding-left: 50px;
 }
 
 .show-Task-Background {
@@ -1217,6 +1269,30 @@ optgroup {
     border-radius: 8px;
     color: white;
 }
+
+.showTask-Category {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 25px;
+    padding-right: 25px;
+    height: 40px;
+    width: min-content;
+    border-radius: 8px;
+    color: white;
+    font-weight: 400;
+    font-size: 27px; 
+}
+
+.showTask-exitButton {
+    display: flex;
+    position: relative;
+    justify-content: flex-end;
+    bottom: 60px;
+    cursor: pointer;
+}
+
+
 
 .turquoise {
     background-color: rgb(138, 164, 255);
