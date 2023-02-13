@@ -217,11 +217,148 @@ input {
     background-color: #ffffff;
 }
 
+.sum-task-overview:hover {
+    background-color: #2A3647;
+    color: white;
+    transform: scale(1.1);
+}
+
 .sum-task-number {
     width: 41px;
     height: 77px;
     font-size: 64px;
     font-weight: 600;
+}
+
+.sum-task {
+    width: 87px;
+    height: 50px;
+    font-size: 21px;
+    font-weight: 300;
+}
+
+.sum-mid-all {
+    display: flex;
+}
+
+.sum-task-mid {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 61px;
+    width: 580px;
+    height: 150px;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 30px;
+}
+
+.sum-task-mid:hover {
+    background-color: #2A3647;
+    color: white;
+    transform: scale(1.1);
+}
+
+.sum-mid-left {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px;
+    gap: 18px;
+    height: 75px;
+}
+
+.sum-mid-left img {
+    object-fit: cover;
+}
+
+.sum-mid-overview {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 75px;
+    text-align: center;
+}
+
+.sum-mid-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 13px;
+}
+
+.sum-mid-greeting {
+    position: absolute;
+    left: 1200px;
+    top: 510px;
+    width: 250px;
+    height: 500px;
+}
+
+.sum-mobile {
+    display: none;
+}
+
+.sum-mid-span-greeting {
+    font-size: 47px;
+    font-weight: 500;
+}
+
+.sum-mid-span-username {
+    font-size: 64px;
+    font-weight: 700;
+    color: #29ABE2;
+}
+
+.sum-mid-span-top {
+    font-size: 21px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.sum-mid-span-bottom {
+    font-size: 16px;
+    text-align: center;
+}
+
+.sum-bottom-overview {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 35px;
+    width: 580px;
+    height: 150px;
+}
+
+.sum-bottom-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 18px;
+    background-color: #FFFFFF;
+    width: 272.5px;
+    height: 150px;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 30px;
+}
+
+.sum-bottom-div:hover {
+    background-color: #2A3647;
+    color: white;
+    transform: scale(1.1);
+}
+
+
+.sum-bottom-right-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
 /*Start of Style for add-task.html */
@@ -380,8 +517,6 @@ input {
     transform: scale(1);
     transition: all 75ms ease-in-out;
 }
-
-
 
 .prio-box {
     display: flex;
@@ -711,130 +846,6 @@ input {
 }
 
 /*End of Style for add-task.html */
-
-
-
-.sum-task {
-    width: 87px;
-    height: 50px;
-    font-size: 21px;
-    font-weight: 300;
-}
-
-.sum-mid-all {
-    display: flex;
-}
-
-.sum-task-mid {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 61px;
-    width: 580px;
-    height: 150px;
-    background: #FFFFFF;
-    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
-    border-radius: 30px;
-}
-
-.sum-mid-left {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding: 0px;
-    gap: 18px;
-    height: 75px;
-}
-
-.sum-mid-left img {
-    object-fit: cover;
-}
-
-.sum-mid-overview {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 75px;
-    text-align: center;
-}
-
-.sum-mid-right {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 0px;
-    gap: 13px;
-}
-
-.sum-mid-greeting {
-    position: absolute;
-    left: 1200px;
-    top: 510px;
-    width: 250px;
-    height: 500px;
-}
-
-.sum-mobile {
-    display: none;
-}
-
-.sum-mid-span-greeting {
-    font-size: 47px;
-    font-weight: 500;
-}
-
-.sum-mid-span-username {
-    font-size: 64px;
-    font-weight: 700;
-    color: #29ABE2;
-}
-
-.sum-mid-span-top {
-    font-size: 21px;
-    font-weight: 700;
-    text-align: center;
-}
-
-.sum-mid-span-bottom {
-    font-size: 16px;
-    text-align: center;
-}
-
-.sum-bottom-overview {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 35px;
-    width: 580px;
-    height: 150px;
-}
-
-.sum-bottom-div {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 18px;
-    background-color: #FFFFFF;
-    width: 272.5px;
-    height: 150px;
-    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
-    border-radius: 30px;
-}
-
-.sum-bottom-right-section {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-}
-
-
-
-
 
 
 /*

@@ -90,24 +90,33 @@
     .header {
         justify-content: space-between;
         padding: 10px 20px 10px 20px;
-        flex-direction: row-reverse;
+        flex-direction: row;
     }
 
     .new-logo {
         width: 50px;
+        display: block !important;
     }
 
     .header span {
        display: none;
     }
 
+    .headline-index span {
+        font-size: 46px;
+    }
+
     .headline-index {
         width: 100vw;
-        height: 26vh;
+        height: 21vh;
         justify-content: center;
         align-items: center;
         flex-direction: column;
         position: unset;
+    }
+
+    .sidebar-link:nth-child(2) {
+        margin-left: 0;
     }
 
     .headline-bar {
@@ -116,7 +125,7 @@
 
     .headline-index p {
         border-bottom: 3px solid #29abe2;
-        padding-bottom: 30px;
+        margin: 10px;
     }
 
     .summary-overview {
@@ -124,11 +133,13 @@
         align-items: center;
         width: 100vw;
         position: unset;
+        gap: 15px;
+        margin-top: 15px;
     }
 
     .sidebar-header {
         position: fixed;
-        top: 94vh;
+        top: 91vh;
         display: flex;
         width: 100vw;
     }
@@ -142,10 +153,12 @@
         flex-direction: row;
         justify-content: space-around;
         width: 100vw;
+        flex: 1 1 0;
+        flex-basis: 0;
     }
 
     .sidebar-mid {
-        display: block;
+        width: 100vw;
     }
 
     .sidebar-bottom {
@@ -154,6 +167,8 @@
 
     .sidebar-link {
         height: 75px;
+        padding: 0 12px;
+        flex: 1 1 0;
     }
 
     .sidebar-mid a {

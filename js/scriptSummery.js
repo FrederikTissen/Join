@@ -76,9 +76,14 @@ if (urgentTasksCount == 0) {
 
 
 function responsiveJoinLogo() {
-    if(screen.innerWidth < 850) {
-        console.log('geht');
-        document.getElementById('summary-header').innerHTML+=`
-        <img class="new-logo" src="./assets/img/join-logo.png">`;
+    if(window.innerWidth < 850) {
+        //document.getElementById('summary-header').innerHTML+=`
+        //<img class="new-logo" src="./assets/img/join-logo.png">`;
+        document.getElementById('new-logo').classList.remove('d-none');
+        location.reload();
+    }
+    if(window.innerWidth > 850) {
+        document.getElementById('new-logo').classList.add('d-none');
+        location.reload();
     }
 }
