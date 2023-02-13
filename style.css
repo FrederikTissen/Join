@@ -1,6 +1,9 @@
 body {
     font-family: 'inter', sans-serif;
     background-color: #F5F5F5;
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
 }
 
 button {
@@ -36,9 +39,8 @@ input {
     position: absolute;
     left: 0px;
     top: 0px;
+    height: 100vh;
     background-color: #2A3647;
-    width: 232px;
-    height: 1024px;
 }
 
 .header {
@@ -47,11 +49,6 @@ input {
     justify-content: space-between;
     align-items: center;
     padding: 20px 36px 20px 348px;
-    gap: 34px;
-    position: absolute;
-    width: 1208px;
-    left: 0px;
-    top: 0px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
     font-weight: 400;
     font-size: 21px;
@@ -85,14 +82,10 @@ input {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 66px 20px;
+    padding: 80px 20px;
     font-size: 16px;
     font-weight: 400;
 }
-
-/* .sidebar-top img {
-    width: 100px;
-} */
 
 .sidebar-mid {
     display: flex;
@@ -101,7 +94,7 @@ input {
     justify-content: center;
     width: 232px;
     height: 229px;
-    gap: 15px;
+    gap: 20px;
     font-size: 16px;
     font-weight: 400;
 }
@@ -110,8 +103,16 @@ input {
     display: flex;
     flex-direction: row-reverse;
     align-items: center;
-    padding: 8px 53px;
-    height: 46px;
+    justify-content: center;
+    height: 60px;
+}
+
+.sidebar-link:nth-child(2) {
+    margin-left: -25px;
+}
+
+.sidebar-link:hover {
+    background-color: #091931;
 }
 
 .sidebar-mid a {
@@ -132,6 +133,10 @@ input {
     width: 232px;
     height: 289px;
     color: white;
+}
+
+.sidebar-center {
+    width: inherit;
 }
 
 .imprint {
@@ -683,7 +688,6 @@ input {
 
 .sum-mid-all {
     display: flex;
-    flex-direction: row;
 }
 
 .sum-task-mid {
@@ -730,12 +734,15 @@ input {
 }
 
 .sum-mid-greeting {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    margin-left: 150px;
-    width: 385px;
+    position: absolute;
+    left: 1200px;
+    top: 510px;
+    width: 250px;
+    height: 500px;
+}
+
+.sum-mobile {
+    display: none;
 }
 
 .sum-mid-span-greeting {

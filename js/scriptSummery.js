@@ -11,6 +11,7 @@ async function updatePage() {
     await init();
     updateDate();
     updateCountOfTasks();
+    responsiveJoinLogo();
 }
 
 function updateDate() {
@@ -74,4 +75,10 @@ if (urgentTasksCount == 0) {
 }
 
 
-
+function responsiveJoinLogo() {
+    if(screen.innerWidth < 850) {
+        console.log('geht');
+        document.getElementById('summary-header').innerHTML+=`
+        <img class="new-logo" src="./assets/img/join-logo.png">`;
+    }
+}
