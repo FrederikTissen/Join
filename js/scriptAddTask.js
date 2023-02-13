@@ -26,13 +26,13 @@ async function onload() {
     renderContactBox();
     renderPrios();
     renderSubTask();
-    
+
     clock();
 }
 
 function countOfAllUrgentTasks() {
     let allUrgentTasks = allTasks.filter(t => t['priority'] == 'urgent');
-    urgentTasksCount = allUrgentTasks.length;  
+    urgentTasksCount = allUrgentTasks.length;
 
     deleteUrgentTasksCount();
     saveUrgentTasksCount(urgentTasksCount);
@@ -43,19 +43,19 @@ function countOfAllTasks() {
     let inprogressBox = allTasks.filter(t => t['split'] == 'inprogress-box');
     let feedbackBox = allTasks.filter(t => t['split'] == 'feedback-box');
     let doneBox = allTasks.filter(t => t['split'] == 'done-box');
-    
-    
+
+
     doneBoxCount = doneBox.length;
     deleteDoneBoxCount();
     saveDoneBoxCount(doneBoxCount);
-    
-    
+
+
     feedbackBoxCount = feedbackBox.length;
     deleteFeedbackBoxCount();
     saveFeedbackBoxCount(feedbackBoxCount);
-    
-    
-    
+
+
+
     inprogressBoxCount = inprogressBox.length;
     deleteInprogressBoxCount();
     saveInprogressBoxCount(inprogressBoxCount);
@@ -114,7 +114,7 @@ async function reset() {
     document.getElementById('description').value = '';
     document.getElementById('input-SubTask').value = '';
     document.getElementById('contact-icons').innerHTML = '';
-    
+
     renderCategoryBox();
     renderContactBox();
     renderPrios();
@@ -127,11 +127,11 @@ async function reset() {
 function renderCategories() {
 
     document.getElementById('category').innerHTML = /*html*/ `
-    <span>Category</span><br><br>
-    <img onclick="renderCategoryBox()" class="arrow-icon" src="/assets/img/arrow-down.png" alt="">
+    <span>Category</span>
     <div  id="category-box" class="category-box">
         <div onclick="renderCategoryBox()" class="category-box-render">
             <p  class="select-category">Select task category</p>
+            <img onclick="renderCategoryBox()" class="arrow-icon" src="/assets/img/arrow-down.png" alt="">
             
         </div>
         <div onclick="openInput()" class="selection-category">
@@ -162,11 +162,14 @@ function acceptCategory(i) {
     let newCategory = document.getElementById('category');
 
     newCategory.innerHTML = /*html*/ `
-    <span>Category</span><br><br>
-    <img onclick="renderCategories()" class="arrow-icon"  src="/assets/img/arrow-down.png" alt="">
+    <span>Category</span>
     <div onclick="renderCategories()" id="category-box" class="accepted-category">
-        <p class="accept-category">${category} </p>
-        <img class="colors" src="/assets/img/${color}.png" alt="">
+        <div class="accept-category">
+            <p class="accept-category">${category} </p>
+            <img class="colors" src="/assets/img/${color}.png" alt="">
+         </div>
+        <img onclick="renderCategories()" class="arrow-icon"  src="/assets/img/arrow-down.png" alt="">
+
     </div>
     `;
 }
@@ -175,11 +178,14 @@ function acceptNewCategory() {
 
 
     document.getElementById('category').innerHTML = /*html*/ `
-    <span>Category</span><br><br>
-    <img onclick="renderCategories()" class="arrow-icon" src="/assets/img/arrow-down.png" alt="">
+    <span>Category</span>
     <div onclick="renderCategories()" id="category-box" class="accepted-category">
-        <p class="accept-category">${category} </p>
-        <img class="colors" src="/assets/img/${color}.png" alt="">
+        <div class="accept-category">
+            <p class="accept-category">${category} </p>
+            <img class="colors" src="/assets/img/${color}.png" alt="">
+        </div>
+        <img onclick="renderCategories()" class="arrow-icon" src="/assets/img/arrow-down.png" alt="">
+
     </div>
     `;
 }
@@ -189,8 +195,8 @@ function openInput() {
 
     document.getElementById('category').innerHTML = '';
     document.getElementById('category').innerHTML = /*html*/ `
-    <span>Category</span><br><br>
-    <img class="arrow-d-none" src="/assets/img/arrow-down.png" alt="">
+    <span>Category</span>
+    
     <input id="input-category"  placeholder="New category name" class="addTotaskInputField" type="text">
     <div id="input-nav-box" class="input-nav-box">
         <img onclick="renderCategoryBox()" class="x-black" src="/assets/img/x-black.png">
@@ -244,10 +250,10 @@ function pushNewCategory() {
 function renderCategoryBox(i) {
     document.getElementById('category').innerHTML = '';
     document.getElementById('category').innerHTML = /*html*/ `
-    <span>Category</span><br><br>
-    <img onclick="renderCategories()" class="arrow-icon" src="/assets/img/arrow-down.png" alt="">
+    <span>Category</span>
     <div onclick="renderCategories()" id="category-box" class="category-box-standard">
         <p class="select-category">Select task category</p>
+        <img onclick="renderCategories()" class="arrow-icon" src="/assets/img/arrow-down.png" alt="">
         
     </div>
     `;
@@ -271,10 +277,12 @@ function renderContacts() {
     deleteAllSelectedContact();
 
     document.getElementById('assignedTo').innerHTML = /*html*/ `
-    <span>Assigned to</span><br><br>
-    <img onclick="renderContactBox()" class="arrow-icon"  src="/assets/img/arrow-down.png" alt="">
+    <span>Assigned to</span>
     <div   id="contact-box" class="category-box">
-        <p onclick="renderContactBox()" class="select-category">Select contacts to assign</p>
+        <div class="assigned-to-box">
+            <p onclick="renderContactBox()" class="select-category">Select contacts to assign</p>
+            <img onclick="renderContactBox()" class="arrow-icon"  src="/assets/img/arrow-down.png" alt="">
+        </div>
         <div onclick="openInputContact()" class="selection-category">
             <div>Invite new contact</div>
             <img src="/assets/img/contact-logo.png" alt="">
@@ -358,8 +366,7 @@ function deleteAllSelectedContact() {
 function openInputContact() {
     document.getElementById('assignedTo').innerHTML = '';
     document.getElementById('assignedTo').innerHTML = /*html*/ `
-    <span>Assigned to</span><br><br>
-    <img class="arrow-d-none" src="/assets/img/arrow-down.png" alt="">
+    <span>Assigned to</span>
     <input id="input-contact" onkeyup="filterContacts()" placeholder="Search New contact..." class="addTotaskInputField" type="text">
     
     <div id="input-nav-box-contact" class="input-nav-box">
@@ -385,10 +392,11 @@ function pushNewContact() {
 function renderContactBox() {
     document.getElementById('assignedTo').innerHTML = '';
     document.getElementById('assignedTo').innerHTML = /*html*/ `
-    <span>Assigned to</span><br><br>
-        <img onclick="renderContacts()" class="arrow-icon"  src="/assets/img/arrow-down.png" alt="">
-        <div onclick="renderContacts()" id="contact-box" class="category-box">
+    <span>Assigned to</span>
+        <div onclick="renderContacts()" id="contact-box" class="render-category-box">
             <p class="select-category">Select contacts to assign</p>
+            <img onclick="renderContacts()" class="arrow-icon"  src="/assets/img/arrow-down.png" alt="">
+
         </div>
         <div id="contact-icons" class="contact-icons"></div>
     `;
@@ -441,7 +449,7 @@ function takeEmail(i) {
 
 function renderPrios() {
     document.getElementById('prio').innerHTML = /*html*/ `
-    <span>Prio</span><br><br>
+    <span>Prio</span>
                     <div class="prio-box">
                         <div id="prio-urgent" onclick="choosePrio('urgent', 'arrows-up')" class="prio-icon">
                             <p class="margin-none no-scale">Urgent</p>
@@ -461,7 +469,7 @@ function renderPrios() {
 
 function resetPrios() {
     document.getElementById('prio').innerHTML = /*html*/ `
-    <span>Prio</span><br><br>
+    <span>Prio</span>
                     <div class="prio-box">
                         <div id="prio-urgent" onclick="renderPrios();" class="prio-icon">
                             <p class="margin-none no-scale">Urgent</p>
@@ -493,8 +501,7 @@ function choosePrio(prio, img) {
 function renderSubTask() {
     document.getElementById('subtask').innerHTML = '';
     document.getElementById('subtask').innerHTML = /*html*/ `
-    <span>Subtasks</span><br><br>
-    <img class="arrow-d-none" src="/assets/img/arrow-down.png" alt="">
+    <span>Subtasks</span>
     <input id="input-SubTask" placeholder="Add new subtask..." class="addTotaskInputField" type="text">
     
     <div id="input-nav-box-Subtask" class="input-nav-box">
@@ -648,7 +655,7 @@ async function deleteAllTasks() {
 }
 
 async function deleteTask(task) {
-    await backend.deleteItem('allTasks'/task);
+    await backend.deleteItem('allTasks' / task);
 }
 
 
