@@ -12,6 +12,9 @@ let priority;
 let selectedContacts = [];
 let allSubTasks = [];
 let urgentTasksCount;
+let currentContactStat;
+let currentCategoryStat;
+let currentPrioStat;
 
 
 async function onload() {
@@ -78,6 +81,7 @@ function clock() {
 }
 
 function addTask() {
+    checkFormValidation();
     let title = document.getElementById('title');
     let description = document.getElementById('description');
     let date = document.getElementById('date');
@@ -122,6 +126,29 @@ async function reset() {
 
 }
 
+function checkFormValidation() {
+    let title = document.getElementById('title').value;
+    let description = document.getElementById('description').value;
+    let date = document.getElementById('date').value;
+
+    if (title == 0) {
+        console.log('Gib einen Titel ein!');
+    } else if (description == 0) {
+            console.log('Gib eine Beschreibung ein!');
+        } else if (!currentCategoryStat) {
+            console.log('Wähle eine Kategorie!');
+        } else if (!currentContactStat) {
+            console.log('Wähle einen Kontakt!');
+        } else if (date == 0) {
+            console.log('Wähle ein Datum!');
+        } else if (!currentPrioStat) {
+            console.log('Wähle eine Priorität!');
+        } else if (currentPrioStat) {
+            addTask();
+        } 
+    }
+
+  
 
 
 function renderCategories() {
@@ -157,6 +184,7 @@ function renderCategories() {
 
 function acceptCategory(i) {
     currentCategory = allCategories[i];
+    currentCategoryStat = true;
     category = currentCategory['categoryName'];
     color = currentCategory['categoryColor'];
     let newCategory = document.getElementById('category');
@@ -196,25 +224,27 @@ function openInput() {
     document.getElementById('category').innerHTML = '';
     document.getElementById('category').innerHTML = /*html*/ `
     <span>Category</span>
-    
-    <input id="input-category"  placeholder="New category name" class="addTotaskInputField" type="text">
-    <div id="input-nav-box" class="input-nav-box">
-        <img onclick="renderCategoryBox()" class="x-black" src="/assets/img/x-black.png">
-        <img class="line" src="/assets/img/line.png">
-        <img onclick="pushNewCategory()" class="hook" src="/assets/img/hook.png">
-    </div>
-    <div class="color-box">
-        <img id="turquoise" onclick="chooseColor('turquoise')" class="colors" src="/assets/img/turquoise.png" alt="">
-        <img id="red" onclick="chooseColor('red')" class="colors" src="/assets/img/red.png" alt="">
-        <img id="green" onclick="chooseColor('green')" class="colors" src="/assets/img/green.png" alt="">
-        <img id="orange" onclick="chooseColor('orange')" class="colors" src="/assets/img/orange.png" alt="">
-        <img id="purple" onclick="chooseColor('purple')" class="colors" src="/assets/img/purple.png" alt="">
-        <img id="blue" onclick="chooseColor('blue')" class="colors" src="/assets/img/blue.png" alt="">
-    </div>      
+            <input id="input-category"   placeholder="New category name" class="addTotaskInputField" type="text">
+            <div id="input-nav-box" class="input-nav-box">
+                <img onclick="renderCategoryBox()" class="x-black" src="/assets/img/x-black.png">
+                <img class="line" src="/assets/img/line.png">
+                <img onclick="pushNewCategory()" class="hook" src="/assets/img/hook.png">
+            </div> 
+            <div class="color-box">
+                <img id="turquoise" onclick="chooseColor('turquoise')" class="colors" src="/assets/img/turquoise.png" alt="">
+                <img id="red" onclick="chooseColor('red')" class="colors" src="/assets/img/red.png" alt="">
+                <img id="green" onclick="chooseColor('green')" class="colors" src="/assets/img/green.png" alt="">
+                <img id="orange" onclick="chooseColor('orange')" class="colors" src="/assets/img/orange.png" alt="">
+                <img id="purple" onclick="chooseColor('purple')" class="colors" src="/assets/img/purple.png" alt="">
+                <img id="blue" onclick="chooseColor('blue')" class="colors" src="/assets/img/blue.png" alt="">
+            </div>
+          
+           
     `;
 }
 
 function chooseColor(colorOfCategory) {
+
     document.getElementById('turquoise').classList.remove('color-box-hover');
     document.getElementById('red').classList.remove('color-box-hover');
     document.getElementById('green').classList.remove('color-box-hover');
@@ -228,26 +258,34 @@ function chooseColor(colorOfCategory) {
 
 }
 
+
 function pushNewCategory() {
     category = document.getElementById('input-category').value;
-
-
-    let newCategory = {
-        'categoryName': category,
-        'categoryColor': color,
-    };
+    currentCategoryStat = true;
 
 
 
+    if (color == '') {
+        console.log('Bitte Farbe wählen');
+    } else {
+        let newCategory = {
+            'categoryName': category,
+            'categoryColor': color,
+        };
 
 
-    saveCategory(newCategory);
-    acceptNewCategory();
-    ;
+        saveCategory(newCategory);
+        acceptNewCategory();
+        ;
+    }
+
+
+
 
 }
 
 function renderCategoryBox(i) {
+    currentCategoryStat = false;
     document.getElementById('category').innerHTML = '';
     document.getElementById('category').innerHTML = /*html*/ `
     <span>Category</span>
@@ -312,6 +350,8 @@ function renderContacts() {
 
 
 function acceptContact(i) {
+    currentContactStat = true;
+
     currentContact = allContacts[i];
     let contactFirstname = currentContact['firstName'];
     let contactLastName = currentContact['name'];
@@ -344,6 +384,7 @@ function renderContactIcon() {
 
 
 function acceptNotContact(i) {
+    currentContactStat = false;
     selectedContacts = [];
     saveSelectedContact(i);
 
@@ -448,6 +489,8 @@ function takeEmail(i) {
 
 
 function renderPrios() {
+    currentPrioStat = false;
+
     document.getElementById('prio').innerHTML = /*html*/ `
     <span>Prio</span>
                     <div class="prio-box">
@@ -468,6 +511,7 @@ function renderPrios() {
 }
 
 function resetPrios() {
+    currentPrioStat = false;
     document.getElementById('prio').innerHTML = /*html*/ `
     <span>Prio</span>
                     <div class="prio-box">
@@ -489,6 +533,7 @@ function resetPrios() {
 
 function choosePrio(prio, img) {
     resetPrios();
+    currentPrioStat = true;
     let prioId = document.getElementById(`prio-${prio}`);
     let icon = document.getElementById(`icon-${prio}`);
     prioId.classList.add(`${prio}`);

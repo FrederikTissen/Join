@@ -10,10 +10,10 @@
     <link rel="stylesheet" href="fonts.css"> <!-- FONTS ORDNER RICHTIG ? -->
     <script src="js/mini_backend.js"></script>
     <script src="js/scriptboard.js"></script>
-    
+
     <script src="js/scriptAddTask.js"></script>
     <script src="js/contacts-script.js"></script>
-    
+
 </head>
 
 
@@ -75,24 +75,26 @@
             <h1>Add task</h1>
         </div>
         <div id="taskContent" class="taskContent">
+
             <div id="taskContentLeft" class="taskContentLeft">
+                
 
-                <div class="addToTaskInputSection">
-                    <span>Title</span>
-                    <input placeholder="Enter a title" class="addTotaskInputField " id="title">
-                </div>
+                    <div class="addToTaskInputSection">
+                        <span>Title</span>
+                        <input  placeholder="Enter a title" class="addTotaskInputField " id="title">
+                    </div>
 
-                <div class="addToTaskInputSection">
-                    <span>Description</span>
-                    <textarea id="description" placeholder="Enter a Description" class="input-description"></textarea>
-                </div>
+                    <div class="addToTaskInputSection">
+                        <span>Description</span>
+                        <textarea id="description"  placeholder="Enter a Description"
+                            class="input-description"></textarea>
+                    </div>
 
-                <div id="category" class="addToTaskInputSection"></div>
+                    <div id="category" class="addToTaskInputSection"></div>
 
+                    <div id="assignedTo" class="addToTaskInputSection">
 
-                <div id="assignedTo" class="addToTaskInputSection">
-
-                </div>
+                    </div>
 
 
 
@@ -115,10 +117,12 @@
 
                 <div class="btnRow">
                     <button id="addToTaskClearBtn" onclick="reset()" class="btn addToTaskClearBtn">Clear x</button>
-                    <button id="addToTaskCreateBtn" onclick="addTask()" class="btn addToTaskCreateBtn">Create
+                    <button id="addToTaskCreateBtn" onclick="checkFormValidation()" class="btn addToTaskCreateBtn">Create
                         Task</button>
                 </div>
+                
             </div>
+
         </div>
 
 
