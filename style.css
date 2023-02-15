@@ -1,3 +1,8 @@
+html {
+    width: 100vw;
+    height: 100vh;
+}
+
 body {
     font-family: 'inter', sans-serif;
     background-color: #F5F5F5;
@@ -107,10 +112,11 @@ input {
     align-items: center;
     justify-content: center;
     height: 60px;
+    width: inherit;
 }
 
 .sidebar-link:nth-child(2) {
-    margin-left: -25px;
+    margin-left: -15px;
 }
 
 .sidebar-link:hover {
@@ -139,6 +145,8 @@ input {
 
 .sidebar-center {
     width: inherit;
+    display: flex;
+    flex-direction: column;
 }
 
 .imprint {
@@ -892,7 +900,6 @@ input {
 
 .headline-index-contact {
     display: flex;
-    flex-direction: row;
     justify-content: flex-end;
     align-items: center;
     padding: 0px;
@@ -917,7 +924,7 @@ input {
 .contact-list-overview {
     position: absolute;
     width: 453px;
-    height: 935px;
+    height: 93vh;
     left: 232px;
     top: 89px;
     background: #FFFFFF;
@@ -933,7 +940,6 @@ input {
     position: absolute;
     width: 357px;
     height: 1072px;
-    left: 48px;
     top: 2px;
 }
 
@@ -957,7 +963,6 @@ input {
     gap: 35px;
     width: 357px;
     height: 79px;
-    border-radius: 10px;
 }
 
 .contact-card:hover {
@@ -998,7 +1003,6 @@ input {
     flex-direction: column;
     align-items: flex-start;
     padding: 0px;
-    width: 140px;
     height: 49px;
 }
 
@@ -1075,6 +1079,8 @@ input {
     border: 1px solid #2A3647;
     border-radius: 10px;
     cursor: pointer;
+    color: white;
+    font-size: 21px;
 }
 
 .btn-contact-create {

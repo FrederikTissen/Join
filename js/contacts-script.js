@@ -171,7 +171,7 @@ function generateContactfield(i, firstChar, secondChar, color) {
     <div class="show-contact-headline">
         <div id="contact-img${i}" class="contact-img-big" style="background-color:${color}">${firstChar} ${secondChar}</div>
         <div class="show-contact-headline-right"> 
-            <div>${contacts[i]['firstName']} ${contacts[i]['name']}</div>
+            <div class="contact-head-name">${contacts[i]['firstName']} ${contacts[i]['name']}</div>
             <div id="add-task" class="blue-font"> + Add Task </div>
         </div>
     </div>

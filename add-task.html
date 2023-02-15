@@ -32,28 +32,30 @@
             <img class="join-logo" src="./assets/img/join-logo-white.png">
         </div>
         <div class="sidebar-mid">
-            <div class="sidebar-link" id="sidebar-link0">
-                <a href="./index.html">Summary</a>
-                <div>
-                    <img src="./assets/img/summary-logo.png">
+            <div class="sidebar-center">
+                <div class="sidebar-link" id="sidebar-link0">
+                    <a href="./index.html">Summary</a>
+                    <div>
+                        <img src="./assets/img/summary-logo.png">
+                    </div>
                 </div>
-            </div>
-            <div class="sidebar-link" id="sidebar-link1">
-                <a href="./board.html">Board</a>
-                <div>
-                    <img src="./assets/img/board-logo.png">
+                <div class="sidebar-link" id="sidebar-link1">
+                    <a href="./board.html">Board</a>
+                    <div>
+                        <img src="./assets/img/board-logo.png">
+                    </div>
                 </div>
-            </div>
-            <div class="sidebar-link sidebar-active" id="sidebar-link2">
-                <a href="./add-task.html"> Add Task</a>
-                <div>
-                    <img src="./assets/img/add-task-logo.png">
+                <div class="sidebar-link sidebar-active" id="sidebar-link2">
+                    <a href="./add-task.html"> Add Task</a>
+                    <div>
+                        <img src="./assets/img/add-task-logo.png">
+                    </div>
                 </div>
-            </div>
-            <div class="sidebar-link" id="sidebar-link3">
-                <a href="./contacts.html">Contacts</a>
-                <div>
-                    <img src="./assets/img/contacts-logo.png">
+                <div class="sidebar-link" id="sidebar-link3">
+                    <a href="./contacts.html">Contacts</a>
+                    <div>
+                        <img src="./assets/img/contacts-logo.png">
+                    </div>
                 </div>
             </div>
         </div>
@@ -77,24 +79,23 @@
         <div id="taskContent" class="taskContent">
 
             <div id="taskContentLeft" class="taskContentLeft">
-                
 
-                    <div class="addToTaskInputSection">
-                        <span>Title</span>
-                        <input  placeholder="Enter a title" class="addTotaskInputField " id="title">
-                    </div>
 
-                    <div class="addToTaskInputSection">
-                        <span>Description</span>
-                        <textarea id="description"  placeholder="Enter a Description"
-                            class="input-description"></textarea>
-                    </div>
+                <div class="addToTaskInputSection">
+                    <span>Title</span>
+                    <input placeholder="Enter a title" class="addTotaskInputField " id="title">
+                </div>
 
-                    <div id="category" class="addToTaskInputSection"></div>
+                <div class="addToTaskInputSection">
+                    <span>Description</span>
+                    <textarea id="description" placeholder="Enter a Description" class="input-description"></textarea>
+                </div>
 
-                    <div id="assignedTo" class="addToTaskInputSection">
+                <div id="category" class="addToTaskInputSection"></div>
 
-                    </div>
+                <div id="assignedTo" class="addToTaskInputSection">
+
+                </div>
 
 
 
@@ -117,10 +118,11 @@
 
                 <div class="btnRow">
                     <button id="addToTaskClearBtn" onclick="reset()" class="btn addToTaskClearBtn">Clear x</button>
-                    <button id="addToTaskCreateBtn" onclick="checkFormValidation()" class="btn addToTaskCreateBtn">Create
+                    <button id="addToTaskCreateBtn" onclick="checkFormValidation()"
+                        class="btn addToTaskCreateBtn">Create
                         Task</button>
                 </div>
-                
+
             </div>
 
         </div>

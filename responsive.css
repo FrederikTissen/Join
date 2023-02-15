@@ -1,5 +1,5 @@
 /*
-    SUMMARY
+   #### SUMMARY ####
 */
 @media (max-width: 1500px) {
     .sum-mid-greeting {
@@ -99,7 +99,7 @@
     }
 
     .header span {
-       display: none;
+        display: none;
     }
 
     .headline-index span {
@@ -205,4 +205,278 @@
     .sidebar-link div {
         width: 35px;
     }
+}
+
+/*
+    #### CONTACTS ####
+*/
+
+@media (max-width: 1400px) {
+    .new-contact {
+        left: 700px;
+    }
+
+    .headline-index-contact {
+        left: 700px;
+    }
+}
+
+@media (max-width: 1300px) {
+    .show-contact {
+        left: 670px;
+    }
+
+    .headline-index-contact span {
+        font-size: 50px;
+    }
+
+    .headline-index-contact p {
+        font-size: 24px;
+    }
+
+    .headline-index-contact {
+        gap: 20px;
+        width: unset;
+        left: 670px;
+    }
+
+    .contact-list {
+        width: inherit;
+    }
+
+    .contact-list-overview {
+        width: 390px;
+    }
+
+    .first-char {
+        margin-bottom: 15px;
+    }
+
+    .new-contact {
+        left: 660px;
+    }
+}
+
+@media (max-width: 1200px) {
+    .contact-list-overview {
+        width: 330px;
+    }
+
+    .headline-index-contact {
+        top: 150px;
+        left: 590px;
+        gap: 15px;
+    }
+
+    .show-contact {
+        top: 260px;
+        width: 400px;
+        left: 590px;
+    }
+
+    .show-contact-headline {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .headline-index-contact span {
+        font-size: 42px;
+    }
+
+    .show-contact-middle {
+        gap: 50px;
+    }
+
+    .new-contact {
+        left: 580px;
+    }
+
+}
+
+@media (max-width: 1000px) {
+    .contact-list-overview {
+        width: 285px;
+    }
+
+    .first-char {
+        width: 200px;
+        padding-left: 20px;
+    }
+
+    .contact-card {
+        gap: 20px;
+        align-items: center;
+        width: inherit;
+        padding: unset;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+    .headline-index-contact {
+        flex-direction: column;
+        gap: 0;
+        left: 600px;
+    }
+
+    .headline-index-contact p {
+        margin: 5px;
+        font-size: 20px;
+        border-bottom: 3px solid #29abe2;
+        padding-bottom: 12px;
+    }
+
+    .headline-index-contact span {
+        font-size: 50px;
+    }
+
+    .headline-index-contact img {
+        display: none;
+    }
+
+    .show-contact {
+        width: 400px;
+        height: 620px;
+        left: 540px;
+    }
+
+    .show-contact-middle {
+        gap: 20px;
+        flex-direction: column-reverse;
+        align-items: flex-start;
+    }
+
+    .show-contact-headline-right {
+        margin-left: 0;
+    }
+
+    .blue-font {
+        font-size: 20px;
+    }
+
+    .contact-head-name {
+        font-size: 40px;
+    }
+}
+
+@media (max-width: 850px) {
+    .contact-list-overview {
+        left: 0;
+        top: 69px;
+        height: 86vh;
+    }
+
+    .contact-main {
+        height: 86vh;
+        width: 100vw;
+        display: flex;
+        justify-content: center;
+    }
+
+    .headline-index-contact {
+        margin-left: 285px;
+        margin-top: 50px;
+        position: unset;
+    }
+
+    .show-contact {
+        left: 310px;
+        width: 300px;
+    }
+
+    .contact-head-name {
+        font-size: 30px;
+    }
+
+    .new-contact {
+        left: 300px;
+    }
+}
+
+@media (max-width: 550px) {
+    .contact-list-overview {
+        width: 200px;
+    }
+
+    .contact-card {
+        flex-direction: column;
+        height: unset;
+    }
+
+    .contact-info {
+        justify-content: center;
+    }
+
+    .contact-info p {
+        font-size: 14px;
+    }
+
+    .contact-img {
+        margin-left: 0;
+    }
+
+    .show-contact {
+        left: 230px;
+    }
+
+    .headline-index-contact {
+        margin-left: 225px;
+        margin-top: 75px;
+    }
+
+    .headline-index-contact span {
+        font-size: 46px;
+    }
+
+    .headline-index-contact p {
+        font-size: 18px;
+    }
+
+    .new-contact {
+        left: 220px;
+    }
+}
+
+@media (max-width: 450px) {
+    .contact-main {
+        background-color: #ffffff;
+    }
+    
+    .show-contact {
+        display: none;
+    }
+
+    .contact-list-overview {
+        width: 100vw;
+        height: 82vh;
+        top: 125px;
+    }
+
+    .headline-index-contact {
+        display: none;
+    }
+
+    .contact-img {
+        width: 70px;
+        height: 70px;
+    }
+
+    .contact-info p {
+        font-size: 18px;
+    }
+
+    .contact-info span {
+        font-size: 30px;
+    }
+
+    .contact-card {
+        gap: 15px;
+    }
+
+    .new-contact {
+        top: 69px;
+        left: unset;
+        width: 140px;
+        height: 50px;
+    }
+
 }

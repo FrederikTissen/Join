@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="responsive.css">
     <script src="./js/contacts-script.js"></script>
     <script src="./js/mini_backend.js"></script>
     <script src="js/scriptAddTask.js"></script>
@@ -27,61 +28,67 @@
             <img class="join-logo" src="./assets/img/join-logo-white.png">
         </div>
         <div class="sidebar-mid">
-            <div class="sidebar-link" id="sidebar-link0">
-                <a href="./index.html">Summary</a>
-                <div>
-                    <img src="./assets/img/summary-logo.png">
+            <div class="sidebar-center">
+                <div class="sidebar-link" id="sidebar-link0">
+                    <a href="./index.html">Summary</a>
+                    <div>
+                        <img src="./assets/img/summary-logo.png">
+                    </div>
                 </div>
-            </div>
-            <div class="sidebar-link" id="sidebar-link1">
-                <a href="./board.html">Board</a>
-                <div>
-                    <img src="./assets/img/board-logo.png">
+                <div class="sidebar-link" id="sidebar-link1">
+                    <a href="./board.html">Board</a>
+                    <div>
+                        <img src="./assets/img/board-logo.png">
+                    </div>
                 </div>
-            </div>
-            <div class="sidebar-link sidebar-active" id="sidebar-link2">
-                <a href="./add-task.html"> Add Task</a>
-                <div>
-                    <img src="./assets/img/add-task-logo.png">
+                <div class="sidebar-link sidebar-active" id="sidebar-link2">
+                    <a href="./add-task.html"> Add Task</a>
+                    <div>
+                        <img src="./assets/img/add-task-logo.png">
+                    </div>
                 </div>
-            </div>
-            <div class="sidebar-link" id="sidebar-link3">
-                <a href="./contacts.html">Contacts</a>
-                <div>
-                    <img src="./assets/img/contacts-logo.png">
+                <div class="sidebar-link" id="sidebar-link3">
+                    <a href="./contacts.html">Contacts</a>
+                    <div>
+                        <img src="./assets/img/contacts-logo.png">
+                    </div>
                 </div>
             </div>
         </div>
         <div class="sidebar-bottom">
-                <div class="sidebarBottomLegalNotice ">
-                    <a href="./legal-notice.html">
-                        <img src="./assets/img/info-logo.png"> <span>Legal notice</span>
-                    </a>
+            <div class="sidebarBottomLegalNotice ">
+                <a href="./legal-notice.html">
+                    <img src="./assets/img/info-logo.png"> <span>Legal notice</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!--########################################################################################
+        ########################################################################################
+        #####################################################################################-->
+    <div class="contact">
+        <div class="contact-list-overview">
+            <div id="contact-list" class="contact-list">
+                <!-- js injection -->
+            </div>
+        </div>
+        <div class="contact-main">
+            <div id="contact-headline" class="headline-index-contact">
+                <span>Contacts</span>
+                <img src="./assets/img/headline-bar.png">
+                <p>Better with a team</p>
+            </div>
+            <div id="show-contact" class="show-contact"></div>
+            <button id="add-new-contact-btn" onclick="addNewContact()" class="new-contact">
+                New Contact<img src="./assets/img/user-plus.png">
+            </button>
+            <div id="myModal" class="modal">
+                <div class="modal-content">
+                    <h3>Contact successfully created!</h3>
                 </div>
-        </div>
-    </div>
-    <div class="contact-list-overview">
-        <div id="contact-list" class="contact-list">
-            <!-- js injection -->
-        </div>
-    </div>
-
-    <div class="contact-main">
-        <div id="contact-headline" class="headline-index-contact">
-            <span>Contacts</span>
-            <img src="./assets/img/headline-bar.png">
-            <p>Better with a team</p>
-        </div>
-        <div id="show-contact" class="show-contact"></div>
-
-        <button id="add-new-contact-btn" onclick="addNewContact()" class="new-contact">
-            <img src="./assets/img/new-contact.png">
-        </button>
-        <div id="myModal" class="modal">
-            <div class="modal-content">
-                <h3>Contact successfully created!</h3>
             </div>
         </div>
     </div>
 </body>
+
 </html>

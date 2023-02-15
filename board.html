@@ -35,28 +35,30 @@
                 <img class="join-logo" src="./assets/img/join-logo-white.png">
             </div>
             <div class="sidebar-mid">
-                <div class="sidebar-link" id="sidebar-link0">
-                    <a href="./index.html">Summary</a>
-                    <div>
-                        <img src="./assets/img/summary-logo.png">
+                <div class="sidebar-center">
+                    <div class="sidebar-link" id="sidebar-link0">
+                        <a href="./index.html">Summary</a>
+                        <div>
+                            <img src="./assets/img/summary-logo.png">
+                        </div>
                     </div>
-                </div>
-                <div class="sidebar-link" id="sidebar-link1">
-                    <a href="./board.html">Board</a>
-                    <div>
-                        <img src="./assets/img/board-logo.png">
+                    <div class="sidebar-link" id="sidebar-link1">
+                        <a href="./board.html">Board</a>
+                        <div>
+                            <img src="./assets/img/board-logo.png">
+                        </div>
                     </div>
-                </div>
-                <div class="sidebar-link sidebar-active" id="sidebar-link2">
-                    <a href="./add-task.html"> Add Task</a>
-                    <div>
-                        <img src="./assets/img/add-task-logo.png">
+                    <div class="sidebar-link sidebar-active" id="sidebar-link2">
+                        <a href="./add-task.html"> Add Task</a>
+                        <div>
+                            <img src="./assets/img/add-task-logo.png">
+                        </div>
                     </div>
-                </div>
-                <div class="sidebar-link" id="sidebar-link3">
-                    <a href="./contacts.html">Contacts</a>
-                    <div>
-                        <img src="./assets/img/contacts-logo.png">
+                    <div class="sidebar-link" id="sidebar-link3">
+                        <a href="./contacts.html">Contacts</a>
+                        <div>
+                            <img src="./assets/img/contacts-logo.png">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -72,7 +74,8 @@
             <div class="headline-board">
                 <span>Board</span>
                 <div class="add-search-bar">
-                    <input id="search-task" onkeyup="updateSearchedHTML()" class="search-task" type="text" placeholder="Find task">
+                    <input id="search-task" onkeyup="updateSearchedHTML()" class="search-task" type="text"
+                        placeholder="Find task">
                     <button onclick="openSubTaskMask()" class="add-task-btn"></button>
                 </div>
             </div>
@@ -82,28 +85,28 @@
                         <span>To do</span>
                         <img src="/assets/img/plus-button.png">
                     </div>
-                    <div id="todo-box"  class="task-box"></div>
+                    <div id="todo-box" class="task-box"></div>
                 </div>
                 <div id="in-progress" class="task" ondrop="moveTo('inprogress-box')" ondragover="allowDrop(event)">
                     <div class="section-header">
                         <span>In progress</span>
                         <img src="/assets/img/plus-button.png">
                     </div>
-                    <div id="inprogress-box"  class="task-box"></div>
+                    <div id="inprogress-box" class="task-box"></div>
                 </div>
                 <div id="awaiting-feedback" class="task" ondrop="moveTo('feedback-box')" ondragover="allowDrop(event)">
                     <div class="section-header">
                         <span>Awaiting Feedback</span>
                         <img src="/assets/img/plus-button.png">
                     </div>
-                    <div id="feedback-box"  class="task-box"></div>
+                    <div id="feedback-box" class="task-box"></div>
                 </div>
                 <div id="done" class="task" ondrop="moveTo('done-box')" ondragover="allowDrop(event)" class="task-box">
                     <div class="section-header">
                         <span>Done</span>
                         <img src="/assets/img/plus-button.png">
                     </div>
-                    <div id="done-box" >
+                    <div id="done-box">
                     </div>
                 </div>
 
@@ -183,7 +186,7 @@
         </div>
         <div id="show-Task-Background" class="show-Task-Background d-none">
             <div id="showTask" class="showTask">
-                
+
             </div>
         </div>
 </body>
