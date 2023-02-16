@@ -22,8 +22,8 @@ async function onload() {
 
     await init();
     await deleteSelectedAllContacts();
-    
-   
+
+
 
     selectedContacts = 0;
     //await deleteAllSelectedContact();
@@ -31,7 +31,7 @@ async function onload() {
     //selectedContacts = [];
     allSubTasks = [];
 
-    
+
     renderCategoryBox();
     renderContactBox();
     renderPrios();
@@ -44,7 +44,7 @@ async function reset() {
     //await deleteAllTasks();
     //deleteAllSubTasks();
     await deleteSelectedAllContacts();
-    
+
     //await deleteAllCategories();
     //await deleteAllCountsForSummery();
 
@@ -59,8 +59,8 @@ async function reset() {
     renderContactBox();
     renderPrios();
     renderSubTask();
-
 }
+
 
 function countOfAllUrgentTasks() {
     let allUrgentTasks = allTasks.filter(t => t['priority'] == 'urgent');
@@ -96,8 +96,6 @@ function countOfAllTasks() {
     todoCount = todo.length;
     deleteTodoCount();
     saveTodoCount(todoCount);
-
-
 }
 
 
@@ -105,16 +103,14 @@ function countOfAllTasks() {
 function clock() {
     var date = new Date();
     currentDate = date.toISOString().slice(0, 10);
-
     document.getElementById('date').value = currentDate;
 }
 
+
 function addTask() {
-    
     let title = document.getElementById('title');
     let description = document.getElementById('description');
     let date = document.getElementById('date');
-
 
     let task = {
         'id': allTasks.length,
@@ -134,11 +130,12 @@ function addTask() {
     reset();
 }
 
+
 async function reset() {
     //await deleteAllTasks();
     //deleteAllSubTasks();
     await deleteSelectedAllContacts();
-    
+
     //await deleteAllCategories();
     //await deleteAllCountsForSummery();
 
@@ -178,6 +175,18 @@ function checkFormValidation() {
     }
 }
 
+function showSuccessPopUp(content) {
+    let modal = document.getElementById('popup-addTask');
+    modal.style.display = 'block';
+    document.getElementById('popup-addTask').classList.remove('d-none');
+    document.getElementById('popup-content').innerHTML = /*html*/ `
+    <h3>${content}</h3>
+    `
+}
+
+function closeSuccessPopUp() {
+    document.getElementById('popup-addTask').classList.add('d-none');
+}
 
 
 
@@ -185,29 +194,20 @@ function renderCategories() {
     currentCategoryStat = false;
     color = false;
     category = false;
-    
+    let categorySection = document.getElementById('category');
 
-    document.getElementById('category').innerHTML = /*html*/ `
-    <span>Category</span>
-    <div  id="category-box" class="category-box">
-        <div onclick="renderCategoryBox()" class="category-box-render">
-            <p  class="select-category">Select task category</p>
-            <img onclick="renderCategoryBox()" class="arrow-icon" src="/assets/img/arrow-down.png" alt="">
-            
-        </div>
-        <div onclick="openInput()" class="selection-category">
-            <div>New category</div>
-        </div>
-    </div>
-    `;
+    categorySection.innerHTML = renderCategoriesTemplate();
+    renderEveryCategory();
+}
 
+function renderEveryCategory() {
     for (let i = 0; i < allCategories.length; i++) {
         currentCategory = allCategories[i];
         let category = currentCategory['categoryName'];
         color = currentCategory['categoryColor']
-        let newCategory = document.getElementById('category-box');
+        let categoryBox = document.getElementById('category-box');
 
-        newCategory.innerHTML += /*html*/ `
+        categoryBox.innerHTML += /*html*/ `
             <div onclick="acceptCategory(${i})" class="selection-category">
                 <div id="category${i}" >${category}</div>
                 <img class="colors" src="/assets/img/${color}.png" alt="">
@@ -223,33 +223,14 @@ function acceptCategory(i) {
     color = currentCategory['categoryColor'];
     let newCategory = document.getElementById('category');
 
-    newCategory.innerHTML = /*html*/ `
-    <span>Category</span>
-    <div onclick="renderCategories()" id="category-box" class="accepted-category">
-        <div class="accept-category">
-            <p class="accept-category">${category} </p>
-            <img class="colors" src="/assets/img/${color}.png" alt="">
-         </div>
-        <img onclick="renderCategories()" class="arrow-icon"  src="/assets/img/arrow-down.png" alt="">
-
-    </div>
-    `;
+    newCategory.innerHTML = templateAcceptCategory();
 }
 
 function acceptNewCategory() {
     currentCategoryStat = true;
+    let newCategory = document.getElementById('category');
 
-    document.getElementById('category').innerHTML = /*html*/ `
-    <span>Category</span>
-    <div onclick="renderCategories()" id="category-box" class="accepted-category">
-        <div class="accept-category">
-            <p class="accept-category">${category} </p>
-            <img class="colors" src="/assets/img/${color}.png" alt="">
-        </div>
-        <img onclick="renderCategories()" class="arrow-icon" src="/assets/img/arrow-down.png" alt="">
-
-    </div>
-    `;
+    newCategory.innerHTML = templateAcceptNewCategory();
 }
 
 
@@ -257,42 +238,26 @@ function openInput() {
     currentCategoryStat = true;
     color = false;
     category = false;
+    let categorySection = document.getElementById('category');
 
-    document.getElementById('category').innerHTML = '';
-    document.getElementById('category').innerHTML = /*html*/ `
-    <span>Category</span>
-            <input id="input-category"   placeholder="New category name" class="addTotaskInputField" type="text">
-            <div id="input-nav-box" class="input-nav-box">
-                <img onclick="renderCategoryBox()" class="x-black" src="/assets/img/x-black.png">
-                <img class="line" src="/assets/img/line.png">
-                <img onclick="pushNewCategory()" class="hook" src="/assets/img/hook.png">
-            </div> 
-            <div class="color-box">
-                <img id="turquoise" onclick="chooseColor('turquoise')" class="colors" src="/assets/img/turquoise.png" alt="">
-                <img id="red" onclick="chooseColor('red')" class="colors" src="/assets/img/red.png" alt="">
-                <img id="green" onclick="chooseColor('green')" class="colors" src="/assets/img/green.png" alt="">
-                <img id="orange" onclick="chooseColor('orange')" class="colors" src="/assets/img/orange.png" alt="">
-                <img id="purple" onclick="chooseColor('purple')" class="colors" src="/assets/img/purple.png" alt="">
-                <img id="blue" onclick="chooseColor('blue')" class="colors" src="/assets/img/blue.png" alt="">
-            </div>
-          
-           
-    `;
+    categorySection.innerHTML = '';
+    categorySection.innerHTML= templateOpenInput();
 }
 
 function chooseColor(colorOfCategory) {
+    allColors();
+    color = colorOfCategory;
+    let id = colorOfCategory;
+    document.getElementById(id).classList.add('color-box-hover');
+}
 
+function allColors() {
     document.getElementById('turquoise').classList.remove('color-box-hover');
     document.getElementById('red').classList.remove('color-box-hover');
     document.getElementById('green').classList.remove('color-box-hover');
     document.getElementById('orange').classList.remove('color-box-hover');
     document.getElementById('purple').classList.remove('color-box-hover');
     document.getElementById('blue').classList.remove('color-box-hover');
-
-    color = colorOfCategory;
-    let id = colorOfCategory;
-    document.getElementById(id).classList.add('color-box-hover');
-
 }
 
 
@@ -300,99 +265,49 @@ function pushNewCategory() {
     category = document.getElementById('input-category').value;
     currentCategoryStat = true;
 
-
     if (!category) {
         showSuccessPopUp('Wähle eine Kategory!');
     } else if (!color) {
         showSuccessPopUp('Wähle eine Farbe!');
     } else if (color) {
-        let newCategory = {
-            'categoryName': category,
-            'categoryColor': color,
-        };
-
-        saveCategory(newCategory);
-        acceptNewCategory();
-        ;
+        newCategory();
     }
-
 }
 
-function showSuccessPopUp(content) {
-    let modal = document.getElementById('popup-addTask');
-    modal.style.display = 'block';
-    document.getElementById('popup-addTask').classList.remove('d-none');
-    document.getElementById('popup-content').innerHTML = /*html*/ `
-    <h3>${content}</h3>
-    `
+function newCategory() {
+    let newCategory = {
+        'categoryName': category,
+        'categoryColor': color,
+    };
+    saveCategory(newCategory);
+    acceptNewCategory();
+    ;
 }
 
-function closeSuccessPopUp() {
-    document.getElementById('popup-addTask').classList.add('d-none');
-    /*document.getElementById('w3-add').classList.add('d-none');*/
-}
 
-function renderCategoryBox(i) {
+function renderCategoryBox() {
     currentCategoryStat = false;
     color = false;
-    category = false; 
-    document.getElementById('category').innerHTML = '';
-    document.getElementById('category').innerHTML = /*html*/ `
-    <span>Category</span>
-    <div onclick="renderCategories()" id="category-box" class="category-box-standard">
-        <p class="select-category">Select task category</p>
-        <img onclick="renderCategories()" class="arrow-icon" src="/assets/img/arrow-down.png" alt="">
-        
-    </div>
-    `;
+    category = false;
+    let categorySection = document.getElementById('category');
+
+    categorySection.innerHTML = '';
+    categorySection.innerHTML = templateRenderCategoryBox();
 }
 
-/*
-function choosePrio(prio) {
-    if (prio == 1) {
-        selectionPrio = 1
-    }
-    if (prio == 2) {
-        selectionPrio = 2
-    }
-    if (prio == 3) {
-        selectionPrio = 3
-    }
-}
-*/
+
 
 function renderContacts() {
     deleteAllSelectedContact();
-
-    document.getElementById('assignedTo').innerHTML = /*html*/ `
-    <span>Assigned to</span>
-    <div   id="contact-box" class="category-box">
-        <div class="assigned-to-box">
-            <p onclick="renderContactBox()" class="select-category">Select contacts to assign</p>
-            <img onclick="renderContactBox()" class="arrow-icon"  src="/assets/img/arrow-down.png" alt="">
-        </div>
-        <div onclick="openInputContact()" class="selection-category">
-            <div>Invite new contact</div>
-            <img src="/assets/img/contact-logo.png" alt="">
-        </div>
-    </div>
-    <div id="contact-icons" class="contact-icons"></div>
-    `;
+    let assignedTo = document.getElementById('assignedTo');
+    assignedTo.innerHTML = templateRenderContacts();
 
     for (let i = 0; i < allContacts.length; i++) {
         actualyContact = allContacts[i];
-        let contactFirstname = allContacts[i]['firstName'];
-        let contactLastName = allContacts[i]['name'];
-
-        /*let color = allCategories[i]['color'];*/
+        let contactFirstname = actualyContact['firstName'];
+        let contactLastName = actualyContact['name'];
         let newContact = document.getElementById('contact-box');
-
-        newContact.innerHTML += /*html*/ `
-            <div id="selection-contacts${i}" class="selection-contacts">
-                <div id="contact${i}" >${contactFirstname}  ${contactLastName}</div>
-                <img id="checkbox${i}" onclick="acceptContact(${i})" class="checkbox"  src="/assets/img/checkbox-contact.png" alt="">
-            </div>
-        `
+        newContact.innerHTML += templateNewContact(contactFirstname, contactLastName, i);
     }
 
     selectedContacts = [];
@@ -623,11 +538,6 @@ function pushNewSubTask() {
 
 }
 
-function deleteAllSubTasks() {
-    allSubTasks = [];
-    /*saveSubTasks();*/
-
-}
 
 function renderAllSubTasks() {
     document.getElementById('allSubtasks').innerHTML = '';
@@ -646,25 +556,6 @@ function renderAllSubTasks() {
     }
 }
 
-
-
-
-
-
-/*
-
-
-async function addContactToBackendr(newContact) {
-    contacts.push(newContact);
-    await backend.setItem('contacts', JSON.stringify(contacts));
-}
-
-
-async function deleteUserf(name) {
-    await backend.deleteItem('users');
-}
-
-*/
 
 
 
@@ -773,8 +664,21 @@ async function deleteAllCountsForSummery() {
     await backend.deleteItem('feedbackBoxCount');
     await backend.deleteItem('doneBoxCount');
     await backend.deleteItem('urgentTasksCount');
-
 }
+
+function deleteAllSubTasks() {
+    allSubTasks = [];
+    /*saveSubTasks();*/
+}
+
+
+
+
+
+
+
+
+
 
 
 
