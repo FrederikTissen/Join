@@ -472,8 +472,12 @@ input {
 }
 
 .btnRow {
-    padding-left: 20px;
-    padding-top: 40px;
+    padding-left: 125px;
+    padding-top: 154px;
+    width: 340px;
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
 }
 
 .sidebarBottomLegalNotice {
