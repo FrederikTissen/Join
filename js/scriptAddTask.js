@@ -21,6 +21,7 @@ async function onload() {
     //await deleteSelectedAllContacts();
 
     await init();
+    //await deleteAllSelectedContact();
     //deleteAllTasks();
     //selectedContacts = [];
     allSubTasks = [];
@@ -81,7 +82,7 @@ function clock() {
 }
 
 function addTask() {
-    checkFormValidation();
+    
     let title = document.getElementById('title');
     let description = document.getElementById('description');
     let date = document.getElementById('date');
@@ -109,6 +110,7 @@ async function reset() {
     //await deleteAllTasks();
     //deleteAllSubTasks();
     await deleteSelectedAllContacts();
+    
     //await deleteAllCategories();
     //await deleteAllCountsForSummery();
 
@@ -132,23 +134,23 @@ function checkFormValidation() {
     let date = document.getElementById('date').value;
 
     if (title == 0) {
-        console.log('Gib einen Titel ein!');
+        showSuccessPopUp('Gib einen Titel ein!');
     } else if (description == 0) {
-            console.log('Gib eine Beschreibung ein!');
-        } else if (!currentCategoryStat) {
-            console.log('Wähle eine Kategorie!');
-        } else if (!currentContactStat) {
-            console.log('Wähle einen Kontakt!');
-        } else if (date == 0) {
-            console.log('Wähle ein Datum!');
-        } else if (!currentPrioStat) {
-            console.log('Wähle eine Priorität!');
-        } else if (currentPrioStat) {
-            addTask();
-        } 
+        showSuccessPopUp('Gib eine Beschreibung ein!');
+    } else if (!currentCategoryStat) {
+        showSuccessPopUp('Wähle eine Kategorie!');
+    } else if (!currentContactStat) {
+        showSuccessPopUp('Wähle einen Kontakt!');
+    } else if (date == 0) {
+        showSuccessPopUp('Wähle ein Datum!');
+    } else if (!currentPrioStat) {
+        showSuccessPopUp('Wähle eine Priorität!');
+    } else if (currentPrioStat) {
+        addTask();
     }
+}
 
-  
+
 
 
 function renderCategories() {
@@ -273,15 +275,24 @@ function pushNewCategory() {
             'categoryColor': color,
         };
 
-
         saveCategory(newCategory);
         acceptNewCategory();
         ;
     }
+}
 
+function showSuccessPopUp(content) {
+    let modal = document.getElementById('popup-addTask');
+    modal.style.display = 'block';
+    document.getElementById('popup-addTask').classList.remove('d-none');
+    document.getElementById('popup-content').innerHTML = /*html*/ `
+    <h3>${content}</h3>
+    `
+}
 
-
-
+function closeSuccessPopUp() {
+    document.getElementById('popup-addTask').classList.add('d-none');
+    /*document.getElementById('w3-add').classList.add('d-none');*/
 }
 
 function renderCategoryBox(i) {
@@ -385,7 +396,7 @@ function renderContactIcon() {
 
 function acceptNotContact(i) {
     currentContactStat = false;
-    selectedContacts = [];
+    selectedContacts = 0;
     saveSelectedContact(i);
 
     renderContacts();
@@ -399,8 +410,9 @@ function pushSelctedContact(currentContact) {
 }
 
 function deleteAllSelectedContact() {
-    selectedContacts = [];
-    saveSelectedContact();
+    selectedContacts = 0;
+    currentSelectedContact = [];
+    /*saveSelectedContact();*/
 }
 
 
