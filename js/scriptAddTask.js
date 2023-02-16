@@ -21,17 +21,45 @@ async function onload() {
     //await deleteSelectedAllContacts();
 
     await init();
+    await deleteSelectedAllContacts();
+    
+   
+
+    selectedContacts = 0;
     //await deleteAllSelectedContact();
     //deleteAllTasks();
     //selectedContacts = [];
     allSubTasks = [];
-    deleteAllSubTasks();
+
+    
     renderCategoryBox();
     renderContactBox();
     renderPrios();
     renderSubTask();
 
     clock();
+}
+
+async function reset() {
+    //await deleteAllTasks();
+    //deleteAllSubTasks();
+    await deleteSelectedAllContacts();
+    
+    //await deleteAllCategories();
+    //await deleteAllCountsForSummery();
+
+    selectedContacts = 0;
+    allSubTasks = [];
+    document.getElementById('title').value = '';
+    document.getElementById('description').value = '';
+    document.getElementById('input-SubTask').value = '';
+    document.getElementById('contact-icons').innerHTML = '';
+
+    renderCategoryBox();
+    renderContactBox();
+    renderPrios();
+    renderSubTask();
+
 }
 
 function countOfAllUrgentTasks() {
@@ -154,6 +182,10 @@ function checkFormValidation() {
 
 
 function renderCategories() {
+    currentCategoryStat = false;
+    color = false;
+    category = false;
+    
 
     document.getElementById('category').innerHTML = /*html*/ `
     <span>Category</span>
@@ -205,7 +237,7 @@ function acceptCategory(i) {
 }
 
 function acceptNewCategory() {
-
+    currentCategoryStat = true;
 
     document.getElementById('category').innerHTML = /*html*/ `
     <span>Category</span>
@@ -222,6 +254,9 @@ function acceptNewCategory() {
 
 
 function openInput() {
+    currentCategoryStat = true;
+    color = false;
+    category = false;
 
     document.getElementById('category').innerHTML = '';
     document.getElementById('category').innerHTML = /*html*/ `
@@ -266,10 +301,11 @@ function pushNewCategory() {
     currentCategoryStat = true;
 
 
-
-    if (color == '') {
-        console.log('Bitte Farbe wählen');
-    } else {
+    if (!category) {
+        showSuccessPopUp('Wähle eine Kategory!');
+    } else if (!color) {
+        showSuccessPopUp('Wähle eine Farbe!');
+    } else if (color) {
         let newCategory = {
             'categoryName': category,
             'categoryColor': color,
@@ -279,6 +315,7 @@ function pushNewCategory() {
         acceptNewCategory();
         ;
     }
+
 }
 
 function showSuccessPopUp(content) {
@@ -297,6 +334,8 @@ function closeSuccessPopUp() {
 
 function renderCategoryBox(i) {
     currentCategoryStat = false;
+    color = false;
+    category = false; 
     document.getElementById('category').innerHTML = '';
     document.getElementById('category').innerHTML = /*html*/ `
     <span>Category</span>
