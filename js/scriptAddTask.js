@@ -209,7 +209,7 @@ function renderEveryCategory() {
 
         categoryBox.innerHTML += /*html*/ `
             <div onclick="acceptCategory(${i})" class="selection-category">
-                <div id="category${i}" >${category}</div>
+                <div id="category${i}" class="addTask-Subheaders" >${category}</div>
                 <img class="colors" src="/assets/img/${color}.png" alt="">
             </div>
         `
@@ -316,14 +316,12 @@ function renderContacts() {
 
 function acceptContact(i) {
     currentContactStat = true;
-
     currentContact = allContacts[i];
     let contactFirstname = currentContact['firstName'];
     let contactLastName = currentContact['name'];
 
-
     document.getElementById(`selection-contacts${i}`).innerHTML = /*html*/ `
-    <div id="contact${i}" >${contactFirstname}  ${contactLastName}</div>
+    <div id="contact${i}" class="addTask-Subheaders">${contactFirstname}  ${contactLastName}</div>
     <img id="checkbox${i}" onclick="acceptNotContact(${i})" class="checkbox" src="/assets/img/checkbox-contact-full.png" alt="">
     `
     pushSelctedContact(currentContact);
@@ -331,15 +329,14 @@ function acceptContact(i) {
 }
 
 function renderContactIcon() {
-    document.getElementById('contact-icons').innerHTML = '';
+    let contactIcons = document.getElementById('contact-icons');
+    contactIcons.innerHTML = '';
 
     for (let i = 0; i < selectedContacts.length; i++) {
-        currentSelectedContact = selectedContacts[i];
-        let firstLetter = selectedContacts[i]['firstName'].charAt(0);
-        let secondLetter = selectedContacts[i]['name'].charAt(0);
-        let contactIcons = document.getElementById('contact-icons');
-        let contactColor = selectedContacts[i]['color'];
-
+        selectedContact = selectedContacts[i];
+        let firstLetter = selectedContact['firstName'].charAt(0);
+        let secondLetter = selectedContact['name'].charAt(0);
+        let contactColor = selectedContact['color'];
 
         contactIcons.innerHTML += /*html*/ `
             <div id="contact-icon${i}" class="contact-icon" style ="background-color: ${contactColor}">${firstLetter}${secondLetter}</div>
@@ -352,38 +349,18 @@ function acceptNotContact(i) {
     currentContactStat = false;
     selectedContacts = 0;
     saveSelectedContact(i);
-
     renderContacts();
-
 }
 
 function pushSelctedContact(currentContact) {
-
     saveSelectedContact(currentContact);
-    //loadSelectedAllContacts();
-}
-
-function deleteAllSelectedContact() {
-    selectedContacts = 0;
-    currentSelectedContact = [];
-    /*saveSelectedContact();*/
 }
 
 
 function openInputContact() {
-    document.getElementById('assignedTo').innerHTML = '';
-    document.getElementById('assignedTo').innerHTML = /*html*/ `
-    <span>Assigned to</span>
-    <input id="input-contact" onkeyup="filterContacts()" placeholder="Search New contact..." class="addTotaskInputField" type="text">
-    
-    <div id="input-nav-box-contact" class="input-nav-box">
-                            <img onclick="renderContactBox()" class="x-black" src="/assets/img/x-black.png">
-                            <img class="line" src="/assets/img/line.png">
-                            <img onclick="pushNewContact()" class="hook" src="/assets/img/hook.png">
-                        </div>
-    <div id="searched-emails" class="searched-emails"></div>
-    
-    `;
+    let assignedTo = document.getElementById('assignedTo');
+    assignedTo.innerHTML = '';
+    assignedTo.innerHTML = templateOpenInputContact();
 
     document.getElementById('searched-emails').classList.add('d-none');
 }
@@ -391,55 +368,43 @@ function openInputContact() {
 
 function pushNewContact() {
     saveContact(currentContact);
-    //loadAllContacts();
     document.getElementById('input-contact').value = '';
 }
 
 
 function renderContactBox() {
-    document.getElementById('assignedTo').innerHTML = '';
-    document.getElementById('assignedTo').innerHTML = /*html*/ `
-    <span>Assigned to</span>
-        <div onclick="renderContacts()" id="contact-box" class="render-category-box">
-            <p class="select-category">Select contacts to assign</p>
-            <img onclick="renderContacts()" class="arrow-icon"  src="/assets/img/arrow-down.png" alt="">
-
-        </div>
-        <div id="contact-icons" class="contact-icons"></div>
-    `;
-
+    let assignedTo = document.getElementById('assignedTo');
+    assignedTo.innerHTML = '';
+    assignedTo.innerHTML = templateRenderContactBox();
 
     if (selectedContacts.length > 0) {
         renderContactIcon();
     }
-
 }
 
 
 function filterContacts() {
-    document.getElementById('searched-emails').classList.remove('d-none');
+    let searchedEmails = document.getElementById('searched-emails');
+    searchedEmails.classList.remove('d-none');
     let search = document.getElementById('input-contact').value;
-    //hideDarkmodeBox(search);
     search = search.toLowerCase();
 
-    document.getElementById('searched-emails').innerHTML = '';
+    searchedEmails.innerHTML = '';
     for (let i = 0; i < contacts.length; i++) {
         currentContact = contacts[i];
-        currentContactMail = currentContact['mail'];
+        mailAdress = currentContact['mail'];
 
-
-        if (currentContactMail.toLowerCase().includes(search)) {
-            renderSearchedContacts(i, currentContactMail);
+        if (mailAdress.toLowerCase().includes(search)) {
+            renderSearchedContacts(i, mailAdress);
         }
     }
-
 }
 
 
 function renderSearchedContacts(i, currentContactMail) {
     document.getElementById('searched-emails').innerHTML += /*html*/ `
     <div onclick="takeEmail(${i})" class="selection-contacts">
-        <div id="contact${i}" >${currentContactMail}</div>
+        <div id="contact${i}" class="addTask-Subheaders">${currentContactMail}</div>
     </div>
 `
 }
@@ -449,52 +414,18 @@ function takeEmail(i) {
     currentContact = contacts[i];
     document.getElementById('input-contact').value = takenEmail;
     document.getElementById('searched-emails').classList.add('d-none');
-
 }
 
 
 
 function renderPrios() {
     currentPrioStat = false;
-
-    document.getElementById('prio').innerHTML = /*html*/ `
-    <span>Prio</span>
-                    <div class="prio-box">
-                        <div id="prio-urgent" onclick="choosePrio('urgent', 'arrows-up')" class="prio-icon">
-                            <p class="margin-none no-scale">Urgent</p>
-                            <img id="icon-urgent" class="prio-icons" src="/assets/img/Urgent-solo.png">
-                        </div>
-                        <div id="prio-medium" onclick="choosePrio('medium', 'equal-white')" class="prio-icon ">
-                            <p class="margin-none no-scale">Medium</p>
-                            <img id="icon-medium" class="prio-icon-medium" src="/assets/img/Medium-Solo.png" alt="">
-                        </div>
-                        <div id="prio-low" onclick="choosePrio('low', 'arrow-down-white')" class="prio-icon">
-                            <p class="margin-none no-scale">Low</p>
-                            <img id="icon-low" class="prio-icons" src="/assets/img/Low-solo.png" alt="">
-                        </div>
-                    </div>
-    `
+    document.getElementById('prio').innerHTML = templateRenderPrios();
 }
 
 function resetPrios() {
     currentPrioStat = false;
-    document.getElementById('prio').innerHTML = /*html*/ `
-    <span>Prio</span>
-                    <div class="prio-box">
-                        <div id="prio-urgent" onclick="renderPrios();" class="prio-icon">
-                            <p class="margin-none no-scale">Urgent</p>
-                            <img id="icon-urgent" class="prio-icons" src="/assets/img/Urgent-solo.png">
-                        </div>
-                        <div id="prio-medium" onclick="renderPrios();" class="prio-icon ">
-                            <p class="margin-none no-scale">Medium</p>
-                            <img id="icon-medium" class="prio-icon-medium" src="/assets/img/Medium-Solo.png" alt="">
-                        </div>
-                        <div id="prio-low" onclick="renderPrios();" class="prio-icon">
-                            <p class="margin-none no-scale">Low</p>
-                            <img id="icon-low" class="prio-icons" src="/assets/img/Low-solo.png" alt="">
-                        </div>
-                    </div>
-    `
+    document.getElementById('prio').innerHTML = templateResetPrios();
 }
 
 function choosePrio(prio, img) {
@@ -510,19 +441,9 @@ function choosePrio(prio, img) {
 
 
 function renderSubTask() {
-    document.getElementById('subtask').innerHTML = '';
-    document.getElementById('subtask').innerHTML = /*html*/ `
-    <span>Subtasks</span>
-    <input id="input-SubTask" placeholder="Add new subtask..." class="addTotaskInputField" type="text">
-    
-    <div id="input-nav-box-Subtask" class="input-nav-box">
-        <img onclick="clearInputField()" class="x-black" src="/assets/img/x-black.png">
-        <img class="line" src="/assets/img/line.png">
-        <img onclick="pushNewSubTask()" class="hook" src="/assets/img/hook.png">
-    </div>
-    <div id="allSubtasks" class="allSubtasks"></div>
-    
-    `;
+    let subtask = document.getElementById('subtask');
+    subtask.innerHTML = '';
+    subtask.innerHTML = templateRenderSubTask();
 }
 
 function clearInputField() {
@@ -535,32 +456,20 @@ function pushNewSubTask() {
     saveSubTasks(currentSubTask);
     document.getElementById('input-SubTask').value = '';
     renderAllSubTasks();
-
 }
 
 
 function renderAllSubTasks() {
-    document.getElementById('allSubtasks').innerHTML = '';
+    let allSubtasks = document.getElementById('allSubtasks');
+    allSubtasks.innerHTML = '';
 
     for (let i = 0; i < allSubTasks.length; i++) {
         currentSubTask = allSubTasks[i];
         let toDo = allSubTasks[i];
 
-
-        document.getElementById('allSubtasks').innerHTML += /*html*/ `
-        <div class="subtask-box">
-            <img class="checkbox-empty" src="/assets/img/checkbox-emoty.png" alt="">
-            <div id="todo${i}" class="todo">${toDo}</div>
-        </div>
-        `
+        allSubtasks.innerHTML += templateToDo();
     }
 }
-
-
-
-
-
-
 
 
 async function saveTask(task) {
@@ -669,6 +578,11 @@ async function deleteAllCountsForSummery() {
 function deleteAllSubTasks() {
     allSubTasks = [];
     /*saveSubTasks();*/
+}
+
+function deleteAllSelectedContact() {
+    selectedContacts = 0;
+    currentSelectedContact = [];
 }
 
 

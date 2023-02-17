@@ -1491,6 +1491,16 @@ optgroup {
     text-decoration: line-through;
 }
 
+.addTask-header {
+    font-size: 61px;
+    font-weight: 700;
+}
+
+.addTask-Subheaders {
+    font-size: 21px;
+    font-weight: 400;
+}
+
 
 
 /*

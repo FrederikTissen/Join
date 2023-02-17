@@ -1,14 +1,14 @@
 function renderCategoriesTemplate() {
     return /*html*/ `
-<span>Category</span>
+<span class="addTask-Subheaders">Category</span>
 <div  id="category-box" class="category-box">
     <div onclick="renderCategoryBox()" class="category-box-render">
-        <p  class="select-category">Select task category</p>
+        <p  class="select-category addTask-Subheaders">Select task category</p>
         <img onclick="renderCategoryBox()" class="arrow-icon" src="/assets/img/arrow-down.png" alt="">
         
     </div>
     <div onclick="openInput()" class="selection-category">
-        <div>New category</div>
+        <div class="addTask-Subheaders">New category</div>
     </div>
 </div>
 `;
@@ -16,10 +16,10 @@ function renderCategoriesTemplate() {
 
 function templateAcceptCategory() {
     return /*html*/ `
-<span>Category</span>
+<span class="addTask-Subheaders">Category</span>
 <div onclick="renderCategories()" id="category-box" class="accepted-category">
     <div class="accept-category">
-        <p class="accept-category">${category} </p>
+        <p class="accept-category addTask-Subheaders">${category} </p>
         <img class="colors" src="/assets/img/${color}.png" alt="">
      </div>
     <img onclick="renderCategories()" class="arrow-icon"  src="/assets/img/arrow-down.png" alt="">
@@ -31,10 +31,10 @@ function templateAcceptCategory() {
 
 function templateAcceptNewCategory() {
     return /*html*/ `
-<span>Category</span>
+<span class="addTask-Subheaders">Category</span>
 <div onclick="renderCategories()" id="category-box" class="accepted-category">
     <div class="accept-category">
-        <p class="accept-category">${category} </p>
+        <p class="accept-category addTask-Subheaders">${category} </p>
         <img class="colors" src="/assets/img/${color}.png" alt="">
     </div>
     <img onclick="renderCategories()" class="arrow-icon" src="/assets/img/arrow-down.png" alt="">
@@ -45,8 +45,8 @@ function templateAcceptNewCategory() {
 
 function templateOpenInput() {
     return /*html*/ `
-    <span>Category</span>
-            <input id="input-category"   placeholder="New category name" class="addTotaskInputField" type="text">
+    <span class="addTask-Subheaders">Category</span>
+            <input id="input-category"   placeholder="New category name" class="addTotaskInputField addTask-Subheaders" type="text">
             <div id="input-nav-box" class="input-nav-box">
                 <img onclick="renderCategoryBox()" class="x-black" src="/assets/img/x-black.png">
                 <img class="line" src="/assets/img/line.png">
@@ -67,9 +67,9 @@ function templateOpenInput() {
 
 function templateRenderCategoryBox() {
     return /*html*/ `
-    <span>Category</span>
+    <span class="addTask-Subheaders">Category</span>
     <div onclick="renderCategories()" id="category-box" class="category-box-standard">
-        <p class="select-category">Select task category</p>
+        <p class="select-category addTask-Subheaders">Select task category</p>
         <img onclick="renderCategories()" class="arrow-icon" src="/assets/img/arrow-down.png" alt="">    
     </div>
     `;
@@ -77,14 +77,14 @@ function templateRenderCategoryBox() {
 
 function templateRenderContacts() {
     return /*html*/ `
-    <span>Assigned to</span>
+    <span class="addTask-Subheaders">Assigned to</span>
     <div   id="contact-box" class="category-box">
         <div class="assigned-to-box">
-            <p onclick="renderContactBox()" class="select-category">Select contacts to assign</p>
+            <p onclick="renderContactBox()" class="select-category addTask-Subheaders">Select contacts to assign</p>
             <img onclick="renderContactBox()" class="arrow-icon"  src="/assets/img/arrow-down.png" alt="">
         </div>
         <div onclick="openInputContact()" class="selection-category">
-            <div>Invite new contact</div>
+            <div class="addTask-Subheaders">Invite new contact</div>
             <img src="/assets/img/contact-logo.png" alt="">
         </div>
     </div>
@@ -95,7 +95,7 @@ function templateRenderContacts() {
 function templateNewContact(contactFirstname, contactLastName, i) {
     return /*html*/ `
     <div id="selection-contacts${i}" class="selection-contacts">
-        <div id="contact${i}" >${contactFirstname}  ${contactLastName}</div>
+        <div id="contact${i}" class="addTask-Subheaders">${contactFirstname}  ${contactLastName}</div>
         <img id="checkbox${i}" onclick="acceptContact(${i})" class="checkbox"  src="/assets/img/checkbox-contact.png" alt="">
     </div>
 `;
@@ -103,7 +103,7 @@ function templateNewContact(contactFirstname, contactLastName, i) {
 
 function templateOpenInputContact() {
     return /*html*/ `
-    <span>Assigned to</span>
+    <span class="addTask-Subheaders">Assigned to</span>
     <input id="input-contact" onkeyup="filterContacts()" placeholder="Search New contact..." class="addTotaskInputField" type="text">
     
     <div id="input-nav-box-contact" class="input-nav-box">
@@ -118,9 +118,9 @@ function templateOpenInputContact() {
 
 function templateRenderContactBox() {
     return /*html*/ `
-    <span>Assigned to</span>
+    <span class="addTask-Subheaders">Assigned to</span>
         <div onclick="renderContacts()" id="contact-box" class="render-category-box">
-            <p class="select-category">Select contacts to assign</p>
+            <p class="select-category addTask-Subheaders">Select contacts to assign</p>
             <img onclick="renderContacts()" class="arrow-icon"  src="/assets/img/arrow-down.png" alt="">
 
         </div>
@@ -130,18 +130,18 @@ function templateRenderContactBox() {
 
 function templateRenderPrios() {
     return /*html*/ `
-    <span>Prio</span>
+    <span class="addTask-Subheaders">Prio</span>
                     <div class="prio-box">
                         <div id="prio-urgent" onclick="choosePrio('urgent', 'arrows-up')" class="prio-icon">
-                            <p class="margin-none no-scale">Urgent</p>
+                            <p class="margin-none no-scale addTask-Subheaders">Urgent</p>
                             <img id="icon-urgent" class="prio-icons" src="/assets/img/Urgent-solo.png">
                         </div>
                         <div id="prio-medium" onclick="choosePrio('medium', 'equal-white')" class="prio-icon ">
-                            <p class="margin-none no-scale">Medium</p>
+                            <p class="margin-none no-scale addTask-Subheaders">Medium</p>
                             <img id="icon-medium" class="prio-icon-medium" src="/assets/img/Medium-Solo.png" alt="">
                         </div>
                         <div id="prio-low" onclick="choosePrio('low', 'arrow-down-white')" class="prio-icon">
-                            <p class="margin-none no-scale">Low</p>
+                            <p class="margin-none no-scale addTask-Subheaders">Low</p>
                             <img id="icon-low" class="prio-icons" src="/assets/img/Low-solo.png" alt="">
                         </div>
                     </div>
@@ -150,18 +150,18 @@ function templateRenderPrios() {
 
 function templateResetPrios() {
     return /*html*/ `
-    <span>Prio</span>
+    <span class="addTask-Subheaders">Prio</span>
                     <div class="prio-box">
                         <div id="prio-urgent" onclick="renderPrios();" class="prio-icon">
-                            <p class="margin-none no-scale">Urgent</p>
+                            <p class="margin-none no-scale addTask-Subheaders">Urgent</p>
                             <img id="icon-urgent" class="prio-icons" src="/assets/img/Urgent-solo.png">
                         </div>
                         <div id="prio-medium" onclick="renderPrios();" class="prio-icon ">
-                            <p class="margin-none no-scale">Medium</p>
+                            <p class="margin-none no-scale addTask-Subheaders">Medium</p>
                             <img id="icon-medium" class="prio-icon-medium" src="/assets/img/Medium-Solo.png" alt="">
                         </div>
                         <div id="prio-low" onclick="renderPrios();" class="prio-icon">
-                            <p class="margin-none no-scale">Low</p>
+                            <p class="margin-none no-scale addTask-Subheaders">Low</p>
                             <img id="icon-low" class="prio-icons" src="/assets/img/Low-solo.png" alt="">
                         </div>
                     </div>
@@ -170,8 +170,8 @@ function templateResetPrios() {
 
 function templateRenderSubTask() {
     return /*html*/ `
-    <span>Subtasks</span>
-    <input id="input-SubTask" placeholder="Add new subtask..." class="addTotaskInputField" type="text">
+    <span class="addTask-Subheaders">Subtasks</span>
+    <input id="input-SubTask" placeholder="Add new subtask..." class="addTotaskInputField addTask-Subheaders" type="text">
     
     <div id="input-nav-box-Subtask" class="input-nav-box">
         <img onclick="clearInputField()" class="x-black" src="/assets/img/x-black.png">
