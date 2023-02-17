@@ -52,6 +52,9 @@ let createdContact = true;
 let contact = true;
 let initials = [];
 let editedContact;
+let sortContacts = [];
+
+
 
 
 async function init() {
@@ -106,11 +109,14 @@ function setRandom() {
 }
 
 
+
 /**
  * Render all contacts from JSON Array "contacts"
  * 
  */
+/*
 function renderAllContacts() {
+    filterByLetters();
     let contactSection = document.getElementById('contact-list');
     contactSection.innerHTML = '';
     sortUserAlphabetically(contacts);
@@ -121,7 +127,7 @@ function renderAllContacts() {
         let firstChar = contact['firstName'].charAt(0);
         let secondChar = contact['name'].charAt(0);
         let charSection = document.getElementById(`char-section${i}`);
-        
+
         contactSection.innerHTML += generateAllContacts(contact, firstChar, secondChar, i, color);
         //renderFirstChar(i);
 
@@ -129,13 +135,14 @@ function renderAllContacts() {
             initials.push(charSection);
         }
     }
-}
+}*/
 
 /** 
  * returns generate HTML to showContact container
  *
  * @returns
  */
+/*
 function generateAllContacts(contact, firstChar, secondChar, i, color) {
     return `
     <div id="char-section${i}" class="first-char">${firstChar}</div>
@@ -146,18 +153,25 @@ function generateAllContacts(contact, firstChar, secondChar, i, color) {
             <p>${contact['mail']}</p>
         </div>
     </div>`
-}
+}*/
 
 /**
  * Show chosen contact bigger and fully detailed in the right section. 
  * 
  * 
  */
-function showContact(i, color) {
-    let firstChar = contacts[i]['firstName'].charAt(0);
-    let secondChar = contacts[i]['name'].charAt(0);
+function showContact(firstName, color) {
+    currentcontact = contacts.filter(t => t['firstName'] == firstName);
+
+
+    let firstChar = currentcontact['0']['firstName'].charAt(0);
+    let secondChar = currentcontact['0']['name'].charAt(0);
+    let firstname = currentcontact['0']['firstName'];
+    let name = currentcontact['0']['name'];
+    let mail = currentcontact['0']['mail'];
+    let phone = currentcontact['0']['phone'];
     let contactfield = document.getElementById('show-contact');
-    contactfield.innerHTML = generateContactfield(i, firstChar, secondChar, color);
+    contactfield.innerHTML = generateContactfield(firstChar, secondChar, color, firstname, name, mail, phone);
 }
 
 /**
@@ -166,26 +180,26 @@ function showContact(i, color) {
  * 
  * @returns 
  */
-function generateContactfield(i, firstChar, secondChar, color) {
+function generateContactfield(firstChar, secondChar, color, firstname, name, mail, phone) {
     return `
     <div class="show-contact-headline">
-        <div id="contact-img${i}" class="contact-img-big" style="background-color:${color}">${firstChar} ${secondChar}</div>
+        <div id="contact-img" class="contact-img-big" style="background-color:${color}">${firstChar} ${secondChar}</div>
         <div class="show-contact-headline-right"> 
-            <div class="contact-head-name">${contacts[i]['firstName']} ${contacts[i]['name']}</div>
+            <div class="contact-head-name">${firstname} ${name}</div>
             <div id="add-task" class="blue-font"> + Add Task </div>
         </div>
     </div>
     <div class="show-contact-middle">
         <span>Contact Information</span> 
-        <div class="edit-contact" onclick="editContact(${i}, '${color}')">
+        <div class="edit-contact" onclick="editContact( '${color}')">
             <img style="width: 30px; height: 30px; object-fit: contain;" src="./assets/img/pen.png"><p> Edit Contact</p>
         </div>
     </div>
     <div style="display: flex; flex-direction: column;">
         <span style="font-size: 16px; font-weight: 700; padding-bottom: 15px;">Email</span>
-        <span class="blue-font" style="padding-bottom: 22px;">${contacts[i]['mail']}</span>
+        <span class="blue-font" style="padding-bottom: 22px;">${mail}</span>
         <span style="font-size: 16px; font-weight: 700; padding-bottom: 15px;">Phone</span>
-        <span>${contacts[i]['phone']}</span>
+        <span>${phone}</span>
     </div> `
 }
 
@@ -244,7 +258,7 @@ async function saveEditContact() {
     let editMail = document.getElementById(`edit-input-mail`);
     let editPhone = document.getElementById(`edit-input-phone`);
     let newColor = contacts[i].color;
-    
+
     let changedContact = {
         name: editLastname.value,
         firstName: editFirstname.value,
@@ -345,6 +359,8 @@ async function deleteUser(name) {
 //     }
 // }
 
+
+/*
 function sortUserAlphabetically(contacts) {
     contacts.sort(function (a, b) {
         if (a['firstName'] < b['firstName']) {
@@ -356,4 +372,98 @@ function sortUserAlphabetically(contacts) {
         return 0;
     });
     return contacts;
+}
+*/
+
+function filterByLetters() {
+    let contactSection = document.getElementById('contact-list');
+    contactSection.innerHTML = '';
+
+    filterLetter('A');
+    filterLetter('B');
+    filterLetter('C');
+    filterLetter('D');
+    filterLetter('E');
+    filterLetter('F');
+    filterLetter('G');
+    filterLetter('H');
+    filterLetter('I');
+    filterLetter('J');
+    filterLetter('K');
+    filterLetter('L');
+    filterLetter('M');
+    filterLetter('N');
+    filterLetter('O');
+    filterLetter('P');
+    filterLetter('Q');
+    filterLetter('R');
+    filterLetter('S');
+    filterLetter('T');
+    filterLetter('U');
+    filterLetter('V');
+    filterLetter('W');
+    filterLetter('X');
+    filterLetter('Y');
+    filterLetter('Z');
+}
+
+function filterLetter(letter) {
+    let currentLetter = contacts.filter(t => t['firstName'].charAt(0) == letter);
+    
+    if (currentLetter.length > 0) {
+        renderLetterBox(currentLetter, letter);
+    }
+
+    for (let i = 0; i < currentLetter.length; i++) {
+        const element = currentLetter[i];
+        sortContacts.push(element);
+    }
+
+}
+
+
+
+function renderLetterBox(currentLetter, letter) {
+    let contactSection = document.getElementById('contact-list');
+    let firstChar = letter;
+
+    contactSection.innerHTML += /*html*/ `
+    <div id="char-section${letter}" class="first-char">${firstChar}</div>
+    <div id='theSameLetters${letter}'></div>
+    `
+
+    for (let i = 0; i < currentLetter.length; i++) {
+        currentcontact = currentLetter[i];
+        let color = currentcontact['color'];
+        let firstChar = currentcontact['firstName'].charAt(0);
+        let firstName = currentcontact['firstName'];
+        let secondChar = currentcontact['name'].charAt(0);
+        let charSection = document.getElementById(`char-section${i}`);
+        let contactLetter = document.getElementById(`theSameLetters${firstChar}`);
+
+        contactLetter.innerHTML += generateAllContacts1(currentcontact, firstChar, secondChar, i, color, firstName);
+        //renderFirstChar(i);
+
+        if (!initials.includes(charSection)) {
+            initials.push(charSection);
+        }
+    }
+}
+
+/** 
+ * returns generate HTML to showContact container
+ *
+ * @returns
+ */
+function generateAllContacts1(currentcontact, firstChar, secondChar, i, color, firstName) {
+    
+    return /*html*/ `
+    
+    <div onclick="showContact('${firstName}', '${color}')" id="contact-card${i}" class="contact-card">
+        <div id="contact-img${i}" class="contact-img" style='background-color: ${color};'>${firstChar} ${secondChar}</div>
+        <div id="contactInfo${i}" class="contact-info">
+            <span>${currentcontact['firstName']} ${currentcontact['name']}</span>
+            <p>${currentcontact['mail']}</p>
+        </div>
+    </div>`
 }
