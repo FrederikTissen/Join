@@ -12,21 +12,35 @@ let users = [{
 }];
 let activeUser = {};
 
+
+/*
 if (msg) {
     document.getElementById('msgBox').classList.remove('d-none');
     document.getElementById('msgBox').innerHTML = msg;
 } else {
     document.getElementById('msgBox').classList.add('d-none');
 }
+*/
+
+async function onloadLogin() {
+    await init();
+    saveUsers();
+}
 
 function login() {
     let email = document.getElementById('login-email');
     let password = document.getElementById('login-password');
     let user = users.find(u => u.email == email.value && u.password == password.value);
-    console.log(user);
+    
 
     if (user) {
+        activeUser = user;
         console.log('User gefunden');
-        user.push(activeUser);
+        
     }
+}
+
+async function saveUsers() {
+    
+    await backend.setItem('users', JSON.stringify(users));
 }

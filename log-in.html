@@ -5,8 +5,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="./js/register.js"></script>
     <script src="./js/login.js"></script>
+    <script src="./js/register.js"></script>
+
+    <script src="./js/contacts-script.js"></script>
+
     <script src="./js/mini_backend.js"></script>
     <link rel="stylesheet" href="style.css">
     <title>JOIN</title>
@@ -229,7 +232,7 @@
     @media (max-width: 600px) {}
 </style>
 
-<body>
+<body onload="onloadLogin()">
     <div class="full-login-content">
         <div class="head-row">
             <img class="join-logo" src="./assets/img/join-logo.png">
@@ -244,12 +247,12 @@
                     <h1>Log in</h1>
                     <img src="./assets/img/blue-bar-horizontal.png">
                 </div>
-                <div id="login-email" class="log-in-input">
-                    <input required placeholder="Email" type="email">
+                <div  class="log-in-input">
+                    <input id="login-email" required placeholder="Email" type="email">
                     <img src="./assets/img/mail-logo.png">
                 </div>
-                <div id="login-password" class="log-in-input">
-                    <input required placeholder="Password" type="password">
+                <div  class="log-in-input">
+                    <input id="login-password" required placeholder="Password" type="password">
                     <img src="./assets/img/padlock.png">
                 </div>
                 <div class="log-in-checkbox">

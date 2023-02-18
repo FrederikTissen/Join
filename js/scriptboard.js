@@ -75,9 +75,6 @@ function updateHTML() {
 
 
     let todo = allTasks.filter(t => t['split'] == 'todo-box');
-    //todoCount = todo.length;
-    //deleteTodoCount();
-    //saveTodoCount(todoCount);
     document.getElementById('todo-box').innerHTML = '';
     for (let index = 0; index < todo.length; index++) {
         const currentTask = todo[index];
@@ -86,9 +83,6 @@ function updateHTML() {
     }
 
     let inprogressBox = allTasks.filter(t => t['split'] == 'inprogress-box');
-    //inprogressBoxCount = inprogressBox.length;
-    //deleteInprogressBoxCount();
-    //saveInprogressBoxCount(inprogressBoxCount);
     document.getElementById('inprogress-box').innerHTML = '';
     for (let index = 0; index < inprogressBox.length; index++) {
         const currentTask = inprogressBox[index];
@@ -97,9 +91,6 @@ function updateHTML() {
     }
 
     let feedbackBox = allTasks.filter(t => t['split'] == 'feedback-box');
-    //feedbackBoxCount = feedbackBox.length;
-    //deleteFeedbackBoxCount();
-    //saveFeedbackBoxCount(feedbackBoxCount);
     document.getElementById('feedback-box').innerHTML = '';
     for (let index = 0; index < feedbackBox.length; index++) {
         const currentTask = feedbackBox[index];
@@ -109,9 +100,6 @@ function updateHTML() {
     }
 
     let doneBox = allTasks.filter(t => t['split'] == 'done-box');
-    //doneBoxCount = doneBox.length;
-    //deleteDoneBoxCount();
-    //saveDoneBoxCount(doneBoxCount);
     document.getElementById('done-box').innerHTML = '';
     for (let index = 0; index < doneBox.length; index++) {
         const currentTask = doneBox[index];
