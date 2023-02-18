@@ -361,8 +361,8 @@
 @media (max-width: 850px) {
     .contact-list-overview {
         left: 0;
-        top: 69px;
-        height: 86vh;
+        top: 81px;
+        height: 84vh;
     }
 
     .contact-main {
@@ -447,7 +447,7 @@
 
     .contact-list-overview {
         width: 100vw;
-        height: 82vh;
+        height: 80vh;
         top: 125px;
     }
 

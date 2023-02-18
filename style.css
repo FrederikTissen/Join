@@ -117,6 +117,7 @@ input {
 
 .sidebar-link:nth-child(2) {
     margin-left: -15px;
+    padding-right: 15px;
 }
 
 .sidebar-link:hover {
@@ -141,6 +142,7 @@ input {
     width: 232px;
     height: 289px;
     color: white;
+    background-color: #2A3647;
 }
 
 .sidebar-center {
@@ -497,7 +499,8 @@ input {
     display: flex;
     flex-direction: row;
     justify-content: center;
-
+    height: 60px;
+    align-items: center;
 }
 
 
@@ -959,7 +962,7 @@ input {
     align-items: center;
     padding: 0px;
     position: absolute;
-    width: 357px;
+    width: inherit;
     height: 1072px;
     top: 2px;
 }
@@ -979,7 +982,7 @@ input {
 .contact-card {
     display: flex;
     flex-direction: row;
-    align-items: flex-start;
+    align-items: center;
     padding: 15px 25px;
     gap: 35px;
     width: 357px;
