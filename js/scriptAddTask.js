@@ -150,6 +150,7 @@ async function reset() {
     renderContactBox();
     renderPrios();
     renderSubTask();
+    showSuccessPopUp('Task added to board!');
 
 }
 
@@ -467,7 +468,7 @@ function renderAllSubTasks() {
         currentSubTask = allSubTasks[i];
         let toDo = allSubTasks[i];
 
-        allSubtasks.innerHTML += templateToDo();
+        allSubtasks.innerHTML += templateToDo(i, toDo);
     }
 }
 
@@ -597,46 +598,3 @@ function deleteAllSelectedContact() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-function openSubTaskMask() {
-    document.getElementById('subTaskPopUp').classList.remove('d-none');
-}
-
-
-function closeSubTask() {
-    document.getElementById('subTaskPopUp').classList.add('d-none');
-}
-
-
-function addTaskFromSubTask() {
-    let title = document.getElementById('titleSubMask');
-    let description = document.getElementById('descriptionSubMask');
-    let date = document.getElementById('dateSubMask');
-
-
-    let task = {
-        'titleSubMask': title.value,
-        'descriptionSubMask': description.value,
-        'dateSubMask': date.value,
-    };
-
-    console.log(task);
-
-
-    allTasks.push(task);
-
-    let allTasksAsString = JSON.stringify(allTasks);
-    localStorage.setItem('allTasks', allTasksAsString);
-}

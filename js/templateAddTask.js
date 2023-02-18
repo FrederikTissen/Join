@@ -182,7 +182,7 @@ function templateRenderSubTask() {
     `;
 }
 
-function templateToDo() {
+function templateToDo(i, toDo) {
     return /*html*/ `
     <div class="subtask-box">
         <img class="checkbox-empty" src="/assets/img/checkbox-emoty.png" alt="">

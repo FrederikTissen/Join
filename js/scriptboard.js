@@ -5,6 +5,33 @@ let inprogressBoxCount;
 let feedbackBoxCount;
 let doneBoxCount;
 
+async function includeHTMLaddTask() {
+    let includeElements = document.querySelectorAll('[w3-include-html]');
+    for (let i = 0; i < includeElements.length; i++) {
+        const element = includeElements[i];
+        file = element.getAttribute("w3-include-html");
+        let resp = await fetch(file);
+        if (resp.ok) {
+            element.innerHTML = await resp.text();
+        } else {
+            element.innerHTML = 'Page not found';
+        }
+    }
+    onload();
+}
+
+
+
+function addNewTask() {
+
+    document.getElementById('show-addTaskInclude').innerHTML = /*html*/ `
+        <div w3-include-html="add-TaskInclude.html" ></div>`;
+
+
+
+    includeHTMLaddTask();
+}
+
 function generateHTML(element, index) {
 
     let title = element['title'];
@@ -36,14 +63,14 @@ function generateHTML(element, index) {
 
 async function onloadBoard() {
     //await deleteSelectedAllContacts();
-    
+
     await init();
     updateHTML();
 }
 
 function updateHTML() {
     //loadAllTasks();
-    
+
 
     let todo = allTasks.filter(t => t['split'] == 'todo-box');
     //todoCount = todo.length;
@@ -90,7 +117,7 @@ function updateHTML() {
         renderAssignedTo(currentTask);
     }
 
-    
+
     countOfAllUrgentTasks();
     countOfAllTasks();
 }
@@ -153,7 +180,7 @@ function moveTo(split) {
 
     saveAllTasks();
     updateHTML();
-    
+
 
 
 }
@@ -276,7 +303,7 @@ function renderAssignedBox(assignedTo) {
         let AssignedToBox = document.getElementById('assigned-box');
         let contactColor = currentPerson['color'];
 
-        
+
 
         AssignedToBox.innerHTML += /*html*/ `
         <div class="assigned-box">
@@ -454,3 +481,5 @@ function loadDone() {
         doneBoxCount = JSON.parse(allDoneAsString);
     }
 }
+
+

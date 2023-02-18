@@ -12,6 +12,8 @@
 
     <script src="js/scriptAddTask.js"></script>
     <script src="js/scriptboard.js"></script>
+    <script src="js/templateAddTask.js"></script>
+
     <script src="js/contacts-script.js"></script>
 
 </head>
@@ -71,12 +73,14 @@
             </div>
         </div>
         <div class="content">
+            <div id="show-addTaskInclude" ></div>
+
             <div class="headline-board">
                 <span>Board</span>
                 <div class="add-search-bar">
                     <input id="search-task" onkeyup="updateSearchedHTML()" class="search-task" type="text"
                         placeholder="Find task">
-                    <button onclick="openSubTaskMask()" class="add-task-btn"></button>
+                    <button onclick="addNewTask()" class="add-task-btn"></button>
                 </div>
             </div>
             <div class="task-sections">
@@ -109,6 +113,12 @@
                     <div id="done-box">
                     </div>
                 </div>
+
+
+
+
+
+
 
                 <div id="subTaskPopUp" class="subTaskPopUp d-none">
                     <div id="addTaskContent" class="subTaskPopUpWindow">
@@ -189,6 +199,7 @@
 
             </div>
         </div>
+
 </body>
 
 </html>
