@@ -4,6 +4,7 @@ let todoCount;
 let inprogressBoxCount;
 let feedbackBoxCount;
 let doneBoxCount;
+let includeBoard = false;
 
 async function includeHTMLaddTask() {
     let includeElements = document.querySelectorAll('[w3-include-html]');
@@ -58,8 +59,9 @@ function generateHTML(element, index) {
                 </div>
             </div>
         `
-
 }
+
+
 
 async function onloadBoard() {
     //await deleteSelectedAllContacts();
@@ -367,6 +369,19 @@ function updateSearchedHTML() {
         }
     }
 
+}
+
+function addNewTaskBoard(){
+    includeBoard = true;
+    addNewTask();
+}
+
+function closeIncludeAddTask() {
+    document.getElementById('show-addTaskInclude').innerHTML = '';
+    if (includeBoard) {
+        onloadBoard();
+        includeBoard = false;
+    }
 }
 
 

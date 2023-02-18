@@ -188,7 +188,7 @@ function generateContactfield(i, firstChar, secondChar, color, firstname, name, 
         <div id="contact-img" class="contact-img-big" style="background-color:${color}">${firstChar} ${secondChar}</div>
         <div class="show-contact-headline-right"> 
             <div class="contact-head-name">${firstname} ${name}</div>
-            <div id="add-task" class="blue-font"> + Add Task </div>
+            <div onclick="addNewTask()" id="add-task" class="blue-font"> + Add Task </div>
         </div>
     </div>
     <div class="show-contact-middle">
@@ -420,7 +420,6 @@ function filterLetter(letter) {
         const element = currentLetter[i];
         sortContacts.push(element);
     }
-
 }
 
 

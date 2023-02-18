@@ -11,17 +11,24 @@
     <script src="./js/contacts-script.js"></script>
     <script src="./js/mini_backend.js"></script>
     <script src="js/scriptAddTask.js"></script>
+    <script src="js/scriptboard.js"></script>
+    <script src="js/templateAddTask.js"></script>
+
+
+
 
 </head>
 
 <body onload="filterByLetters();">
     <div class="header">
+        
         <img class="new-logo d-none" src="./assets/img/join-logo.png">
         <span>Kanban Project Management Tool</span>
         <div class="head-container-right">
             <img src="./assets/img/question.png">
             <img class="head-profile-img" src="./assets/img/profile-img.png">
         </div>
+        
     </div>
     <div class="sidebar-header" id="sidebar-header">
 
@@ -63,11 +70,14 @@
                 </a>
             </div>
         </div>
+        
     </div>
     <!--########################################################################################
         ########################################################################################
         #####################################################################################-->
     <div class="contact">
+        <div id="show-addTaskInclude" ></div>
+
         <div class="contact-list-overview">
             <div id="contact-list" class="contact-list">
                 <!-- js injection -->
