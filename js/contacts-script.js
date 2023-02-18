@@ -162,6 +162,8 @@ function generateAllContacts(contact, firstChar, secondChar, i, color) {
  */
 function showContact(firstName, color) {
     currentcontact = contacts.filter(t => t['firstName'] == firstName);
+    let i = contacts.findIndex(x => x['firstName'] === firstName);
+  
 
 
     let firstChar = currentcontact['0']['firstName'].charAt(0);
@@ -171,7 +173,7 @@ function showContact(firstName, color) {
     let mail = currentcontact['0']['mail'];
     let phone = currentcontact['0']['phone'];
     let contactfield = document.getElementById('show-contact');
-    contactfield.innerHTML = generateContactfield(firstChar, secondChar, color, firstname, name, mail, phone);
+    contactfield.innerHTML = generateContactfield(i, firstChar, secondChar, color, firstname, name, mail, phone);
 }
 
 /**
@@ -180,8 +182,8 @@ function showContact(firstName, color) {
  * 
  * @returns 
  */
-function generateContactfield(firstChar, secondChar, color, firstname, name, mail, phone) {
-    return `
+function generateContactfield(i, firstChar, secondChar, color, firstname, name, mail, phone) {
+    return /*html*/`
     <div class="show-contact-headline">
         <div id="contact-img" class="contact-img-big" style="background-color:${color}">${firstChar} ${secondChar}</div>
         <div class="show-contact-headline-right"> 
@@ -191,7 +193,7 @@ function generateContactfield(firstChar, secondChar, color, firstname, name, mai
     </div>
     <div class="show-contact-middle">
         <span>Contact Information</span> 
-        <div class="edit-contact" onclick="editContact( '${color}')">
+        <div class="edit-contact" onclick="editContact(${i}, '${color}')">
             <img style="width: 30px; height: 30px; object-fit: contain;" src="./assets/img/pen.png"><p> Edit Contact</p>
         </div>
     </div>
@@ -270,7 +272,7 @@ async function saveEditContact() {
     contacts.push(changedContact);
     editedContact = '';
     createdContact = true;
-    renderAllContacts();
+    filterByLetters();
     addContactToBackend(changedContact);
     document.getElementById('w3-edit').classList.add('d-none');
 }
@@ -312,7 +314,7 @@ function createContact() {
     }
     contacts.push(newContact);
     createdContact = true;
-    renderAllContacts();
+    filterByLetters();
     clearInputfields(inputName, inputFirstName, inputMail, inputPhone);
     addContactToBackend(newContact);
     showSuccessBtn();
