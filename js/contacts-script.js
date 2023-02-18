@@ -431,7 +431,7 @@ function renderLetterBox(currentLetter, letter) {
 
     contactSection.innerHTML += /*html*/ `
     <div id="char-section${letter}" class="first-char">${firstChar}</div>
-    <div id='theSameLetters${letter}'></div>
+    <div class="same-letters" id='theSameLetters${letter}'></div>
     `
 
     for (let i = 0; i < currentLetter.length; i++) {
