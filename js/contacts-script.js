@@ -48,6 +48,8 @@ let contacts = [{
     phone: "015137294748",
     color: "#E201BE"
 }];
+
+let users = [];
 let createdContact = true;
 let contact = true;
 let initials = [];
@@ -55,14 +57,10 @@ let editedContact;
 let sortContacts = [];
 
 
-
-
 async function init() {
     await downloadFromServer();
-    users = JSON.parse(backend.getItem('users')) || [];
-    //contacts = JSON.parse(backend.getItem('contacts')) || [];
+    //contacts = JSON.parse(backend.getItem('users')) || [];
     activeUser = JSON.parse(backend.getItem('activeUser')) || [];
-
     allTasks = JSON.parse(backend.getItem('allTasks')) || [];
     allCategories = JSON.parse(backend.getItem('allCategories')) || [];
     allContacts = JSON.parse(backend.getItem('allContacts')) || [];
@@ -73,9 +71,11 @@ async function init() {
     feedbackBoxCount = JSON.parse(backend.getItem('feedbackBoxCount')) || [];
     doneBoxCount = JSON.parse(backend.getItem('doneBoxCount')) || [];
     urgentTasksCount = JSON.parse(backend.getItem('urgentTasksCount')) || [];
-
 }
 
+function loadContactsFromBackend() {
+    contacts = JSON.parse(backend.getItem('users')) || [];
+}
 
 async function includeHTMLaddContact() {
     let includeElements = document.querySelectorAll('[w3-include-html]');
@@ -91,22 +91,16 @@ async function includeHTMLaddContact() {
     }
 }
 
-function addUser() {
-    users.push(x);
-    backend.setItem('users', JSON.stringify(users))
-}
-
-
-/**
- * Pictures of the contacts will be randomly ed.
- * 
- * @param {param} i - 
- * 
- */
-function setRandom() {
-    let random = '#' + Math.floor(Math.random() * 16777215).toString(16);
-    return random;
-}
+// /**
+//  * Pictures of the contacts will be randomly ed.
+//  * 
+//  * @param {param} i - 
+//  * 
+//  */
+// function setRandom() {
+//     let random = '#' + Math.floor(Math.random() * 16777215).toString(16);
+//     return random;
+// }
 
 
 
@@ -163,8 +157,6 @@ function generateAllContacts(contact, firstChar, secondChar, i, color) {
 function showContact(firstName, color) {
     currentcontact = contacts.filter(t => t['firstName'] == firstName);
     let i = contacts.findIndex(x => x['firstName'] === firstName);
-  
-
 
     let firstChar = currentcontact['0']['firstName'].charAt(0);
     let secondChar = currentcontact['0']['name'].charAt(0);
@@ -219,6 +211,26 @@ function addNewContact() {
     createdContact = false;
 }
 
+function addUser() {
+    users.push(contacts);
+    backend.setItem('users', JSON.stringify(users))
+}
+
+function cancelPopupEdit() {
+    document.getElementById('w3-edit').classList.remove('show');
+    document.getElementById('w3-edit').classList.add('d-none');
+
+    createdContact = true;
+}
+
+function cancelPopupAdd() {
+    document.getElementById('w3-add').classList.remove('show');
+    document.getElementById('w3-add').classList.add('d-none');
+
+    createdContact = true;
+}
+
+
 /**
  * Pop-up window to edit a contact
  * 
@@ -269,31 +281,12 @@ async function saveEditContact() {
         color: newColor
     }
 
-    contacts.push(changedContact);
     editedContact = '';
     createdContact = true;
-    filterByLetters();
-    addContactToBackend(changedContact);
+    backend.setItem('users', changedContact);
     document.getElementById('w3-edit').classList.add('d-none');
+    filterByLetters();
 }
-
-// /**
-//  * cancel pop-up window
-//  * 
-//  */
-// function cancelPopupAdd() {
-//     document.getElementById('w3-add').classList.remove('show');
-//     document.getElementById('w3-add').classList.add('d-none');
-
-//     createdContact = true;
-// }
-
-// function cancelPopupEdit() {
-//     document.getElementById('w3-edit').classList.remove('show');
-//     document.getElementById('w3-edit').classList.add('d-none');
-
-//     createdContact = true;
-// }
 
 /**
  * create the new contact
@@ -305,6 +298,7 @@ function createContact() {
     let inputMail = document.getElementById('input-email');
     let inputPhone = document.getElementById('input-phone');
     let inputColor = document.getElementById('colors');
+
     let newContact = {
         name: inputName.value,
         firstName: inputFirstName.value,
@@ -312,12 +306,13 @@ function createContact() {
         phone: inputPhone.value,
         color: inputColor.value
     }
-    contacts.push(newContact);
+     
     createdContact = true;
-    filterByLetters();
+    backend.setItem('users', JSON.stringify(newContact));
     clearInputfields(inputName, inputFirstName, inputMail, inputPhone);
-    addContactToBackend(newContact);
+    filterByLetters();
     showSuccessBtn();
+    setTimeout(closeSuccessBtn, 1500);
 }
 
 function showSuccessBtn() {
@@ -337,47 +332,12 @@ function clearInputfields(inputName, inputFirstName, inputMail, inputPhone) {
     inputPhone.value = '';
 }
 
-async function addContactToBackend(newContact) {
-    contacts.push(newContact);
-    await backend.setItem('contacts', JSON.stringify(contacts));
-}
-
-
 async function deleteUser(name) {
-    await backend.deleteItem('users');
+    await backend.deleteItem('contacts');
 }
-
-// function renderFirstChar(i) {
-//     let charList = document.getElementById(`char${i}`);
-//     charList.innerHTML = '';
-//     for (let i = 0; i < contacts.length; i++) {
-//         let char = contacts[i].firstName.charAt(0);
-//         if (!initials.includes(char)) {      // if id="char-section" = leer, pushe ${char}
-//             initials.push(char);
-//         }
-//         charList.innerHTML += `
-//             <div id="char-section${i}" class="first-char">${initials[i]}</div>
-//         `;
-//     }
-// }
-
-
-/*
-function sortUserAlphabetically(contacts) {
-    contacts.sort(function (a, b) {
-        if (a['firstName'] < b['firstName']) {
-            return -1;
-        }
-        if (a['firstName'] > b['firstName']) {
-            return 1;
-        }
-        return 0;
-    });
-    return contacts;
-}
-*/
 
 function filterByLetters() {
+    loadContactsFromBackend();
     let contactSection = document.getElementById('contact-list');
     contactSection.innerHTML = '';
 
@@ -443,7 +403,6 @@ function renderLetterBox(currentLetter, letter) {
         let contactLetter = document.getElementById(`theSameLetters${firstChar}`);
 
         contactLetter.innerHTML += generateAllContacts1(currentcontact, firstChar, secondChar, i, color, firstName);
-        //renderFirstChar(i);
 
         if (!initials.includes(charSection)) {
             initials.push(charSection);
