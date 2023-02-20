@@ -8,6 +8,7 @@
     <title>Document</title>
     <script src="./js/contacts-script.js"></script>
     <script src="js/mini_backend.js"></script>
+    <link rel="stylesheet" href="responsive.css">
 </head>
 
 <style>
@@ -25,9 +26,16 @@
     }
 
     .full-container {
-        position: relative;
         width: 1212px;
         height: 594px;
+        position: absolute;
+        border: 1px solid rgba(0, 0, 0, 0.3);
+        scale: 0.7;
+        top: -100px;
+        left: -220px;
+        z-index: 999;
+        border-radius: 30px;
+        background-color: #F5F5F5;
         display: flex;
     }
 
@@ -171,7 +179,7 @@
 </style>
 
 <body>
-    <div id="w3-add">
+    <div class="w3-add" id="w3-add">
         <div class="full-container show">
             <div class="left-container">
                 <img class="join-logo-add" src="./assets/img/join-logo-white.png">

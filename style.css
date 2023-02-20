@@ -1562,19 +1562,6 @@ optgroup {
     display: block;
 }
 
-.full-container {
-    width: 1212px;
-    height: 594px;
-    position: absolute;
-    border: 1px solid rgba(0, 0, 0, 0.3);
-    scale: 0.7;
-    top: -100px;
-    left: -220px;
-    z-index: 999;
-    border-radius: 30px;
-    background-color: #F5F5F5;
-}
-
 
 /*
     ##### MODAL BOX #####
