@@ -139,7 +139,7 @@
 
     .sidebar-header {
         position: fixed;
-        top: 91vh;
+        top: 95vh;
         display: flex;
         width: 100vw;
     }
@@ -266,6 +266,20 @@
 
     .sum-bottom-right-section {
         height: 90px;
+    }
+}
+
+@media (max-width: 400px) {
+    .sidebar-link a {
+        font-size: 16px;
+    }
+
+    .sidebar-link {
+        padding: 0;
+    }
+
+    .sidebar-link:nth-child(2) {
+        padding-right: 0;
     }
 }
 
@@ -740,5 +754,142 @@
 
 /*
     #### Edit Contact ####
+    
+
 */
 
+/*
+    #### Board ####
+*/
+
+@media (max-width: 1600px) {
+    .content {
+        position: unset;
+        display: flex;
+        left: 355px;
+        flex-direction: column;
+        align-items: center;
+        width: 100vw;
+        height: 80vh;
+        margin-left: 232px;
+    }
+
+    .headline-board {
+        width: 65vw;
+        margin-top: 20px;
+    }
+
+    .task-sections {
+        width: 83vw;
+    }
+
+    .task {
+        width: 20%;
+        display: flex;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 1250px) {
+    .task-sections {
+        width: 80vw;
+    }
+}
+
+@media (max-width: 1100px) {
+    .task-sections {
+        width: 77vw;
+    }
+
+    .headline-board {
+        justify-content: space-between;
+    }
+}
+
+@media (max-width: 1000px) {
+    .search-task {
+        width: 200px;
+    }
+
+    .add-search-bar {
+        justify-content: flex-end;
+        gap: 5px;
+    }
+
+    .task {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .section-header {
+        gap: 20px;
+        justify-content: center;
+    }
+
+    .task-sections {
+        width: 72vw;
+    }
+}
+
+@media (max-width: 850px) {
+    .content {
+        margin-left: 0;
+    }
+
+    .headline-board {
+        width: 85vw;
+        justify-content: space-between;
+        padding-bottom: 0;
+    }
+
+    .task-sections {
+        width: 100vw;
+    }
+}
+
+@media (max-width: 650px) {
+    .search-task {
+        width: 160px;
+    }
+
+    .task span {
+        font-size: 21px;
+    }
+
+    .task-sections {
+        height: inherit;
+        justify-content: space-evenly;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .headline-board {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .search-task {
+        width: 250px;
+    }
+
+    .add-search-bar {
+        justify-content: space-between;
+        width: 85vw;
+    }
+
+    .task {
+        width: 50%;
+    }
+}
+
+@media (max-width: 500px) {
+    .headline-board {
+        width: 95vw;
+    }
+
+    .add-search-bar {
+        flex-direction: column-reverse;
+        align-items: center;
+        gap: 15px;
+    }
+}
