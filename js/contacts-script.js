@@ -1,5 +1,5 @@
 
-let contacts = [{
+let dataContacts = [{
     name: "Mayer",
     firstName: "Anton",
     mail: "antom@gmail.com",
@@ -55,11 +55,15 @@ let contact = true;
 let initials = [];
 let editedContact;
 let sortContacts = [];
+let contacts = [];
+let currentLetter = [];
 
 
 async function init() {
     await downloadFromServer();
-    contacts = JSON.parse(backend.getItem('users')) || [];
+    await pushAllContactsInBackEnd();
+
+    contacts = JSON.parse(backend.getItem('contacts')) || [];
     activeUser = JSON.parse(backend.getItem('activeUser')) || [];
     allTasks = JSON.parse(backend.getItem('allTasks')) || [];
     allCategories = JSON.parse(backend.getItem('allCategories')) || [];
@@ -71,10 +75,11 @@ async function init() {
     feedbackBoxCount = JSON.parse(backend.getItem('feedbackBoxCount')) || [];
     doneBoxCount = JSON.parse(backend.getItem('doneBoxCount')) || [];
     urgentTasksCount = JSON.parse(backend.getItem('urgentTasksCount')) || [];
+
 }
 
 function loadContactsFromBackend() {
-    contacts = JSON.parse(backend.getItem('users')) || [];
+    contacts = JSON.parse(backend.getItem('contacts')) || [];
 }
 
 async function includeHTMLaddContact() {
@@ -89,6 +94,23 @@ async function includeHTMLaddContact() {
             element.innerHTML = 'Page not found';
         }
     }
+}
+
+async function pushAllContactsInBackEnd() {
+
+    if (contacts.length == 0) {
+        for (let i = 0; i < dataContacts.length; i++) {
+            const thisContact = dataContacts[i];
+
+            contacts.push(thisContact);
+            await backend.setItem('contacts', JSON.stringify(contacts));
+            contacts = JSON.parse(backend.getItem('contacts')) || [];
+
+        }
+    }
+
+
+
 }
 
 // /**
@@ -266,12 +288,11 @@ function editContactValues(i, color) {
 }
 
 async function saveEditContact() {
-    let i = editedContact;
     let editLastname = document.getElementById(`edit-input-lastname`);
     let editFirstname = document.getElementById(`edit-input-firstname`);
     let editMail = document.getElementById(`edit-input-mail`);
     let editPhone = document.getElementById(`edit-input-phone`);
-    let newColor = contacts[i].color;
+    let newColor = contacts[editedContact].color;
 
     let changedContact = {
         name: editLastname.value,
@@ -281,18 +302,26 @@ async function saveEditContact() {
         color: newColor
     }
 
-    editedContact = '';
+    
     createdContact = true;
-    backend.setItem('users', changedContact);
+    contacts.push(changedContact);
+    await backend.setItem('contacts', JSON.stringify(contacts));
     document.getElementById('w3-edit').classList.add('d-none');
+
+    contacts.splice(editedContact, 1);
+    await backend.setItem('contacts', JSON.stringify(contacts));
+
+    cancelPopupEdit();
     filterByLetters();
+    
+    editedContact = '';
 }
 
 /**
  * create the new contact
  * 
  */
-function createContact() {
+async function createContact() {
     let inputName = document.getElementById('input-name');
     let inputFirstName = document.getElementById('input-first-name');
     let inputMail = document.getElementById('input-email');
@@ -306,14 +335,15 @@ function createContact() {
         phone: inputPhone.value,
         color: inputColor.value
     }
-     
+
     createdContact = true;
     contacts.push(newContact);  // DELETE LATER
-    //backend.setItem('users', JSON.stringify(newContact));
+    await backend.setItem('contacts', JSON.stringify(contacts));
     clearInputfields(inputName, inputFirstName, inputMail, inputPhone);
-    filterByLetters();
+
     showSuccessBtn();
     setTimeout(closeSuccessBtn, 1500);
+    filterByLetters();
 }
 
 function showSuccessBtn() {
@@ -333,11 +363,19 @@ function clearInputfields(inputName, inputFirstName, inputMail, inputPhone) {
     inputPhone.value = '';
 }
 
-async function deleteUser(name) {
-    await backend.deleteItem('contacts');
+async function deleteUser() {
+    contacts.splice(editedContact, 1);
+    await backend.setItem('contacts', JSON.stringify(contacts));
+
+    cancelPopupEdit();
+    filterByLetters();
+    
+    editedContact = '';
 }
 
-function filterByLetters() {
+async function filterByLetters() {
+    await init();
+
     //loadContactsFromBackend();
     let contactSection = document.getElementById('contact-list');
     contactSection.innerHTML = '';
@@ -371,16 +409,30 @@ function filterByLetters() {
 }
 
 function filterLetter(letter) {
-    let currentLetter = contacts.filter(t => t['firstName'].charAt(0) == letter);
     
-    if (currentLetter.length > 0) {
-        renderLetterBox(currentLetter, letter);
+
+    for (let i = 0; i < contacts.length; i++) {
+        let element = contacts[i];
+
+        if (element['firstName'].charAt(0) == letter) {
+            currentLetter.push(element);
+        }
+
     }
 
+
+
+    if (currentLetter.length > 0) {
+        renderLetterBox(currentLetter, letter);
+        currentLetter = [];
+    }
+
+    /*
     for (let i = 0; i < currentLetter.length; i++) {
         const element = currentLetter[i];
         sortContacts.push(element);
     }
+    */
 }
 
 
@@ -417,7 +469,7 @@ function renderLetterBox(currentLetter, letter) {
  * @returns
  */
 function generateAllContacts1(currentcontact, firstChar, secondChar, i, color, firstName) {
-    
+
     return /*html*/ `
     
     <div onclick="showContact('${firstName}', '${color}')" id="contact-card${i}" class="contact-card">

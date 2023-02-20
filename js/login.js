@@ -22,10 +22,10 @@ if (msg) {
 }
 */
 
-async function onloadLogin() {
+/*async function onloadLogin() {
     await init();
     saveUsers();
-}
+}*/
 
 function login() {
     let email = document.getElementById('login-email');
