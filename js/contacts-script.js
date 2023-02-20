@@ -59,7 +59,7 @@ let sortContacts = [];
 
 async function init() {
     await downloadFromServer();
-    //contacts = JSON.parse(backend.getItem('users')) || [];
+    contacts = JSON.parse(backend.getItem('users')) || [];
     activeUser = JSON.parse(backend.getItem('activeUser')) || [];
     allTasks = JSON.parse(backend.getItem('allTasks')) || [];
     allCategories = JSON.parse(backend.getItem('allCategories')) || [];
@@ -308,7 +308,8 @@ function createContact() {
     }
      
     createdContact = true;
-    backend.setItem('users', JSON.stringify(newContact));
+    contacts.push(newContact);  // DELETE LATER
+    //backend.setItem('users', JSON.stringify(newContact));
     clearInputfields(inputName, inputFirstName, inputMail, inputPhone);
     filterByLetters();
     showSuccessBtn();
@@ -337,7 +338,7 @@ async function deleteUser(name) {
 }
 
 function filterByLetters() {
-    loadContactsFromBackend();
+    //loadContactsFromBackend();
     let contactSection = document.getElementById('contact-list');
     contactSection.innerHTML = '';
 
