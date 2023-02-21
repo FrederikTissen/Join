@@ -91,6 +91,8 @@
         justify-content: space-between;
         padding: 10px 20px 10px 20px;
         flex-direction: row;
+        position: sticky;
+        top: 0;
     }
 
     .new-logo {
@@ -290,7 +292,7 @@
 @media (max-width: 1400px) {
     .new-contact {
         left: 700px;
-        top: 1000px;
+        top: 70vh;
     }
 
     .headline-index-contact {
@@ -301,6 +303,8 @@
 @media (max-width: 1300px) {
     .show-contact {
         left: 670px;
+        width: 550px;
+        height: 550px;
     }
 
     .headline-index-contact span {
@@ -458,7 +462,8 @@
 
     .show-contact {
         left: 310px;
-        width: 300px;
+        width: 400px;
+        align-items: center;
     }
 
     .contact-head-name {
@@ -467,6 +472,14 @@
 
     .new-contact {
         left: 300px;
+    }
+}
+
+@media (max-width: 700px) {
+
+    .show-contact {
+        width: 350px;
+        align-items: flex-start;
     }
 }
 
@@ -525,8 +538,13 @@
 
     .contact-list-overview {
         width: 100vw;
-        height: 80vh;
+        height: 86vh;
         top: 125px;
+    }
+
+    .contact-list {
+        top: unset;
+        height: unset;
     }
 
     .headline-index-contact {
@@ -753,12 +771,6 @@
 }
 
 /*
-    #### Edit Contact ####
-    
-
-*/
-
-/*
     #### Board ####
 */
 
@@ -892,4 +904,322 @@
         align-items: center;
         gap: 15px;
     }
+}
+
+/*
+    #### Add Task #### 
+*/
+
+@media (max-width: 1400px) {
+    .addTaskContent {
+        margin-top: 100px;
+        margin-left: 290px;
+    }
+}
+
+@media (max-width: 1250px) {
+    .taskContentLeft {
+        width: 300px;
+    }
+
+    .addTotaskInputField {
+        width: 215px;
+    }
+
+    .input-description {
+        width: 215px;
+    }
+
+    .category-box {
+        width: 215px;
+    }
+
+    .selection-category {
+        width: 200px;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+
+    .category-box-standard {
+        width: 215px;
+    }
+
+    .category-box-render {
+        width: 215px;
+        padding-bottom: 10px;
+        border-bottom: 0.1px solid black;
+    }
+
+    .accepted-category {
+        width: 270px;
+    }
+
+    .input-nav-box {
+        left: 225px;
+    }
+
+    input {
+        font-size: 16px;
+    }
+
+    .render-category-box {
+        width: 215px;
+    }
+
+    .assigned-to-box {
+        width: 215px;
+        padding-bottom: 10px;
+        border-bottom: 0.1px solid black;
+    }
+
+    .select-category {
+        width: 150px;
+    }
+
+    .searched-emails {
+        width: 270px;
+    }
+
+    .selection-contacts {
+        width: 200px;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+
+    .btnRow {
+        padding-left: 20px;
+        padding-top: 135px;
+    }
+}
+
+@media (max-width: 1050px) {
+    .addTaskContent {
+        margin-left: 250px;
+    }
+
+    .taskContentLeft {
+        width: 250px;
+    }
+
+    .input-nav-box {
+        top: -90px;
+        left: 150px;
+    }
+
+    .color-box {
+        width: 210px;
+        left: 0;
+    }
+
+    .prio-box {
+        flex-direction: column-reverse;
+        gap: 10px;
+    }
+
+    .selection-category {
+        padding-left: 15px;
+        padding-right: 0;
+        width: 200px;
+    }
+
+    .render-category-box {
+        width: 215px;
+    }
+
+    .select-category {
+        width: 215px;
+    }
+
+    .assigned-to-box {
+        width: 215px;
+    }
+
+    .selection-category {
+        padding-top: 15px;
+    }
+
+    .addTask-subheaders {
+        font-size: 20px;
+    }
+
+    .selection-category img {
+        padding-right: 5px;
+    }
+
+    .btnRow {
+        padding-top: 0;
+        padding-left: 0;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+}
+
+@media (max-width: 850px) {
+    .addTaskContent {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-top: 0;
+        margin-left: 0;
+        width: 100vw;
+    }
+
+    .taskContent {
+        align-items: center;
+        justify-content: center;
+    }
+
+    .taskContentRight {
+        width: 250px;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .addTask-header {
+        margin-bottom: 0;
+    }
+
+    .taskContent {
+        flex-direction: column;
+    }
+
+    .taskContentLeft {
+        border: unset;
+        width: auto;
+    }
+
+    .addTotaskInputField {
+        width: 422px;
+    }
+
+    .input-description {
+        width: 422px;
+    }
+
+    .input-nav-box {
+        left: 350px;
+    }
+
+    .color-box {
+        left: 0;
+        width: 275px;
+    }
+
+    .render-category-box {
+        width: 422px;
+    }
+
+    .select-category {
+        width: 380px;
+    }
+
+    .taskContentRight {
+        width: unset;
+    }
+
+    .addToTaskInputSection {
+        padding-top: 10px;
+        padding-bottom: 0;
+        padding-right: 0;
+    }
+
+    .addToTaskInputSectionRight {
+        padding-left: 0;
+        padding-bottom: 0;
+    }
+
+    .prio-icon {
+        width: 422px;
+    }
+
+    .category-box-standard {
+        width: 422px;
+    }
+}
+
+@media (max-width: 450px) {
+    .addTask-header {
+        font-size: 55px;
+        margin-bottom: 10px;
+    }
+
+    .addTask-Subheaders {
+        font-size: 18px;
+    }
+
+    .addTotaskInputField {
+        width: 270px;
+    }
+
+    .addToTaskInputSectionRight {
+        padding-top: 10px;
+    }
+
+    .input-description {
+        width: 270px;
+        min-height: 100px;
+    }
+
+    .searched-emails {
+        width: 270px;
+    }
+
+    .input-nav-box {
+        top: -90px;
+        left: 150px;
+        padding-top: 5px;
+    }
+
+    .render-category-box {
+        width: 270px;
+    }
+
+    .select-category {
+        width: 380px;
+    }
+
+    .selection-category {
+        padding-left: 5px;
+        padding-right: 5px;
+        width: 260px;
+    }
+
+    .prio-icon {
+        width: 270px;
+    }
+
+    .btnRow {
+        width: unset;
+    }
+
+    .contact-icon {
+        width: 35px;
+        height: 35px;
+        margin-top: 10px;
+    }
+
+    .category-box-standard {
+        width: 270px;
+    }
+
+    .category-box {
+        width: 270px;
+        padding: 10px 0px;
+    }
+
+    .category-box-render {
+        width: 270px;
+    }
+
+    .assigned-to-box {
+        width: 270px;
+    }
+
+    .selection-contacts {
+        width: 260px;
+    }
+
 }
