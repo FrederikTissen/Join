@@ -1049,8 +1049,8 @@ input {
     padding: 0px;
     gap: 21px;
     position: absolute;
-    width: 600px;
-    height: 364px;
+    width: -webkit-fill-available;
+    height: 800px;
     left: 750px;
     top: 326px;
 }

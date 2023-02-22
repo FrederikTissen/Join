@@ -260,7 +260,7 @@ function cancelPopupAdd() {
 async function editContact(i, color) {
     if (createdContact) {
         document.getElementById('show-contact').innerHTML = `
-        <div w3-include-html="edit-contact.html"></div>`;
+        <div class="w3-edit" w3-include-html="edit-contact.html"></div>`;
         await includeHTMLaddContact();
     }
     document.getElementById('w3-edit').classList.remove('d-none');

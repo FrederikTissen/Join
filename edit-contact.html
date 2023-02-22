@@ -26,14 +26,25 @@
         font-weight: 400;
     }
 
-    .full-container {
+    #w3-edit {
+        display: flex;
+    }
+
+    .w3-edit {
+        width: -webkit-fill-available;
+    }
+
+
+    .full-container-edit {
         position: relative;
         width: 1212px;
         height: 594px;
         display: flex;
+        scale: 0.8;
+        left: -165px;
     }
 
-    .left-container {
+    .left-container-edit {
         background-color: #2A3647;
         display: flex;
         flex-direction: column;
@@ -41,14 +52,14 @@
         align-items: flex-start;
         padding-left: 46px;
         gap: 12px;
-        width: 463px;
+        width: 420px;
         left: 0px;
         top: 0px;
         color: white;
         border-radius: 30px 0 0 30px;
     }
 
-    .blue-bar {
+    .blue-bar-edit {
         width: 90px;
     }
 
@@ -59,47 +70,43 @@
         Top: 145px;
     }
 
-    .left-container h1 {
+    .left-container-edit h1 {
         font-size: 61px;
         font-weight: 700;
         margin-bottom: 12px;
         margin-top: 12px;
     }
 
-    .left-container span {
+    .left-container-edit span {
         font-size: 27px;
         font-weight: 400;
     }
 
-    .right-container {
+    .right-container-edit {
         display: flex;
-        width: 749px;
+        width: 670px;
         border-radius: 0 30px 30px 0;
         border: 0.1px solid #d1d1d1;
+        align-items: center;
     }
 
-    .img-container {
+    .img-container-edit {
         display: flex;
-        flex-direction: row;
-        justify-content: center;
         align-items: center;
-        position: absolute;
         width: 120px;
         height: 120px;
-        left: 533px;
-        top: 204px;
         border: 3px solid white;
         background-color: #d1d1d1;
         border-radius: 70px;
+        margin-left: 10px;
     }
 
-    .x-container {
-        position: absolute;
+    .x-container-edit {
         width: 21.65px;
         height: 21.65px;
-        left: 1141.31px;
-        top: 26px;
         cursor: pointer;
+        margin-left: 15px;
+        margin-bottom: 500px;
     }
 
     #profile-img {
@@ -119,21 +126,13 @@
         background-color: white;
     }
 
-    .input {
+    .input-edit {
         display: flex;
         flex-direction: column;
-        align-items: flex-start;
+        align-items: center;
         padding: 0px;
         gap: 30px;
-        position: absolute;
-        width: 422px;
-        height: 271px;
-        left: 737px;
-        top: 129px;
-    }
-
-    .input:last-child {
-        align-items: center;
+        margin-left: 50px;
     }
 
     .primary-btn {
@@ -155,12 +154,7 @@
 
     .edit-button {
         display: flex;
-        justify-content: center;
-        align-items: end;
-        margin-bottom: 25px;
-        width: 720px;
         gap: 35px;
-        margin-left: 218px;
     }
 
     .primary-btn:hover {
@@ -170,24 +164,22 @@
     .edit-button-red:hover {
         background-color: red !important;
     }
-
 </style>
 
 <body>
     <div id="w3-edit">
-        <div class="full-container show">
-            <div class="left-container">
+        <div class="full-container-edit show">
+            <div class="left-container-edit">
                 <img class="join-logo-edit" src="./assets/img/join-logo-white.png">
                 <h1>Edit contact</h1>
                 <span>Tasks are better with a team!</span>
-                <img class="blue-bar" src="./assets/img/blue-bar-horizontal.png">
+                <img class="blue-bar-edit" src="./assets/img/blue-bar-horizontal.png">
             </div>
-            <div class="right-container">
-                <span onclick="cancelPopupEdit()" class="x-container">X</span>
-                <div class="img-container">
+            <div class="right-container-edit">
+                <div class="img-container-edit">
                     <div id="edit-img" class="contact-img-big"></div>
                 </div>
-                <div class="input">
+                <div class="input-edit">
                     <div class="log-in-input">
                         <input id="edit-input-lastname" required placeholder="Last name" type="text">
                         <img src="./assets/img/body-logo.png">
@@ -205,12 +197,16 @@
                         <img src="./assets/img/phone-logo.png">
                     </div>
 
+                    <div class="edit-button">
+                        <button onclick="deleteUser()" class="primary-btn edit-button-red">Delete Contact</button>
+                        <button onclick="saveEditContact()" class="primary-btn">Save Contact</button>
+                    </div>
+
                 </div>
 
-                <div class="edit-button">
-                    <button onclick="deleteUser()" class="primary-btn edit-button-red">Delete Contact</button>
-                    <button onclick="saveEditContact()" class="primary-btn">Save Contact</button>
-                </div>
+                <span onclick="cancelPopupEdit()" class="x-container-edit">X</span>
+
+
             </div>
         </div>
     </div>

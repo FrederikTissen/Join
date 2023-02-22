@@ -580,6 +580,13 @@
     #### ADD CONTACT ####
 */
 
+@media (max-width: 1750px) {
+    .full-container {
+        left: -190px !important;
+        scale: 0.7 !important;
+    }
+}
+
 @media (max-width: 1600px) {
     .full-container {
         width: 1000px !important;
@@ -1228,6 +1235,29 @@
     #### Edit Contact ####
 */
 
-@media (max-width: 1600px) {
-    
+@media (max-width: 1650px) {
+    .full-container-edit {
+        scale: 0.7 !important;
+        left: -190px !important;
+    }
+}
+
+@media (max-width: 1550px) {
+    .input-edit {
+        margin-left: 20px;
+    }
+    .right-container-edit {
+        width: 640px;
+    }
+
+    .left-container-edit {
+        width: 390px;
+        padding-left: 30px;
+        justify-content: flex-start;
+    }
+
+    .join-logo-edit {
+        position: unset;
+    }
+
 }
