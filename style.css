@@ -877,31 +877,6 @@ input {
     margin-top: 5px;
 }
 
-/*End of Style for add-task.html */
-
-
-/*
-    LEGAL NOTICE
-*/
-
-.legal-overview {
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    width: 969px;
-    left: 347px;
-    top: 292px;
-    height: 735px;
-    overflow-y: scroll;
-}
-
-.arrow-left {
-    position: absolute;
-    width: 25px;
-    height: 24px;
-    left: 1281px;
-    top: 165px;
-}
 
 /*
     #####       CONTACTS        ######

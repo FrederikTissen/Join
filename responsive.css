@@ -216,7 +216,7 @@
 
     .sum-task-overview {
         width: 90px;
-        height: 130px;
+        height: 120px;
     }
 
     .sum-task {
@@ -234,7 +234,7 @@
     .sum-task-mid {
         width: 320px;
         gap: 20px;
-        height: 180px;
+        height: 150px;
     }
 
     .sum-mid-left {
@@ -257,7 +257,7 @@
     }
 
     .sum-bottom-div {
-        height: 180px;
+        height: 140px;
         flex-direction: column-reverse;
         width: 150px;
     }
@@ -340,6 +340,10 @@
 }
 
 @media (max-width: 1200px) {
+    .contact-main {
+        width: unset;
+    }
+
     .contact-list-overview {
         width: 330px;
     }
@@ -416,7 +420,7 @@
     }
 
     .show-contact {
-        width: 400px;
+        width: unset;
         height: 620px;
         left: 540px;
     }
@@ -444,7 +448,7 @@
     .contact-list-overview {
         left: 0;
         top: 81px;
-        height: 89vh;
+        height: 88vh;
     }
 
     .contact-main {
@@ -472,6 +476,9 @@
 
     .new-contact {
         left: 300px;
+        top: 240px !important;
+        width: 115px;
+        font-size: 17px;
     }
 }
 
@@ -507,6 +514,7 @@
 
     .show-contact {
         left: 230px;
+        width: unset;
     }
 
     .headline-index-contact {
@@ -914,7 +922,7 @@
 }
 
 /*
-    #### Add Task #### 
+    #### ADD TASK #### 
 */
 
 @media (max-width: 1400px) {
@@ -1000,6 +1008,10 @@
 }
 
 @media (max-width: 1050px) {
+    .addTask-header {
+        font-size: 55px;
+    }
+
     .addTaskContent {
         margin-left: 250px;
     }
@@ -1055,14 +1067,17 @@
 
     .btnRow {
         padding-top: 0;
-        padding-left: 0;
-        flex-direction: column;
+        padding-left: 10px;
         align-items: center;
-        gap: 15px;
+        width: 320px;
     }
 }
 
 @media (max-width: 850px) {
+    .sidebar-header {
+        top: 93vh;
+    }
+
     .addTaskContent {
         display: flex;
         flex-direction: column;
@@ -1104,6 +1119,7 @@
 
     .input-description {
         width: 422px;
+        min-height: 90px;
     }
 
     .input-nav-box {
@@ -1125,6 +1141,9 @@
 
     .taskContentRight {
         width: unset;
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 50px;
     }
 
     .addToTaskInputSection {
@@ -1134,8 +1153,9 @@
     }
 
     .addToTaskInputSectionRight {
-        padding-left: 0;
+        padding-left: 20px;
         padding-bottom: 0;
+        padding-top: 15px;
     }
 
     .prio-icon {
@@ -1144,6 +1164,16 @@
 
     .category-box-standard {
         width: 422px;
+    }
+
+    .btnRow {
+        width: unset;
+        justify-content: space-evenly;
+        padding-top: 0;
+    }
+
+    .subtask {
+        margin-bottom: -15px;
     }
 }
 
@@ -1200,6 +1230,9 @@
 
     .btnRow {
         width: unset;
+        flex-direction: column;
+        gap: 5px;
+        margin-top: -10px;
     }
 
     .contact-icon {
@@ -1227,6 +1260,18 @@
 
     .selection-contacts {
         width: 260px;
+    }
+
+    .addTask-Subheaders {
+        font-size: 18px;
+    }
+
+    .sum-task-mid {
+        width: 300px;
+    }
+
+    .sum-bottom-right-section {
+        height: 80px;
     }
 
 }
@@ -1461,5 +1506,49 @@
     .x-container-edit {
         top: -1010px !important;
         right: -150px !important;
+    }
+}
+
+/*
+    #### LEGAL NOTICE ####
+*/
+
+@media (max-width: 1400px) {
+    .legal-overview {
+        width: 63vw;
+    }
+
+    .arrow-left {
+        top: 230px;
+    }
+}
+
+@media (max-width: 1200px) {
+    .legal-overview {
+        height: 68vh;
+        left: 320px;
+    }
+}
+
+@media (max-width: 1000px) {
+    .legal-overview {
+        height: 63vh;
+        left: 280px;
+        width: 60vw;
+    }
+}
+
+@media (max-width: 850px) {
+    .legal-overview {
+        height: 63vh;
+        left: 100px;
+        width: 70vw;
+        top: 270px;
+    }
+}
+
+@media (max-width: 700px) {
+    .legal-overview {
+        left: 60px;
     }
 }
