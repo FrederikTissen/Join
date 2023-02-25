@@ -49,7 +49,7 @@ let dataContacts = [{
     color: "#E201BE"
 }];
 
-let users = [];
+
 let createdContact = true;
 let contact = true;
 let initials = [];
@@ -62,6 +62,7 @@ let currentLetter = [];
 async function init() {
     await pushAllContactsInBackEnd();
     await downloadFromServer();
+    loginUsers = JSON.parse(backend.getItem('loginUsers')) || [];
 
     contacts = JSON.parse(backend.getItem('contacts')) || [];
     activeUser = JSON.parse(backend.getItem('activeUser')) || [];
@@ -108,10 +109,13 @@ async function pushAllContactsInBackEnd() {
 
         }
     }
-
-
-
 }
+
+
+
+
+
+
 
 // /**
 //  * Pictures of the contacts will be randomly ed.
@@ -233,10 +237,10 @@ function addNewContact() {
     createdContact = false;
 }
 
-function addUser() {
+/*function addUser() {
     users.push(contacts);
     backend.setItem('users', JSON.stringify(users))
-}
+}*/
 
 function cancelPopupEdit() {
     document.getElementById('w3-edit').classList.remove('show');

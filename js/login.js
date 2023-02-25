@@ -1,15 +1,16 @@
 const urlparams = new URLSearchParams(window.location.search);
 const msg = urlparams.get('msg');
 
-let users = [{
+let loginUsers = [{
     'name': 'felix',
     'email': 'felix@test.de',
     'password': 'test321'
-},{
+}, {
     'name': 'frederik',
     'email': 'frederik@test.de',
     'password': 'test123'
 }];
+
 let activeUser = {};
 
 
@@ -27,20 +28,67 @@ if (msg) {
     saveUsers();
 }*/
 
-function login() {
-    let email = document.getElementById('login-email');
-    let password = document.getElementById('login-password');
-    let user = users.find(u => u.email == email.value && u.password == password.value);
-    
+function onloadLogin() {
+    init();
+    pushAllUsersInBackEnd();
+}
 
-    if (user) {
-        activeUser = user;
-        console.log('User gefunden');
-        
+
+async function pushAllUsersInBackEnd() {
+
+    if (loginUsers.length == 0) {
+        for (let i = 0; i < loginUsers.length; i++) {
+            const thisUser = loginUsers[i];
+
+            loginUsers.push(thisUser);
+            await backend.setItem('loginUsers', JSON.stringify(loginUsers));
+
+        }
     }
 }
 
-async function saveUsers() {
-    
-    await backend.setItem('users', JSON.stringify(users));
+function login() {
+    let email = document.getElementById('login-email');
+    let password = document.getElementById('login-password');
+    let loginUser = loginUsers.find(u => u.email == email.value && u.password == password.value);
+
+
+    if (loginUser) {
+        activeUser = loginUser;
+        console.log('User gefunden');
+    }
 }
+
+function addUser() {
+    let lastName = document.getElementById('register-last-name');
+    let name = document.getElementById('register-name');
+    let email = document.getElementById('register-email');
+    let password = document.getElementById('register-password');
+
+    let newUser = {
+        'name': name.value,
+        'email': email.value,
+        'password': password.value,
+    };
+
+    saveUsers(newUser);
+    
+    console.log('User angelegt!');
+    //window.location.href = 'log-in.html?msg=Du hast dich erfolgreich registriert';
+    lastName.value = '';
+    name.value = '';
+    email.value = '';
+    password.value = '';
+
+    
+    //backend.setItem('users', JSON.stringify(users));
+}
+
+async function saveUsers(newUser) {
+    loginUsers.push(newUser);
+    await backend.setItem('loginUsers', JSON.stringify(loginUsers));
+}
+
+
+
+
