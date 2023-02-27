@@ -31,23 +31,30 @@ if (msg) {
 async function onloadLogin() {
     await init();
     pushAllUsersInBackEnd();
+    loadAllUsers();
+}
+
+function loadAllUsers() {
+    let allUsersAsString = localStorage.getItem('loginUsers');
+    if (allUsersAsString) {
+        loginUsers = JSON.parse(allUsersAsString);
+    }
 }
 
 
 async function pushAllUsersInBackEnd() {
-    //loginUsersBackend = [];
 
-    if (loginUsersBackend.length == 0) {
-        for (let i = 0; i < loginUsers.length; i++) {
-            const thisUser = loginUsers[i];
 
-            loginUsersBackend.push(thisUser);
-            await backend.setItem('loginUsersBackend', JSON.stringify(loginUsersBackend));
-            loginUsersBackend = JSON.parse(backend.getItem('loginUsersBackend')) || [];
+    for (let i = 0; i < loginUsers.length; i++) {
+        const thisUser = loginUsers[i];
 
-        }
+        loginUsersBackend.push(thisUser);
+        await backend.setItem('loginUsersBackend', JSON.stringify(loginUsersBackend));
+        loginUsersBackend = JSON.parse(backend.getItem('loginUsersBackend')) || [];
+
     }
 }
+
 
 function login() {
     let email = document.getElementById('login-email');
@@ -59,10 +66,19 @@ function login() {
         activeUser = loginUser;
         console.log('User gefunden');
         window.location.href = 'summery.html';
+        localStorage.removeItem('loginUsers');
+    } else {
+        //popup User not found
     }
+
+
 }
 
-function addUser() {
+
+
+
+
+async function addUser() {
     let lastName = document.getElementById('register-last-name');
     let name = document.getElementById('register-name');
     let email = document.getElementById('register-email');
@@ -74,23 +90,31 @@ function addUser() {
         'password': password.value,
     };
 
-    saveUsers(newUser);
-    
-    console.log('User angelegt!');
-    //window.location.href = 'index.html';
-    lastName.value = '';
+    loginUsers.push(newUser);
+    let loginUsersAsText = JSON.stringify(loginUsers);
+    saveInLocalStorage(loginUsersAsText);
+    window.location.href = 'index.html';
+
+
+    //console.log('User angelegt!');
+    /*lastName.value = '';
     name.value = '';
     email.value = '';
-    password.value = '';
+    password.value = '';*/
 
-    
+
     //backend.setItem('users', JSON.stringify(users));
 }
 
-async function saveUsers(newUser) {
-    loginUsers.push(newUser);
-    await backend.setItem('loginUsers', JSON.stringify(loginUsers));
+async function saveUsers() {
+    await backend.setItem('loginUsersBackend', JSON.stringify(loginUsersBackend));
 }
+
+function saveInLocalStorage(loginUsersAsText) {
+    localStorage.setItem('loginUsers', loginUsersAsText)
+}
+
+
 
 
 

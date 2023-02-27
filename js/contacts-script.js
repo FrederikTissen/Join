@@ -63,7 +63,7 @@ async function init() {
     await pushAllContactsInBackEnd();
     await downloadFromServer();
     loginUsersBackend = JSON.parse(backend.getItem('loginUsersBackend')) || [];
-
+    //allLoginUsers = JSON.parse(backend.getItem('allLoginUsers')) || [];
     contacts = JSON.parse(backend.getItem('contacts')) || [];
     activeUser = JSON.parse(backend.getItem('activeUser')) || [];
     allTasks = JSON.parse(backend.getItem('allTasks')) || [];
