@@ -28,20 +28,22 @@ if (msg) {
     saveUsers();
 }*/
 
-function onloadLogin() {
-    init();
+async function onloadLogin() {
+    await init();
     pushAllUsersInBackEnd();
 }
 
 
 async function pushAllUsersInBackEnd() {
+    //loginUsersBackend = [];
 
-    if (loginUsers.length == 0) {
+    if (loginUsersBackend.length == 0) {
         for (let i = 0; i < loginUsers.length; i++) {
             const thisUser = loginUsers[i];
 
-            loginUsers.push(thisUser);
-            await backend.setItem('loginUsers', JSON.stringify(loginUsers));
+            loginUsersBackend.push(thisUser);
+            await backend.setItem('loginUsersBackend', JSON.stringify(loginUsersBackend));
+            loginUsersBackend = JSON.parse(backend.getItem('loginUsersBackend')) || [];
 
         }
     }
@@ -56,6 +58,7 @@ function login() {
     if (loginUser) {
         activeUser = loginUser;
         console.log('User gefunden');
+        window.location.href = 'summery.html';
     }
 }
 
@@ -74,7 +77,7 @@ function addUser() {
     saveUsers(newUser);
     
     console.log('User angelegt!');
-    //window.location.href = 'log-in.html?msg=Du hast dich erfolgreich registriert';
+    //window.location.href = 'index.html';
     lastName.value = '';
     name.value = '';
     email.value = '';
