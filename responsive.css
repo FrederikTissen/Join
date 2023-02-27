@@ -117,7 +117,7 @@
         position: unset;
     }
 
-    .sidebar-link:nth-child(2) {
+    .sidebar-mid a:nth-child(2) {
         margin-left: 0;
     }
 
@@ -167,13 +167,10 @@
         display: none;
     }
 
-    .sidebar-link {
+    .sidebar-mid a {
         height: 75px;
         padding: 0 12px;
         flex: 1 1 0;
-    }
-
-    .sidebar-mid a {
         font-size: 20px;
     }
 
@@ -186,25 +183,23 @@
 }
 
 @media (max-width: 650px) {
-    .sidebar-link a {
+    .sidebar-mid a {
         font-size: 18px;
     }
 
-    .sidebar-link div {
+    .sidebar-mid a div {
         width: 35px;
     }
 }
 
 @media (max-width: 550px) {
-    .sidebar-link {
+    .sidebar-mid a {
         flex-direction: column-reverse;
-    }
-
-    .sidebar-link a {
         font-size: 18px;
+
     }
 
-    .sidebar-link div {
+    .sidebar-mid a div {
         width: 35px;
     }
 }
@@ -272,15 +267,12 @@
 }
 
 @media (max-width: 400px) {
-    .sidebar-link a {
+    .sidebar-mid a {
         font-size: 16px;
-    }
-
-    .sidebar-link {
         padding: 0;
     }
 
-    .sidebar-link:nth-child(2) {
+    .sidebar-mid a:nth-child(2) {
         padding-right: 0;
     }
 }
@@ -448,7 +440,7 @@
     .contact-list-overview {
         left: 0;
         top: 81px;
-        height: 88vh;
+        height: 87vh;
     }
 
     .contact-main {
@@ -475,8 +467,8 @@
     }
 
     .new-contact {
-        left: 300px;
-        top: 240px !important;
+        left: 150px;
+        top: 7vh !important;
         width: 115px;
         font-size: 17px;
     }
@@ -546,7 +538,7 @@
 
     .contact-list-overview {
         width: 100vw;
-        height: 84vh;
+        height: 75vh;
         top: 150px;
     }
 
@@ -694,10 +686,6 @@
     .right-container {
         flex-direction: column !important;
     }
-
-    .new-contact {
-        top: 1020px;
-    }
 }
 
 @media (max-width: 1250px) {
@@ -782,6 +770,92 @@
 @media (max-width: 750px) {
     .full-container {
         left: -85px !important;
+    }
+}
+
+@media (max-width: 600px) {
+    .full-container {
+        position: unset !important;
+        width: 550px !important;
+        padding-bottom: 30px !important;
+        height: 1030px !important;
+    }
+
+    .left-container {
+        width: 525px !important;
+        border-radius: 30px 30px 0 0 !important;
+        padding-top: 50px !important;
+        height: 380px !important;
+        gap: 30px;
+        padding-left: 25px !important;
+    }
+
+    .left-container h1 {
+        font-size: 55px;
+    }
+
+    .left-container span {
+        font-size: 28px;
+    }
+
+    .join-logo-add {
+        width: 80px;
+        height: 95px;
+    }
+
+    .right-container {
+        width: 550px !important;
+        border-radius: 0 0 30px 30px !important;
+        align-items: center;
+    }
+
+    .log-in-input {
+        width: 450px !important;
+    }
+
+    .x-container {
+        right: -280px !important;
+    }
+
+    .edit-button {
+        gap: 80px;
+    }
+
+    .blue-bar {
+        display: unset !important;
+        margin-left: -320px;
+        margin-bottom: -20px;
+        width: 120px !important;
+    }
+}
+
+@media (max-width: 500px) {
+
+    .full-container {
+        position: unset !important;
+        width: 420px !important;
+        margin-left: -50px;
+    }
+    .left-container {
+        width: 397px !important;
+    }
+
+    .right-container {
+        width: 418px !important;
+    }
+
+    .x-container-add {
+        right: -180px !important;
+        top: -1040px !important;
+    }
+
+    .log-in-input {
+        width: 370px !important;
+    }
+
+    .x-container {
+        left: 175px !important;
+        right: 0;
     }
 }
 
@@ -1509,6 +1583,68 @@
     }
 }
 
+@media (max-width: 600px) {
+    .left-container-edit {
+        width: 640px !important;
+        border-radius: 30px 30px 0 0 !important;
+        padding-top: 70px !important;
+        height: 380px !important;
+        gap: 30px;
+    }
+
+    .left-container-edit h1 {
+        font-size: 55px;
+    }
+
+    .left-container-edit span {
+        font-size: 28px;
+    }
+
+    .join-logo-edit {
+        width: 80px;
+        height: 95px;
+    }
+
+    .right-container-edit {
+        width: 667px !important;
+        border-radius: 0 30px 30px 0;
+        border: 0.1px solid #d1d1d1;
+        align-items: center;
+    }
+
+    .log-in-input {
+        width: 450px !important;
+    }
+
+    .x-container-edit {
+        right: -280px !important;
+        top: -970px !important;
+    }
+
+    .edit-button {
+        gap: 80px;
+    }
+}
+
+@media (max-width: 500px) {
+    .left-container-edit {
+        width: 460px !important;
+    }
+
+    .right-container-edit {
+        width: 477px !important;
+    }
+
+    .x-container-edit {
+        right: -180px !important;
+        top: -1040px !important;
+    }
+
+    .log-in-input {
+        width: 370px !important;
+    }
+}   
+
 /*
     #### LEGAL NOTICE ####
 */
@@ -1550,5 +1686,86 @@
 @media (max-width: 700px) {
     .legal-overview {
         left: 60px;
+    }
+}
+
+/*
+    ADD TASK POPUP
+*/
+
+@media (max-width: 1600px) {
+    .show-addTask {
+        left: 250px;
+        top: 220px;
+        display: block;
+    }
+}
+
+@media (max-width: 1350px) {
+    .show-addTask {
+        padding: 25px;
+    }
+
+    .addTask-header {
+        font-size: 55px;
+    }
+
+    .close-addtask-include {
+        bottom: 10px;
+        right: 0;
+    }
+}
+
+@media (max-width: 1350px) {
+    .show-addTask {
+        padding: 8px;
+    }
+
+    .close-addtask-include {
+        bottom: -4px;
+        right: 4px;
+    }
+}
+
+@media (max-width: 850px) {
+    .show-addTask {
+        left: 60px;
+        top: 240px;
+        width: 620px;
+    }
+
+    .cancel-btn {
+        width: 110px;
+    }
+
+    .create-btn {
+        width: 110px;
+    }
+
+    .btnRow {
+        justify-content: flex-start;
+        gap: 10px;
+        width: 240px;
+    }
+
+    .addTask-header {
+        font-size: 46px;
+        padding-left: 15px;
+    }
+}
+
+@media (max-width: 700px) {
+    .show-addTask {
+        left: 20px;
+        top: 260px;
+        width: 515px;
+    }
+}
+
+@media (max-width: 600px) {
+    .show-addTask {
+        left: 20px;
+        top: 170px;
+        width: 515px;
     }
 }

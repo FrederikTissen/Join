@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Join - Contacts</title>
+    <link rel="icon" type="image/x-icon" href="./assets/img/join-logo-white.png">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="responsive.css">
     <script src="./js/contacts-script.js"></script>
@@ -17,14 +18,14 @@
 
 <body onload="filterByLetters()">
     <div class="header">
-        
+
         <img class="new-logo d-none" src="./assets/img/join-logo.png">
         <span>Kanban Project Management Tool</span>
         <div class="head-container-right">
             <img src="./assets/img/question.png">
             <img class="head-profile-img" src="./assets/img/profile-img.png">
         </div>
-        
+
     </div>
     <div class="sidebar-header" id="sidebar-header">
 
@@ -33,30 +34,26 @@
         </div>
         <div class="sidebar-mid">
             <div class="sidebar-center">
-                <div class="sidebar-link" id="sidebar-link0">
-                    <a href="./index.html">Summary</a>
+                <a id="sidebar-link0" href="./index.html">Summary
                     <div>
                         <img src="./assets/img/summary-logo.png">
                     </div>
-                </div>
-                <div class="sidebar-link" id="sidebar-link1">
-                    <a href="./board.html">Board</a>
+                </a>
+                <a id="sidebar-link1" href="./board.html">Board
                     <div>
                         <img src="./assets/img/board-logo.png">
                     </div>
-                </div>
-                <div class="sidebar-link sidebar-active" id="sidebar-link2">
-                    <a href="./add-task.html"> Add Task</a>
+                </a>
+                <a class="sidebar-active" id="sidebar-link2" href="./add-task.html"> Add Task
                     <div>
                         <img src="./assets/img/add-task-logo.png">
                     </div>
-                </div>
-                <div class="sidebar-link" id="sidebar-link3">
-                    <a href="./contacts.html">Contacts</a>
+                </a>
+                <a id="sidebar-link3" href="./contacts.html">Contacts
                     <div>
                         <img src="./assets/img/contacts-logo.png">
                     </div>
-                </div>
+                </a>
             </div>
         </div>
         <div class="sidebar-bottom">
@@ -66,13 +63,13 @@
                 </a>
             </div>
         </div>
-        
+
     </div>
     <!--########################################################################################
         ########################################################################################
         #####################################################################################-->
-    <div class="contact">
-        <div id="show-addTaskInclude" ></div>
+    <div id="contact" class="contact">
+        <div id="show-addTaskInclude"></div>
 
         <div class="contact-list-overview">
             <div id="contact-list" class="contact-list">

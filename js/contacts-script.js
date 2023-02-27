@@ -229,29 +229,36 @@ function generateContactfield(i, firstChar, secondChar, color, firstname, name, 
  * 
  */
 function addNewContact() {
-    if (createdContact) {
-        document.getElementById('show-contact').innerHTML = `
+    if (window.innerWidth > 600) {
+        if (createdContact) {
+            document.getElementById('show-contact').innerHTML = `
         <div w3-include-html="add-contact.html"></div>`;
+        }
+        includeHTMLaddContact();
+        createdContact = false;
+    } else {
+        window.location.assign("./add-contact.html");
     }
-    includeHTMLaddContact();
-    createdContact = false;
 }
 
-/*function addUser() {
-    users.push(contacts);
-    backend.setItem('users', JSON.stringify(users))
-}*/
-
 function cancelPopupEdit() {
-    document.getElementById('w3-edit').classList.remove('show');
-    document.getElementById('w3-edit').classList.add('d-none');
+    if (innerWidth > 600) {
+        document.getElementById('w3-edit').classList.remove('show');
+        document.getElementById('w3-edit').classList.add('d-none');
+    } else {
+        window.location.assign("./contacts.html");
+    }
 
     createdContact = true;
 }
 
 function cancelPopupAdd() {
-    document.getElementById('w3-add').classList.remove('show');
-    document.getElementById('w3-add').classList.add('d-none');
+    if (innerWidth > 600) {
+        document.getElementById('w3-add').classList.remove('show');
+        document.getElementById('w3-add').classList.add('d-none');
+    } else {
+        window.location.assign("./contacts.html");
+    }
 
     createdContact = true;
 }
@@ -262,14 +269,19 @@ function cancelPopupAdd() {
  * 
  */
 async function editContact(i, color) {
-    if (createdContact) {
-        document.getElementById('show-contact').innerHTML = `
+    if (innerWidth > 600) {
+        if (createdContact) {
+            document.getElementById('show-contact').innerHTML = `
         <div class="w3-edit" w3-include-html="edit-contact.html"></div>`;
-        await includeHTMLaddContact();
+            await includeHTMLaddContact();
+        }
+        document.getElementById('w3-edit').classList.remove('d-none');
+        editContactValues(i, color);
+        createdContact = false;
+    } else {
+        window.location.assign("./edit-contact.html");
+
     }
-    document.getElementById('w3-edit').classList.remove('d-none');
-    editContactValues(i, color);
-    createdContact = false;
 }
 
 function editContactValues(i, color) {
@@ -306,7 +318,6 @@ async function saveEditContact() {
         color: newColor
     }
 
-    
     createdContact = true;
     contacts.push(changedContact);
     await backend.setItem('contacts', JSON.stringify(contacts));
@@ -317,7 +328,6 @@ async function saveEditContact() {
 
     cancelPopupEdit();
     filterByLetters();
-    
     editedContact = '';
 }
 
@@ -373,7 +383,7 @@ async function deleteUser() {
 
     cancelPopupEdit();
     filterByLetters();
-    
+
     editedContact = '';
 }
 
@@ -413,7 +423,7 @@ async function filterByLetters() {
 }
 
 function filterLetter(letter) {
-    
+
 
     for (let i = 0; i < contacts.length; i++) {
         let element = contacts[i];

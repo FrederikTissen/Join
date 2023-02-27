@@ -177,11 +177,27 @@
         border: none;
         cursor: pointer;
     }
+
+    .select-color {
+        width: 180px;
+        height: 51px;
+        border: 1px solid #d1d1d1;
+        font-size: 21px;
+    }
+
+    .primary-btn:hover {
+        background-color: #29abe2 !important;
+    }
+
+    .secondary-btn:hover {
+        background-color: red !important;
+        color: white;
+    }
 </style>
 
 <body>
     <div class="w3-add" id="w3-add">
-        <div class="full-container show">
+        <div class="full-container show" id="add-contact-popup">
             <div class="left-container">
                 <img class="join-logo-add" src="./assets/img/join-logo-white.png">
                 <h1>Add contact</h1>
@@ -211,7 +227,7 @@
                         <img src="./assets/img/phone-logo.png">
                     </div>
 
-                    <select name="colors" id="colors">
+                    <select class="select-color" name="colors" id="colors">
                         <option selected disabled>Choose a color</option>
                         <option value="#8BA4FF">Turquoise</option>
                         <option value="#FF0100">Red</option>

@@ -32,6 +32,14 @@ input {
     display: block;
 }
 
+.blur {
+    filter: blur(8px);
+}
+
+.blur-null {
+    filter: blur(0px);
+}
+
 .pointer {
     cursor: pointer;
 }
@@ -106,31 +114,23 @@ input {
     font-weight: 400;
 }
 
-.sidebar-link {
+.sidebar-mid a {
+    color: white;
+    text-decoration: none;
     display: flex;
     flex-direction: row-reverse;
     align-items: center;
     justify-content: center;
     height: 60px;
-    width: inherit;
+    gap: 15px;
 }
 
-.sidebar-link:nth-child(2) {
-    margin-left: -15px;
-    padding-right: 15px;
-}
-
-.sidebar-link:hover {
+.sidebar-mid a:hover {
     background-color: #091931;
 }
 
-.sidebar-mid a {
-    color: white;
-    text-decoration: none;
-}
-
-.sidebar-link div {
-    width: 50px;
+.sidebar-mid a:nth-child(2) {
+    padding-right: 15px;
 }
 
 
@@ -140,7 +140,6 @@ input {
     padding: 220px 0px 0px;
     gap: 15px;
     width: 232px;
-    height: 289px;
     color: white;
     background-color: #2A3647;
 }
@@ -893,8 +892,7 @@ input {
 }
 
 .contact-main {
-    width: 1208px;
-    height: 1024px;
+    width: 100vw;
 }
 
 .headline-index-contact {
@@ -923,7 +921,7 @@ input {
 .contact-list-overview {
     position: absolute;
     width: 453px;
-    height: 93vh;
+    height: 90vh;
     left: 232px;
     top: 89px;
     background: #FFFFFF;
@@ -938,7 +936,6 @@ input {
     padding: 0px;
     position: absolute;
     width: inherit;
-    height: 1072px;
     top: 2px;
 }
 
