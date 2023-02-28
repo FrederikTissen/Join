@@ -136,12 +136,19 @@ input {
 
 .sidebar-bottom {
     display: flex;
-    flex-direction: column;
-    padding: 220px 0px 0px;
+    flex-direction: row-reverse;
+    margin: 220px 0px 0px;
     gap: 15px;
     width: 232px;
     color: white;
     background-color: #2A3647;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.sidebar-bottom:hover { 
+    background-color: #091931;
 }
 
 .sidebar-center {
@@ -159,11 +166,6 @@ input {
     gap: 20px;
     width: 160px;
     height: 46px;
-}
-
-.sidebar-bottom span {
-    margin-top: 2px;
-    padding-left: 10px;
 }
 
 /*
@@ -496,8 +498,6 @@ input {
 
 .sidebarBottomLegalNotice {
     display: flex;
-    flex-direction: row;
-    justify-content: center;
     height: 60px;
     align-items: center;
 }
@@ -921,7 +921,7 @@ input {
 .contact-list-overview {
     position: absolute;
     width: 453px;
-    height: 90vh;
+    height: 93vh;
     left: 232px;
     top: 89px;
     background: #FFFFFF;

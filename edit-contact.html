@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Join - Contacts</title>
+    <title>Join - edit Contacts</title>
     <link rel="icon" type="image/x-icon" href="./assets/img/join-logo-white.png">
     <link rel="stylesheet" href="responsive.css">
     <script src="./js/contacts-script.js"></script>
@@ -179,31 +179,32 @@
                 <div class="img-container-edit">
                     <div id="edit-img" class="contact-img-big"></div>
                 </div>
-                <div class="input-edit">
-                    <div class="log-in-input">
-                        <input id="edit-input-lastname" required placeholder="Last name" type="text">
-                        <img src="./assets/img/body-logo.png">
-                    </div>
-                    <div class="log-in-input">
-                        <input id="edit-input-firstname" required placeholder="First name" type="text">
-                        <img src="./assets/img/body-logo.png">
-                    </div>
-                    <div class="log-in-input">
-                        <input id="edit-input-mail" required placeholder="Email" type="email">
-                        <img src="./assets/img/mail-logo.png">
-                    </div>
-                    <div class="log-in-input">
-                        <input id="edit-input-phone" required placeholder="Phone" type="number">
-                        <img src="./assets/img/phone-logo.png">
-                    </div>
+                <form onsubmit="saveEditContact()">
+                    <div class="input-edit">
+                        <div class="log-in-input">
+                            <input id="edit-input-lastname" required placeholder="Last name" type="text">
+                            <img src="./assets/img/body-logo.png">
+                        </div>
+                        <div class="log-in-input">
+                            <input id="edit-input-firstname" required placeholder="First name" type="text">
+                            <img src="./assets/img/body-logo.png">
+                        </div>
+                        <div class="log-in-input">
+                            <input id="edit-input-mail" required placeholder="Email" type="email">
+                            <img src="./assets/img/mail-logo.png">
+                        </div>
+                        <div class="log-in-input">
+                            <input id="edit-input-phone" required placeholder="Phone" type="number">
+                            <img src="./assets/img/phone-logo.png">
+                        </div>
 
-                    <div class="edit-button">
-                        <button onclick="deleteUser()" class="primary-btn edit-button-red">Delete Contact</button>
-                        <button onclick="saveEditContact()" class="primary-btn">Save Contact</button>
+                        <div class="edit-button">
+                            <button onclick="deleteUser()" class="primary-btn edit-button-red">Delete Contact</button>
+                            <button class="primary-btn">Save Contact</button>
+                        </div>
+
                     </div>
-
-                </div>
-
+                </form>
                 <span onclick="cancelPopupEdit()" class="x-container-edit">X</span>
 
 
