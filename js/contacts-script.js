@@ -302,6 +302,7 @@ function editContactValues(i, color) {
     editImage.style = `background-color:${color};`;
 
     editedContact = i;
+    document.getElementById('add-new-contact-btn').style.display = "none";
 }
 
 async function saveEditContact() {
@@ -322,14 +323,15 @@ async function saveEditContact() {
     createdContact = true;
     contacts.push(changedContact);
     await backend.setItem('contacts', JSON.stringify(contacts));
-    document.getElementById('w3-edit').classList.add('d-none');
-
+    
     contacts.splice(editedContact, 1);
     await backend.setItem('contacts', JSON.stringify(contacts));
-
-    cancelPopupEdit();
+    
     filterByLetters();
+    cancelPopupEdit();
     editedContact = '';
+    document.getElementById('w3-edit').classList.add('d-none');
+    document.getElementById('add-new-contact-btn').style.display = "flex";
 }
 
 /**
@@ -381,10 +383,10 @@ function clearInputfields(inputName, inputFirstName, inputMail, inputPhone) {
 async function deleteUser() {
     contacts.splice(editedContact, 1);
     await backend.setItem('contacts', JSON.stringify(contacts));
+    document.getElementById('add-new-contact-btn').style.display = "flex";
 
     cancelPopupEdit();
     filterByLetters();
-
     editedContact = '';
 }
 

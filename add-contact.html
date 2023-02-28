@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="icon" type="image/x-icon" href="./assets/img/join-logo-white.png">
+    <title>JOIN - Add Contacts</title>
     <script src="./js/contacts-script.js"></script>
     <script src="js/mini_backend.js"></script>
     <link rel="stylesheet" href="responsive.css">
@@ -209,43 +210,45 @@
                 <div class="img-container">
                     <img id="profile-img" src="./assets/img/user-white.png">
                 </div>
-                <div class="input">
-                    <div class="log-in-input">
-                        <input required id="input-name" placeholder="Last name" type="text">
-                        <img src="./assets/img/body-logo.png">
-                    </div>
-                    <div class="log-in-input">
-                        <input required id="input-first-name" placeholder="First name" type="text">
-                        <img src="./assets/img/body-logo.png">
-                    </div>
-                    <div class="log-in-input">
-                        <input required id="input-email" type="email" placeholder="Email">
-                        <img src="./assets/img/mail-logo.png">
-                    </div>
-                    <div class="log-in-input">
-                        <input required id="input-phone" placeholder="Phone" type="number">
-                        <img src="./assets/img/phone-logo.png">
-                    </div>
+                <form onsubmit="createContact()">
+                    <div class="input">
+                        <div class="log-in-input">
+                            <input minlength="" required id="input-name" placeholder="Last name" type="text">
+                            <img src="./assets/img/body-logo.png">
+                        </div>
+                        <div class="log-in-input">
+                            <input required id="input-first-name" placeholder="First name" type="text">
+                            <img src="./assets/img/body-logo.png">
+                        </div>
+                        <div class="log-in-input">
+                            <input required id="input-email" type="email" placeholder="Email">
+                            <img src="./assets/img/mail-logo.png">
+                        </div>
+                        <div class="log-in-input">
+                            <input required id="input-phone" placeholder="Phone" type="number">
+                            <img src="./assets/img/phone-logo.png">
+                        </div>
 
-                    <select class="select-color" name="colors" id="colors">
-                        <option selected disabled>Choose a color</option>
-                        <option value="#8BA4FF">Turquoise</option>
-                        <option value="#FF0100">Red</option>
-                        <option value="#29D300">Green</option>
-                        <option value="#FF8A01">Orange</option>
-                        <option value="#E201BE">Purple</option>
-                        <option value="#0038FF">Blue</option>
-                    </select>
+                        <select class="select-color" name="colors" id="colors">
+                            <option selected disabled>Choose a color</option>
+                            <option value="#8BA4FF">Turquoise</option>
+                            <option value="#FF0100">Red</option>
+                            <option value="#29D300">Green</option>
+                            <option value="#FF8A01">Orange</option>
+                            <option value="#E201BE">Purple</option>
+                            <option value="#0038FF">Blue</option>
+                        </select>
 
-                    <div class="button-container">
-                        <button onclick="cancelPopupAdd()" class="secondary-btn">Cancel
-                            <img src="./assets/img/x.png">
-                        </button>
-                        <button onclick="createContact()" class="primary-btn">Create contact
-                            <img src="./assets/img/done-white-btn.png">
-                        </button>
+                        <div class="button-container">
+                            <button onclick="cancelPopupAdd()" class="secondary-btn">Cancel
+                                <img src="./assets/img/x.png">
+                            </button>
+                            <button class="primary-btn">Create contact
+                                <img src="./assets/img/done-white-btn.png">
+                            </button>
+                        </div>
                     </div>
-                </div>
+                </form>
 
             </div>
         </div>
