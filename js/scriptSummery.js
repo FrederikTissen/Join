@@ -9,6 +9,7 @@ async function updatePage() {
     //await deleteSelectedAllContacts();
 
     await init();
+    await pushAllContactsInBackEnd();
     updateDate();
     updateCountOfTasks();
     responsiveJoinLogo();

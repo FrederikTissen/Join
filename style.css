@@ -50,6 +50,8 @@ input {
     #### CSS - HEADER ####
 */
 
+
+
 .sidebar-header {
     position: absolute;
     left: 0px;
@@ -78,6 +80,11 @@ input {
     gap: 26px;
     width: 106px;
     height: 49px;
+    
+}
+
+.head-container-right img{
+    cursor: pointer;
 }
 
 .head-profile-img {

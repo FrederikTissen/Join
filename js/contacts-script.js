@@ -59,8 +59,9 @@ let contacts = [];
 let currentLetter = [];
 
 
+
 async function init() {
-    await pushAllContactsInBackEnd();
+    
     await downloadFromServer();
     loginUsersBackend = JSON.parse(backend.getItem('loginUsersBackend')) || [];
     //allLoginUsers = JSON.parse(backend.getItem('allLoginUsers')) || [];
@@ -105,7 +106,7 @@ async function pushAllContactsInBackEnd() {
 
             contacts.push(thisContact);
             await backend.setItem('contacts', JSON.stringify(contacts));
-            contacts = JSON.parse(backend.getItem('contacts')) || [];
+            //contacts = JSON.parse(backend.getItem('contacts')) || [];
 
         }
     }

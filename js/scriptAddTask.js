@@ -299,7 +299,7 @@ function renderCategoryBox() {
 
 
 function renderContacts() {
-    deleteAllSelectedContact();
+    //deleteAllSelectedContact();
     let assignedTo = document.getElementById('assignedTo');
     assignedTo.innerHTML = templateRenderContacts();
 
