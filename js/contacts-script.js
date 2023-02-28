@@ -58,6 +58,12 @@ let sortContacts = [];
 let contacts = [];
 let currentLetter = [];
 
+async function onloadContacts() {
+
+    await init();
+    pushAllContactsInBackEnd();
+    filterByLetters();
+}
 
 
 async function init() {
@@ -305,7 +311,7 @@ function editContactValues(i, color) {
     document.getElementById('add-new-contact-btn').style.display = "none";
 }
 
-async function saveEditContact() {
+function saveEditContact() {
     let editLastname = document.getElementById(`edit-input-lastname`);
     let editFirstname = document.getElementById(`edit-input-firstname`);
     let editMail = document.getElementById(`edit-input-mail`);
@@ -322,10 +328,10 @@ async function saveEditContact() {
 
     createdContact = true;
     contacts.push(changedContact);
-    await backend.setItem('contacts', JSON.stringify(contacts));
+    //await backend.setItem('contacts', JSON.stringify(contacts));
     
     contacts.splice(editedContact, 1);
-    await backend.setItem('contacts', JSON.stringify(contacts));
+    //await backend.setItem('contacts', JSON.stringify(contacts));
     
     filterByLetters();
     cancelPopupEdit();
@@ -391,7 +397,7 @@ async function deleteUser() {
 }
 
 async function filterByLetters() {
-    await init();
+    
 
     //loadContactsFromBackend();
     let contactSection = document.getElementById('contact-list');
