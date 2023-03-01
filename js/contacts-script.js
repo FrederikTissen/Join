@@ -59,7 +59,6 @@ let contacts = [];
 let currentLetter = [];
 
 async function onloadContacts() {
-
     await init();
     pushAllContactsInBackEnd();
     filterByLetters();
@@ -83,12 +82,8 @@ async function init() {
     feedbackBoxCount = JSON.parse(backend.getItem('feedbackBoxCount')) || [];
     doneBoxCount = JSON.parse(backend.getItem('doneBoxCount')) || [];
     urgentTasksCount = JSON.parse(backend.getItem('urgentTasksCount')) || [];
-
 }
 
-function loadContactsFromBackend() {
-    contacts = JSON.parse(backend.getItem('contacts')) || [];
-}
 
 async function includeHTMLaddContact() {
     let includeElements = document.querySelectorAll('[w3-include-html]');
@@ -113,28 +108,9 @@ async function pushAllContactsInBackEnd() {
             contacts.push(thisContact);
             await backend.setItem('contacts', JSON.stringify(contacts));
             //contacts = JSON.parse(backend.getItem('contacts')) || [];
-
         }
     }
 }
-
-
-
-
-
-
-
-// /**
-//  * Pictures of the contacts will be randomly ed.
-//  * 
-//  * @param {param} i - 
-//  * 
-//  */
-// function setRandom() {
-//     let random = '#' + Math.floor(Math.random() * 16777215).toString(16);
-//     return random;
-// }
-
 
 
 /**
@@ -190,7 +166,6 @@ function generateAllContacts(contact, firstChar, secondChar, i, color) {
 function showContact(firstName, color) {
     currentcontact = contacts.filter(t => t['firstName'] == firstName);
     let i = contacts.findIndex(x => x['firstName'] === firstName);
-
     let firstChar = currentcontact['0']['firstName'].charAt(0);
     let secondChar = currentcontact['0']['name'].charAt(0);
     let firstname = currentcontact['0']['firstName'];
@@ -286,8 +261,7 @@ async function editContact(i, color) {
         editContactValues(i, color);
         createdContact = false;
     } else {
-        window.location.assign("./edit-contact.html");
-
+        window.location.href = "./edit-contact.html";
     }
 }
 
@@ -363,7 +337,6 @@ async function createContact() {
     contacts.push(newContact);  // DELETE LATER
     await backend.setItem('contacts', JSON.stringify(contacts));
     clearInputfields(inputName, inputFirstName, inputMail, inputPhone);
-
     showSuccessBtn();
     setTimeout(closeSuccessBtn, 1500);
     filterByLetters();
@@ -397,9 +370,6 @@ async function deleteUser() {
 }
 
 async function filterByLetters() {
-    
-
-    //loadContactsFromBackend();
     let contactSection = document.getElementById('contact-list');
     contactSection.innerHTML = '';
 
@@ -431,25 +401,21 @@ async function filterByLetters() {
     filterLetter('Z');
 }
 
-function filterLetter(letter) {
 
+function filterLetter(letter) {
 
     for (let i = 0; i < contacts.length; i++) {
         let element = contacts[i];
-
-        if (element['firstName'].charAt(0) == letter) {
+        let bigLetter = element['firstName'].charAt(0).toUpperCase();
+        if (bigLetter == letter) {
             currentLetter.push(element);
         }
-
     }
-
-
 
     if (currentLetter.length > 0) {
         renderLetterBox(currentLetter, letter);
         currentLetter = [];
     }
-
     /*
     for (let i = 0; i < currentLetter.length; i++) {
         const element = currentLetter[i];
@@ -457,7 +423,6 @@ function filterLetter(letter) {
     }
     */
 }
-
 
 
 function renderLetterBox(currentLetter, letter) {
@@ -472,9 +437,9 @@ function renderLetterBox(currentLetter, letter) {
     for (let i = 0; i < currentLetter.length; i++) {
         currentcontact = currentLetter[i];
         let color = currentcontact['color'];
-        let firstChar = currentcontact['firstName'].charAt(0);
-        let firstName = currentcontact['firstName'];
-        let secondChar = currentcontact['name'].charAt(0);
+        let firstChar = currentcontact['firstName'].charAt(0).toUpperCase();
+        let firstName = currentcontact['firstName'].toUpperCase();
+        let secondChar = currentcontact['name'].charAt(0).toUpperCase();
         let charSection = document.getElementById(`char-section${i}`);
         let contactLetter = document.getElementById(`theSameLetters${firstChar}`);
 
@@ -486,10 +451,11 @@ function renderLetterBox(currentLetter, letter) {
     }
 }
 
+
 /** 
  * returns generate HTML to showContact container
  *
- * @returns
+ * @return
  */
 function generateAllContacts1(currentcontact, firstChar, secondChar, i, color, firstName) {
 
