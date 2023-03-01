@@ -928,9 +928,9 @@ input {
 .contact-list-overview {
     position: absolute;
     width: 453px;
-    height: 93vh;
+    height: 92vh;
     left: 232px;
-    top: 89px;
+    top: 81px;
     background: #FFFFFF;
     box-shadow: 4px 0px 6px rgba(0, 0, 0, 0.08);
     overflow-y: scroll;
@@ -940,10 +940,7 @@ input {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 0px;
-    position: absolute;
     width: inherit;
-    top: 2px;
 }
 
 .first-char {
@@ -1029,7 +1026,7 @@ input {
     gap: 21px;
     position: absolute;
     width: -webkit-fill-available;
-    height: 800px;
+    height: min-content;
     left: 750px;
     top: 326px;
 }

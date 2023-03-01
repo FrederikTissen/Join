@@ -296,7 +296,6 @@
     .show-contact {
         left: 670px;
         width: 550px;
-        height: 550px;
     }
 
     .headline-index-contact span {
@@ -413,7 +412,6 @@
 
     .show-contact {
         width: unset;
-        height: 620px;
         left: 540px;
     }
 
@@ -440,8 +438,9 @@
     .contact-list-overview {
         left: 0;
         top: 81px;
-        height: 87vh;
+        height: 86vh;
     }
+
 
     .contact-main {
         height: 86vh;
@@ -467,8 +466,7 @@
     }
 
     .new-contact {
-        left: 150px;
-        top: 7vh !important;
+        left: 300px;
         width: 115px;
         font-size: 17px;
     }
@@ -836,6 +834,7 @@
         width: 420px !important;
         margin-left: -50px;
     }
+
     .left-container {
         width: 397px !important;
     }
@@ -1643,7 +1642,7 @@
     .log-in-input {
         width: 370px !important;
     }
-}   
+}
 
 /*
     #### LEGAL NOTICE ####
