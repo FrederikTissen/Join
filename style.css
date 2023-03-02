@@ -188,8 +188,8 @@ input {
     position: absolute;
     width: 630px;
     /* height: 73px; */
-    left: 315px;
-    top: 130px;
+    left: 330px;
+    top: 150px;
 }
 
 .headline-index p {
@@ -212,8 +212,8 @@ input {
     position: absolute;
     /* width: 580px; */
     /* height: 557px; */
-    left: 315px;
-    top: 251px;
+    left: 330px;
+    top: 280px;
 }
 
 .sum-task-top {
@@ -1200,10 +1200,10 @@ optgroup {
 .content {
     display: flex;
     position: absolute;
-    top: 171px;
-    left: 355px;
+    top: 150px;
+    left: 300px;
     flex-direction: column;
-    width: 1208px;
+    /* width: 1208px;*/
 }
 
 .page {
@@ -1313,7 +1313,7 @@ optgroup {
     padding: 18px 19px;
     gap: 10px;
 
-    width: 212px;
+    /*width: 212px;*/
     background: #FFFFFF;
     box-shadow: 0px 0px 14px 3px rgba(0, 0, 0, 0.04);
     border-radius: 30px;
@@ -1415,7 +1415,7 @@ optgroup {
 .progress-bar {
     background-color: #F4F4F4;
     border-radius: 2px;
-    width: 138px;
+    width: 100%;
     height: 8px;
 }
 
