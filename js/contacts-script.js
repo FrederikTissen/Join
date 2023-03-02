@@ -59,7 +59,7 @@ let contacts = [];
 let currentLetter = [];
 
 async function onloadContacts() {
-    pushAllContactsInBackEnd();
+    await pushAllContactsInBackEnd();
     await init();
     filterByLetters();
 }
@@ -285,7 +285,7 @@ function editContactValues(i, color) {
     document.getElementById('add-new-contact-btn').style.display = "none";
 }
 
-function saveEditContact() {
+async function saveEditContact() {
     let editLastname = document.getElementById(`edit-input-lastname`);
     let editFirstname = document.getElementById(`edit-input-firstname`);
     let editMail = document.getElementById(`edit-input-mail`);
@@ -302,10 +302,9 @@ function saveEditContact() {
 
     createdContact = true;
     contacts.push(changedContact);
-    //await backend.setItem('contacts', JSON.stringify(contacts));
-    
     contacts.splice(editedContact, 1);
-    //await backend.setItem('contacts', JSON.stringify(contacts));
+
+    await backend.setItem('contacts', JSON.stringify(contacts));
     
     filterByLetters();
     cancelPopupEdit();
@@ -363,7 +362,7 @@ async function deleteUser() {
     contacts.splice(editedContact, 1);
     await backend.setItem('contacts', JSON.stringify(contacts));
     document.getElementById('add-new-contact-btn').style.display = "flex";
-
+    
     cancelPopupEdit();
     filterByLetters();
     editedContact = '';
@@ -405,10 +404,10 @@ async function filterByLetters() {
 function filterLetter(letter) {
 
     for (let i = 0; i < contacts.length; i++) {
-        let element = contacts[i];
-        let bigLetter = element['firstName'].charAt(0).toUpperCase();
+        let contact = contacts[i];
+        let bigLetter = contact['firstName'].charAt(0).toUpperCase();
         if (bigLetter == letter) {
-            currentLetter.push(element);
+            currentLetter.push(contact);
         }
     }
 
@@ -429,17 +428,17 @@ function renderLetterBox(currentLetter, letter) {
     let contactSection = document.getElementById('contact-list');
     let firstChar = letter;
 
-    contactSection.innerHTML += /*html*/ `
-    <div id="char-section${letter}" class="first-char">${firstChar}</div>
-    <div class="same-letters" id='theSameLetters${letter}'></div>
+    contactSection.innerHTML +=`
+        <div id="char-section${letter}" class="first-char">${firstChar}</div>
+        <div class="same-letters" id='theSameLetters${letter}'></div>
     `
 
     for (let i = 0; i < currentLetter.length; i++) {
         currentcontact = currentLetter[i];
         let color = currentcontact['color'];
-        let firstChar = currentcontact['firstName'].charAt(0).toUpperCase();
+        let firstChar = currentcontact['firstName'].charAt(0);
         let firstName = currentcontact['firstName'];
-        let secondChar = currentcontact['name'].charAt(0).toUpperCase();
+        let secondChar = currentcontact['name'].charAt(0);
         let charSection = document.getElementById(`char-section${i}`);
         let contactLetter = document.getElementById(`theSameLetters${firstChar}`);
 
@@ -460,7 +459,6 @@ function renderLetterBox(currentLetter, letter) {
 function generateAllContacts1(currentcontact, firstChar, secondChar, i, color, firstName) {
 
     return /*html*/ `
-    
     <div onclick="showContact('${firstName}', '${color}')" id="contact-card${i}" class="contact-card">
         <div id="contact-img${i}" class="contact-img" style='background-color: ${color};'>${firstChar} ${secondChar}</div>
         <div id="contactInfo${i}" class="contact-info">

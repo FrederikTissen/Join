@@ -284,7 +284,7 @@
 @media (max-width: 1400px) {
     .new-contact {
         left: 700px;
-        top: 70vh;
+        top: 80vh;
     }
 
     .headline-index-contact {
@@ -366,6 +366,7 @@
 
     .new-contact {
         left: 580px;
+        top: 85vh;
     }
 
 }
@@ -1454,13 +1455,13 @@
 
     .img-container-edit {
         margin-top: -75px !important;
-        width: 120px !important;
-        height: 120px !important
+        width: 100px !important;
+        height: 100px !important
     }
 
     .contact-img-big {
-        width: 120px !important;
-        height: 120px !important;
+        width: 100px !important;
+        height: 100px !important;
     }
 
     .input-edit {
