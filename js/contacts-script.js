@@ -59,8 +59,8 @@ let contacts = [];
 let currentLetter = [];
 
 async function onloadContacts() {
-    await init();
     pushAllContactsInBackEnd();
+    await init();
     filterByLetters();
 }
 
@@ -438,7 +438,7 @@ function renderLetterBox(currentLetter, letter) {
         currentcontact = currentLetter[i];
         let color = currentcontact['color'];
         let firstChar = currentcontact['firstName'].charAt(0).toUpperCase();
-        let firstName = currentcontact['firstName'].toUpperCase();
+        let firstName = currentcontact['firstName'];
         let secondChar = currentcontact['name'].charAt(0).toUpperCase();
         let charSection = document.getElementById(`char-section${i}`);
         let contactLetter = document.getElementById(`theSameLetters${firstChar}`);

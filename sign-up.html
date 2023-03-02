@@ -91,14 +91,16 @@
         background: #FFFFFF;
         box-shadow: 0px 0px 14px 3px rgba(0, 0, 0, 0.04);
         border-radius: 30px;
+        padding-bottom: 50px;
+    }
+
+    .arrow-container {
+        display: flex;
+        width: inherit;
+        margin-left: 40px
     }
 
     .arrow-blue {
-        position: absolute;
-        width: 25px;
-        height: 24px;
-        left: 31px;
-        top: 35px;
         cursor: pointer;
     }
 
@@ -176,10 +178,7 @@
         justify-content: center;
     }
 
-    @media (max-width: 1300px) {}
-
     @media (max-width: 1100px) {
-
         .log-in-container {
             width: 400px;
             height: 600px;
@@ -200,6 +199,16 @@
             font-size: 18px;
         }
     }
+
+    @media (max-width: 450px) {
+        .log-in-container {
+            width: 320px;
+        }
+
+        .log-in-input {
+            width: 300px;
+        }
+    }
 </style>
 
 <body onload="init()">
@@ -209,11 +218,16 @@
         </div>
         <div class="login-content">
             <div class="log-in-container">
-                <img class="arrow-blue" src="./assets/img/blue-arrow-left.png">
+                <div class="arrow-container">
+                    <a href="index.html">
+                        <img class="arrow-blue" src="./assets/img/blue-arrow-left.png">
+                    </a>
+                </div>
                 <div class="log-in">
                     <h1>Sign up</h1>
                     <img src="./assets/img/blue-bar-horizontal.png">
                 </div>
+
                 <form onsubmit="addUser(); return false;">
                     <div class="log-in-input">
                         <input id="register-last-name" placeholder="Last Name" type="text">

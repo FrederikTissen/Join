@@ -1243,6 +1243,23 @@ optgroup {
     background-image: url(./assets/img/add-task.png);
 }
 
+.primary-btn {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 18px 10px;
+    gap: 10px;
+    width: 190px;
+    height: 61px;
+    background-color: #2A3647;
+    border-radius: 10px;
+    color: white;
+    font-weight: 600;
+    font-size: 21px;
+    border: none;
+}
+
 .search-task {
     display: flex;
     flex-direction: row;
