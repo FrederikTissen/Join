@@ -18,15 +18,15 @@
 }
 
 @media (max-width: 1200px) {
-    .headline-index {
+    /*.headline-index {
         left: 330px;
-    }
+    }*/
 
     .summary-overview {
         height: auto;
-        width: 430px;
+        /*width: 430px;
         left: 330px;
-        top: 330px;
+        top: 330px;*/
     }
 
     .sum-task-overview {
@@ -168,7 +168,7 @@
     }
 
     .sidebar-mid a {
-        height: 75px;
+        height: 90px;
         padding: 0 12px;
         flex: 1 1 0;
         font-size: 20px;
@@ -1149,7 +1149,7 @@
 
 @media (max-width: 850px) {
     .sidebar-header {
-        top: 93vh;
+        top: 90vh;
     }
 
     .addTaskContent {

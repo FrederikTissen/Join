@@ -1,14 +1,14 @@
-html {
+/*html {
     width: 100vw;
     height: 100vh;
-}
+}*/
 
 body {
     font-family: 'inter', sans-serif;
     background-color: #F5F5F5;
     margin: 0;
-    width: 100vw;
-    height: 100vh;
+    /*width: 100vw;
+    height: 100vh;*/
 }
 
 button {
@@ -56,7 +56,7 @@ input {
     position: absolute;
     left: 0px;
     top: 0px;
-    height: 100vh;
+    min-height: 100%;
     background-color: #2A3647;
 }
 
@@ -80,10 +80,10 @@ input {
     gap: 26px;
     width: 106px;
     height: 49px;
-    
+
 }
 
-.head-container-right img{
+.head-container-right img {
     cursor: pointer;
 }
 
@@ -154,7 +154,7 @@ input {
     text-decoration: none;
 }
 
-.sidebar-bottom:hover { 
+.sidebar-bottom:hover {
     background-color: #091931;
 }
 
@@ -187,9 +187,9 @@ input {
     padding: 0px;
     position: absolute;
     width: 630px;
-    height: 73px;
-    left: 355px;
-    top: 171px;
+    /* height: 73px; */
+    left: 315px;
+    top: 130px;
 }
 
 .headline-index p {
@@ -210,10 +210,10 @@ input {
     padding: 0px;
     gap: 35px;
     position: absolute;
-    width: 580px;
-    height: 540px;
-    left: 355px;
-    top: 331px;
+    /* width: 580px; */
+    /* height: 557px; */
+    left: 315px;
+    top: 251px;
 }
 
 .sum-task-top {
@@ -313,10 +313,10 @@ input {
 
 .sum-mid-greeting {
     position: absolute;
-    left: 1200px;
-    top: 510px;
+    left: 1050px;
+    top: 390px;
     width: 250px;
-    height: 500px;
+    /* height: 500px;*/
 }
 
 .sum-mobile {
