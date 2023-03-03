@@ -930,7 +930,7 @@
         width: 72vw;
     }*/
 
-    
+
 
     .headline-board {
         display: unset;
@@ -971,15 +971,20 @@
     .search-task {
         width: 160px;
     }
+    
+    .show-addTask {
+        right: 3px !important;
+    }
 
-    .content {
-        
-        z-index: -5;
+    /*.content {
+
+        overflow-y: scroll !important;
+
     }
 
     body {
         overflow-y: hidden;
-    }
+    }*/
 
     .task span {
         font-size: 21px;
@@ -987,10 +992,9 @@
 
 
     .task-sections {
-        
+
         flex-direction: column;
         align-items: center;
-        overflow-y: scroll !important;
     }
 
     .headline-board {
@@ -1028,8 +1032,8 @@
     }
 }
 
-@media (max-width: 850px) and (min-height: 600px )  {
-    
+@media (max-width: 850px) and (min-height: 600px) {
+
     .content {
         top: 100px;
     }
@@ -1039,7 +1043,7 @@
     }
 
     .task-sections {
-     height: 32vh;
+        height: 32vh;
     }
 }
 
@@ -1050,7 +1054,7 @@
     }
 
     .task-sections {
-     height: 39vh;
+        height: 39vh;
     }
 }
 
@@ -1061,7 +1065,7 @@
     }
 
     .task-sections {
-     height: 47vh;
+        height: 47vh;
     }
 }
 
@@ -1074,12 +1078,16 @@
         margin-top: 100px;
         margin-left: 290px;
     }
+
+
 }
 
 @media (max-width: 1250px) {
+
     .taskContentLeft {
         width: 300px;
     }
+
 
     .addTotaskInputField {
         width: 215px;
@@ -1242,7 +1250,7 @@
     }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 650px) {
 
     .addTask-header {
         margin-bottom: 0;
@@ -1321,7 +1329,7 @@
     }
 }
 
-@media (max-width: 450px) {
+@media (max-width: 580px) {
     .addTask-header {
         font-size: 55px;
         margin-bottom: 10px;
@@ -1764,16 +1772,18 @@
 */
 
 @media (max-width: 1600px) {
-    .show-addTask {
+    /*.show-addTask {
         left: 250px;
         top: 220px;
         display: block;
-    }
+    }*/
 }
 
 @media (max-width: 1350px) {
     .show-addTask {
         padding: 25px;
+        width: 72vw;
+        right: 30px;
     }
 
     .addTask-header {
@@ -1786,7 +1796,7 @@
     }
 }
 
-@media (max-width: 1350px) {
+/*@media (max-width: 1350px) {
     .show-addTask {
         padding: 8px;
     }
@@ -1795,13 +1805,21 @@
         bottom: -4px;
         right: 4px;
     }
+}*/
+
+@media (max-width: 1250px) {
+    .show-addTask {
+        padding: 25px;
+        width: 69vw;
+    }
+
 }
 
 @media (max-width: 850px) {
     .show-addTask {
-        left: 60px;
-        top: 240px;
-        width: 620px;
+
+        top: 5px;
+
     }
 
     .cancel-btn {
@@ -1825,17 +1843,16 @@
 }
 
 @media (max-width: 700px) {
-    .show-addTask {
+    /*.show-addTask {
         left: 20px;
-        top: 260px;
         width: 515px;
-    }
+    }`*/
 }
 
-@media (max-width: 600px) {
-    .show-addTask {
+@media (max-width: 650px) {
+    /*.show-addTask {
         left: 20px;
         top: 170px;
         width: 515px;
-    }
+    }*/
 }
