@@ -1330,7 +1330,7 @@ optgroup {
 .showTask {
     display: flex;
     width: 523px;
-    margin-top: 299px;
+    
     border-radius: 15px;
     flex-direction: column;
     background-color: white;

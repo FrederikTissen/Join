@@ -904,6 +904,11 @@
 @media (max-width: 1030px) {
     .content {
         left: 280px;
+        width: 570px;
+    }
+
+    .task-sections {
+        width: 66vw;
     }
 
     /*
@@ -925,9 +930,7 @@
         width: 72vw;
     }*/
 
-    .task-sections {
-        width: 68vw;
-    }
+    
 
     .headline-board {
         display: unset;
@@ -1025,18 +1028,40 @@
     }
 }
 
-@media (max-height: 600px) {
+@media (max-width: 850px) and (min-height: 600px )  {
     
     .content {
         top: 100px;
     }
 
     .sidebar-header {
-        top: 84vh !important;
+        top: 86vh !important;
     }
 
     .task-sections {
-     height: 600px;
+     height: 32vh;
+    }
+}
+
+@media (max-width: 850px) and (min-height: 700px) {
+
+    .sidebar-header {
+        top: 87vh !important;
+    }
+
+    .task-sections {
+     height: 39vh;
+    }
+}
+
+@media (max-width: 850px) and (min-height: 800px) {
+
+    .sidebar-header {
+        top: 89vh !important;
+    }
+
+    .task-sections {
+     height: 47vh;
     }
 }
 
