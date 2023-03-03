@@ -317,9 +317,9 @@
         width: inherit;
     }
 
-    .contact-list-overview {
+    /*.contact-list-overview {
         width: 390px;
-    }
+    }*/
 
     .first-char {
         margin-bottom: 15px;
@@ -336,9 +336,9 @@
         width: unset;
     }
 
-    .contact-list-overview {
+    /*.contact-list-overview {
         width: 330px;
-    }
+    }*/
 
     .headline-index-contact {
         top: 150px;
@@ -373,9 +373,9 @@
 }
 
 @media (max-width: 1000px) {
-    .contact-list-overview {
+    /*.contact-list-overview {
         width: 285px;
-    }
+    }*/
 
     .first-char {
         width: 200px;
@@ -389,6 +389,8 @@
         padding: unset;
         padding-top: 10px;
         padding-bottom: 10px;
+        padding-left: 5px;
+        padding-right: 5px;
     }
 
     .headline-index-contact {

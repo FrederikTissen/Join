@@ -930,24 +930,25 @@ input {
 
 .contact-list-overview {
     position: absolute;
-    width: 453px;
-    height: 92vh;
+    /*width: 453px;*/
+    /* height: 92vh; */
     left: 232px;
-    top: 81px;
+    top: 89px;
+    bottom: 0px;
     background: #FFFFFF;
-    box-shadow: 4px 0px 6px rgba(0, 0, 0, 0.08);
+    box-shadow: 4px 0px 6px rgb(0 0 0 / 8%);
     overflow-y: scroll;
 }
 
 .contact-list {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    /*align-items: center;*/
     width: inherit;
 }
 
 .first-char {
-    width: 323px;
+    /*width: 323px;*/
     height: 40px;
     display: flex;
     align-items: center;
@@ -964,7 +965,7 @@ input {
     align-items: center;
     padding: 15px 25px;
     gap: 35px;
-    width: 357px;
+    /*width: 357px;*/
     height: 79px;
 }
 
@@ -981,7 +982,7 @@ input {
     border-radius: 50%;
     width: 42px;
     height: 42px;
-    margin-left: 20px;
+    /*margin-left: 20px;*/
     padding: 5px;
     color: white;
 }
