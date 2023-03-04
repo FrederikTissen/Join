@@ -211,7 +211,7 @@ function generateContactfield(i, firstChar, secondChar, color, firstname, name, 
  * 
  */
 function addNewContact() {
-    if (window.innerWidth > 600) {
+    if (window.innerWidth > 1700) {
         if (createdContact) {
             document.getElementById('show-contact').innerHTML = `
         <div w3-include-html="add-contact.html"></div>`;
@@ -235,7 +235,7 @@ function cancelPopupEdit() {
 }
 
 function cancelPopupAdd() {
-    if (innerWidth > 600) {
+    if (innerWidth > 1700) {
         document.getElementById('w3-add').classList.remove('show');
         document.getElementById('w3-add').classList.add('d-none');
     } else {
