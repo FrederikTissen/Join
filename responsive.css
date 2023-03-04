@@ -367,7 +367,7 @@
 
     .new-contact {
         left: 580px;
-        top: 85vh;
+        /*top: 85vh;*/
     }
 
 }
@@ -378,7 +378,7 @@
     }*/
 
     .first-char {
-        width: 200px;
+        /*width: 200px;*/
         padding-left: 20px;
     }
 
@@ -442,7 +442,8 @@
     .contact-list-overview {
         left: 0;
         top: 81px;
-        height: 86vh;
+        /* height: 86vh; */
+        padding-bottom: 106px;
     }
 
 
@@ -479,7 +480,7 @@
 @media (max-width: 700px) {
 
     .show-contact {
-        width: 350px;
+        width: 230px;
         align-items: flex-start;
     }
 }
@@ -541,7 +542,7 @@
     .contact-list-overview {
         width: 100vw;
         height: 75vh;
-        top: 150px;
+        /*top: 150px;*/
     }
 
     .contact-list {
@@ -836,7 +837,7 @@
     .full-container {
         position: unset !important;
         width: 420px !important;
-        margin-left: -50px;
+        /*margin-left: -50px;*/
     }
 
     .left-container {
@@ -976,8 +977,11 @@
     }
     
     .show-addTask {
-        right: 3px !important;
+        /*right: 3px !important*/
+        overflow-y: auto;
     }
+
+    
 
     /*.content {
 
@@ -995,9 +999,10 @@
 
 
     .task-sections {
-
+        padding-bottom: 100px;
         flex-direction: column;
         align-items: center;
+        z-index: -2;
     }
 
     .headline-board {
@@ -1045,9 +1050,9 @@
         top: 86vh !important;
     }
 
-    .task-sections {
+    /*.task-sections {
         height: 32vh;
-    }
+    }*/
 }
 
 @media (max-width: 850px) and (min-height: 700px) {
@@ -1056,20 +1061,21 @@
         top: 87vh !important;
     }
 
-    .task-sections {
+    /*.task-sections {
         height: 39vh;
-    }
+    }*/
 }
 
 @media (max-width: 850px) and (min-height: 800px) {
 
     .sidebar-header {
         top: 89vh !important;
+        z-index: 100;
     }
 
-    .task-sections {
+    /*.task-sections {
         height: 47vh;
-    }
+    }*/
 }
 
 /*
@@ -1784,11 +1790,11 @@
 }
 
 @media (max-width: 1350px) {
-    .show-addTask {
+    /*.show-addTask {
         padding: 25px;
         width: 72vw;
         right: 30px;
-    }
+    }*/
 
     .addTask-header {
         font-size: 55px;
@@ -1812,19 +1818,19 @@
 }*/
 
 @media (max-width: 1250px) {
-    .show-addTask {
+    /*.show-addTask {
         padding: 25px;
         width: 69vw;
-    }
+    }*/
 
 }
 
 @media (max-width: 850px) {
-    .show-addTask {
+    /*.show-addTask {
 
         top: 5px;
 
-    }
+    }*/
 
     .cancel-btn {
         width: 110px;
