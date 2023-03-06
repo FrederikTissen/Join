@@ -11,33 +11,11 @@
     <link rel="stylesheet" href="responsive.css">
 </head>
 
-<style>
-    .legal-overview {
-        display: flex;
-        flex-direction: column;
-        position: absolute;
-        width: 969px;
-        left: 347px;
-        top: 292px;
-        height: 70vh;
-        overflow-y: scroll;
-        background-color: #d1d1d1;
-        padding: 15px;
-    }
 
-    .arrow-left {
-        position: absolute;
-        width: 25px;
-        height: 24px;
-        left: 90vw;
-        top: 165px;
-        cursor: pointer;
-    }
-</style>
 
 <script>
     function backToSummary() {
-        window.location.href ="./summery.html";
+        window.location.href = "./summery.html";
     }
 </script>
 
@@ -86,12 +64,14 @@
             </div>
         </a>
         <!--    ####    SIDEBAR END ####    -->
-        <div class="headline-index">
-            <span>Help</span>
-        </div>
-        <img onclick="backToSummary()" class="arrow-left" src="./assets/img/arrow-left.png">
+        
     </div>
     <div class="legal-overview">
+        <div class="headline-index">
+            <span>Help</span>
+            <img onclick="backToSummary()" class="arrow-left" src="./assets/img/arrow-left.png">
+        </div>
+        
         <div>
             <h2 class="help-texts">What is Join?</h2>
             <p>

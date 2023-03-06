@@ -11,7 +11,7 @@ body {
     height: 100vh;*/
 }
 
-.taskContentRight{
+.taskContentRight {
     padding-left: 20px;
 }
 
@@ -23,6 +23,33 @@ button {
 
 input {
     padding: unset;
+}
+
+/*
+    Help and Legal
+*/
+.legal-overview {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    /* width: 969px; */
+    left: 330px;
+    top: 130px;
+    height: max-content;
+    /* overflow-y: scroll; */
+    /* background-color: #d1d1d1; */
+    /* padding: 15px; */
+    /* padding-right: 130px;*/
+}
+
+
+.arrow-left {
+    /*position: absolute;*/
+    width: 25px;
+    height: 24px;
+    left: 90vw;
+    top: 165px;
+    cursor: pointer;
 }
 
 .margin-none {
@@ -191,11 +218,35 @@ input {
     justify-content: space-between;
     align-items: center;
     padding: 0px;
+    /* position: absolute; */
+    /* width: 630px; */
+    /* height: 73px; */
+    /* left: 330px; */
+    /* top: 150px;*/
+}
+
+.headline-index-summary {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px;
     position: absolute;
     width: 630px;
-    /* height: 73px; */
+    height: 73px;
     left: 330px;
     top: 150px;
+}
+
+.headline-index-summary p {
+    font-size: 27px;
+    font-weight: 400;
+
+}
+
+.headline-index-summary span {
+    font-size: 61px;
+    font-weight: 700;
 }
 
 .headline-index p {
@@ -392,7 +443,7 @@ input {
 /*Start of Style for add-task.html */
 
 .show-addTask {
-     /* display: flex; */
+    /* display: flex; */
     top: 0px !important;
     left: 0px;
     right: 0px;
@@ -425,6 +476,7 @@ input {
 .addTaskContent {
     margin-top: 45px;
     margin-left: 290px;
+    margin-bottom: 117px;
     /*width: max-content;*/
 }
 
