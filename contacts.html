@@ -17,12 +17,12 @@
 </head>
 
 <body onload="onloadContacts()">
-    <div class="header">
+    <div class="header-contacts">
 
         <img class="new-logo d-none" src="./assets/img/join-logo.png">
         <span>Kanban Project Management Tool</span>
         <div class="head-container-right">
-            <a href="./help.html"><img src="./assets/img/question.png"/></a>
+            <a href="./help.html"><img src="./assets/img/question.png" /></a>
             <img class="head-profile-img" src="./assets/img/profile-img.png">
         </div>
     </div>
@@ -76,10 +76,13 @@
                 <img src="./assets/img/headline-bar.png">
                 <p>Better with a team</p>
             </div>
-            <div id="show-contact" class="show-contact"></div>
-            <button id="add-new-contact-btn" onclick="addNewContact()" class="new-contact">
-                New Contact<img src="./assets/img/user-plus.png">
-            </button>
+            <div class="show-contact-box">
+                <div id="show-contact" class="show-contact"></div>
+                <button id="add-new-contact-btn" onclick="addNewContact()" class="new-contact">
+                    New Contact<img src="./assets/img/user-plus.png">
+                </button>
+            </div>
+
             <div id="myModal" class="modal">
                 <div class="modal-content">
                     <h3>Contact successfully created!</h3>

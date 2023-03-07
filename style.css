@@ -104,6 +104,18 @@ input {
     background-color: #ffffff;
 }
 
+.header-contacts {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 36px 20px 348px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+    font-weight: 400;
+    font-size: 21px;
+    background-color: #ffffff;
+}
+
 .head-container-right {
     display: flex;
     flex-direction: row;
@@ -177,7 +189,7 @@ input {
 .sidebar-bottom {
     display: flex;
     flex-direction: row-reverse;
-    margin: 220px 0px 0px;
+    margin: 274px 0px 0px;
     gap: 15px;
     width: 232px;
     color: white;
@@ -476,7 +488,7 @@ input {
 .addTaskContent {
     margin-top: 45px;
     margin-left: 290px;
-    margin-bottom: 117px;
+    
     /*width: max-content;*/
 }
 
@@ -560,7 +572,7 @@ input {
 
 .btnRow {
     padding-left: 125px;
-    padding-top: 154px;
+    padding-top: 110px;
     width: 340px;
     display: flex;
     justify-content: space-between;
@@ -975,7 +987,7 @@ input {
     position: absolute;
     width: 569px;
     height: 73px;
-    left: 743px;
+    left: 700px;
     top: 171px;
 }
 
@@ -1083,17 +1095,24 @@ input {
     margin: 5px 0 0 0;
 }
 
+.show-contact-box {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    left: 730px;
+    top: 326px;
+}
+
 .show-contact {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     padding: 0px;
     gap: 21px;
-    position: absolute;
+    
     width: -webkit-fill-available;
     height: min-content;
-    left: 750px;
-    top: 326px;
+    
 }
 
 .show-contact-headline {
@@ -1134,12 +1153,13 @@ input {
     justify-content: center;
     align-items: center;
     padding: 18px 10px;
+    margin-top: 30px;
     gap: 10px;
-    position: absolute;
+    /* position: absolute; */
     width: 193px;
-    height: 53px;
-    left: 1195px;
-    top: 70vh;
+    /* height: 53px; */
+    /* left: 1195px; */
+    /* top: 70vh; */
     background: #2A3647;
     border: 1px solid #2A3647;
     border-radius: 10px;
