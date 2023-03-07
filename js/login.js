@@ -11,6 +11,7 @@ let loginUsers = [{
     'password': 'test123'
 }];
 
+let userName;
 let activeUser = {};
 
 
@@ -32,11 +33,8 @@ async function onloadLogin() {
     await init();
     pushAllUsersInBackEnd();
     //loadAllUsers();
-    
-    
-    
-
 }
+
 
 function loadAllUsers() {
     let allUsersAsString = localStorage.getItem('loginUsers');
@@ -60,26 +58,53 @@ async function pushAllUsersInBackEnd() {
 }
 
 
+function checkTime() {
+    let date = new Date();
+    let hours = date.getHours();
+    let timeGreet = document.getElementById('board-time');
+
+    if (hours <= 11) {
+        timeGreet.innerHTML = 'Good Morning';
+    } else if (hours < 18) {
+        timeGreet.innerHTML = 'Good Afternoon';
+    } else {
+        timeGreet.innerHTML = 'Good Evening';
+    }
+}
+
+
+function guestLogin() {
+    activeUser = 'guest';
+    location.href = 'summary.html';
+}
+
+
+function replaceUserName(userName) {
+    let greeting = document.getElementById('board-greeting');
+    
+    if (activeUser == 'guest') {
+        greeting.innerHTML = 'Guest';
+    } else {
+        greeting.innerHTML = userName;
+    }
+}
+
+
 function login() {
     let email = document.getElementById('login-email');
     let password = document.getElementById('login-password');
     let loginUser = loginUsers.find(u => u.email == email.value && u.password == password.value);
-
+    userName = loginUser.name;
 
     if (loginUser) {
         activeUser = loginUser;
         console.log('User gefunden');
-        window.location.href = 'summery.html';
         localStorage.removeItem('loginUsers');
+        location.href = 'summary.html';
     } else {
-        //popup User not found
+        alert('User not found');
     }
-
-
 }
-
-
-
 
 
 async function addUser() {
@@ -117,9 +142,3 @@ async function saveUsers() {
 function saveInLocalStorage(loginUsersAsText) {
     localStorage.setItem('loginUsers', loginUsersAsText)
 }
-
-
-
-
-
-

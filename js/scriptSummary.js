@@ -1,18 +1,13 @@
-
-
-
-
-
-
-
 async function updatePage() {
     //await deleteSelectedAllContacts();
 
-    await init();
     await pushAllContactsInBackEnd();
+    await init();
     updateDate();
     updateCountOfTasks();
     responsiveJoinLogo();
+    replaceUserName(userName);
+    checkTime();
 }
 
 function updateDate() {
@@ -25,6 +20,7 @@ function updateDate() {
 
     document.getElementById('dateSummary').innerHTML = `${month}  ${day}, ${year} `;
 }
+
 
 function updateCountOfTasks() {
     countOfAllTasks();
