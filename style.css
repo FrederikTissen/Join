@@ -28,18 +28,32 @@ input {
 /*
     Help and Legal
 */
+
+.headline-index-legal {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px;
+    /* position: absolute; */
+    /* width: 630px; */
+    /* height: 73px; */
+    /* left: 330px; */
+    /* top: 150px; */
+}
+
 .legal-overview {
     display: flex;
     flex-direction: column;
     position: absolute;
-    /* width: 969px; */
+    width: 75vw;
     left: 330px;
     top: 130px;
-    height: max-content;
-    /* overflow-y: scroll; */
+    height: 83vh;
+    overflow-y: scroll;
     /* background-color: #d1d1d1; */
     /* padding: 15px; */
-    /* padding-right: 130px;*/
+    /* padding-right: 130px; */
 }
 
 
@@ -262,6 +276,12 @@ input {
 }
 
 .headline-index p {
+    font-size: 27px;
+    font-weight: 400;
+
+}
+
+.headline-index-legal p {
     font-size: 27px;
     font-weight: 400;
 

@@ -1078,6 +1078,7 @@
 
     .sidebar-header {
         top: 86vh !important;
+        z-index: 100;
     }
 
     /*.task-sections {
@@ -1089,6 +1090,8 @@
 
     .sidebar-header {
         top: 87vh !important;
+        z-index: 100;
+    
     }
 
     /*.task-sections {
