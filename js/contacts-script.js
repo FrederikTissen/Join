@@ -65,8 +65,8 @@ async function onloadContacts() {
 }
 
 
-async function init(activeUser) {
-    
+async function init() {
+
     loginUsersBackend = JSON.parse(backend.getItem('loginUsersBackend')) || [];
     //allLoginUsers = JSON.parse(backend.getItem('allLoginUsers')) || [];
     contacts = JSON.parse(backend.getItem('contacts')) || [];
@@ -166,14 +166,16 @@ function generateAllContacts(contact, firstChar, secondChar, i, color) {
 function showContact(firstName, color) {
     currentcontact = contacts.filter(t => t['firstName'] == firstName);
     let i = contacts.findIndex(x => x['firstName'] === firstName);
-    let firstChar = currentcontact['0']['firstName'].charAt(0);
-    let secondChar = currentcontact['0']['name'].charAt(0);
+    let firstChar = currentcontact['0']['firstName'].charAt(0).toUpperCase();
+    let secondChar = currentcontact['0']['name'].charAt(0).toUpperCase();
     let firstname = currentcontact['0']['firstName'];
+    let fullFirstname = firstName.charAt(0).toUpperCase() + firstName.slice(1);
     let name = currentcontact['0']['name'];
+    let fullName = name.charAt(0).toUpperCase() + name.slice(1);
     let mail = currentcontact['0']['mail'];
     let phone = currentcontact['0']['phone'];
     let contactfield = document.getElementById('show-contact');
-    contactfield.innerHTML = generateContactfield(i, firstChar, secondChar, color, firstname, name, mail, phone);
+    contactfield.innerHTML = generateContactfield(i, firstChar, secondChar, color, fullFirstname, fullName, mail, phone);
 }
 
 /**
@@ -182,12 +184,12 @@ function showContact(firstName, color) {
  * 
  * @returns 
  */
-function generateContactfield(i, firstChar, secondChar, color, firstname, name, mail, phone) {
+function generateContactfield(i, firstChar, secondChar, color, fullFirstname, fullName, mail, phone) {
     return /*html*/`
     <div class="show-contact-headline">
         <div id="contact-img" class="contact-img-big" style="background-color:${color}">${firstChar} ${secondChar}</div>
         <div class="show-contact-headline-right"> 
-            <div class="contact-head-name">${firstname} ${name}</div>
+            <div class="contact-head-name">${fullFirstname} ${fullName}</div>
             <div onclick="addNewTask()" id="add-task" class="blue-font"> + Add Task </div>
         </div>
     </div>
@@ -211,7 +213,7 @@ function generateContactfield(i, firstChar, secondChar, color, firstname, name, 
  * 
  */
 function addNewContact() {
-    if (window.innerWidth > 1700) {
+    if (window.innerWidth > 600) {
         if (createdContact) {
             document.getElementById('show-contact').innerHTML = `
         <div w3-include-html="add-contact.html"></div>`;
@@ -219,28 +221,37 @@ function addNewContact() {
         includeHTMLaddContact();
         createdContact = false;
     } else {
-        window.location.assign("./add-contact.html");
+        window.location.href = "./add-contact.html";
     }
 }
 
 function cancelPopupEdit() {
-    if (innerWidth > 600) {
-        document.getElementById('w3-edit').classList.remove('show');
-        document.getElementById('w3-edit').classList.add('d-none');
-    } else {
-        window.location.assign("./contacts.html");
-    }
+
+    document.getElementById('w3-edit').classList.remove('show');
+    document.getElementById('w3-edit').classList.add('d-none');
+
+    // if (innerWidth > 1700) {
+    //     document.getElementById('w3-edit').classList.remove('show');
+    //     document.getElementById('w3-edit').classList.add('d-none');
+    //     document.getElementById('add-new-contact-btn').style.display = "flex";
+    // } else {                                    // else condition is same thing like if condition
+    //     window.location.href = "./contacts.html"; // window.location.reload()
+    // }
 
     createdContact = true;
 }
 
 function cancelPopupAdd() {
-    if (innerWidth > 1700) {
-        document.getElementById('w3-add').classList.remove('show');
-        document.getElementById('w3-add').classList.add('d-none');
-    } else {
-        window.location.assign("./contacts.html");
-    }
+
+    document.getElementById('w3-add').classList.remove('show');
+    document.getElementById('w3-add').classList.add('d-none');
+
+    // if (innerWidth > 1700) {
+    //     document.getElementById('w3-add').classList.remove('show');
+    //     document.getElementById('w3-add').classList.add('d-none');
+    // } else {                                        // else condition is same thing like if condition
+    //     window.location.href="./contacts.html";     
+    // }
 
     createdContact = true;
 }
@@ -254,9 +265,10 @@ async function editContact(i, color) {
     if (innerWidth > 600) {
         if (createdContact) {
             document.getElementById('show-contact').innerHTML = `
-        <div class="w3-edit" w3-include-html="edit-contact.html"></div>`;
+                <div class="w3-edit" w3-include-html="edit-contact.html"></div>`;
             await includeHTMLaddContact();
         }
+
         document.getElementById('w3-edit').classList.remove('d-none');
         editContactValues(i, color);
         createdContact = false;
@@ -305,12 +317,10 @@ async function saveEditContact() {
     contacts.splice(editedContact, 1);
 
     await backend.setItem('contacts', JSON.stringify(contacts));
-    
+
     filterByLetters();
     cancelPopupEdit();
     editedContact = '';
-    document.getElementById('w3-edit').classList.add('d-none');
-    document.getElementById('add-new-contact-btn').style.display = "flex";
 }
 
 /**
@@ -337,7 +347,7 @@ async function createContact() {
     await backend.setItem('contacts', JSON.stringify(contacts));
     clearInputfields(inputName, inputFirstName, inputMail, inputPhone);
     showSuccessBtn();
-    setTimeout(closeSuccessBtn, 1500);
+    setTimeout(closeSuccessBtn, 1000);
     filterByLetters();
 }
 
@@ -362,13 +372,13 @@ async function deleteUser() {
     contacts.splice(editedContact, 1);
     await backend.setItem('contacts', JSON.stringify(contacts));
     document.getElementById('add-new-contact-btn').style.display = "flex";
-    
+
     cancelPopupEdit();
     filterByLetters();
     editedContact = '';
 }
 
-async function filterByLetters() {
+function filterByLetters() {
     let contactSection = document.getElementById('contact-list');
     contactSection.innerHTML = '';
 
@@ -428,7 +438,7 @@ function renderLetterBox(currentLetter, letter) {
     let contactSection = document.getElementById('contact-list');
     let firstChar = letter;
 
-    contactSection.innerHTML +=`
+    contactSection.innerHTML += `
         <div id="char-section${letter}" class="first-char">${firstChar}</div>
         <div class="same-letters" id='theSameLetters${letter}'></div>
     `
@@ -436,13 +446,20 @@ function renderLetterBox(currentLetter, letter) {
     for (let i = 0; i < currentLetter.length; i++) {
         currentcontact = currentLetter[i];
         let color = currentcontact['color'];
-        let firstChar = currentcontact['firstName'].charAt(0);
+        let firstChar = currentcontact['firstName'].charAt(0).toUpperCase();
+
+
         let firstName = currentcontact['firstName'];
-        let secondChar = currentcontact['name'].charAt(0);
+        let fullFirstname = firstName.charAt(0).toUpperCase() + firstName.slice(1);
+        let name = currentcontact['name'];
+        let fullName = name.charAt(0).toUpperCase() + name.slice(1);
+
+
+        let secondChar = currentcontact['name'].charAt(0).toUpperCase();
         let charSection = document.getElementById(`char-section${i}`);
         let contactLetter = document.getElementById(`theSameLetters${firstChar}`);
 
-        contactLetter.innerHTML += generateAllContacts1(currentcontact, firstChar, secondChar, i, color, firstName);
+        contactLetter.innerHTML += generateAllContacts1(currentcontact, firstChar, secondChar, i, color, firstName, fullFirstname, fullName);
 
         if (!initials.includes(charSection)) {
             initials.push(charSection);
@@ -456,13 +473,13 @@ function renderLetterBox(currentLetter, letter) {
  *
  * @return
  */
-function generateAllContacts1(currentcontact, firstChar, secondChar, i, color, firstName) {
+function generateAllContacts1(currentcontact, firstChar, secondChar, i, color, firstName, fullFirstname, fullName) {
 
     return /*html*/ `
     <div onclick="showContact('${firstName}', '${color}')" id="contact-card${i}" class="contact-card">
         <div id="contact-img${i}" class="contact-img" style='background-color: ${color};'>${firstChar} ${secondChar}</div>
         <div id="contactInfo${i}" class="contact-info">
-            <span>${currentcontact['firstName']} ${currentcontact['name']}</span>
+            <span>${fullFirstname} ${fullName}</span>
             <p>${currentcontact['mail']}</p>
         </div>
     </div>`
