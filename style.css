@@ -1060,6 +1060,7 @@ input {
     gap: 35px;
     /*width: 357px;*/
     height: 79px;
+    cursor: pointer;
 }
 
 .contact-card:hover {
@@ -1423,6 +1424,7 @@ optgroup {
     box-shadow: 0px 0px 14px 3px rgba(0, 0, 0, 0.04);
     border-radius: 30px;
     margin-top: 35px;
+    cursor: pointer;
 
 
     /*padding: 10px;

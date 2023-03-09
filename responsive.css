@@ -1160,7 +1160,7 @@
     }
 
     .accepted-category {
-        width: 270px;
+        width: 215px;
     }
 
     .input-nav-box {
@@ -1294,6 +1294,10 @@
 }
 
 @media (max-width: 650px) {
+
+    .accepted-category {
+        width: unset;
+    }
 
     .addTask-header {
         margin-bottom: 0;

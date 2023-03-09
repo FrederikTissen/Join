@@ -66,7 +66,7 @@ async function onloadContacts() {
 
 
 async function init() {
-
+    await downloadFromServer();
     loginUsersBackend = JSON.parse(backend.getItem('loginUsersBackend')) || [];
     //allLoginUsers = JSON.parse(backend.getItem('allLoginUsers')) || [];
     contacts = JSON.parse(backend.getItem('contacts')) || [];
@@ -81,7 +81,7 @@ async function init() {
     feedbackBoxCount = JSON.parse(backend.getItem('feedbackBoxCount')) || [];
     doneBoxCount = JSON.parse(backend.getItem('doneBoxCount')) || [];
     urgentTasksCount = JSON.parse(backend.getItem('urgentTasksCount')) || [];
-    await downloadFromServer();
+    
 }
 
 
@@ -320,6 +320,7 @@ async function saveEditContact() {
 
     filterByLetters();
     cancelPopupEdit();
+    document.getElementById('add-new-contact-btn').style.display = "";
     editedContact = '';
 }
 
@@ -375,6 +376,7 @@ async function deleteUser() {
 
     cancelPopupEdit();
     filterByLetters();
+    document.getElementById('add-new-contact-btn').style.display = "";
     editedContact = '';
 }
 

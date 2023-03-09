@@ -154,7 +154,7 @@ async function reset() {
 
 }
 
-function checkFormValidation() {
+async function checkFormValidation() {
     let title = document.getElementById('title').value;
     let description = document.getElementById('description').value;
     let date = document.getElementById('date').value;
@@ -172,7 +172,7 @@ function checkFormValidation() {
     } else if (!currentPrioStat) {
         showSuccessPopUp('Wähle eine Priorität!');
     } else if (currentPrioStat) {
-        addTask();
+        await addTask();
     }
 }
 
