@@ -65,7 +65,7 @@ async function onloadContacts() {
 }
 
 
-async function init() {
+async function init(activeUser) {
     
     loginUsersBackend = JSON.parse(backend.getItem('loginUsersBackend')) || [];
     //allLoginUsers = JSON.parse(backend.getItem('allLoginUsers')) || [];

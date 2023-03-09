@@ -12,7 +12,8 @@ let loginUsers = [{
 }];
 
 let userName;
-let activeUser = {};
+let activeUser;
+let currentUser = [];
 
 
 /*
@@ -45,15 +46,12 @@ function loadAllUsers() {
 
 
 async function pushAllUsersInBackEnd() {
-
-
     for (let i = 0; i < loginUsers.length; i++) {
         const thisUser = loginUsers[i];
 
         loginUsersBackend.push(thisUser);
         await backend.setItem('loginUsersBackend', JSON.stringify(loginUsersBackend));
         loginUsersBackend = JSON.parse(backend.getItem('loginUsersBackend')) || [];
-
     }
 }
 
@@ -73,20 +71,36 @@ function checkTime() {
 }
 
 
+// function guestLogin() {
+//     userName = 'guest';
+//     saveVariable(userName);
+//     location.href = 'summary.html';
+// }
+
 function guestLogin() {
     activeUser = 'guest';
+    currentUser.push(activeUser);
+    localStorage.setItem('currentUser', currentUser);
     location.href = 'summary.html';
 }
 
 
-function replaceUserName(userName) {
+function saveVariable() {
+    //let userNameAsText = JSON.stringify(userName);
+    //localStorage.setItem('UserName', userNameAsText);
+    localStorage.setItem('UserName', userName);
+}
+
+
+function replaceUserName() {
     let greeting = document.getElementById('board-greeting');
-    
-    if (activeUser == 'guest') {
+    currentUser = localStorage.getItem('currentUser');
+    if (currentUser == 'guest') {
         greeting.innerHTML = 'Guest';
     } else {
-        greeting.innerHTML = userName;
+        greeting.innerHTML = currentUser.charAt(0).toUpperCase() + currentUser.slice(1);
     }
+    localStorage.removeItem('currentUser');
 }
 
 
@@ -94,7 +108,10 @@ function login() {
     let email = document.getElementById('login-email');
     let password = document.getElementById('login-password');
     let loginUser = loginUsers.find(u => u.email == email.value && u.password == password.value);
-    userName = loginUser.name;
+
+    activeUser = loginUser.name;
+    currentUser.push(activeUser);
+    localStorage.setItem('currentUser', currentUser);
 
     if (loginUser) {
         activeUser = loginUser;

@@ -6,7 +6,7 @@ async function updatePage() {
     updateDate();
     updateCountOfTasks();
     responsiveJoinLogo();
-    replaceUserName(userName);
+    replaceUserName();
     checkTime();
 }
 
