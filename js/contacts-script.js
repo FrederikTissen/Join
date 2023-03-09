@@ -10,7 +10,7 @@ let dataContacts = [{
     firstName: "Anja",
     mail: "schulz@hotmail.com",
     phone: "015137294742",
-    color: "#E201BE"
+    color: "#E200BE"
 }, {
     name: "Eisenberg",
     firstName: "David",
@@ -34,7 +34,7 @@ let dataContacts = [{
     firstName: "Emanuel",
     mail: "emmanuelMa@gmail.com",
     phone: "015137294746",
-    color: "#8BA4FF"
+    color: "#00F2F0"
 }, {
     name: "Bauer",
     firstName: "Marcel",
@@ -46,7 +46,7 @@ let dataContacts = [{
     firstName: "Tanja",
     mail: "wolf@gmail.com",
     phone: "015137294748",
-    color: "#E201BE"
+    color: "#E200BE"
 }];
 
 
@@ -169,7 +169,7 @@ function showContact(firstName, color) {
     let firstChar = currentcontact['0']['firstName'].charAt(0).toUpperCase();
     let secondChar = currentcontact['0']['name'].charAt(0).toUpperCase();
     let firstname = currentcontact['0']['firstName'];
-    let fullFirstname = firstName.charAt(0).toUpperCase() + firstName.slice(1);
+    let fullFirstname = firstname.charAt(0).toUpperCase() + firstName.slice(1);
     let name = currentcontact['0']['name'];
     let fullName = name.charAt(0).toUpperCase() + name.slice(1);
     let mail = currentcontact['0']['mail'];
@@ -226,7 +226,7 @@ function addNewContact() {
 }
 
 function cancelPopupEdit() {
-
+    document.getElementById('add-new-contact-btn').style.display = "flex";
     document.getElementById('w3-edit').classList.remove('show');
     document.getElementById('w3-edit').classList.add('d-none');
 
@@ -242,7 +242,7 @@ function cancelPopupEdit() {
 }
 
 function cancelPopupAdd() {
-
+    document.getElementById('add-new-contact-btn').style.display = "flex";
     document.getElementById('w3-add').classList.remove('show');
     document.getElementById('w3-add').classList.add('d-none');
 
