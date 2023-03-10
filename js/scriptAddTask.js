@@ -370,6 +370,7 @@ function openInputContact() {
 function pushNewContact() {
     saveContact(currentContact);
     document.getElementById('input-contact').value = '';
+    renderContacts();
 }
 
 
