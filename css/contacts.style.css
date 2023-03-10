@@ -1,0 +1,247 @@
+
+.contact-overview {
+    background-color: #29ABE2;
+    position: absolute;
+    width: 453px;
+    height: 935px;
+    left: 232px;
+    top: 89px;
+    overflow-y: scroll;
+}
+
+.contact-main {
+    width: 100vw;
+}
+
+.headline-index-contact {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0px;
+    gap: 30px;
+    position: absolute;
+    width: 569px;
+    height: 73px;
+    left: 700px;
+    top: 171px;
+}
+
+.headline-index-contact p {
+    font-size: 27px;
+    font-weight: 400;
+}
+
+.headline-index-contact span {
+    font-size: 61px;
+    font-weight: 700;
+}
+
+.contact-list-overview {
+    position: absolute;
+    /*width: 453px;*/
+    /* height: 92vh; */
+    left: 232px;
+    top: 89px;
+    bottom: 0px;
+    background: #FFFFFF;
+    box-shadow: 4px 0px 6px rgb(0 0 0 / 8%);
+    overflow-y: scroll;
+}
+
+.contact-list {
+    display: flex;
+    flex-direction: column;
+    /*align-items: center;*/
+    width: inherit;
+}
+
+.first-char {
+    /*width: 323px;*/
+    height: 40px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #d1d1d1;
+    padding-bottom: 24px;
+    margin-bottom: 32px;
+    margin-top: 10px;
+    padding-left: 37.5px;
+}
+
+.contact-card {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 15px 25px;
+    gap: 35px;
+    /*width: 357px;*/
+    height: 79px;
+}
+
+.contact-card:hover {
+    background-color: #2A3647;
+    color: white;
+}
+
+.contact-img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid white;
+    border-radius: 50%;
+    width: 42px;
+    height: 42px;
+    /*margin-left: 20px;*/
+    padding: 5px;
+    color: white;
+}
+
+.contact-img-big {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 3px solid white;
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    margin-left: 20px;
+    color: white;
+    font-size: 47px;
+    letter-spacing: -5px;
+    margin-left: 0;
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    height: 49px;
+}
+
+.contact-info span {
+    font-size: 21px;
+    font-weight: 400;
+    width: max-content;
+}
+
+.contact-info p {
+    font-size: 16px;
+    color: #007cee;
+    margin: 5px 0 0 0;
+}
+
+.show-contact-box {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    left: 730px;
+    top: 326px;
+}
+
+.show-contact {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 21px;
+    
+    width: -webkit-fill-available;
+    height: min-content;
+    
+}
+
+.show-contact-headline {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 47px;
+    font-weight: 500;
+}
+
+.show-contact-headline-right {
+    display: flex;
+    flex-direction: column;
+    margin-left: 54px;
+    gap: 13px;
+}
+
+.show-contact-middle {
+    display: flex;
+    padding-top: 22px;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 22px;
+    font-size: 21px;
+    font-weight: 400;
+    gap: 100px;
+}
+
+.edit-contact {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.new-contact {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 18px 10px;
+    margin-top: 30px;
+    gap: 10px;
+    /* position: absolute; */
+    width: 193px;
+    /* height: 53px; */
+    /* left: 1195px; */
+    /* top: 70vh; */
+    background: #2A3647;
+    border: 1px solid #2A3647;
+    border-radius: 10px;
+    cursor: pointer;
+    color: white;
+    font-size: 21px;
+}
+
+.btn-contact-create {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 326px;
+    height: 74px;
+    padding: 18px 10px;
+    gap: 10px;
+    background: #2A3647;
+    border: 1px solid #2A3647;
+    border-radius: 10px;
+    cursor: pointer;
+    color: white;
+    font-size: 21px;
+}
+
+.blue-font {
+    color: #29ABE2;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.blue-font:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+select {
+    width: 420px;
+    height: 60px;
+    font-size: 22px !important;
+    color: grey;
+    border: 1px solid #d1d1d1;
+    border-radius: 10px;
+    padding-left: 5px;
+    appearance: none;
+}
+
+optgroup {
+    font-size: 10px;
+}
