@@ -19,6 +19,7 @@ let currentPrioStat;
 
 async function onload() {
     //await deleteSelectedAllContacts();
+    
 
     await init();
     await deleteSelectedAllContacts();
