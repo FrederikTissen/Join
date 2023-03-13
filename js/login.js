@@ -31,6 +31,8 @@ if (msg) {
 }*/
 
 async function onloadLogin() {
+    await backend.setItem('currentUser', JSON.stringify(''));
+
     await init();
     await pushAllContactsInBackEnd();
 
@@ -80,46 +82,52 @@ function checkTime() {
 //     location.href = 'summary.html';
 // }
 
-function guestLogin() {
+async function guestLogin() {
     activeUser = 'guest';
     currentUser.push(activeUser);
-    localStorage.setItem('currentUser', currentUser);
+    //localStorage.setItem('currentUser', currentUser);
+    await backend.setItem('currentUser', JSON.stringify(currentUser));
     location.href = 'summary.html';
 }
 
 
-function saveVariable() {
+async function saveVariable() {
     //let userNameAsText = JSON.stringify(userName);
     //localStorage.setItem('UserName', userNameAsText);
-    localStorage.setItem('UserName', userName);
+    //localStorage.setItem('UserName', userName);
+    await backend.setItem('UserName', JSON.stringify(userName));
+
 }
 
 
 function replaceUserName() {
     let greeting = document.getElementById('board-greeting');
-    currentUser = localStorage.getItem('currentUser');
+    //currentUser = backend.getItem('currentUser');
     if (currentUser == 'guest') {
         greeting.innerHTML = 'Guest';
     } else {
-        //greeting.innerHTML = currentUser.charAt(0).toUpperCase() + currentUser.slice(1);
+        greeting.innerHTML = currentUser[0].charAt(0).toUpperCase() + currentUser[0].slice(1);
     }
-    localStorage.removeItem('currentUser');
+    //localStorage.removeItem('currentUser');
 }
 
 
-function login() {
+async function login() {
     let email = document.getElementById('login-email');
     let password = document.getElementById('login-password');
     let loginUser = loginUsers.find(u => u.email == email.value && u.password == password.value);
 
     activeUser = loginUser.name;
     currentUser.push(activeUser);
-    localStorage.setItem('currentUser', currentUser);
+    //await backend.setItem('currentUser', currentUser);
+    await backend.setItem('currentUser', JSON.stringify(currentUser));
+
 
     if (loginUser) {
         activeUser = loginUser;
         console.log('User gefunden');
-        localStorage.removeItem('loginUsers');
+
+        //backend.removeItem('loginUsers');
         location.href = 'summary.html';
     } else {
         alert('User not found');

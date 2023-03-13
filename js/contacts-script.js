@@ -84,6 +84,8 @@ async function init() {
     feedbackBoxCount = JSON.parse(backend.getItem('feedbackBoxCount')) || [];
     doneBoxCount = JSON.parse(backend.getItem('doneBoxCount')) || [];
     urgentTasksCount = JSON.parse(backend.getItem('urgentTasksCount')) || [];
+    currentUser = JSON.parse(backend.getItem('currentUser')) || [];
+
 
 }
 
