@@ -32,7 +32,10 @@ if (msg) {
 
 async function onloadLogin() {
     await init();
-    pushAllUsersInBackEnd();
+    await pushAllContactsInBackEnd();
+
+    await pushAllUsersInBackEnd();
+
     //loadAllUsers();
 }
 
@@ -98,7 +101,7 @@ function replaceUserName() {
     if (currentUser == 'guest') {
         greeting.innerHTML = 'Guest';
     } else {
-        greeting.innerHTML = currentUser.charAt(0).toUpperCase() + currentUser.slice(1);
+        //greeting.innerHTML = currentUser.charAt(0).toUpperCase() + currentUser.slice(1);
     }
     localStorage.removeItem('currentUser');
 }

@@ -8,6 +8,7 @@ async function updatePage() {
     responsiveJoinLogo();
     replaceUserName();
     checkTime();
+    hideLoader();
 }
 
 function updateDate() {

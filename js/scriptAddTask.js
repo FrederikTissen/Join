@@ -39,6 +39,7 @@ async function onload() {
     renderSubTask();
 
     clock();
+    hideLoader();
 }
 
 async function reset() {
@@ -71,7 +72,7 @@ function countOfAllUrgentTasks() {
     saveUrgentTasksCount(urgentTasksCount);
 }
 
-function countOfAllTasks() {
+async function countOfAllTasks() {
     let todo = allTasks.filter(t => t['split'] == 'todo-box');
     let inprogressBox = allTasks.filter(t => t['split'] == 'inprogress-box');
     let feedbackBox = allTasks.filter(t => t['split'] == 'feedback-box');
@@ -79,24 +80,24 @@ function countOfAllTasks() {
 
 
     doneBoxCount = doneBox.length;
-    deleteDoneBoxCount();
-    saveDoneBoxCount(doneBoxCount);
+    await deleteDoneBoxCount();
+    await saveDoneBoxCount(doneBoxCount);
 
 
     feedbackBoxCount = feedbackBox.length;
-    deleteFeedbackBoxCount();
-    saveFeedbackBoxCount(feedbackBoxCount);
+    await deleteFeedbackBoxCount();
+    await saveFeedbackBoxCount(feedbackBoxCount);
 
 
 
     inprogressBoxCount = inprogressBox.length;
-    deleteInprogressBoxCount();
-    saveInprogressBoxCount(inprogressBoxCount);
+    await deleteInprogressBoxCount();
+    await saveInprogressBoxCount(inprogressBoxCount);
 
 
     todoCount = todo.length;
-    deleteTodoCount();
-    saveTodoCount(todoCount);
+    await deleteTodoCount();
+    await saveTodoCount(todoCount);
 }
 
 

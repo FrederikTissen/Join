@@ -67,7 +67,8 @@ async function onloadBoard() {
     //await deleteSelectedAllContacts();
 
     await init();
-    updateHTML();
+    await updateHTML();
+    hideLoader();
 }
 
 function updateHTML() {

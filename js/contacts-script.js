@@ -59,13 +59,16 @@ let contacts = [];
 let currentLetter = [];
 
 async function onloadContacts() {
-    await pushAllContactsInBackEnd();
+    
     await init();
-    filterByLetters();
+    await filterByLetters();
+    hideLoader();
 }
 
 
 async function init() {
+    //await pushAllContactsInBackEnd();
+
     await downloadFromServer();
     loginUsersBackend = JSON.parse(backend.getItem('loginUsersBackend')) || [];
     //allLoginUsers = JSON.parse(backend.getItem('allLoginUsers')) || [];
@@ -81,7 +84,12 @@ async function init() {
     feedbackBoxCount = JSON.parse(backend.getItem('feedbackBoxCount')) || [];
     doneBoxCount = JSON.parse(backend.getItem('doneBoxCount')) || [];
     urgentTasksCount = JSON.parse(backend.getItem('urgentTasksCount')) || [];
-    
+
+}
+
+function hideLoader() {
+    let loader = document.getElementById('loader').classList;
+    loader.add("d-none");
 }
 
 
