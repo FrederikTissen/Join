@@ -1117,7 +1117,6 @@ input {
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 3px solid white;
     border-radius: 50%;
     width: 120px;
     height: 120px;
@@ -1162,9 +1161,8 @@ input {
     align-items: flex-start;
     padding: 0px;
     gap: 21px;
-    
-    width: -webkit-fill-available;
-    height: min-content;
+    margin-left: 595px;
+    margin-top: 200px
     
 }
 
@@ -1208,11 +1206,11 @@ input {
     padding: 18px 10px;
     margin-top: 30px;
     gap: 10px;
-    /* position: absolute; */
+    position: absolute;
     width: 193px;
-    /* height: 53px; */
-    /* left: 1195px; */
-    /* top: 70vh; */
+    height: 53px;
+    left: 1195px;
+    top: 70vh;
     background: #2A3647;
     border: 1px solid #2A3647;
     border-radius: 10px;

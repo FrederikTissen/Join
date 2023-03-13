@@ -67,11 +67,11 @@ function checkTime() {
     let timeGreet = document.getElementById('board-time');
 
     if (hours <= 11) {
-        timeGreet.innerHTML = 'Good Morning';
+        timeGreet.innerHTML = 'Good Morning,';
     } else if (hours < 18) {
-        timeGreet.innerHTML = 'Good Afternoon';
+        timeGreet.innerHTML = 'Good Afternoon,';
     } else {
-        timeGreet.innerHTML = 'Good Evening';
+        timeGreet.innerHTML = 'Good Evening,';
     }
 }
 

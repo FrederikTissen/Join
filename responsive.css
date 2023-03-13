@@ -318,11 +318,6 @@
 }
 
 @media (max-width: 1300px) {
-    .show-contact-box {
-        left: 670px;
-        width: 550px;
-    }
-
     .headline-index-contact span {
         font-size: 50px;
     }
@@ -370,12 +365,6 @@
         gap: 15px;
     }
 
-    .show-contact-box {
-        top: 260px;
-        width: 400px;
-        left: 590px;
-    }
-
     .show-contact-headline {
         flex-direction: column;
         gap: 20px;
@@ -390,8 +379,8 @@
     }
 
     .new-contact {
-        left: 580px;
-        /*top: 85vh;*/
+        left: 600px;
+        top: 85vh;
     }
 
 }
@@ -438,11 +427,6 @@
         display: none;
     }
 
-    .show-contact-box {
-        width: unset;
-        left: 540px;
-    }
-
     .show-contact-middle {
         gap: 20px;
         flex-direction: column-reverse;
@@ -486,12 +470,6 @@
 
     }
 
-    .show-contact-box {
-        left: 310px;
-        width: 400px;
-        align-items: center;
-    }
-
     .contact-head-name {
         font-size: 30px;
     }
@@ -501,16 +479,7 @@
         width: 115px;
         font-size: 17px;
         margin-bottom: 125px;
-
-    }
-}
-
-@media (max-width: 700px) {
-
-    .show-contact-box {
-        width: 230px;
-        align-items: flex-start;
-    }
+        top: 75vh;
 }
 
 @media (max-width: 550px) {
@@ -533,11 +502,6 @@
 
     .contact-img {
         margin-left: 0;
-    }
-
-    .show-contact-box {
-        left: 230px;
-        width: unset;
     }
 
     .headline-index-contact {
@@ -563,10 +527,6 @@
 @media (max-width: 450px) {
     .contact-main {
         background-color: #ffffff;
-    }
-
-    .show-contact-box {
-        display: none;
     }
 
     .contact-list-overview {
@@ -1092,7 +1052,7 @@
     .sidebar-header {
         top: 87vh !important;
         z-index: 100;
-    
+
     }
 
     /*.task-sections {
@@ -1545,9 +1505,8 @@
     }
 
     .x-container-edit {
-        position: relative;
-        top: -575px;
-        right: -190px;
+        top: -100px !important;
+        right: -215px !important;
         font-size: 25px;
     }
 }
@@ -1563,8 +1522,8 @@
         /*width: unset !important;
         height: unset !important;*/
         flex-direction: column !important;
-        left: 30px !important;
-        top: -195px;
+        left: 0px !important;
+        top: -100px !important;
     }
 
     .left-container-edit {
@@ -1582,7 +1541,6 @@
     }
 
     .img-container-edit {
-        margin-top: -75px !important;
         width: 100px !important;
         height: 100px !important
     }
@@ -1598,18 +1556,16 @@
     }
 
     .x-container-edit {
-        position: relative !important;
-        top: -840px !important;
-        right: -180px !important;
-        font-size: 30px !important;
-        color: white !important;
+        top: -380px !important;
+        right: -220px !important;
+        filter: invert(1);
     }
 }
 
 @media (max-width: 1050px) {
     .full-container-edit {
-        left: -50px !important;
-        top: -140px;
+        left: -65px !important;
+        top: -135px !important;
     }
 }
 
@@ -1648,12 +1604,17 @@
     }
 
     .x-container-edit {
-        right: -145px !important;
-        top: -792px !important;
+        top: -380px !important;
+        right: -180px !important;
     }
 }
 
 @media (max-width: 850px) {
+
+    .full-container-edit {
+        left: -90px !important;
+        top: -135px !important;
+    }    
 
     .left-container-edit {
         width: 500px !important;
@@ -1683,15 +1644,12 @@
     }
 
     .x-container-edit {
-        top: -856px !important;
-        right: -200px !important;
+        top: -400px !important;
+        right: -240px !important;
     }
 }
 
 @media (max-width: 700px) {
-    .full-container-edit {
-        top: -165px !important;
-    }
 
     .left-container-edit {
         width: 370px !important;
@@ -1707,8 +1665,8 @@
     }
 
     .x-container-edit {
-        top: -884px !important;
-        right: -150px !important;
+        top: -395px !important;
+        right: -190px !important;
     }
 }
 
@@ -1751,8 +1709,11 @@
     }
 
     .x-container-edit {
-        right: -280px !important;
-        top: -970px !important;
+        /*right: -280px !important;
+        top: -970px !important;*/
+        position: relative;
+        top: -385px;
+        right: -180px;
     }
 
     .edit-button {

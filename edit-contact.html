@@ -88,11 +88,12 @@
         border-radius: 0 30px 30px 0;
         border: 0.1px solid #d1d1d1;
         align-items: center;
+        padding-bottom: 20px;
     }
 
     .img-container-edit {
-        display: flex;
-        align-items: center;
+        /* display: flex;
+        align-items: center; */
         width: 120px;
         height: 120px;
         border: 3px solid white;
@@ -102,11 +103,11 @@
     }
 
     .x-container-edit {
-        width: 21.65px;
-        height: 21.65px;
         cursor: pointer;
-        margin-left: 15px;
-        margin-bottom: 500px;
+        font-size: 30px;
+        position: relative;
+        top: -350px;
+        right: -555px;
     }
 
     #profile-img {
@@ -178,6 +179,7 @@
             <div class="right-container-edit">
                 <div class="img-container-edit">
                     <div id="edit-img" class="contact-img-big"></div>
+                    <p onclick="cancelPopupEdit()" class="x-container-edit">X</p>
                 </div>
                 <form onsubmit="saveEditContact(); return false;">
                     <div class="input-edit">
@@ -204,7 +206,6 @@
                         </div>
                     </div>
                 </form>
-                <span onclick="cancelPopupEdit()" class="x-container-edit">X</span>
             </div>
         </div>
     </div>
