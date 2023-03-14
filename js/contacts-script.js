@@ -117,62 +117,12 @@ async function pushAllContactsInBackEnd() {
 
             contacts.push(thisContact);
             await backend.setItem('contacts', JSON.stringify(contacts));
-            //contacts = JSON.parse(backend.getItem('contacts')) || [];
         }
     }
 }
 
 
-/**
- * Render all contacts from JSON Array "contacts"
- * 
- */
-/*
-function renderAllContacts() {
-    filterByLetters();
-    let contactSection = document.getElementById('contact-list');
-    contactSection.innerHTML = '';
-    sortUserAlphabetically(contacts);
 
-    for (let i = 0; i < contacts.length; i++) {
-        let color = contacts[i]['color'];
-        let contact = contacts[i];
-        let firstChar = contact['firstName'].charAt(0);
-        let secondChar = contact['name'].charAt(0);
-        let charSection = document.getElementById(`char-section${i}`);
-
-        contactSection.innerHTML += generateAllContacts(contact, firstChar, secondChar, i, color);
-        //renderFirstChar(i);
-
-        if (!initials.includes(charSection)) {
-            initials.push(charSection);
-        }
-    }
-}*/
-
-/** 
- * returns generate HTML to showContact container
- *
- * @returns
- */
-/*
-function generateAllContacts(contact, firstChar, secondChar, i, color) {
-    return `
-    <div id="char-section${i}" class="first-char">${firstChar}</div>
-    <div onclick="showContact(${i}, '${color}')" id="contact-card${i}" class="contact-card">
-        <div id="contact-img${i}" class="contact-img" style='background-color: ${color};'>${firstChar} ${secondChar}</div>
-        <div id="contactInfo${i}" class="contact-info">
-            <span>${contact['firstName']} ${contact['name']}</span>
-            <p>${contact['mail']}</p>
-        </div>
-    </div>`
-}*/
-
-/**
- * Show chosen contact bigger and fully detailed in the right section. 
- * 
- * 
- */
 function showContact(firstName, color) {
     currentcontact = contacts.filter(t => t['firstName'] == firstName);
     let i = contacts.findIndex(x => x['firstName'] === firstName);
@@ -188,12 +138,8 @@ function showContact(firstName, color) {
     contactfield.innerHTML = generateContactfield(i, firstChar, secondChar, color, fullFirstname, fullName, mail, phone);
 }
 
-/**
- * returns generate HTML to showContact function
- * 
- * 
- * @returns 
- */
+
+
 function generateContactfield(i, firstChar, secondChar, color, fullFirstname, fullName, mail, phone) {
     return /*html*/`
     <div class="show-contact-headline">
@@ -255,13 +201,6 @@ function cancelPopupAdd() {
     document.getElementById('add-new-contact-btn').style.display = "flex";
     document.getElementById('w3-add').classList.remove('show');
     document.getElementById('w3-add').classList.add('d-none');
-
-    // if (innerWidth > 1700) {
-    //     document.getElementById('w3-add').classList.remove('show');
-    //     document.getElementById('w3-add').classList.add('d-none');
-    // } else {                                        // else condition is same thing like if condition
-    //     window.location.href="./contacts.html";     
-    // }
 
     createdContact = true;
 }
@@ -437,12 +376,6 @@ function filterLetter(letter) {
         renderLetterBox(currentLetter, letter);
         currentLetter = [];
     }
-    /*
-    for (let i = 0; i < currentLetter.length; i++) {
-        const element = currentLetter[i];
-        sortContacts.push(element);
-    }
-    */
 }
 
 

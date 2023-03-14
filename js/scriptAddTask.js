@@ -18,37 +18,20 @@ let currentPrioStat;
 
 
 async function onload() {
-    //await deleteSelectedAllContacts();
-    
-
     await init();
     await deleteSelectedAllContacts();
-
-
-
     selectedContacts = 0;
-    //await deleteAllSelectedContact();
-    //deleteAllTasks();
-    //selectedContacts = [];
     allSubTasks = [];
-
-
     renderCategoryBox();
     renderContactBox();
     renderPrios();
     renderSubTask();
-
     clock();
     hideLoader();
 }
 
 async function reset() {
-    //await deleteAllTasks();
-    //deleteAllSubTasks();
     await deleteSelectedAllContacts();
-
-    //await deleteAllCategories();
-    //await deleteAllCountsForSummery();
 
     selectedContacts = 0;
     allSubTasks = [];
@@ -134,13 +117,8 @@ function addTask() {
 
 
 async function reset() {
-    //await deleteAllTasks();
-    //deleteAllSubTasks();
+
     await deleteSelectedAllContacts();
-
-    //await deleteAllCategories();
-    //await deleteAllCountsForSummery();
-
     selectedContacts = 0;
     allSubTasks = [];
     document.getElementById('title').value = '';
@@ -301,7 +279,6 @@ function renderCategoryBox() {
 
 
 function renderContacts() {
-    //deleteAllSelectedContact();
     let assignedTo = document.getElementById('assignedTo');
     assignedTo.innerHTML = templateRenderContacts();
 
@@ -581,7 +558,6 @@ async function deleteAllCountsForSummery() {
 
 function deleteAllSubTasks() {
     allSubTasks = [];
-    /*saveSubTasks();*/
 }
 
 function deleteAllSelectedContact() {
