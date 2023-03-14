@@ -1161,9 +1161,9 @@ input {
     align-items: flex-start;
     padding: 0px;
     gap: 21px;
-    margin-left: 595px;
-    margin-top: 200px
-    
+    position: absolute;
+    left: 600px;
+    top: 315px;
 }
 
 .show-contact-headline {

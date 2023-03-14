@@ -427,6 +427,10 @@
         display: none;
     }
 
+    .show-contact {
+        left: 550px !important;
+    }
+
     .show-contact-middle {
         gap: 20px;
         flex-direction: column-reverse;
@@ -462,6 +466,10 @@
         justify-content: center;
     }
 
+    .show-contact {
+        left: 350px !important;
+    }
+
     .headline-index-contact {
         /*margin-left: 285px;
         margin-top: 50px;*/
@@ -480,7 +488,15 @@
         font-size: 17px;
         margin-bottom: 125px;
         top: 75vh;
+    }
 }
+
+@media (max-width: 600px) {
+    .show-contact {
+        left: 300px !important;
+    }
+}
+
 
 @media (max-width: 550px) {
     .contact-list-overview {
@@ -494,6 +510,10 @@
 
     .contact-info {
         justify-content: center;
+    }
+
+    .show-contact {
+        left: 250px !important;
     }
 
     .contact-info p {
@@ -648,6 +668,10 @@
         flex-direction: column !important;
     }
 
+    .w3-add {
+        top: -200px;
+    }
+
     .left-container {
         /* AB HIER TOP-CONTAINER */
         width: unset !important;
@@ -678,6 +702,13 @@
 
     .right-container {
         flex-direction: column !important;
+    }
+}
+
+@media (max-width: 1300px) {
+    .w3-add {
+        top: -175px;
+        left: -110px;
     }
 }
 
@@ -712,6 +743,9 @@
     .input {
         padding-right: 0 !important;
     }
+    .w3-add {
+        left: -160px;
+    }
 }
 
 @media (max-width: 1100px) {
@@ -723,6 +757,10 @@
 
     .x-container {
         left: 250px !important;
+    }
+
+    .w3-add {
+        left: -230px;
     }
 }
 
@@ -746,12 +784,20 @@
     .x-container {
         left: 190px !important;
     }
+
+    .w3-add {
+        left: -265px;
+    }
 }
 
 @media (max-width: 850px) {
     .full-container {
         left: 0px !important;
         width: 550px !important;
+    }
+
+    .w3-add {
+        left: -220px;
     }
 }
 
@@ -764,6 +810,10 @@
 @media (max-width: 750px) {
     .full-container {
         left: -85px !important;
+    }
+
+    .w3-add {
+        left: -260px;
     }
 }
 
@@ -1614,7 +1664,7 @@
     .full-container-edit {
         left: -90px !important;
         top: -135px !important;
-    }    
+    }
 
     .left-container-edit {
         width: 500px !important;
