@@ -74,5 +74,7 @@ function responsiveJoinLogo() {
     if(window.innerWidth < 850) {
         document.getElementById('new-logo').classList.remove('d-none');
         location.reload();
+    } else {
+        
     }
 }

@@ -191,7 +191,7 @@ function renderEveryCategory() {
         categoryBox.innerHTML += /*html*/ `
             <div onclick="acceptCategory(${i})" class="selection-category">
                 <div id="category${i}" class="addTask-Subheaders" >${category}</div>
-                <img class="colors" src="/assets/img/${color}.png" alt="">
+                <img class="colors" src="./assets/img/${color}.png" alt="">
             </div>
         `
     }
@@ -302,7 +302,7 @@ function acceptContact(i) {
 
     document.getElementById(`selection-contacts${i}`).innerHTML = /*html*/ `
     <div id="contact${i}" class="addTask-Subheaders">${contactFirstname}  ${contactLastName}</div>
-    <img id="checkbox${i}" onclick="acceptNotContact(${i})" class="checkbox" src="/assets/img/checkbox-contact-full.png" alt="">
+    <img id="checkbox${i}" onclick="acceptNotContact(${i})" class="checkbox" src="./assets/img/checkbox-contact-full.png" alt="">
     `
     pushSelctedContact(currentContact);
     renderContactIcon();
@@ -415,7 +415,7 @@ function choosePrio(prio, img) {
     let prioId = document.getElementById(`prio-${prio}`);
     let icon = document.getElementById(`icon-${prio}`);
     prioId.classList.add(`${prio}`);
-    icon.src = `/assets/img/${img}.png`;
+    icon.src = `./assets/img/${img}.png`;
     priority = prio;
 }
 

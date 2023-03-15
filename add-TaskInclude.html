@@ -15,6 +15,84 @@
     <script src="js/mini_backend.js"></script>
 </head>
 
+<style>
+    @media (max-width: 1250px) {
+
+.taskContentLeft {
+    width: 300px;
+}
+
+.addTotaskInputField {
+    width: 215px; 
+}
+
+.input-description {
+    width: 215px;
+}
+
+.category-box {
+    width: 215px;
+}
+
+.selection-category {
+    width: 200px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.category-box-standard {
+    width: 215px;
+}
+
+.category-box-render {
+    width: 215px;
+    padding-bottom: 10px;
+    border-bottom: 0.1px solid black;
+}
+
+.accepted-category {
+    width: 215px;
+}
+
+.input-nav-box {
+    left: 225px;
+}
+
+input {
+    font-size: 16px;
+}
+
+.render-category-box {
+    width: 215px;
+}
+
+.assigned-to-box {
+    width: 215px;
+    padding-bottom: 10px;
+    border-bottom: 0.1px solid black;
+}
+
+.select-category {
+    width: 150px;
+}
+
+.searched-emails {
+    width: 270px;
+}
+
+.selection-contacts {
+    width: 200px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.btnRow {
+    padding-left: 20px;
+    padding-top: 135px;
+}
+}
+</style>
+
 
 <body>
 
@@ -22,7 +100,7 @@
     <div id="addTaskContent" class="show-addTask">
         <div id="mainHeadline" class="include-headline">
             <h1 class="addTask-header">Add task</h1>
-            <img class="close-addtask-include" onclick="closeIncludeAddTask()" src="/assets/img/exit.png" alt="">
+            <img class="close-addtask-include" onclick="closeIncludeAddTask()" src="./assets/img/exit.png" alt="">
         </div>
         <form onsubmit="checkFormValidation(); return false">
             <div id="taskContent" class="taskContent">
@@ -51,8 +129,8 @@
                     <div id="prio" class="prio addToTaskInputSectionRight"></div>
                     <div id="subtask" class="Subtask addToTaskInputSectionRight"></div>
                     <div class="btnRow">
-                        <img class="cancel-btn" onclick="reset()" src="/assets/img/clear-button.png" alt="">
-                        <img onclick="checkFormValidation()" class="create-btn" src="/assets/img/create-task-button.png" alt="">
+                        <img class="cancel-btn" onclick="reset()" src="./assets/img/clear-button.png" alt="">
+                        <img onclick="checkFormValidation()" class="create-btn" src="./assets/img/create-task-button.png" alt="">
 
                         <!--<button id="addToTaskClearBtn" onclick="reset()" class="btn addToTaskClearBtn">Clear x</button>
                 <button id="addToTaskCreateBtn" onclick="checkFormValidation()"

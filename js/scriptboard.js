@@ -24,7 +24,7 @@ async function includeHTMLaddTask() {
 
 
 function addNewTask() {
-
+    document.body.classList.add('overflow-hidden');
     document.getElementById('show-addTaskInclude').innerHTML = /*html*/ `
         <div w3-include-html="add-TaskInclude.html" ></div>`;
 
@@ -55,7 +55,7 @@ function generateHTML(element, index) {
                 </div>
                 <div class="assignedto-prio-row">
                     <div id="assigned-to-currentTask${element['id']}" class="assigned-to-currentTask" ></div>
-                    <img class="current-Task-Prio" src="/assets/img/${priority}-solo.png" alt="">
+                    <img class="current-Task-Prio" src="./assets/img/${priority}-solo.png" alt="">
                 </div>
             </div>
         `
@@ -226,14 +226,14 @@ function openShowTask(i) {
                 <div class="priority-bar-row showTask-headers" >Priority: 
                     <div id="prio-full-task" class="showTask-headers prio-full-task ${priority}-full-task">
                         <p class="margin-none no-scale ">${capitalizedPriority}</p>
-                        <img id="icon-prio" class="icon-full-task" src="/assets/img/${priorityImg}.png">
+                        <img id="icon-prio" class="icon-full-task" src="./assets/img/${priorityImg}.png">
                     </div>
                 </div>
                 <p class="showTask-headers">Subtasks:</p>
                 <div id="subTask-box" class="showTask-subtasks"></div>
                 <p class="showTask-headers">Assigned To:</p>
                 <div id="assigned-box" ></div>
-                <div id="modify-task" class="modyfy-button" ><img src="/assets/img/edit-button.png" alt=""></div>
+                <div id="modify-task" class="modyfy-button" ><img src="./assets/img/edit-button.png" alt=""></div>
 
     `
     renderAssignedBox(assignedTo);
@@ -349,8 +349,9 @@ function updateSearchedHTML() {
 
 }
 
-function addNewTaskBoard(){
+function addNewTaskBoard() {
     includeBoard = true;
+    
     addNewTask();
 }
 
@@ -359,6 +360,8 @@ function closeIncludeAddTask() {
     if (includeBoard) {
         onloadBoard();
         includeBoard = false;
+        document.body.classList.remove('overflow-hidden');
+
     }
 }
 

@@ -1019,7 +1019,7 @@
 
     .show-addTask {
         /*right: 3px !important*/
-        overflow-y: auto;
+        /*overflow-y: auto;*/
     }
 
 
@@ -1141,9 +1141,8 @@
         width: 300px;
     }
 
-
     .addTotaskInputField {
-        width: 215px;
+        width: 215px; 
     }
 
     .input-description {
@@ -1209,6 +1208,7 @@
     .btnRow {
         padding-left: 20px;
         padding-top: 135px;
+        width: 250px;
     }
 }
 
@@ -1315,7 +1315,7 @@
     }
 
     .taskContent {
-        flex-direction: column;
+        flex-direction: column !important;
     }
 
     .taskContentLeft {
@@ -1894,13 +1894,7 @@
     }
 }*/
 
-@media (max-width: 1250px) {
-    /*.show-addTask {
-        padding: 25px;
-        width: 69vw;
-    }*/
 
-}
 
 @media (max-width: 850px) {
     /*.show-addTask {
