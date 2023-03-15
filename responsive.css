@@ -483,11 +483,22 @@
     }
 
     .new-contact {
-        left: 300px;
+        left: 570px;
         width: 115px;
         font-size: 17px;
         margin-bottom: 125px;
-        top: 75vh;
+        top: 12vh;
+    }
+}
+
+@media (max-width: 700px) {
+    .new-contact {
+        left: 360px;
+        top: 15vh;
+    }
+
+    .headline-index-contact {
+        top: 7vh;
     }
 }
 
@@ -743,6 +754,7 @@
     .input {
         padding-right: 0 !important;
     }
+
     .w3-add {
         left: -160px;
     }
@@ -782,7 +794,7 @@
     }
 
     .x-container {
-        left: 190px !important;
+        left: 175px !important;
     }
 
     .w3-add {
@@ -810,6 +822,8 @@
 @media (max-width: 750px) {
     .full-container {
         left: -85px !important;
+        margin-left: -100px !important;
+        width: 400px !important;
     }
 
     .w3-add {
@@ -1017,10 +1031,10 @@
         width: 160px;
     }
 
-    .show-addTask {
-        /*right: 3px !important*/
-        /*overflow-y: auto;*/
-    }
+    /* .show-addTask {
+        /*right: 3px !important;
+        /*overflow-y: auto;
+    }*/
 
 
 
@@ -1142,7 +1156,7 @@
     }
 
     .addTotaskInputField {
-        width: 215px; 
+        width: 215px;
     }
 
     .input-description {
@@ -1696,6 +1710,16 @@
     .x-container-edit {
         top: -400px !important;
         right: -240px !important;
+    }
+}
+
+@media (max-width: 750px) {
+    .log-in-input {
+        width: 350px !important;
+    }
+
+    input {
+        width: 350px;
     }
 }
 
