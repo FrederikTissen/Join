@@ -71,10 +71,8 @@ if (urgentTasksCount == 0) {
 
 
 function responsiveJoinLogo() {
-    if(window.innerWidth < 850) {
+   /* if(window.innerWidth < 850) {
         document.getElementById('new-logo').classList.remove('d-none');
         location.reload();
-    } else {
-        
-    }
+    } */
 }
