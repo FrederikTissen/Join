@@ -18,12 +18,22 @@ let currentUser = [];
 
 
 async function onloadLogin() {
-    await backend.setItem('currentUser', JSON.stringify(''));
+
     await init();
     await pushAllContactsInBackEnd();
-    await pushAllUsersInBackEnd();
+    //await pushAllUsersInBackEnd();
+    await resetCurrentUser();
+}
+
+async function resetCurrentUser() {
+    currentUser = [];
+    activeUser = '';
+    await backend.setItem('currentUser', JSON.stringify(''));
+    
 
 }
+
+
 
 
 function loadAllUsers() {
@@ -35,13 +45,18 @@ function loadAllUsers() {
 
 
 async function pushAllUsersInBackEnd() {
+    loginUsersBackend = [];
+    //await backend.setItem('loginUsersBackend', JSON.stringify(''));
+
     for (let i = 0; i < loginUsers.length; i++) {
         const thisUser = loginUsers[i];
 
         loginUsersBackend.push(thisUser);
         await backend.setItem('loginUsersBackend', JSON.stringify(loginUsersBackend));
-        loginUsersBackend = JSON.parse(backend.getItem('loginUsersBackend')) || [];
+
     }
+
+    //loginUsersBackend = JSON.parse(backend.getItem('loginUsersBackend')) || [];
 }
 
 
@@ -82,7 +97,7 @@ function replaceUserName() {
 async function login() {
     let email = document.getElementById('login-email');
     let password = document.getElementById('login-password');
-    let loginUser = loginUsers.find(u => u.email == email.value && u.password == password.value);
+    let loginUser = loginUsersBackend.find(u => u.email == email.value && u.password == password.value);
 
     activeUser = loginUser.name;
     currentUser.push(activeUser);
@@ -112,8 +127,9 @@ async function addUser() {
     };
 
     loginUsers.push(newUser);
-    let loginUsersAsText = JSON.stringify(loginUsers);
-    saveInLocalStorage(loginUsersAsText);
+    await pushAllUsersInBackEnd();
+    //let loginUsersAsText = JSON.stringify(loginUsers);
+    //saveInLocalStorage(loginUsersAsText);
     window.location.href = 'index.html';
 }
 

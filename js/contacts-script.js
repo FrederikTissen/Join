@@ -89,6 +89,10 @@ async function init() {
 
 }
 
+function leadToLogIn() {
+    location.href = 'index.html';
+}
+
 function hideLoader() {
     let loader = document.getElementById('loader').classList;
     loader.add("d-none");
