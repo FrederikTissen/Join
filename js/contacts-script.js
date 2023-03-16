@@ -94,6 +94,11 @@ function hideLoader() {
     loader.add("d-none");
 }
 
+function removeBlur() {
+    let main = document.getElementById('contact-list');
+    main.style.filter = '';
+}
+
 
 async function includeHTMLaddContact() {
     let includeElements = document.querySelectorAll('[w3-include-html]');
@@ -185,15 +190,8 @@ function cancelPopupEdit() {
     document.getElementById('add-new-contact-btn').style.display = "flex";
     document.getElementById('w3-edit').classList.remove('show');
     document.getElementById('w3-edit').classList.add('d-none');
-
-    // if (innerWidth > 1700) {
-    //     document.getElementById('w3-edit').classList.remove('show');
-    //     document.getElementById('w3-edit').classList.add('d-none');
-    //     document.getElementById('add-new-contact-btn').style.display = "flex";
-    // } else {                                    // else condition is same thing like if condition
-    //     window.location.href = "./contacts.html"; // window.location.reload()
-    // }
-
+    
+    removeBlur();
     createdContact = true;
 }
 
@@ -233,7 +231,7 @@ async function editContact(i, color) {
         const url = `/edit-contact.html?var1=${editLastname}&var2=${editFirstname}&var3=${editMail}&var4=${editPhone}&var4=${editImage}&var4=${firstChar}&var4=${secondChar}`;
         window.location.href = url;*/
 
-        openPageWithBlur();
+        await openPageWithBlur();
         editContactValues(i, color);
         //document.getElementById('w3-edit').classList.remove('d-none');
         createdContact = false;
@@ -241,7 +239,7 @@ async function editContact(i, color) {
 }
 
 async function openPageWithBlur() {
-    let main = document.getElementById('contact');
+    let main = document.getElementById('contact-list');
     main.style.filter = 'blur(5px)';
     document.getElementById('show-contact').innerHTML = `
         <div class="w3-edit" w3-include-html="edit-contact.html"></div>`;
@@ -349,6 +347,7 @@ async function deleteUser() {
     filterByLetters();
     document.getElementById('add-new-contact-btn').style.display = "";
     editedContact = '';
+
 }
 
 function filterByLetters() {

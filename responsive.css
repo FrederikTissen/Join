@@ -1746,6 +1746,11 @@
 
 @media (max-width: 600px) {
 
+    .full-container-edit {
+        left: -320px !important;
+        top: -180px !important;
+    }
+
     #w3-edit {
         display: none;
     }
@@ -1783,11 +1788,9 @@
     }
 
     .x-container-edit {
-        /*right: -280px !important;
-        top: -970px !important;*/
         position: relative;
-        top: -385px;
-        right: -180px;
+        top: -385px !important;
+        right: -300px !important;
     }
 
     .edit-button {
