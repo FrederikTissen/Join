@@ -144,7 +144,16 @@ function showContact(firstName, color) {
     let mail = currentcontact['0']['mail'];
     let phone = currentcontact['0']['phone'];
     let contactfield = document.getElementById('show-contact');
-    contactfield.innerHTML = generateContactfield(i, firstChar, secondChar, color, fullFirstname, fullName, mail, phone);
+
+    if (window.innerWidth > 600) {
+        contactfield.innerHTML = generateContactfield(i, firstChar, secondChar, color, fullFirstname, fullName, mail, phone);
+    } else {
+        let main = document.getElementById('contact-list');
+        main.style.filter = 'blur(5px)';
+        document.getElementById('add-new-contact-btn').style.display = 'none';
+        contactfield.innerHTML = generateContactfield(i, firstChar, secondChar, color, fullFirstname, fullName, mail, phone);
+        document.getElementById('cancel-popup').classList.remove('d-none');
+    }
 }
 
 
@@ -152,6 +161,7 @@ function showContact(firstName, color) {
 function generateContactfield(i, firstChar, secondChar, color, fullFirstname, fullName, mail, phone) {
     return /*html*/`
     <div class="show-contact-headline">
+    <span id="cancel-popup" onclick="cancelPopupAdd()" class="cancel-x d-none">X</span>
         <div id="contact-img" class="contact-img-big" style="background-color:${color}">${firstChar} ${secondChar}</div>
         <div class="show-contact-headline-right"> 
             <div class="contact-head-name">${fullFirstname} ${fullName}</div>
@@ -186,7 +196,8 @@ function addNewContact() {
         includeHTMLaddContact();
         createdContact = false;
     } else {
-        window.location.href = "./add-contact.html";
+        addContactWithBlur();
+        createdContact = false;
     }
 }
 
@@ -194,7 +205,6 @@ function cancelPopupEdit() {
     document.getElementById('add-new-contact-btn').style.display = "flex";
     document.getElementById('w3-edit').classList.remove('show');
     document.getElementById('w3-edit').classList.add('d-none');
-    
     removeBlur();
     createdContact = true;
 }
@@ -203,7 +213,7 @@ function cancelPopupAdd() {
     document.getElementById('add-new-contact-btn').style.display = "flex";
     document.getElementById('w3-add').classList.remove('show');
     document.getElementById('w3-add').classList.add('d-none');
-
+    removeBlur();
     createdContact = true;
 }
 
@@ -213,7 +223,6 @@ function cancelPopupAdd() {
  * 
  */
 async function editContact(i, color) {
-
     if (innerWidth > 600) {
         if (createdContact) {
             document.getElementById('show-contact').innerHTML = `
@@ -225,30 +234,30 @@ async function editContact(i, color) {
         editContactValues(i, color);
         createdContact = false;
     } else {
-        /*const editLastname = document.getElementById(`edit-input-lastname`);
-        const editFirstname = document.getElementById(`edit-input-firstname`);
-        const editMail = document.getElementById(`edit-input-mail`);
-        const editPhone = document.getElementById(`edit-input-phone`);
-        const editImage = document.getElementById(`edit-img`);
-        const firstChar = contacts[i]['firstName'].charAt(0);
-        const secondChar = contacts[i]['name'].charAt(0);
-        const url = `/edit-contact.html?var1=${editLastname}&var2=${editFirstname}&var3=${editMail}&var4=${editPhone}&var4=${editImage}&var4=${firstChar}&var4=${secondChar}`;
-        window.location.href = url;*/
-
-        await openPageWithBlur();
+        await editContactWithBlur();
         editContactValues(i, color);
-        //document.getElementById('w3-edit').classList.remove('d-none');
         createdContact = false;
     }
 }
 
-async function openPageWithBlur() {
+
+async function editContactWithBlur() {
     let main = document.getElementById('contact-list');
     main.style.filter = 'blur(5px)';
     document.getElementById('show-contact').innerHTML = `
         <div class="w3-edit" w3-include-html="edit-contact.html"></div>`;
     await includeHTMLaddContact();
 }
+
+
+async function addContactWithBlur() {
+    let main = document.getElementById('contact-list');
+    main.style.filter = 'blur(5px)';
+    document.getElementById('show-contact').innerHTML = `
+        <div class="w3-add" w3-include-html="add-contact.html"></div>`;
+    await includeHTMLaddContact();
+}
+
 
 function editContactValues(i, color) {
     let editLastname = document.getElementById(`edit-input-lastname`);
