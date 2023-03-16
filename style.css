@@ -794,7 +794,7 @@ input {
 }
 
 .category-box div:hover {
-    background-color: red;
+    background-color: rgb(233, 236, 248);
 }
 
 .selection-category {
@@ -971,7 +971,8 @@ input {
 
 .searched-emails :hover {
     cursor: pointer;
-    background: #862424;
+    background-color: rgb(233, 236, 248);
+
 }
 
 
