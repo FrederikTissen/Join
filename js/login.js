@@ -23,6 +23,8 @@ async function onloadLogin() {
     await pushAllContactsInBackEnd();
     //await pushAllUsersInBackEnd();
     await resetCurrentUser();
+    hideLoader();
+
 }
 
 async function resetCurrentUser() {

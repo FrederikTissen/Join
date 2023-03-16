@@ -53,10 +53,11 @@ let dataContacts = [{
 let createdContact = true;
 let contact = true;
 let initials = [];
-let editedContact;
+let editedContact = false;
 let sortContacts = [];
 let contacts = [];
 let currentLetter = [];
+let saveBtn;
 
 async function onloadContacts() {
 
@@ -119,7 +120,7 @@ async function includeHTMLaddContact() {
 }
 
 async function pushAllContactsInBackEnd() {
-
+    await backend.setItem('contacts', JSON.stringify(''));
     if (contacts.length == 0) {
         for (let i = 0; i < dataContacts.length; i++) {
             const thisContact = dataContacts[i];
@@ -154,6 +155,8 @@ function showContact(firstName, color) {
         contactfield.innerHTML = generateContactfield(i, firstChar, secondChar, color, fullFirstname, fullName, mail, phone);
         document.getElementById('cancel-popup').classList.remove('d-none');
     }
+
+    editedContact = i;
 }
 
 
@@ -238,7 +241,12 @@ async function editContact(i, color) {
         editContactValues(i, color);
         createdContact = false;
     }
+
+    //editedContact = i;
+
 }
+
+
 
 
 async function editContactWithBlur() {
@@ -275,35 +283,56 @@ function editContactValues(i, color) {
     editImage.innerHTML += `${firstChar} ${secondChar}`;
     editImage.style = `background-color:${color};`;
 
-    editedContact = i;
+    //editedContact = i;
     document.getElementById('add-new-contact-btn').style.display = "none";
 }
 
-async function saveEditContact() {
-    let editLastname = document.getElementById(`edit-input-lastname`);
-    let editFirstname = document.getElementById(`edit-input-firstname`);
-    let editMail = document.getElementById(`edit-input-mail`);
-    let editPhone = document.getElementById(`edit-input-phone`);
-    let newColor = contacts[editedContact].color;
-
-    let changedContact = {
-        name: editLastname.value,
-        firstName: editFirstname.value,
-        mail: editMail.value,
-        phone: editPhone.value,
-        color: newColor
+async function editBtn(){
+    if (saveBtn) {
+        await saveEditContact();
+    } else {
+        await deleteUser();
     }
+}
 
-    createdContact = true;
-    contacts.push(changedContact);
-    contacts.splice(editedContact, 1);
+function saveBtnTrue() {
+    saveBtn = true;
+}
 
-    await backend.setItem('contacts', JSON.stringify(contacts));
+function saveBtnFalse() {
+    saveBtn = false;
+}
 
-    filterByLetters();
-    cancelPopupEdit();
-    document.getElementById('add-new-contact-btn').style.display = "";
-    editedContact = '';
+async function saveEditContact() {
+
+    
+        let editLastname = document.getElementById(`edit-input-lastname`);
+        let editFirstname = document.getElementById(`edit-input-firstname`);
+        let editMail = document.getElementById(`edit-input-mail`);
+        let editPhone = document.getElementById(`edit-input-phone`);
+        let newColor = contacts[editedContact]['color'];
+
+        let changedContact = {
+            name: editLastname.value,
+            firstName: editFirstname.value,
+            mail: editMail.value,
+            phone: editPhone.value,
+            color: newColor,
+        }
+
+        createdContact = true;
+        contacts.push(changedContact);
+        contacts.splice(editedContact, 1);
+
+        await backend.setItem('contacts', JSON.stringify(contacts));
+
+        filterByLetters();
+        cancelPopupEdit();
+        document.getElementById('add-new-contact-btn').style.display = "";
+        editedContact = false;
+        
+   
+    
 }
 
 /**
@@ -359,7 +388,10 @@ async function deleteUser() {
     cancelPopupEdit();
     filterByLetters();
     document.getElementById('add-new-contact-btn').style.display = "";
-    editedContact = '';
+    editedContact = false;
+
+    saveBtn = false;
+    deleteBtn = true;
 
 }
 

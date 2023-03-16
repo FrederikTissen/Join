@@ -181,7 +181,7 @@
                     <div id="edit-img" class="contact-img-big"></div>
                     <p onclick="cancelPopupEdit()" class="x-container-edit">X</p>
                 </div>
-                <form onsubmit="saveEditContact(); return false;">
+                <form onsubmit="editBtn(); return false;">
                     <div class="input-edit">
                         <div class="log-in-input">
                             <input id="edit-input-lastname" required placeholder="Last name" type="text">
@@ -201,8 +201,8 @@
                         </div>
 
                         <div class="edit-button">
-                            <button class="primary-btn">Save Contact</button>
-                            <button onclick="deleteUser()" class="primary-btn edit-button-red">Delete Contact</button>
+                            <button onclick="saveBtnTrue()" class="primary-btn">Save Contact</button>
+                            <button onclick="saveBtnFalse()" class="primary-btn edit-button-red">Delete Contact</button>
                         </div>
                     </div>
                 </form>
