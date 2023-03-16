@@ -504,7 +504,11 @@
 
 @media (max-width: 600px) {
     .show-contact {
-        left: 300px !important;
+        left: 0 !important;
+        top: 12vh;
+        background: white;
+        width: 100vw;
+        align-items: center;
     }
 }
 
@@ -521,10 +525,6 @@
 
     .contact-info {
         justify-content: center;
-    }
-
-    .show-contact {
-        left: 250px !important;
     }
 
     .contact-info p {
@@ -877,6 +877,16 @@
 
     .edit-button {
         gap: 80px;
+    }
+
+    .cancel-x {
+        width: 100vw;
+        font-size: 23px;
+        display: flex;
+        justify-content: flex-end;
+        margin-right: 60px;
+        padding-top: -5px;
+
     }
 
     .blue-bar {
