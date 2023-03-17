@@ -124,13 +124,16 @@ async function includeHTMLaddContact() {
 
 async function pushAllContactsInBackEnd() {
     await backend.setItem('contacts', JSON.stringify(''));
+    contacts = JSON.parse(backend.getItem('contacts')) || [];
+
     if (contacts.length == 0) {
         for (let i = 0; i < dataContacts.length; i++) {
             const thisContact = dataContacts[i];
 
             contacts.push(thisContact);
-            await backend.setItem('contacts', JSON.stringify(contacts));
         }
+        await backend.setItem('contacts', JSON.stringify(contacts));
+
     }
 }
 
