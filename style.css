@@ -1,19 +1,15 @@
-/*html {
-    width: 100vw;
-    height: 100vh;
-}*/
-
 body {
     font-family: 'inter', sans-serif;
     background-color: #F5F5F5;
     margin: 0;
-    /*width: 100vw;
-    height: 100vh;*/
-    
 }
 
 .overflow-hidden {
     overflow: hidden;
+}
+
+.center {
+    align-items: center;
 }
 
 .loader-background{
@@ -1197,6 +1193,12 @@ input {
     font-size: 21px;
     font-weight: 400;
     gap: 100px;
+}
+
+.show-contact-bottom {
+    display: flex; 
+    flex-direction: column;
+
 }
 
 .edit-contact {
