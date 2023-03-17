@@ -27,6 +27,9 @@ async function onloadLogin() {
 
 }
 
+
+
+
 async function resetCurrentUser() {
     currentUser = [];
     activeUser = '';
