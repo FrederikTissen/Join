@@ -30,14 +30,8 @@
         display: flex;
     }
 
-    .w3-edit {
-        width: -webkit-fill-available;
-    }
-
-
     .full-container-edit {
         position: relative;
-        /*width: 1212px;*/
         height: 594px;
         display: flex;
         scale: 0.8;
@@ -168,7 +162,7 @@
 </style>
 
 <body>
-    <div id="w3-edit">
+    <div>
         <div class="full-container-edit show">
             <div class="left-container-edit">
                 <img class="join-logo-edit" src="./assets/img/join-logo-white.png">
@@ -177,9 +171,10 @@
                 <img class="blue-bar-edit" src="./assets/img/blue-bar-horizontal.png">
             </div>
             <div class="right-container-edit">
+                <span id="close-mobile-popup" onclick="closePopup()" class="x-container">X</span>
                 <div class="img-container-edit">
                     <div id="edit-img" class="contact-img-big"></div>
-                    <p onclick="cancelPopupEdit()" class="x-container-edit">X</p>
+                    <p onclick="closePopup()" class="x-container-edit">X</p>
                 </div>
                 <form onsubmit="editBtn(); return false;">
                     <div class="input-edit">

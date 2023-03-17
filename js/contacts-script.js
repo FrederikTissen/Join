@@ -138,7 +138,6 @@ async function pushAllContactsInBackEnd() {
 }
 
 
-
 function showContact(firstName, color) {
     currentcontact = contacts.filter(t => t['firstName'] == firstName);
     let i = contacts.findIndex(x => x['firstName'] === firstName);
@@ -151,8 +150,10 @@ function showContact(firstName, color) {
     let mail = currentcontact['0']['mail'];
     let phone = currentcontact['0']['phone'];
     let contactfield = document.getElementById('show-contact');
+    contactfield.style.display = "";
 
-    if (window.innerWidth > 600) {
+
+    if (window.innerWidth > 450) {
         contactfield.innerHTML = generateContactfield(i, firstChar, secondChar, color, fullFirstname, fullName, mail, phone);
     } else {
         let main = document.getElementById('contact-list');
@@ -167,11 +168,10 @@ function showContact(firstName, color) {
 }
 
 
-
 function generateContactfield(i, firstChar, secondChar, color, fullFirstname, fullName, mail, phone) {
     return /*html*/`
     <div class="show-contact-headline">
-    <span id="cancel-popup" onclick="cancelPopupMobile()" class="cancel-x d-none">X</span>
+    <span id="cancel-popup" onclick="closePopup()" class="cancel-x d-none">X</span>
         <div id="contact-img" class="contact-img-big" style="background-color:${color}">${firstChar} ${secondChar}</div>
         <div class="show-contact-headline-right"> 
             <div class="contact-head-name">${fullFirstname} ${fullName}</div>
@@ -198,10 +198,12 @@ function generateContactfield(i, firstChar, secondChar, color, fullFirstname, fu
  * 
  */
 function addNewContact() {
-    if (window.innerWidth > 600) {
+    document.getElementById('show-contact').style.display = "";
+    document.getElementById('add-new-contact-btn').style.display = "none";
+    if (window.innerWidth > 450) {
         if (createdContact) {
             document.getElementById('show-contact').innerHTML = `
-        <div w3-include-html="add-contact.html"></div>`;
+        <div class="w3-add" w3-include-html="add-contact.html"></div>`;
         }
         includeHTMLaddContact();
         createdContact = false;
@@ -211,29 +213,12 @@ function addNewContact() {
     }
 }
 
-function cancelPopupEdit() {
-    document.getElementById('add-new-contact-btn').style.display = "flex";
-    document.getElementById('w3-edit').classList.remove('show');
-    document.getElementById('w3-edit').classList.add('d-none');
-    removeBlur();
-    createdContact = true;
-}
 
-
-function cancelPopupAdd() {
-    document.getElementById('add-new-contact-btn').style.display = "flex";
-    document.getElementById('w3-add').classList.remove('show');
-    document.getElementById('w3-add').classList.add('d-none');
-    removeBlur();
-    createdContact = true;
-}
-
-
-function cancelPopupMobile() {
+function closePopup() {
     document.getElementById('add-new-contact-btn').style.display = "flex";
     document.getElementById('show-contact').style.display = "none";
     removeBlur();
-
+    createdContact = true;
 }
 
 
@@ -242,14 +227,15 @@ function cancelPopupMobile() {
  * 
  */
 async function editContact(i, color) {
-    if (innerWidth > 600) {
+    document.getElementById('show-contact').style.display = "";
+    if (innerWidth > 450) {
         if (createdContact) {
             document.getElementById('show-contact').innerHTML = `
                 <div class="w3-edit" w3-include-html="edit-contact.html"></div>`;
             await includeHTMLaddContact();
+            document.getElementById('close-mobile-popup').style.display = "none";
         }
 
-        document.getElementById('w3-edit').classList.remove('d-none');
         editContactValues(i, color);
         createdContact = false;
     } else {
@@ -263,23 +249,25 @@ async function editContact(i, color) {
 }
 
 
-
-
 async function editContactWithBlur() {
     let main = document.getElementById('contact-list');
     main.style.filter = 'blur(5px)';
+    document.getElementById('show-contact').style.display = "";
     document.getElementById('show-contact').innerHTML = `
         <div class="w3-edit" w3-include-html="edit-contact.html"></div>`;
     await includeHTMLaddContact();
+    document.getElementById('add-new-contact-btn').style.display = 'none';
 }
 
 
 async function addContactWithBlur() {
     let main = document.getElementById('contact-list');
     main.style.filter = 'blur(5px)';
+    document.getElementById('show-contact').style.display = "";
     document.getElementById('show-contact').innerHTML = `
         <div class="w3-add" w3-include-html="add-contact.html"></div>`;
     await includeHTMLaddContact();
+    document.getElementById('add-new-contact-btn').style.display = 'none';
 }
 
 
@@ -303,7 +291,7 @@ function editContactValues(i, color) {
     document.getElementById('add-new-contact-btn').style.display = "none";
 }
 
-async function editBtn(){
+async function editBtn() {
     if (saveBtn) {
         await saveEditContact();
     } else {
@@ -321,34 +309,33 @@ function saveBtnFalse() {
 
 async function saveEditContact() {
 
-    
-        let editLastname = document.getElementById(`edit-input-lastname`);
-        let editFirstname = document.getElementById(`edit-input-firstname`);
-        let editMail = document.getElementById(`edit-input-mail`);
-        let editPhone = document.getElementById(`edit-input-phone`);
-        let newColor = contacts[editedContact]['color'];
+    let editLastname = document.getElementById(`edit-input-lastname`);
+    let editFirstname = document.getElementById(`edit-input-firstname`);
+    let editMail = document.getElementById(`edit-input-mail`);
+    let editPhone = document.getElementById(`edit-input-phone`);
+    let newColor = contacts[editedContact]['color'];
 
-        let changedContact = {
-            name: editLastname.value,
-            firstName: editFirstname.value,
-            mail: editMail.value,
-            phone: editPhone.value,
-            color: newColor,
-        }
+    let changedContact = {
+        name: editLastname.value,
+        firstName: editFirstname.value,
+        mail: editMail.value,
+        phone: editPhone.value,
+        color: newColor,
+    }
 
-        createdContact = true;
-        contacts.push(changedContact);
-        contacts.splice(editedContact, 1);
+    createdContact = true;
+    contacts.push(changedContact);
+    contacts.splice(editedContact, 1);
 
-        await backend.setItem('contacts', JSON.stringify(contacts));
+    await backend.setItem('contacts', JSON.stringify(contacts));
 
-        filterByLetters();
-        cancelPopupEdit();
-        document.getElementById('add-new-contact-btn').style.display = "";
-        editedContact = false;
-        
-   
-    
+    filterByLetters();
+    closePopup();
+    document.getElementById('add-new-contact-btn').style.display = "";
+    editedContact = false;
+
+
+
 }
 
 /**
@@ -401,7 +388,7 @@ async function deleteUser() {
     await backend.setItem('contacts', JSON.stringify(contacts));
     document.getElementById('add-new-contact-btn').style.display = "flex";
 
-    cancelPopupEdit();
+    closePopup();
     filterByLetters();
     document.getElementById('add-new-contact-btn').style.display = "";
     editedContact = false;

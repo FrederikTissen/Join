@@ -29,7 +29,6 @@
     .w3-add {
         justify-content: center;
         display: flex;
-        width: 800px;
         height: 400px;
         position: relative;
     }
@@ -37,7 +36,7 @@
     .full-container {
         width: 1212px;
         height: 594px;
-        /*position: absolute;*/
+        position: absolute;
         border: 1px solid rgba(0, 0, 0, 0.3);
         scale: 0.8;
         top: -70px;
@@ -204,7 +203,7 @@
 </style>
 
 <body>
-    <div class="w3-add" id="w3-add">
+    <div>
         <div class="full-container show" id="add-contact-popup">
             <div class="left-container">
                 <img class="join-logo-add" src="./assets/img/join-logo-white.png">
@@ -213,7 +212,7 @@
                 <img class="blue-bar" src="./assets/img/blue-bar-horizontal.png">
             </div>
             <div class="right-container">
-                <span onclick="cancelPopupAdd()" class="x-container">X</span>
+                <span onclick="closePopup()" class="x-container">X</span>
                 <div class="img-container">
                     <img id="profile-img" src="./assets/img/user-white.png">
                 </div>
