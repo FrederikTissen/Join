@@ -68,8 +68,6 @@ async function onloadContacts() {
 
 
 async function init() {
-    //await pushAllContactsInBackEnd();
-
     await downloadFromServer();
     loginUsersBackend = JSON.parse(backend.getItem('loginUsersBackend')) || [];
     //allLoginUsers = JSON.parse(backend.getItem('allLoginUsers')) || [];
@@ -86,18 +84,23 @@ async function init() {
     doneBoxCount = JSON.parse(backend.getItem('doneBoxCount')) || [];
     urgentTasksCount = JSON.parse(backend.getItem('urgentTasksCount')) || [];
     currentUser = JSON.parse(backend.getItem('currentUser')) || [];
-
-
 }
 
-function leadToLogIn() {
-    location.href = 'index.html';
+
+async function leadToLogIn() {
+    await resetCurrentUser();
+    window.location.href = 'index.html';
+    setTimeout(() => {
+        window.location.reload();
+    }, 1000);
 }
+
 
 function hideLoader() {
     let loader = document.getElementById('loader').classList;
     loader.add("d-none");
 }
+
 
 function removeBlur() {
     let main = document.getElementById('contact-list');
