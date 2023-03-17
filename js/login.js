@@ -16,15 +16,11 @@ let activeUser;
 let currentUser = [];
 
 
-
 async function onloadLogin() {
-
     await init();
     await pushAllContactsInBackEnd();
-    //await pushAllUsersInBackEnd();
     await resetCurrentUser();
     hideLoader();
-
 }
 
 
@@ -34,11 +30,7 @@ async function resetCurrentUser() {
     currentUser = [];
     activeUser = '';
     await backend.setItem('currentUser', JSON.stringify(''));
-    
-
 }
-
-
 
 
 function loadAllUsers() {
@@ -80,7 +72,6 @@ function checkTime() {
 }
 
 
-
 async function guestLogin() {
     activeUser = 'guest';
     currentUser.push(activeUser);
@@ -108,7 +99,6 @@ async function login() {
     currentUser.push(activeUser);
     await backend.setItem('currentUser', JSON.stringify(currentUser));
 
-
     if (loginUser) {
         activeUser = loginUser;
         console.log('User gefunden');
@@ -120,7 +110,6 @@ async function login() {
 
 
 async function addUser() {
-    let lastName = document.getElementById('register-last-name');
     let name = document.getElementById('register-name');
     let email = document.getElementById('register-email');
     let password = document.getElementById('register-password');
@@ -138,9 +127,11 @@ async function addUser() {
     window.location.href = 'index.html';
 }
 
+
 async function saveUsers() {
     await backend.setItem('loginUsersBackend', JSON.stringify(loginUsersBackend));
 }
+
 
 function saveInLocalStorage(loginUsersAsText) {
     localStorage.setItem('loginUsers', loginUsersAsText)

@@ -68,8 +68,6 @@ async function onloadContacts() {
 
 
 async function init() {
-    //await pushAllContactsInBackEnd();
-
     await downloadFromServer();
     loginUsersBackend = JSON.parse(backend.getItem('loginUsersBackend')) || [];
     //allLoginUsers = JSON.parse(backend.getItem('allLoginUsers')) || [];
@@ -86,18 +84,23 @@ async function init() {
     doneBoxCount = JSON.parse(backend.getItem('doneBoxCount')) || [];
     urgentTasksCount = JSON.parse(backend.getItem('urgentTasksCount')) || [];
     currentUser = JSON.parse(backend.getItem('currentUser')) || [];
-
-
 }
 
-function leadToLogIn() {
-    location.href = 'index.html';
+
+async function leadToLogIn() {
+    await resetCurrentUser();
+    window.location.href = 'index.html';
+    setTimeout(() => {
+        window.location.reload();
+    }, 1000);
 }
+
 
 function hideLoader() {
     let loader = document.getElementById('loader').classList;
     loader.add("d-none");
 }
+
 
 function removeBlur() {
     let main = document.getElementById('contact-list');
@@ -151,6 +154,7 @@ function showContact(firstName, color) {
     } else {
         let main = document.getElementById('contact-list');
         main.style.filter = 'blur(5px)';
+        document.getElementById('show-contact').style.display = "unset";
         document.getElementById('add-new-contact-btn').style.display = 'none';
         contactfield.innerHTML = generateContactfield(i, firstChar, secondChar, color, fullFirstname, fullName, mail, phone);
         document.getElementById('cancel-popup').classList.remove('d-none');
@@ -164,7 +168,7 @@ function showContact(firstName, color) {
 function generateContactfield(i, firstChar, secondChar, color, fullFirstname, fullName, mail, phone) {
     return /*html*/`
     <div class="show-contact-headline">
-    <span id="cancel-popup" onclick="cancelPopupAdd()" class="cancel-x d-none">X</span>
+    <span id="cancel-popup" onclick="cancelPopupMobile()" class="cancel-x d-none">X</span>
         <div id="contact-img" class="contact-img-big" style="background-color:${color}">${firstChar} ${secondChar}</div>
         <div class="show-contact-headline-right"> 
             <div class="contact-head-name">${fullFirstname} ${fullName}</div>
@@ -177,7 +181,7 @@ function generateContactfield(i, firstChar, secondChar, color, fullFirstname, fu
             <img style="width: 30px; height: 30px; object-fit: contain;" src="./assets/img/pen.png"><p> Edit Contact</p>
         </div>
     </div>
-    <div style="display: flex; flex-direction: column;">
+    <div class="show-contact-bottom">
         <span style="font-size: 16px; font-weight: 700; padding-bottom: 15px;">Email</span>
         <span class="blue-font" style="padding-bottom: 22px;">${mail}</span>
         <span style="font-size: 16px; font-weight: 700; padding-bottom: 15px;">Phone</span>
@@ -212,12 +216,21 @@ function cancelPopupEdit() {
     createdContact = true;
 }
 
+
 function cancelPopupAdd() {
     document.getElementById('add-new-contact-btn').style.display = "flex";
     document.getElementById('w3-add').classList.remove('show');
     document.getElementById('w3-add').classList.add('d-none');
     removeBlur();
     createdContact = true;
+}
+
+
+function cancelPopupMobile() {
+    document.getElementById('add-new-contact-btn').style.display = "flex";
+    document.getElementById('show-contact').style.display = "none";
+    removeBlur();
+
 }
 
 

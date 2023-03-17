@@ -111,7 +111,6 @@
     }
 
     .headline-index-summary {
-        /*left: 280px;*/
         width: 100vw;
         justify-content: space-evenly;
         align-items: center;
@@ -236,7 +235,7 @@
 
     .sum-task-overview {
         width: 90px;
-        height: 120px;
+        height: 105px;
     }
 
     .sum-task {
@@ -254,7 +253,7 @@
     .sum-task-mid {
         width: 300px !important;
         gap: 20px;
-        height: 150px;
+        height: 130px;
     }
 
     .sum-mid-left {
@@ -273,11 +272,11 @@
     .sum-bottom-overview {
         gap: 15px;
         width: 320px;
-        height: 180px;
+        height: 160px;
     }
 
     .sum-bottom-div {
-        height: 140px;
+        height: 150px;
         flex-direction: column-reverse;
         width: 150px;
     }
@@ -299,6 +298,10 @@
 
     .sidebar-mid a:nth-child(2) {
         padding-right: 0;
+    }
+
+    .headline-index-summary {
+        height: 135px;
     }
 }
 
@@ -386,12 +389,8 @@
 }
 
 @media (max-width: 1000px) {
-    /*.contact-list-overview {
-        width: 285px;
-    }*/
 
     .first-char {
-        /*width: 200px;*/
         padding-left: 20px;
     }
 
@@ -563,7 +562,6 @@
     .contact-list-overview {
         width: 100vw;
         height: 75vh;
-        /*top: 150px;*/
     }
 
     .contact-list {
@@ -597,6 +595,15 @@
         left: unset !important;
         width: 140px !important;
         height: 50px !important;
+    }
+
+    .show-contact-middle {
+        align-items: center;
+    }
+
+    .show-contact-bottom {
+        align-items: center;
+        gap: 10px;
     }
 }
 
@@ -1509,6 +1516,12 @@
         height: 80px;
     }
 
+}
+
+@media (max-width: 450px) {
+    .sidebar-header {
+        top: 89vh !important;
+    }
 }
 
 /*
