@@ -503,7 +503,7 @@
 
 @media (max-width: 600px) {
     .show-contact {
-        left: 250px !important;
+        left: 290px !important;
         top: 270px;
     }
 }
@@ -549,6 +549,10 @@
     .new-contact {
         left: 220px;
     }
+
+    .show-contact {
+        left: 225xpx !important;
+    }
 }
 
 @media (max-width: 450px) {
@@ -573,6 +577,7 @@
     .contact-img {
         width: 70px;
         height: 70px;
+        font-size: 25px;
     }
 
     .contact-info p {
@@ -602,7 +607,7 @@
 
     .show-contact {
         left: 0 !important;
-        top: 12vh;
+        top: 12vh !important;
         background: white;
         width: 100vw;
         align-items: center;
