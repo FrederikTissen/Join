@@ -60,10 +60,12 @@ let currentLetter = [];
 let saveBtn;
 
 async function onloadContacts() {
+    //hideLoader();
 
     await init();
     await filterByLetters();
     hideLoader();
+
 }
 
 
@@ -90,6 +92,28 @@ async function init() {
 async function leadToLogIn() {
     await resetCurrentUser();
     window.location.href = 'index.html';
+    setTimeout(() => {
+        window.location.reload();
+    }, 1000);
+}
+
+async function leadToBoard() {
+    window.location.href = 'board.html';
+    setTimeout(() => {
+        window.location.reload();
+    }, 1000);
+}
+
+async function leadToAddTask() {
+    window.location.href = 'add-task.html';
+    setTimeout(() => {
+        window.location.reload();
+    }, 1000);
+}
+
+
+async function leadToContacts() {
+    window.location.href = 'contacts.html';
     setTimeout(() => {
         window.location.reload();
     }, 1000);

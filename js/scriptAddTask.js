@@ -18,6 +18,8 @@ let currentPrioStat;
 
 
 async function onload() {
+    //hideLoader();
+
     await init();
     await deleteSelectedAllContacts();
     selectedContacts = 0;
@@ -28,6 +30,7 @@ async function onload() {
     renderSubTask();
     clock();
     hideLoader();
+
 }
 
 async function reset() {

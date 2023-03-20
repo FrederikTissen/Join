@@ -33,10 +33,10 @@
         <div class="sidebar-top">
             <img id="join-logo" class="join-logo-head" src="./assets/img/join-logo-white.png">
         </div>
-        <div class="sidebar-mid">
+        <div class="sidebar-mid" >
             <div class="sidebar-center">
-                <a id="sidebar-link0" href="./summary.html">Summary
-                    <div>
+                <a style="background-color: #091931;" id="sidebar-link0" href="./summary.html">Summary
+                    <div >
                         <img src="./assets/img/summary-logo.png">
                     </div>
                 </a>
@@ -75,20 +75,20 @@
 
         <div class="summary-overview" id="summary-overview">
             <div class="sum-task-top">
-                <div class="sum-task-overview">
+                <div onclick="leadToBoard()" class="sum-task-overview">
                     <div id="tasks-in-board" class="sum-task-number" id="sum-task1"></div>
                     <div class="sum-task">Tasks in Board</div>
                 </div>
-                <div class="sum-task-overview">
+                <div onclick="leadToBoard()" class="sum-task-overview">
                     <div id="tasks-in-progress" class="sum-task-number" id="sum-task2"></div>
                     <div class="sum-task">Tasks in Progress</div>
                 </div>
-                <div class="sum-task-overview">
+                <div onclick="leadToBoard()" class="sum-task-overview">
                     <div id="tasks-awaiting-feedback" class="sum-task-number" id="sum-task3"></div>
                     <div class="sum-task">Awaiting Feedback</div>
                 </div>
             </div>
-            <div class="sum-mid-all">
+            <div onclick="leadToBoard()" class="sum-mid-all">
                 <div class="sum-task-mid">
                     <div class="sum-mid-left">
                         <img src="./assets/img/urgent-round.png">
@@ -104,16 +104,16 @@
                     </div>
                 </div>
             </div>
-            <div class="sum-bottom-overview">
-                <div class="sum-bottom-div">
-                    <img src="./assets/img/to-do.png">
+            <div  class="sum-bottom-overview">
+                <div onmouseover="changeToDoImg()" onmouseout="changeToDoImgBack()" onclick="leadToBoard()" class="sum-bottom-div">
+                    <img id="todo-img" src="./assets/img/to-do.png">
                     <div class="sum-bottom-right-section">
                         <div id="tasks-todo" class="sum-task-number"></div>
                         <div class="sum-task">To-do</div>
                     </div>
                 </div>
-                <div class="sum-bottom-div">
-                    <img src="./assets/img/done-color-round.png">
+                <div onmouseover="changeDoneImg()" onmouseout="changeDoneImgBack()" onclick="leadToBoard()" class="sum-bottom-div">
+                    <img id="done-img" src="./assets/img/done-color-round.png">
                     <div class="sum-bottom-right-section">
                         <div id="tasks-done" class="sum-task-number"></div>
                         <div class="sum-task">Done</div>

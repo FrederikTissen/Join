@@ -1,4 +1,6 @@
 async function updatePage() {
+    //hideLoader();
+
     await init();
     updateDate();
     updateCountOfTasks();
@@ -6,6 +8,40 @@ async function updatePage() {
     replaceUserName();
     checkTime();
     hideLoader();
+
+}
+
+function changeDoneImg() {
+    let img = document.getElementById('done-img');
+    if (img.src = "./assets/img/done-color-round.png") {
+        img.src = "./assets/img/done-dark-hook.png";
+    } else {
+        img.src = "./assets/img/done-color-round.png";
+    }
+}
+
+function changeDoneImgBack() {
+    let img = document.getElementById('done-img');
+    if (img.src = "./assets/img/done-dark-hook.png") {
+        img.src = "./assets/img/done-color-round.png";
+    } 
+}
+
+
+function changeToDoImg() {
+    let img = document.getElementById('todo-img');
+    if (img.src = "./assets/img/to-do.png") {
+        img.src = "./assets/img/black-pen.png";
+    } else {
+        img.src = "./assets/img/to-do.png";
+    }
+}
+
+function changeToDoImgBack() {
+    let img = document.getElementById('todo-img');
+    if (img.src = "./assets/img/black-pen.png") {
+        img.src = "./assets/img/to-do.png";
+    }
 }
 
 function updateDate() {

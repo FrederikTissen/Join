@@ -64,6 +64,8 @@ function generateHTML(element, index) {
 
 
 async function onloadBoard() {
+    //hideLoader();
+
     await init();
     await updateHTML();
     hideLoader();

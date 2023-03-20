@@ -17,10 +17,13 @@ let currentUser = [];
 
 
 async function onloadLogin() {
+    //hideLoader();
+
     await init();
     await pushAllContactsInBackEnd();
     await resetCurrentUser();
     hideLoader();
+
 }
 
 
