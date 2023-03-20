@@ -148,8 +148,6 @@ async function checkFormValidation() {
         showSuccessPopUp('Gib eine Beschreibung ein!');
     } else if (!currentCategoryStat) {
         showSuccessPopUp('Wähle eine Kategorie!');
-    } else if (!currentContactStat) {
-        showSuccessPopUp('Wähle einen Kontakt!');
     } else if (date == 0) {
         showSuccessPopUp('Wähle ein Datum!');
     } else if (!currentPrioStat) {
@@ -157,6 +155,10 @@ async function checkFormValidation() {
     } else if (currentPrioStat) {
         await addTask();
     }
+    setTimeout(() => {
+        leadToBoard();
+    }, 1000);
+    
 }
 
 function showSuccessPopUp(content) {
@@ -407,13 +409,10 @@ function renderPrios() {
     document.getElementById('prio').innerHTML = templateRenderPrios();
 }
 
-function resetPrios() {
-    currentPrioStat = false;
-    document.getElementById('prio').innerHTML = templateResetPrios();
-}
+
 
 function choosePrio(prio, img) {
-    resetPrios();
+    renderPrios();
     currentPrioStat = true;
     let prioId = document.getElementById(`prio-${prio}`);
     let icon = document.getElementById(`icon-${prio}`);

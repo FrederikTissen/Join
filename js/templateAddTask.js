@@ -94,9 +94,9 @@ function templateRenderContacts() {
 
 function templateNewContact(contactFirstname, contactLastName, i) {
     return /*html*/ `
-    <div id="selection-contacts${i}" class="selection-contacts">
+    <div onclick="acceptContact(${i})" id="selection-contacts${i}" class="selection-contacts">
         <div id="contact${i}" class="addTask-Subheaders">${contactFirstname}  ${contactLastName}</div>
-        <img id="checkbox${i}" onclick="acceptContact(${i})" class="checkbox"  src="./assets/img/checkbox-contact.png" alt="">
+        <img id="checkbox${i}"  class="checkbox"  src="./assets/img/checkbox-contact.png" alt="">
     </div>
 `;
 }
@@ -148,25 +148,7 @@ function templateRenderPrios() {
     `
 }
 
-function templateResetPrios() {
-    return /*html*/ `
-    <span class="addTask-Subheaders">Prio</span>
-                    <div class="prio-box">
-                        <div id="prio-urgent" onclick="renderPrios();" class="prio-icon">
-                            <p class="margin-none no-scale addTask-Subheaders">Urgent</p>
-                            <img id="icon-urgent" class="prio-icons" src="./assets/img/Urgent-solo.png">
-                        </div>
-                        <div id="prio-medium" onclick="renderPrios();" class="prio-icon ">
-                            <p class="margin-none no-scale addTask-Subheaders">Medium</p>
-                            <img id="icon-medium" class="prio-icon-medium" src="./assets/img/Medium-Solo.png" alt="">
-                        </div>
-                        <div id="prio-low" onclick="renderPrios();" class="prio-icon">
-                            <p class="margin-none no-scale addTask-Subheaders">Low</p>
-                            <img id="icon-low" class="prio-icons" src="./assets/img/Low-solo.png" alt="">
-                        </div>
-                    </div>
-    `
-}
+
 
 function templateRenderSubTask() {
     return /*html*/ `

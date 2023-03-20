@@ -509,8 +509,8 @@ input {
 
 /*Start of Style for add-task.html */
 
-.show-addTask {
-    /* display: flex; */
+/*.show-addTask {
+    /*display: flex; 
     top: 0px !important;
     left: 0px;
     right: 0px;
@@ -519,12 +519,39 @@ input {
     z-index: 100;
     box-shadow: 0px 0px 4px rgb(0 0 0 / 10%);
     /* border-radius: 30px; */
+    /* width: 900px; 
+    background-color: white;
+    padding: 65px;
+    /* height: 931px; */
+    /* z-index: 10;
+    overflow-y: auto;
+}*/
+
+.show-addTaskInclude {
+    position: absolute;
+    display: flex;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+}
+
+.show-addTask {
+    /* display: flex; */
+    /* top: 0px !important; */
+    /* left: 0px; */
+    /* right: 0px; */
+    /* bottom: 0px; */
+    position: fixed;
+    /* z-index: 100; */
+    box-shadow: 0px 0px 4px rgb(0 0 0 / 10%);
+    border-radius: 30px;
     /* width: 900px; */
     background-color: white;
     padding: 65px;
     /* height: 931px; */
-    /* z-index: 10;*/
-    overflow-y: auto;
+    z-index: 10;
+    /* overflow-y: auto; */
 }
 
 .addToTaskInputSection {
@@ -549,6 +576,11 @@ input {
 }
 
 .taskContent {
+    display: flex;
+    flex-direction: row;
+}
+
+.taskContent-Include {
     display: flex;
     flex-direction: row;
 }
