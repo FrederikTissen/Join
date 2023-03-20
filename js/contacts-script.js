@@ -373,7 +373,6 @@ function showSuccessBtn() {
 
 function closeSuccessBtn() {
     document.getElementById('myModal').classList.add('d-none');
-    document.getElementById('w3-add').classList.add('d-none');
 }
 
 function clearInputfields(inputName, inputFirstName, inputMail, inputPhone) {
