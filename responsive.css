@@ -4,6 +4,7 @@
 @media (max-width: 1500px) {
     .sum-mid-greeting {
         left: 1000px;
+        width: 250px;
     }
 }
 
@@ -24,9 +25,6 @@
 
     .summary-overview {
         height: auto;
-        /*width: 430px;
-        left: 330px;
-        top: 330px;*/
     }
 
     .sum-task-overview {
@@ -63,6 +61,14 @@
     .sum-mid-greeting {
         left: 830px;
         top: 460px;
+    }
+
+    .sum-mid-span-greeting {
+        font-size: 38px;
+    }
+
+    .sum-mid-span-username {
+        font-size: 48px;
     }
 }
 

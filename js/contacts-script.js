@@ -52,6 +52,8 @@ let dataContacts = [{
 
 let createdContact = true;
 let contact = true;
+let newContact;
+let changedContact;
 let initials = [];
 let editedContact = false;
 let sortContacts = [];
@@ -310,8 +312,7 @@ function editContactValues(i, color) {
     editPhone.value = contacts[i]['phone'];
     editImage.innerHTML += `${firstChar} ${secondChar}`;
     editImage.style = `background-color:${color};`;
-
-    //editedContact = i;
+    
     document.getElementById('add-new-contact-btn').style.display = "none";
 }
 
@@ -329,7 +330,9 @@ function saveBtnTrue() {
 
 function saveBtnFalse() {
     saveBtn = false;
+
 }
+
 
 async function saveEditContact() {
     let editLastname = document.getElementById(`edit-input-lastname`);
@@ -357,30 +360,32 @@ async function saveEditContact() {
     editedContact = false;
 }
 
-
-/**
- * create the new contact
- * 
- */
-async function createContact() {
+function createContact() {
     let inputName = document.getElementById('input-name');
     let inputFirstName = document.getElementById('input-first-name');
     let inputMail = document.getElementById('input-email');
     let inputPhone = document.getElementById('input-phone');
     let inputColor = document.getElementById('colors');
 
-    let newContact = {
+    newContact = {
         name: inputName.value,
         firstName: inputFirstName.value,
         mail: inputMail.value,
         phone: inputPhone.value,
         color: inputColor.value
     }
+    pushCreatedContact();
+}
 
+/**
+ * create the new contact
+ * 
+ */
+async function pushCreatedContact() {
     createdContact = true;
-    contacts.push(newContact);  // DELETE LATER
+    contacts.push(newContact);
     await backend.setItem('contacts', JSON.stringify(contacts));
-    clearInputfields(inputName, inputFirstName, inputMail, inputPhone);
+    clearInputfields();
     showSuccessBtn();
     setTimeout(closeSuccessBtn, 1000);
     filterByLetters();
@@ -395,7 +400,12 @@ function closeSuccessBtn() {
     document.getElementById('myModal').classList.add('d-none');
 }
 
-function clearInputfields(inputName, inputFirstName, inputMail, inputPhone) {
+function clearInputfields() {
+    let inputName = document.getElementById('input-name');
+    let inputFirstName = document.getElementById('input-first-name');
+    let inputMail = document.getElementById('input-email');
+    let inputPhone = document.getElementById('input-phone');
+
     inputName.value = '';
     inputFirstName.value = '';
     inputMail.value = '';
