@@ -54,15 +54,11 @@
         display: flex;
         width: 100vw;
         height: 225px;
-        flex-direction: row;
-        justify-content: space-between;
+        justify-content: flex-end;
     }
 
-    .join-logo {
-        width: 100px;
-        margin-top: 30px;
-        margin-left: 30px;
-        object-fit: contain;
+    .join-logo:hover {
+        scale: 1.1;
     }
 
     .sign-up-div {
@@ -87,6 +83,14 @@
         font-weight: 700;
         font-size: 16px;
         cursor: pointer;
+    }
+
+    .sign-up-btn:hover {
+        background-color: #29ABE2;
+    }
+
+    .sign-up-div span:hover {
+        scale: 1.1;
     }
 
     .log-in-container {
@@ -128,15 +132,24 @@
         gap: 20px;
     }
 
+    .log-in-checkbox span:hover {
+        scale: 1.1;
+    }
+
     .checkbox {
         width: 20px !important;
         cursor: pointer;
+        margin-right: -15px;
     }
 
     .href-blue {
         color: #29ABE2;
         padding-left: 15px;
         text-decoration: none;
+    }
+
+    .href-blue:hover {
+        text-decoration: underline;
     }
 
     .button-container {
@@ -163,6 +176,16 @@
         font-weight: 700;
         border: none;
         cursor: pointer;
+    }
+
+    .log-in-btn:hover {
+        background-color: #29ABE2;
+        color: black;
+    }
+
+    .guest-log-in-btn:hover {
+        background-color: #29ABE2;
+        color: white;
     }
 
     .guest-log-in-btn {
@@ -198,6 +221,108 @@
         opacity: 0.6;
     }
 
+    /*
+        START ANIMATIONS
+    */
+
+    .start-logo img {
+        position: absolute;
+        z-index: 10;
+        transform: translate(-50%, -50%);
+        top: 50%;
+        left: 50%;
+        animation: moveToCorner 1s;
+        animation-fill-mode: forwards;
+        animation-delay: 0.3s;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
+    }
+
+    @keyframes moveToCorner {
+        from {
+            transform: translate(-50%, -50%);
+            top: 50%;
+            left: 50%;
+            min-height: 300;
+        }
+
+        to {
+            transform: translate(-50%, -50%);
+            top: 65px;
+            left: 48px;
+            transform: scale(0.33);
+            transform-origin: 0 0;
+        }
+    }
+
+    @media (max-width: 1000px) {
+
+        @keyframes moveToCorner {
+            from {
+                transform: translate(-50%, -50%);
+                top: 50%;
+                left: 50%;
+                min-height: 300;
+            }
+
+            to {
+                transform: translate(-50%, -50%);
+                top: 36px;
+                left: 36px;
+                transform: scale(0.2);
+                transform-origin: 0 0;
+            }
+        }
+    }
+
+    @media (max-width: 600px) {
+
+        @keyframes moveToCorner {
+            from {
+                transform: translate(-50%, -50%);
+                top: 50%;
+                left: 50%;
+                min-height: 300;
+            }
+
+            to {
+                transform: translate(-50%, -50%);
+                top: 60px;
+                left: 45px;
+                transform: scale(0.2);
+                transform-origin: 0 0;
+            }
+        }
+    }
+
+    @media (max-width: 400px) {
+
+@keyframes moveToCorner {
+    from {
+        transform: translate(-50%, -50%);
+        top: 50%;
+        left: 50%;
+        min-height: 300;
+    }
+
+    to {
+        transform: translate(-50%, -50%);
+        top: 15px;
+        left: 30px;
+        transform: scale(0.2);
+        transform-origin: 0 0;
+    }
+}
+}
+
     @media (max-width: 1300px) {
         .sign-up-div {
             left: 800px;
@@ -214,7 +339,12 @@
         .log-in-input {
             width: 380px;
         }
+    }
 
+    @media (max-width: 1000px) {
+        .join-logo {
+            width: 415px;
+        }
     }
 
     @media (max-width: 800px) {
@@ -227,16 +357,16 @@
         }
     }
 
+    @media (max-width: 600px) {
+        .join-logo {
+            width: 315px;
+        }
+    }
+
     @media (max-width: 400px) {
         h1 {
             font-size: 50px;
             margin-top: 10px;
-        }
-
-        .join-logo {
-            width: 60px;
-            height: 100px;
-            margin-top: unset;
         }
 
         .sign-up-div {
@@ -265,6 +395,7 @@
             padding: 40px 0;
             gap: 20px;
             height: unset;
+            width: 330px;
         }
 
         .log-in {
@@ -272,16 +403,25 @@
         }
 
         .log-in-input {
-            width: 320px;
+            width: 290px;
         }
 
+        .log-in-checkbox {
+            font-size: unset;
+        }
+
+        .button-container {
+            gap: 15px;
+        }
     }
 </style>
 
 <body onload="onloadLogin()">
     <div class="full-login-content">
         <div class="head-row">
-            <img class="join-logo" src="./assets/img/join-logo.png">
+            <div class="start-logo">
+                <img class="join-logo" src="assets/img/join-logo.png" alt="">
+            </div>
             <div class="sign-up-div">
                 <span>Not a Join user?</span>
                 <button onclick="window.open('sign-up.html')" class="sign-up-btn">Sign up</button>
@@ -293,11 +433,11 @@
                     <h1>Log in</h1>
                     <img src="./assets/img/blue-bar-horizontal.png">
                 </div>
-                <div  class="log-in-input">
+                <div class="log-in-input">
                     <input id="login-email" required placeholder="Email" type="email">
                     <img src="./assets/img/mail-logo.png">
                 </div>
-                <div  class="log-in-input">
+                <div class="log-in-input">
                     <input id="login-password" required placeholder="Password" type="password">
                     <img src="./assets/img/padlock.png">
                 </div>
