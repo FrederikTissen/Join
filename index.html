@@ -42,7 +42,6 @@
     }
 
     .login-content {
-        height: 100vh;
         display: flex;
         justify-content: center;
     }
@@ -228,7 +227,55 @@
         }
     }
 
-    @media (max-width: 600px) {}
+    @media (max-width: 400px) {
+        h1 {
+            font-size: 50px;
+            margin-top: 10px;
+        }
+
+        .join-logo {
+            width: 60px;
+            height: 100px;
+            margin-top: unset;
+        }
+
+        .sign-up-div {
+            gap: 10px;
+            align-items: flex-start;
+            margin-top: 30px;
+        }
+
+        .sign-up-div span {
+            width: 60px;
+        }
+
+        .sign-up-btn {
+            width: 75px;
+        }
+
+        .head-row {
+            height: unset;
+        }
+
+        .login-content {
+            margin-top: 20px;
+        }
+
+        .log-in-container {
+            padding: 40px 0;
+            gap: 20px;
+            height: unset;
+        }
+
+        .log-in {
+            gap: 15px;
+        }
+
+        .log-in-input {
+            width: 320px;
+        }
+
+    }
 </style>
 
 <body onload="onloadLogin()">

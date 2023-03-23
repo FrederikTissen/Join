@@ -332,7 +332,6 @@ function saveBtnFalse() {
 }
 
 async function saveEditContact() {
-
     let editLastname = document.getElementById(`edit-input-lastname`);
     let editFirstname = document.getElementById(`edit-input-firstname`);
     let editMail = document.getElementById(`edit-input-mail`);
@@ -352,15 +351,12 @@ async function saveEditContact() {
     contacts.splice(editedContact, 1);
 
     await backend.setItem('contacts', JSON.stringify(contacts));
-
     filterByLetters();
     closePopup();
     document.getElementById('add-new-contact-btn').style.display = "";
     editedContact = false;
-
-
-
 }
+
 
 /**
  * create the new contact
@@ -415,7 +411,6 @@ async function deleteUser() {
     filterByLetters();
     document.getElementById('add-new-contact-btn').style.display = "";
     editedContact = false;
-
     saveBtn = false;
     deleteBtn = true;
 
