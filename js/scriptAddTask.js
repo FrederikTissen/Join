@@ -15,7 +15,7 @@ let urgentTasksCount;
 let currentContactStat;
 let currentCategoryStat;
 let currentPrioStat;
-let clearNumber;
+let clearNumber = 0;
 
 
 async function onload() {
@@ -143,7 +143,7 @@ async function checkFormValidation() {
     let description = document.getElementById('description').value;
     let date = document.getElementById('date').value;
 
-    if (clear == 0) {
+    if (clearNumber == 0) {
         if (title == 0) {
             showSuccessPopUp('Gib einen Titel ein!');
         } else if (description == 0) {
@@ -156,10 +156,11 @@ async function checkFormValidation() {
             showSuccessPopUp('Wähle eine Priorität!');
         } else if (currentPrioStat) {
             await addTask();
+            setTimeout(() => {
+                leadToBoard();
+            }, 1000);
         }
-        setTimeout(() => {
-            leadToBoard();
-        }, 1000);
+        
     } else {
         reset();
         clearNumber = 0;
