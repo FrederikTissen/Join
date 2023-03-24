@@ -60,6 +60,7 @@ let sortContacts = [];
 let contacts = [];
 let currentLetter = [];
 let saveBtn;
+let logoutButton = false;
 
 async function onloadContacts() {
     //hideLoader();
@@ -92,13 +93,27 @@ async function init() {
 }
 
 
-async function leadToLogIn() {
-    window.location.href = 'index.html';
-    setTimeout(() => {
-        window.location.reload();
-    }, 1000);
-    
+function LogoutBtn() {
+    document.getElementById('header-contacts').innerHTML += `
+        <div class="header-logout">
+            <button onclick='checklogout()' id="logout-button" class="logout-button"> Log-out? </button>
+        </div>
+    `;
+}
 
+function checklogout() {
+    logoutButton = true;
+    logout();
+}
+
+async function logout() {
+    if (logoutButton == true) {
+        await resetCurrentUser();
+        window.location.href = 'index.html';
+        setTimeout(() => {
+            window.location.reload();
+        }, 1000);
+    }
 }
 
 async function leadToBoard() {
@@ -314,7 +329,7 @@ function editContactValues(i, color) {
     editPhone.value = contacts[i]['phone'];
     editImage.innerHTML += `${firstChar} ${secondChar}`;
     editImage.style = `background-color:${color};`;
-    
+
     document.getElementById('add-new-contact-btn').style.display = "none";
 }
 

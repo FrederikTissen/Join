@@ -16,6 +16,7 @@
     body {
         background-color: #f6f7f8;
         font-family: 'inter', sans-serif;
+        margin: 0;
     }
 
     h1 {
@@ -200,13 +201,38 @@
         }
     }
 
+    @media (max-width: 600px) {
+        .join-logo {
+            width: 60px;
+        }
+    }
+
     @media (max-width: 450px) {
+        h1 {
+            font-size: 55px;
+        }
+
         .log-in-container {
             width: 320px;
+            height: 510px;
+            gap: 15px;
+        }
+
+        .log-in {
+            margin-top: -45px;
         }
 
         .log-in-input {
             width: 300px;
+        }
+
+        .login-content {
+            margin-top: 0;
+        }
+
+        .head-row {
+            height: 100px;
+            padding-bottom: 20px;
         }
     }
 </style>

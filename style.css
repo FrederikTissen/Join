@@ -4,6 +4,22 @@ body {
     margin: 0;
 }
 
+.header-logout {
+    display: flex;
+    position: relative;
+    left: -120px;
+    top: 47px;
+}
+
+.logout-button {
+    width: 70px;
+    height: 40px;
+    background-color: cornflowerblue;
+    border-radius: 15px 0 15px 15px;
+    color: white;
+    font-size: 14px;
+}
+
 .overflow-hidden {
     overflow: hidden;
 }
