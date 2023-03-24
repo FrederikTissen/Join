@@ -1407,11 +1407,64 @@ optgroup {
     cursor: pointer;
 }
 
+.log-in-btn {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 4px 0px;
+    gap: 10px;
+    width: 145px;
+    height: 51px;
+    background: #2A3647;
+    border-radius: 8px;
+    color: white;
+    font-size: 21px;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+}
+
+.guest-log-in-btn {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 4px 0px;
+    gap: 10px;
+    width: 145px;
+    height: 51px;
+    border-radius: 8px;
+    color: #2A3647;
+    background-color: #FFFFFF;
+    font-size: 21px;
+    font-weight: 700;
+    border: 1px solid #2A3647;
+    cursor: pointer;
+}
+
+.guest-log-in-btn:hover {
+    background-color: #29ABE2;
+    color: white;
+}
+
+
+
+.log-in-btn:hover {
+    background-color: #29ABE2;
+    color: black;
+}
+
 .add-task-btn {
     cursor: pointer;
     height: 51px;
     width: 137px;
-    background-image: url(./assets/img/add-task.png);
+    
+}
+
+.add-task-btn:hover {
+    background-color: #29ABE2;
+    color: black;
 }
 
 .primary-btn {

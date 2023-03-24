@@ -14,6 +14,8 @@
     <script src="js/scriptboard.js"></script>
     <script src="js/templateAddTask.js"></script>
     <script src="js/contacts-script.js"></script>
+    <script src="js/login.js"></script>
+
 </head>
 
 <body onload="onloadBoard()">
@@ -68,35 +70,35 @@
                 <div class="add-search-bar">
                     <input id="search-task" onkeyup="updateSearchedHTML()" class="search-task" type="text"
                         placeholder="Find task">
-                    <button onclick="addNewTaskBoard()" class="add-task-btn"></button>
+                    <button onclick="addNewTaskBoard()" class="log-in-btn" >Add Task</button>
                 </div>
             </div>
             <div class="task-sections">
                 <div id="todo" class="task" ondrop="moveTo('todo-box')" ondragover="allowDrop(event)">
                     <div class="section-header">
                         <span>To do</span>
-                        <img src="./assets/img/plus-button.png">
+                        <img onclick="addNewTaskBoard()" src="./assets/img/plus-button.png">
                     </div>
                     <div id="todo-box" class="task-box"></div>
                 </div>
                 <div id="in-progress" class="task" ondrop="moveTo('inprogress-box')" ondragover="allowDrop(event)">
                     <div class="section-header">
                         <span>In progress</span>
-                        <img src="./assets/img/plus-button.png">
+                        <img onclick="addNewTaskBoard()" src="./assets/img/plus-button.png">
                     </div>
                     <div id="inprogress-box" class="task-box"></div>
                 </div>
                 <div id="awaiting-feedback" class="task" ondrop="moveTo('feedback-box')" ondragover="allowDrop(event)">
                     <div class="section-header">
                         <span>Awaiting Feedback</span>
-                        <img src="./assets/img/plus-button.png">
+                        <img onclick="addNewTaskBoard()" src="./assets/img/plus-button.png">
                     </div>
                     <div id="feedback-box" class="task-box"></div>
                 </div>
                 <div id="done" class="task" ondrop="moveTo('done-box')" ondragover="allowDrop(event)" class="task-box">
                     <div class="section-header">
                         <span>Done</span>
-                        <img src="./assets/img/plus-button.png">
+                        <img onclick="addNewTaskBoard()" src="./assets/img/plus-button.png">
                     </div>
                     <div id="done-box">
                     </div>

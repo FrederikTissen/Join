@@ -221,7 +221,7 @@ function openShowTask(i) {
 
     document.getElementById('showTask').innerHTML = /*html*/ `
                 <div class="showTask-Category ${categoryColor}">${category}</div>
-                <div class="showTask-exitButton"><img onclick="closeShowTask()" src="/assets/img/exit.png" alt=""></div>
+                <div class="showTask-exitButton"><img onclick="closeShowTask()" src="./assets/img/exit.png" alt=""></div>
                 <h3 class="showTask-title">${title}</h3>
                 <p class="showTask-description">${description}</p>
                 <p class="showTask-headers">Due date: ${date}</p>
