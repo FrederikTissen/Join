@@ -23,15 +23,20 @@ async function onloadLogin() {
     await pushAllContactsInBackEnd();
     await resetCurrentUser();
     hideLoader();
-
 }
 
 
+
+function backToSummary() {
+    window.location.href = "./summary.html";
+}
 
 
 async function resetCurrentUser() {
     currentUser = [];
     activeUser = '';
+    
+
     await backend.setItem('currentUser', JSON.stringify(''));
 }
 
@@ -52,6 +57,7 @@ async function pushAllUsersInBackEnd() {
         const thisUser = loginUsers[i];
 
         loginUsersBackend.push(thisUser);
+        
         await backend.setItem('loginUsersBackend', JSON.stringify(loginUsersBackend));
 
     }

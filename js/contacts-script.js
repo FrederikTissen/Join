@@ -67,8 +67,9 @@ async function onloadContacts() {
     await init();
     await filterByLetters();
     hideLoader();
-
 }
+
+
 
 
 async function init() {
@@ -92,11 +93,12 @@ async function init() {
 
 
 async function leadToLogIn() {
-    await resetCurrentUser();
     window.location.href = 'index.html';
     setTimeout(() => {
         window.location.reload();
     }, 1000);
+    
+
 }
 
 async function leadToBoard() {
