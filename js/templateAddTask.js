@@ -94,9 +94,9 @@ function templateRenderContacts() {
 
 function templateNewContact(contactFirstname, contactLastName, i) {
     return /*html*/ `
-    <div onclick="acceptContact(${i})" id="selection-contacts${i}" class="selection-contacts">
-        <div id="contact${i}" class="addTask-Subheaders">${contactFirstname}  ${contactLastName}</div>
-        <img id="checkbox${i}"  class="checkbox"  src="./assets/img/checkbox-contact.png" alt="">
+    <div  id="selection-contacts${i}" class="selection-contacts">
+        <div onclick="acceptContact(${i})" id="contact${i}" class="addTask-Subheaders">${contactFirstname}  ${contactLastName}</div>
+        <img id="checkbox${i}" onclick="acceptContact(${i})"  class="checkbox"  src="./assets/img/checkbox-contact.png" alt="">
     </div>
 `;
 }

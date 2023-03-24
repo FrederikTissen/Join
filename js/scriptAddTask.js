@@ -15,6 +15,7 @@ let urgentTasksCount;
 let currentContactStat;
 let currentCategoryStat;
 let currentPrioStat;
+let clearNumber;
 
 
 async function onload() {
@@ -133,7 +134,7 @@ async function reset() {
     renderContactBox();
     renderPrios();
     renderSubTask();
-    showSuccessPopUp('Task added to board!');
+    //showSuccessPopUp('Task added to board!');
 
 }
 
@@ -142,23 +143,32 @@ async function checkFormValidation() {
     let description = document.getElementById('description').value;
     let date = document.getElementById('date').value;
 
-    if (title == 0) {
-        showSuccessPopUp('Gib einen Titel ein!');
-    } else if (description == 0) {
-        showSuccessPopUp('Gib eine Beschreibung ein!');
-    } else if (!currentCategoryStat) {
-        showSuccessPopUp('Wähle eine Kategorie!');
-    } else if (date == 0) {
-        showSuccessPopUp('Wähle ein Datum!');
-    } else if (!currentPrioStat) {
-        showSuccessPopUp('Wähle eine Priorität!');
-    } else if (currentPrioStat) {
-        await addTask();
+    if (clear == 0) {
+        if (title == 0) {
+            showSuccessPopUp('Gib einen Titel ein!');
+        } else if (description == 0) {
+            showSuccessPopUp('Gib eine Beschreibung ein!');
+        } else if (!currentCategoryStat) {
+            showSuccessPopUp('Wähle eine Kategorie!');
+        } else if (date == 0) {
+            showSuccessPopUp('Wähle ein Datum!');
+        } else if (!currentPrioStat) {
+            showSuccessPopUp('Wähle eine Priorität!');
+        } else if (currentPrioStat) {
+            await addTask();
+        }
+        setTimeout(() => {
+            leadToBoard();
+        }, 1000);
+    } else {
+        reset();
+        clearNumber = 0;
     }
-    setTimeout(() => {
-        leadToBoard();
-    }, 1000);
-    
+
+}
+
+function clear() {
+    clearNumber = 1;
 }
 
 function showSuccessPopUp(content) {
@@ -227,7 +237,7 @@ function openInput() {
     let categorySection = document.getElementById('category');
 
     categorySection.innerHTML = '';
-    categorySection.innerHTML= templateOpenInput();
+    categorySection.innerHTML = templateOpenInput();
 }
 
 function chooseColor(colorOfCategory) {
@@ -305,8 +315,9 @@ function acceptContact(i) {
     let contactFirstname = currentContact['firstName'];
     let contactLastName = currentContact['name'];
 
+    
     document.getElementById(`selection-contacts${i}`).innerHTML = /*html*/ `
-    <div id="contact${i}" class="addTask-Subheaders">${contactFirstname}  ${contactLastName}</div>
+    <div id="contact${i}" onclick="acceptNotContact(${i})" class="addTask-Subheaders">${contactFirstname}  ${contactLastName}</div>
     <img id="checkbox${i}" onclick="acceptNotContact(${i})" class="checkbox" src="./assets/img/checkbox-contact-full.png" alt="">
     `
     pushSelctedContact(currentContact);
@@ -330,10 +341,11 @@ function renderContactIcon() {
 }
 
 
-function acceptNotContact(i) {
+async function acceptNotContact(i) {
     currentContactStat = false;
     selectedContacts = 0;
-    saveSelectedContact(i);
+    //saveSelectedContact(i);
+    await backend.setItem('selectedContacts', JSON.stringify(''));
     renderContacts();
 }
 

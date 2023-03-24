@@ -1002,6 +1002,7 @@ input {
     width: 11px;
     height: 11px;
     padding-right: 5px;
+    z-index: 100;
 }
 
 .contact-icon {
@@ -1025,6 +1026,7 @@ input {
     width: 16px;
     height: 16px;
     margin-right: 10px;
+    z-index: 100;
 }
 
 .allSubtasks {
