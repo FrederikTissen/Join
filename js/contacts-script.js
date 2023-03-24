@@ -195,7 +195,6 @@ function showContact(firstName, color) {
     let contactfield = document.getElementById('show-contact');
     contactfield.style.display = "";
 
-
     if (window.innerWidth > 450) {
         contactfield.innerHTML = generateContactfield(i, firstChar, secondChar, color, fullFirstname, fullName, mail, phone);
     } else {
@@ -207,6 +206,7 @@ function showContact(firstName, color) {
         document.getElementById('cancel-popup').classList.remove('d-none');
     }
 
+    document.getElementById('contact-headline').style.display = "none";
     editedContact = i;
 }
 
@@ -243,6 +243,8 @@ function generateContactfield(i, firstChar, secondChar, color, fullFirstname, fu
 function addNewContact() {
     document.getElementById('show-contact').style.display = "";
     document.getElementById('add-new-contact-btn').style.display = "none";
+    document.getElementById('contact-headline').style.display = "none";
+
     if (window.innerWidth > 450) {
         if (createdContact) {
             document.getElementById('show-contact').innerHTML = `
@@ -260,6 +262,7 @@ function addNewContact() {
 function closePopup() {
     document.getElementById('add-new-contact-btn').style.display = "flex";
     document.getElementById('show-contact').style.display = "none";
+    document.getElementById('contact-headline').style.display = "";
     removeBlur();
     createdContact = true;
 }

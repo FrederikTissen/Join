@@ -18,6 +18,7 @@ body {
     border-radius: 15px 0 15px 15px;
     color: white;
     font-size: 14px;
+    z-index: 999;
 }
 
 .overflow-hidden {
@@ -1210,7 +1211,7 @@ input {
     gap: 21px;
     position: absolute;
     left: 600px;
-    top: 315px;
+    top: 170px;
 }
 
 .show-contact-headline {
