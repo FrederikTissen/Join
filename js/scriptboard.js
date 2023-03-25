@@ -278,7 +278,6 @@ function check(i) {
         subTaskCheckbox.setAttribute('checked', true);
         subTaskTitle.classList.add('line-throug');
         countOfAllCheckedSubtasks++;
-        saveCheckedBoxTrue(i);
     } else {
         subTaskCheckbox.removeAttribute('checked');
         subTaskTitle.classList.remove('line-throug');
