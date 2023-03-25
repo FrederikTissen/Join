@@ -5,6 +5,7 @@ let inprogressBoxCount;
 let feedbackBoxCount;
 let doneBoxCount;
 let includeBoard = false;
+let countOfAllCheckedSubtasks = 0;
 
 async function includeHTMLaddTask() {
     let includeElements = document.querySelectorAll('[w3-include-html]');
@@ -40,8 +41,9 @@ function generateHTML(element, index) {
     let priority = element['priority'];
     let category = element['category'];
     let categoryColor = element['categoryColor'];
+    let countOfAllSubtasks = element['subTasks']['length'];
 
-
+    checkAllCheckedSubtasks();
 
 
     return /*html*/ `
@@ -51,7 +53,7 @@ function generateHTML(element, index) {
                 <p class="task-decription">${description}</p>
                 <div class="progress-bar-row">
                     <div class="progress-bar"></div>
-                    <p class="margin-none">0/3 Done</p>
+                    <p class="margin-none">0/ ${countOfAllSubtasks} Done</p>
                 </div>
                 <div class="assignedto-prio-row">
                     <div id="assigned-to-currentTask${element['id']}" class="assigned-to-currentTask" ></div>
@@ -59,6 +61,10 @@ function generateHTML(element, index) {
                 </div>
             </div>
         `
+}
+
+function checkAllCheckedSubtasks(){
+
 }
 
 
@@ -203,6 +209,7 @@ function openShowTask(i) {
     let subTask = allTasks[i]['subTasks'];
     let firstChar = priority.charAt(0);
     let capitalizedPriority = priority.replace(firstChar, firstChar.toUpperCase());
+    let allCheckedSubtasks = allTasks[i]['all-checked-subTasks'];
 
     if (priority == "urgent") {
         priorityImg = 'arrows-up';
@@ -262,16 +269,26 @@ function renderSubTaskBox(subTask) {
 function check(i) {
     let subTaskCheckbox = document.getElementById(`subTaskCheck${i}`);
     let subTaskTitle = document.getElementById(`subTask${i}`);
+    countOfAllCheckedSubtasks;
+
 
     if (subTaskCheckbox.checked) {
         subTaskCheckbox.setAttribute('checked', true);
         subTaskTitle.classList.add('line-throug');
+        countOfAllCheckedSubtasks++;
     } else {
         subTaskCheckbox.removeAttribute('checked');
         subTaskTitle.classList.remove('line-throug');
-    }
+        countOfAllCheckedSubtasks--;
+    };
+
+    //checkAllCheckedSubtasks();
 
 }
+
+/*function checkAllCheckedSubtasks(){
+
+}*/
 
 
 function renderAssignedBox(assignedTo) {
@@ -353,7 +370,7 @@ function updateSearchedHTML() {
 
 function addNewTaskBoard() {
     includeBoard = true;
-    
+
     addNewTask();
 }
 

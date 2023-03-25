@@ -16,6 +16,7 @@ let currentContactStat;
 let currentCategoryStat;
 let currentPrioStat;
 let clearNumber = 0;
+let allCheckedSubTasks = [];
 
 
 async function onload() {
@@ -111,6 +112,7 @@ function addTask() {
         'priority': priority,
         'AssignedTo': selectedContacts,
         'subTasks': allSubTasks,
+        'all-checked-subTasks': allCheckedSubTasks,
         'split': 'todo-box',
     };
 
