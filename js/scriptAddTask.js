@@ -16,7 +16,6 @@ let currentContactStat;
 let currentCategoryStat;
 let currentPrioStat;
 let clearNumber = 0;
-let allCheckedSubTasks = [];
 
 
 async function onload() {
@@ -112,7 +111,6 @@ function addTask() {
         'priority': priority,
         'AssignedTo': selectedContacts,
         'subTasks': allSubTasks,
-        'all-checked-subTasks': allCheckedSubTasks,
         'split': 'todo-box',
     };
 
@@ -449,7 +447,12 @@ function clearInputField() {
 }
 
 function pushNewSubTask() {
-    let currentSubTask = document.getElementById('input-SubTask').value;
+    let text = document.getElementById('input-SubTask').value;
+
+    let currentSubTask = {
+        'text': text,
+        'check': false,
+    };
 
     saveSubTasks(currentSubTask);
     document.getElementById('input-SubTask').value = '';
@@ -463,7 +466,7 @@ function renderAllSubTasks() {
 
     for (let i = 0; i < allSubTasks.length; i++) {
         currentSubTask = allSubTasks[i];
-        let toDo = allSubTasks[i];
+        let toDo = allSubTasks[i]['text'];
 
         allSubtasks.innerHTML += templateToDo(i, toDo);
     }

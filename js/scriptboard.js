@@ -6,6 +6,7 @@ let feedbackBoxCount;
 let doneBoxCount;
 let includeBoard = false;
 let countOfAllCheckedSubtasks = 0;
+let currentTask;
 
 async function includeHTMLaddTask() {
     let includeElements = document.querySelectorAll('[w3-include-html]');
@@ -43,7 +44,7 @@ function generateHTML(element, index) {
     let categoryColor = element['categoryColor'];
     let countOfAllSubtasks = element['subTasks']['length'];
 
-    checkAllCheckedSubtasks();
+    //checkAllCheckedSubtasks();
 
 
     return /*html*/ `
@@ -63,9 +64,7 @@ function generateHTML(element, index) {
         `
 }
 
-function checkAllCheckedSubtasks(){
 
-}
 
 
 
@@ -74,6 +73,7 @@ async function onloadBoard() {
 
     await init();
     await updateHTML();
+    //await deleteAllTasks();
     hideLoader();
 }
 
@@ -209,7 +209,8 @@ function openShowTask(i) {
     let subTask = allTasks[i]['subTasks'];
     let firstChar = priority.charAt(0);
     let capitalizedPriority = priority.replace(firstChar, firstChar.toUpperCase());
-    let allCheckedSubtasks = allTasks[i]['all-checked-subTasks'];
+    currentTask = i;
+
 
     if (priority == "urgent") {
         priorityImg = 'arrows-up';
@@ -252,13 +253,14 @@ function openShowTask(i) {
 function renderSubTaskBox(subTask) {
     document.getElementById('subTask-box').innerHTML = '';
 
+
     for (let i = 0; i < subTask.length; i++) {
-        currentSubTask = subTask[i];
+        currentSubTask = subTask[i]['text'];
 
         subTaskBox = document.getElementById('subTask-box');
         subTaskBox.innerHTML += /*html*/ `
         <div class="assigned-box">
-            <input id="subTaskCheck${i}" onclick="check(${i}, currentSubTask)" type="checkbox">
+            <input id="subTaskCheck${i}" onclick="check(${i}, currentSubTask, currentTask)" type="checkbox">
             <div id="subTask${i}" >${currentSubTask}</div>
         </div>
         `
@@ -276,19 +278,25 @@ function check(i) {
         subTaskCheckbox.setAttribute('checked', true);
         subTaskTitle.classList.add('line-throug');
         countOfAllCheckedSubtasks++;
+        saveCheckedBoxTrue(i);
     } else {
         subTaskCheckbox.removeAttribute('checked');
         subTaskTitle.classList.remove('line-throug');
         countOfAllCheckedSubtasks--;
     };
 
-    //checkAllCheckedSubtasks();
+    //subTaskCheckbox.getAttribute('checked', true);
+    
 
 }
 
-/*function checkAllCheckedSubtasks(){
+async function saveCheckedBoxTrue(i) {
 
-}*/
+    await backend.deleteItem(`allTasks[${currentTask}]['subTasks'][${i}]['check']`);
+
+
+    //countOfAllCheckedSubtasks = 0;
+}
 
 
 function renderAssignedBox(assignedTo) {
@@ -385,7 +393,8 @@ function closeIncludeAddTask() {
 }
 
 
-function closeShowTask() {
+async function closeShowTask() {
+    
     document.getElementById('show-Task-Background').classList = 'show-Task-Background d-none';
 }
 
