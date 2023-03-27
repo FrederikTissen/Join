@@ -266,36 +266,50 @@ function renderSubTaskBox(subTask) {
             <div id="subTask${i}" >${currentSubTask}</div>
         </div>
         `
+        proofCheckState(i);
     }
 }
+
+function proofCheckState(i) {
+    let currentSubTask = i;
+    let subTaskCheckbox = document.getElementById(`subTaskCheck${i}`);
+
+    let checkState = allTasks[currentTask]['subTasks'][currentSubTask]['check'];
+    let subTaskTitle = document.getElementById(`subTask${i}`);
+    //countOfAllCheckedSubtasks;
+
+
+    if (checkState) {
+        subTaskTitle.classList.add('line-throug');
+        subTaskCheckbox.setAttribute('checked', true);
+    } else {
+        subTaskTitle.classList.remove('line-throug');
+        subTaskCheckbox.removeAttribute('checked');
+    };
+
+
+}
+
 
 
 async function check(i) {
     let subTaskCheckbox = document.getElementById(`subTaskCheck${i}`);
     let subTaskTitle = document.getElementById(`subTask${i}`);
     let currentSubTask = i;
-    //countOfAllCheckedSubtasks;
-
 
     if (subTaskCheckbox.checked) {
-        subTaskCheckbox.setAttribute('checked', true);
-        subTaskTitle.classList.add('line-throug');
+        //subTaskCheckbox.setAttribute('checked', true);
+        //subTaskTitle.classList.add('line-throug');
         allTasks[currentTask]['subTasks'][currentSubTask]['check'] = true;
         await backend.setItem('allTasks', JSON.stringify(allTasks));
-
-
-        //countOfAllCheckedSubtasks++;
+        proofCheckState(i);
     } else {
-        subTaskCheckbox.removeAttribute('checked');
-        subTaskTitle.classList.remove('line-throug');
+        //subTaskCheckbox.removeAttribute('checked');
+        //subTaskTitle.classList.remove('line-throug');
         allTasks[currentTask]['subTasks'][currentSubTask]['check'] = false;
         await backend.setItem('allTasks', JSON.stringify(allTasks));
-
-
-        //countOfAllCheckedSubtasks--;
+        proofCheckState(i);
     };
-
-    //subTaskCheckbox.getAttribute('checked', true);
 }
 
 function renderProgressbar(element) {
@@ -383,6 +397,7 @@ function updateSearchedHTML() {
         let currentTitle = currentTask['title'];
         if (currentTitle.toLowerCase().includes(search)) {
             document.getElementById('todo-box').innerHTML += generateHTML(currentTask);
+            renderProgressbar(currentTask);
             renderAssignedTo(currentTask);
         }
 
@@ -395,6 +410,7 @@ function updateSearchedHTML() {
         let currentTitle = currentTask['title'];
         if (currentTitle.toLowerCase().includes(search)) {
             document.getElementById('inprogress-box').innerHTML += generateHTML(currentTask);
+            renderProgressbar(currentTask);
             renderAssignedTo(currentTask);
         }
     }
@@ -406,6 +422,7 @@ function updateSearchedHTML() {
         let currentTitle = currentTask['title'];
         if (currentTitle.toLowerCase().includes(search)) {
             document.getElementById('feedback-box').innerHTML += generateHTML(currentTask);
+            renderProgressbar(currentTask);
             renderAssignedTo(currentTask);
         }
     }
@@ -417,6 +434,7 @@ function updateSearchedHTML() {
         let currentTitle = currentTask['title'];
         if (currentTitle.toLowerCase().includes(search)) {
             document.getElementById('done-box').innerHTML += generateHTML(currentTask);
+            renderProgressbar(currentTask);
             renderAssignedTo(currentTask);
         }
     }
@@ -435,16 +453,12 @@ function closeIncludeAddTask() {
         onloadBoard();
         includeBoard = false;
         document.body.classList.remove('overflow-hidden');
-
     }
 }
 
 
 async function closeShowTask() {
     document.getElementById('show-Task-Background').classList = 'show-Task-Background d-none';
-
-    //document.getElementById(`all-checked-subtasks${currentTask}`).innerHTML = countOfAllCheckedSubtasks;
-
     updateProgressbar();
 }
 
