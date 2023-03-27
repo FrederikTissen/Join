@@ -52,16 +52,14 @@ function generateHTML(element, index) {
                 <div class="current-Task-Category ${categoryColor}">${category}</div>
                 <p class="task-title">${title}</p>
                 <p class="task-decription">${description}</p>
-                <div class="progress-bar-row">
-                    <div class="progress-bar"></div>
-                    <p class="margin-none">0/ ${countOfAllSubtasks} Done</p>
-                </div>
+                <div id="progress${element['id']}" class="progress-bar-row d-none"></div>
                 <div class="assignedto-prio-row">
                     <div id="assigned-to-currentTask${element['id']}" class="assigned-to-currentTask" ></div>
                     <img class="current-Task-Prio" src="./assets/img/${priority}-solo.png" alt="">
                 </div>
             </div>
         `
+
 }
 
 
@@ -83,7 +81,9 @@ function updateHTML() {
     for (let index = 0; index < todo.length; index++) {
         const currentTask = todo[index];
         document.getElementById('todo-box').innerHTML += generateHTML(currentTask);
+        renderProgressbar(currentTask);
         renderAssignedTo(currentTask);
+
     }
 
     let inprogressBox = allTasks.filter(t => t['split'] == 'inprogress-box');
@@ -91,6 +91,7 @@ function updateHTML() {
     for (let index = 0; index < inprogressBox.length; index++) {
         const currentTask = inprogressBox[index];
         document.getElementById('inprogress-box').innerHTML += generateHTML(currentTask);
+        renderProgressbar(currentTask);
         renderAssignedTo(currentTask);
     }
 
@@ -99,8 +100,8 @@ function updateHTML() {
     for (let index = 0; index < feedbackBox.length; index++) {
         const currentTask = feedbackBox[index];
         document.getElementById('feedback-box').innerHTML += generateHTML(currentTask);
+        renderProgressbar(currentTask);
         renderAssignedTo(currentTask);
-
     }
 
     let doneBox = allTasks.filter(t => t['split'] == 'done-box');
@@ -108,6 +109,7 @@ function updateHTML() {
     for (let index = 0; index < doneBox.length; index++) {
         const currentTask = doneBox[index];
         document.getElementById('done-box').innerHTML += generateHTML(currentTask);
+        renderProgressbar(currentTask);
         renderAssignedTo(currentTask);
     }
 
@@ -260,7 +262,7 @@ function renderSubTaskBox(subTask) {
         subTaskBox = document.getElementById('subTask-box');
         subTaskBox.innerHTML += /*html*/ `
         <div class="assigned-box">
-            <input id="subTaskCheck${i}" onclick="check(${i}, currentSubTask, currentTask)" type="checkbox">
+            <input id="subTaskCheck${i}" onclick="check(${i})" type="checkbox">
             <div id="subTask${i}" >${currentSubTask}</div>
         </div>
         `
@@ -268,34 +270,80 @@ function renderSubTaskBox(subTask) {
 }
 
 
-function check(i) {
+async function check(i) {
     let subTaskCheckbox = document.getElementById(`subTaskCheck${i}`);
     let subTaskTitle = document.getElementById(`subTask${i}`);
-    countOfAllCheckedSubtasks;
+    let currentSubTask = i;
+    //countOfAllCheckedSubtasks;
 
 
     if (subTaskCheckbox.checked) {
         subTaskCheckbox.setAttribute('checked', true);
         subTaskTitle.classList.add('line-throug');
-        countOfAllCheckedSubtasks++;
+        allTasks[currentTask]['subTasks'][currentSubTask]['check'] = true;
+        await backend.setItem('allTasks', JSON.stringify(allTasks));
+
+
+        //countOfAllCheckedSubtasks++;
     } else {
         subTaskCheckbox.removeAttribute('checked');
         subTaskTitle.classList.remove('line-throug');
-        countOfAllCheckedSubtasks--;
+        allTasks[currentTask]['subTasks'][currentSubTask]['check'] = false;
+        await backend.setItem('allTasks', JSON.stringify(allTasks));
+
+
+        //countOfAllCheckedSubtasks--;
     };
 
     //subTaskCheckbox.getAttribute('checked', true);
-    
-
 }
 
-async function saveCheckedBoxTrue(i) {
+function renderProgressbar(element) {
+    if (element['subTasks'].length > 0) {
+        let subLength = element['subTasks'].length;
 
-    await backend.deleteItem(`allTasks[${currentTask}]['subTasks'][${i}]['check']`);
-
-
-    //countOfAllCheckedSubtasks = 0;
+        for (let i = 0; i < element['subTasks'].length; i++) {
+            const sub = element['subTasks'][i];
+            if (sub['check']) {
+                countOfAllCheckedSubtasks++;
+            }
+        }
+        let subWidth = (100 / subLength) * countOfAllCheckedSubtasks;
+        document.getElementById(`progress${element['id']}`).classList.remove('d-none')
+        document.getElementById(`progress${element['id']}`).innerHTML = generateProgressbar(subLength, subWidth);
+        countOfAllCheckedSubtasks = 0;
+    }
 }
+
+function generateProgressbar(subLength, subWidth) {
+    return /*html*/`
+    <div id="subtaskProgress" class="progress-bar">
+        <div id="subtaskBar" class="subtaskBar"  style="width:${subWidth}% !important;"></div>
+    </div>
+    <p class="margin-none ">${countOfAllCheckedSubtasks} / ${subLength} Done</p>
+    `;
+}
+
+function updateProgressbar() {
+    let element = allTasks[currentTask];
+    if (element['subTasks'].length > 0) {
+        let subLength = element['subTasks'].length;
+
+        for (let i = 0; i < element['subTasks'].length; i++) {
+            const sub = element['subTasks'][i];
+            if (sub['check']) {
+                countOfAllCheckedSubtasks++;
+            }
+        }
+        let subWidth = (100 / subLength) * countOfAllCheckedSubtasks;
+        document.getElementById(`progress${element['id']}`).classList.remove('d-none')
+        document.getElementById(`progress${element['id']}`).innerHTML = generateProgressbar(subLength, subWidth);
+        countOfAllCheckedSubtasks = 0;
+    }
+}
+
+
+
 
 
 function renderAssignedBox(assignedTo) {
@@ -393,9 +441,13 @@ function closeIncludeAddTask() {
 
 
 async function closeShowTask() {
-    
     document.getElementById('show-Task-Background').classList = 'show-Task-Background d-none';
+
+    //document.getElementById(`all-checked-subtasks${currentTask}`).innerHTML = countOfAllCheckedSubtasks;
+
+    updateProgressbar();
 }
+
 
 
 
