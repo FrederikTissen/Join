@@ -22,8 +22,11 @@
         <img class="new-logo d-none" src="./assets/img/join-logo.png">
         <span>Kanban Project Management Tool</span>
         <div id="header-contacts" class="head-container-right">
-            <a href="./help.html"><img src="./assets/img/question.png" /></a>
-            <img class="head-profile-img" onclick="LogoutBtn()" src="./assets/img/profile-img.png">
+            <a href="./help.html"><img src="./assets/img/question.png"></a>
+            <img class="head-profile-img"onmouseover="showLogout()" src="./assets/img/profile-img.png">
+            <div id="header-logout" onmouseout="hideLogout()" class="header-logout">
+                <button onclick='logout()' id="logout-button" class="logout-button"> Log-out? </button>
+            </div>
         </div>
     </div>
     <div class="sidebar-header" id="sidebar-header">

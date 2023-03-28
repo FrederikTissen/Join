@@ -5,7 +5,7 @@ body {
 }
 
 .header-logout {
-    display: flex;
+    display: none;
     position: relative;
     left: -120px;
     top: 47px;

@@ -93,28 +93,32 @@ async function init() {
 }
 
 
-function LogoutBtn() {
-    document.getElementById('header-contacts').innerHTML += `
-        <div class="header-logout">
-            <button onclick='checklogout()' id="logout-button" class="logout-button"> Log-out? </button>
-        </div>
-    `;
+// function LogoutBtn() {
+//     if (logoutButton == false) {
+//         document.getElementById('header-logout').setAttribute('style', 'display: flex');
+//     }
+//     logoutButton = true;
+// }
+
+function showLogout() {
+    document.getElementById('header-logout').setAttribute('style', 'display: flex !important');
 }
 
-function checklogout() {
-    logoutButton = true;
-    logout();
+function hideLogout() {
+    setTimeout(() => {
+        document.getElementById('header-logout').setAttribute('style', 'display: none !important');
+    }, 1000);
 }
+
 
 async function logout() {
-    if (logoutButton == true) {
-        await resetCurrentUser();
-        window.location.href = 'index.html';
-        setTimeout(() => {
-            window.location.reload();
-        }, 1000);
-    }
+    await resetCurrentUser();
+    window.location.href = 'index.html';
+    setTimeout(() => {
+        window.location.reload();
+    }, 1000);
 }
+
 
 async function leadToBoard() {
     window.location.href = 'board.html';
@@ -122,6 +126,7 @@ async function leadToBoard() {
         window.location.reload();
     }, 1000);
 }
+
 
 async function leadToAddTask() {
     window.location.href = 'add-task.html';
@@ -336,6 +341,7 @@ function editContactValues(i, color) {
     document.getElementById('add-new-contact-btn').style.display = "none";
 }
 
+
 async function editBtn() {
     if (saveBtn) {
         await saveEditContact();
@@ -344,9 +350,11 @@ async function editBtn() {
     }
 }
 
+
 function saveBtnTrue() {
     saveBtn = true;
 }
+
 
 function saveBtnFalse() {
     saveBtn = false;
@@ -380,6 +388,7 @@ async function saveEditContact() {
     editedContact = false;
 }
 
+
 function createContact() {
     let inputName = document.getElementById('input-name');
     let inputFirstName = document.getElementById('input-first-name');
@@ -411,14 +420,17 @@ async function pushCreatedContact() {
     filterByLetters();
 }
 
+
 function showSuccessBtn() {
     let modal = document.getElementById('myModal');
     modal.style.display = 'block';
 }
 
+
 function closeSuccessBtn() {
     document.getElementById('myModal').classList.add('d-none');
 }
+
 
 function clearInputfields() {
     let inputName = document.getElementById('input-name');
@@ -431,6 +443,7 @@ function clearInputfields() {
     inputMail.value = '';
     inputPhone.value = '';
 }
+
 
 async function deleteUser() {
     contacts.splice(editedContact, 1);
@@ -445,6 +458,7 @@ async function deleteUser() {
     deleteBtn = true;
 
 }
+
 
 function filterByLetters() {
     let contactSection = document.getElementById('contact-list');
@@ -493,6 +507,9 @@ function filterLetter(letter) {
         renderLetterBox(currentLetter, letter);
         currentLetter = [];
     }
+
+    logoutButton = false;
+
 }
 
 
