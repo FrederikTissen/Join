@@ -1,6 +1,4 @@
 async function updatePage() {
-    //hideLoader();
-
     await init();
     updateDate();
     updateCountOfTasks();
@@ -8,6 +6,7 @@ async function updatePage() {
     checkTime();
     hideLoader();
 }
+
 
 function changeImg(id, hoverImg, standardImg) {
     let img = document.getElementById(`${id}`);
@@ -47,6 +46,7 @@ function updateCountOfTasks() {
     updateCountOfSingleTask(doneBoxCount, 'tasks-done');
     updateCountOfSingleTask(urgentTasksCount, 'urgent-count');
 }
+
 
 function updateCountOfSingleTask(countOfTask, id) {
     if (countOfTask == 0) {

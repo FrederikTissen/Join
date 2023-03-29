@@ -15,12 +15,10 @@ let urgentTasksCount;
 let currentContactStat;
 let currentCategoryStat;
 let currentPrioStat;
-let clearNumber = 0;
+
 
 
 async function onload() {
-    //hideLoader();
-
     await init();
     await deleteSelectedAllContacts();
     selectedContacts = 0;
@@ -31,23 +29,24 @@ async function onload() {
     renderSubTask();
     clock();
     hideLoader();
-
 }
 
-async function reset() {
+async function clear() {
     await deleteSelectedAllContacts();
-
     selectedContacts = 0;
     allSubTasks = [];
-    document.getElementById('title').value = '';
-    document.getElementById('description').value = '';
-    document.getElementById('input-SubTask').value = '';
-    document.getElementById('contact-icons').innerHTML = '';
-
+    resetHTML();
     renderCategoryBox();
     renderContactBox();
     renderPrios();
     renderSubTask();
+}
+
+function resetHTML() {
+    document.getElementById('title').value = '';
+    document.getElementById('description').value = '';
+    document.getElementById('input-SubTask').value = '';
+    document.getElementById('contact-icons').innerHTML = '';
 }
 
 
@@ -58,6 +57,7 @@ function countOfAllUrgentTasks() {
     saveCount('urgentTasksCount', urgentTasksCount);
 }
 
+
 async function countOfAllTasks() {
     let todo = allTasks.filter(t => t['split'] == 'todo-box');
     let inprogressBox = allTasks.filter(t => t['split'] == 'inprogress-box');
@@ -65,12 +65,12 @@ async function countOfAllTasks() {
     let doneBox = allTasks.filter(t => t['split'] == 'done-box');
 
     doneBoxCount = doneBox.length;
-    await saveCount('doneBoxCount', doneBoxCount);
     feedbackBoxCount = feedbackBox.length;
-    await saveCount('feedbackBoxCount', feedbackBoxCount);
     inprogressBoxCount = inprogressBox.length;
-    await saveCount('inprogressBoxCount', inprogressBoxCount);
     todoCount = todo.length;
+    await saveCount('doneBoxCount', doneBoxCount);
+    await saveCount('feedbackBoxCount', feedbackBoxCount);
+    await saveCount('inprogressBoxCount', inprogressBoxCount);
     await saveCount('todoCount', todoCount);
 }
 
@@ -106,57 +106,34 @@ function addTask() {
 }
 
 
-async function reset() {
 
-    await deleteSelectedAllContacts();
-    selectedContacts = 0;
-    allSubTasks = [];
-    document.getElementById('title').value = '';
-    document.getElementById('description').value = '';
-    document.getElementById('input-SubTask').value = '';
-    document.getElementById('contact-icons').innerHTML = '';
-
-    renderCategoryBox();
-    renderContactBox();
-    renderPrios();
-    renderSubTask();
-    //showSuccessPopUp('Task added to board!');
-
-}
 
 async function checkFormValidation() {
-    let title = document.getElementById('title').value;
-    let description = document.getElementById('description').value;
+    //let title = document.getElementById('title').value;
+    //let description = document.getElementById('description').value;
     let date = document.getElementById('date').value;
 
-    if (clearNumber == 0) {
-        if (title == 0) {
-            showSuccessPopUp('Gib einen Titel ein!');
-        } else if (description == 0) {
-            showSuccessPopUp('Gib eine Beschreibung ein!');
-        } else if (!currentCategoryStat) {
-            showSuccessPopUp('Wähle eine Kategorie!');
-        } else if (date == 0) {
-            showSuccessPopUp('Wähle ein Datum!');
-        } else if (!currentPrioStat) {
-            showSuccessPopUp('Wähle eine Priorität!');
-        } else if (currentPrioStat) {
-            await addTask();
-            setTimeout(() => {
-                leadToBoard();
-            }, 1000);
-        }
-        
-    } else {
-        reset();
-        clearNumber = 0;
+
+
+    /*if (title == 0) {
+        showSuccessPopUp('Gib einen Titel ein!');
+    } else if (description == 0) {
+        showSuccessPopUp('Gib eine Beschreibung ein!');
+    } else*/
+    if (!currentCategoryStat) {
+        showSuccessPopUp('Wähle eine Kategorie!');
+    } else if (date == 0) {
+        showSuccessPopUp('Wähle ein Datum!');
+    } else if (!currentPrioStat) {
+        showSuccessPopUp('Wähle eine Priorität!');
+    } else if (currentPrioStat) {
+        await addTask();
+        setTimeout(() => {
+            leadToBoard();
+        }, 1000);
     }
-
 }
 
-function clear() {
-    clearNumber = 1;
-}
 
 function showSuccessPopUp(content) {
     let modal = document.getElementById('popup-addTask');
@@ -183,6 +160,7 @@ function renderCategories() {
     renderEveryCategory();
 }
 
+
 function renderEveryCategory() {
     for (let i = 0; i < allCategories.length; i++) {
         currentCategory = allCategories[i];
@@ -199,6 +177,7 @@ function renderEveryCategory() {
     }
 }
 
+
 function acceptCategory(i) {
     currentCategory = allCategories[i];
     currentCategoryStat = true;
@@ -209,10 +188,10 @@ function acceptCategory(i) {
     newCategory.innerHTML = templateAcceptCategory();
 }
 
+
 function acceptNewCategory() {
     currentCategoryStat = true;
     let newCategory = document.getElementById('category');
-
     newCategory.innerHTML = templateAcceptNewCategory();
 }
 
@@ -222,10 +201,10 @@ function openInput() {
     color = false;
     category = false;
     let categorySection = document.getElementById('category');
-
     categorySection.innerHTML = '';
     categorySection.innerHTML = templateOpenInput();
 }
+
 
 function chooseColor(colorOfCategory) {
     allColors();
@@ -233,6 +212,7 @@ function chooseColor(colorOfCategory) {
     let id = colorOfCategory;
     document.getElementById(id).classList.add('color-box-hover');
 }
+
 
 function allColors() {
     document.getElementById('turquoise').classList.remove('color-box-hover');
@@ -257,6 +237,7 @@ function pushNewCategory() {
     }
 }
 
+
 function newCategory() {
     let newCategory = {
         'categoryName': category,
@@ -273,11 +254,9 @@ function renderCategoryBox() {
     color = false;
     category = false;
     let categorySection = document.getElementById('category');
-
     categorySection.innerHTML = '';
     categorySection.innerHTML = templateRenderCategoryBox();
 }
-
 
 
 function renderContacts() {
@@ -302,7 +281,6 @@ function acceptContact(i) {
     let contactFirstname = currentContact['firstName'];
     let contactLastName = currentContact['name'];
 
-    
     document.getElementById(`selection-contacts${i}`).innerHTML = /*html*/ `
     <div id="contact${i}" onclick="acceptNotContact(${i})" class="addTask-Subheaders">${contactFirstname}  ${contactLastName}</div>
     <img id="checkbox${i}" onclick="acceptNotContact(${i})" class="checkbox" src="./assets/img/checkbox-contact-full.png" alt="">
@@ -310,6 +288,7 @@ function acceptContact(i) {
     pushSelctedContact(currentContact);
     renderContactIcon();
 }
+
 
 function renderContactIcon() {
     let contactIcons = document.getElementById('contact-icons');
@@ -331,10 +310,10 @@ function renderContactIcon() {
 async function acceptNotContact(i) {
     currentContactStat = false;
     selectedContacts = 0;
-    //saveSelectedContact(i);
     await backend.setItem('selectedContacts', JSON.stringify(''));
     renderContacts();
 }
+
 
 function pushSelctedContact(currentContact) {
     saveSelectedContact(currentContact);
@@ -345,7 +324,6 @@ function openInputContact() {
     let assignedTo = document.getElementById('assignedTo');
     assignedTo.innerHTML = '';
     assignedTo.innerHTML = templateOpenInputContact();
-
     document.getElementById('searched-emails').classList.add('d-none');
 }
 
@@ -378,7 +356,6 @@ function filterContacts() {
     for (let i = 0; i < contacts.length; i++) {
         currentContact = contacts[i];
         mailAdress = currentContact['mail'];
-
         if (mailAdress.toLowerCase().includes(search)) {
             renderSearchedContacts(i, mailAdress);
         }
@@ -394,6 +371,7 @@ function renderSearchedContacts(i, currentContactMail) {
 `
 }
 
+
 function takeEmail(i) {
     let takenEmail = document.getElementById(`contact${i}`).innerHTML;
     currentContact = contacts[i];
@@ -402,12 +380,10 @@ function takeEmail(i) {
 }
 
 
-
 function renderPrios() {
     currentPrioStat = false;
     document.getElementById('prio').innerHTML = templateRenderPrios();
 }
-
 
 
 function choosePrio(prio, img) {
@@ -421,16 +397,17 @@ function choosePrio(prio, img) {
 }
 
 
-
 function renderSubTask() {
     let subtask = document.getElementById('subtask');
     subtask.innerHTML = '';
     subtask.innerHTML = templateRenderSubTask();
 }
 
+
 function clearInputField() {
     document.getElementById('input-SubTask').value = '';
 }
+
 
 function pushNewSubTask() {
     let text = document.getElementById('input-SubTask').value;
@@ -474,10 +451,12 @@ async function saveCategory(newCategory) {
     await backend.setItem('allCategories', JSON.stringify(allCategories));
 }
 
+
 async function saveContact(currentContact) {
     allContacts.push(currentContact);
     await backend.setItem('allContacts', JSON.stringify(allContacts));
 }
+
 
 async function saveSelectedContact(currentContact) {
     selectedContacts.push(currentContact);
@@ -491,44 +470,10 @@ async function saveSubTasks(currentSubTask) {
 }
 
 
-
-
-
-
-
-function loadAllSubTasks() {
-    let allSubTasksAsString = localStorage.getItem('allSubTasks');
-    if (allSubTasksAsString) {
-        allSubTasks = JSON.parse(allSubTasksAsString);
-    }
-}
-
-function loadAllCategories() {
-    let allCategoriesAsString = localStorage.getItem('allCategories');
-    if (allCategoriesAsString) {
-        allCategories = JSON.parse(allCategoriesAsString);
-    }
-}
-
-function loadAllContacts() {
-    let allContactsAsString = localStorage.getItem('allContacts');
-    if (allContactsAsString) {
-        allContacts = JSON.parse(allContactsAsString);
-    }
-}
-
-
 function loadAllTasks() {
     let allTasksAsString = localStorage.getItem('allTasks');
     if (allTasksAsString) {
         allTasks = JSON.parse(allTasksAsString);
-    }
-}
-
-function loadSelectedAllContacts() {
-    let allSelectedContactsAsString = localStorage.getItem('selectedContacts');
-    if (allSelectedContactsAsString) {
-        selectedContacts = JSON.parse(allSelectedContactsAsString);
     }
 }
 
@@ -537,39 +482,13 @@ async function deleteAllTasks() {
     await backend.deleteItem('allTasks');
 }
 
-async function deleteTask(task) {
-    await backend.deleteItem('allTasks' / task);
-}
-
-
-async function deleteAllSubTasks() {
-    await backend.deleteItem('allSubTasks');
-}
 
 async function deleteSelectedAllContacts() {
     await backend.deleteItem('selectedContacts');
 }
 
-async function deleteAllCategories() {
-    await backend.deleteItem('allCategories');
-}
 
-async function deleteAllCountsForSummery() {
-    await backend.deleteItem('todoCount');
-    await backend.deleteItem('inprogressBoxCount');
-    await backend.deleteItem('feedbackBoxCount');
-    await backend.deleteItem('doneBoxCount');
-    await backend.deleteItem('urgentTasksCount');
-}
 
-function deleteAllSubTasks() {
-    allSubTasks = [];
-}
-
-function deleteAllSelectedContact() {
-    selectedContacts = 0;
-    currentSelectedContact = [];
-}
 
 
 
