@@ -106,14 +106,14 @@
                 </div>
             </div>
             <div  class="sum-bottom-overview">
-                <div onmouseover="changeToDoImg()" onmouseout="changeToDoImgBack()" onclick="leadToBoard()" class="sum-bottom-div">
+                <div onmouseover="changeImg('todo-img', './assets/img/black-pen.png', './assets/img/to-do.png')" onmouseout="changeImgBack('todo-img', './assets/img/black-pen.png', './assets/img/to-do.png')" onclick="leadToBoard()" class="sum-bottom-div">
                     <img id="todo-img" src="./assets/img/to-do.png">
                     <div class="sum-bottom-right-section">
                         <div id="tasks-todo" class="sum-task-number"></div>
                         <div class="sum-task">To-do</div>
                     </div>
                 </div>
-                <div onmouseover="changeDoneImg()" onmouseout="changeDoneImgBack()" onclick="leadToBoard()" class="sum-bottom-div">
+                <div onmouseover="changeImg('done-img', './assets/img/done-dark-hook.png', './assets/img/done-color-round.png')" onmouseout="changeImgBack('done-img', './assets/img/done-dark-hook.png', './assets/img/done-color-round.png')" onclick="leadToBoard()" class="sum-bottom-div">
                     <img id="done-img" src="./assets/img/done-color-round.png">
                     <div class="sum-bottom-right-section">
                         <div id="tasks-done" class="sum-task-number"></div>
