@@ -55,8 +55,7 @@ function countOfAllUrgentTasks() {
     let allUrgentTasks = allTasks.filter(t => t['priority'] == 'urgent');
     urgentTasksCount = allUrgentTasks.length;
 
-    deleteUrgentTasksCount();
-    saveUrgentTasksCount(urgentTasksCount);
+    saveCount('urgentTasksCount', urgentTasksCount);
 }
 
 async function countOfAllTasks() {
@@ -65,28 +64,15 @@ async function countOfAllTasks() {
     let feedbackBox = allTasks.filter(t => t['split'] == 'feedback-box');
     let doneBox = allTasks.filter(t => t['split'] == 'done-box');
 
-
     doneBoxCount = doneBox.length;
-    await deleteDoneBoxCount();
-    await saveDoneBoxCount(doneBoxCount);
-
-
+    await saveCount('doneBoxCount', doneBoxCount);
     feedbackBoxCount = feedbackBox.length;
-    await deleteFeedbackBoxCount();
-    await saveFeedbackBoxCount(feedbackBoxCount);
-
-
-
+    await saveCount('feedbackBoxCount', feedbackBoxCount);
     inprogressBoxCount = inprogressBox.length;
-    await deleteInprogressBoxCount();
-    await saveInprogressBoxCount(inprogressBoxCount);
-
-
+    await saveCount('inprogressBoxCount', inprogressBoxCount);
     todoCount = todo.length;
-    await deleteTodoCount();
-    await saveTodoCount(todoCount);
+    await saveCount('todoCount', todoCount);
 }
-
 
 
 function clock() {

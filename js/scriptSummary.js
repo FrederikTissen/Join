@@ -1,4 +1,6 @@
 async function updatePage() {
+    //hideLoader();
+
     await init();
     updateDate();
     updateCountOfTasks();
@@ -7,20 +9,20 @@ async function updatePage() {
     hideLoader();
 }
 
-function changeImg(id, hoverImg, continuousImg) {
+function changeImg(id, hoverImg, standardImg) {
     let img = document.getElementById(`${id}`);
-    if (img.src = `${continuousImg}`) {
+    if (img.src = `${standardImg}`) {
         img.src = `${hoverImg}`;
     } else {
-        img.src = `${continuousImg}`;
+        img.src = `${standardImg}`;
     }
 }
 
 
-function changeImgBack(id, hoverImg, continuousImg) {
+function changeImgBack(id, hoverImg, standardImg) {
     let img = document.getElementById(`${id}`);
     if (img.src = `${hoverImg}`) {
-        img.src = `${continuousImg}`;
+        img.src = `${standardImg}`;
     }
 }
 

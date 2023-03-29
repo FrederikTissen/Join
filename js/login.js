@@ -17,7 +17,7 @@ let currentUser = [];
 
 
 async function onloadLogin() {
-    //hideLoader();
+    hideLoader();
 
     await init();
     await pushAllContactsInBackEnd();
