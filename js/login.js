@@ -17,14 +17,11 @@ let currentUser = [];
 
 
 async function onloadLogin() {
-    hideLoader();
-
     await init();
     await pushAllContactsInBackEnd();
     await resetCurrentUser();
     hideLoader();
 }
-
 
 
 function backToSummary() {
@@ -35,34 +32,19 @@ function backToSummary() {
 async function resetCurrentUser() {
     currentUser = [];
     activeUser = '';
-    
 
     await backend.setItem('currentUser', JSON.stringify(''));
 }
 
 
-function loadAllUsers() {
-    let allUsersAsString = localStorage.getItem('loginUsers');
-    if (allUsersAsString) {
-        loginUsers = JSON.parse(allUsersAsString);
-    }
-}
-
-
 async function pushAllUsersInBackEnd() {
     loginUsersBackend = [];
-    //await backend.setItem('loginUsersBackend', JSON.stringify(''));
 
     for (let i = 0; i < loginUsers.length; i++) {
         const thisUser = loginUsers[i];
-
         loginUsersBackend.push(thisUser);
-        
         await backend.setItem('loginUsersBackend', JSON.stringify(loginUsersBackend));
-
     }
-
-    //loginUsersBackend = JSON.parse(backend.getItem('loginUsersBackend')) || [];
 }
 
 
@@ -109,12 +91,17 @@ async function login() {
     await backend.setItem('currentUser', JSON.stringify(currentUser));
 
     if (loginUser) {
-        activeUser = loginUser;
-        console.log('User gefunden');
-        location.href = 'summary.html';
+        userIsFound(activeUser, loginUser);
     } else {
         alert('User not found');
     }
+}
+
+
+function userIsFound(activeUser, loginUser) {
+    activeUser = loginUser;
+    console.log('User gefunden');
+    location.href = 'summary.html';
 }
 
 
@@ -131,17 +118,8 @@ async function addUser() {
 
     loginUsers.push(newUser);
     await pushAllUsersInBackEnd();
-    //let loginUsersAsText = JSON.stringify(loginUsers);
-    //saveInLocalStorage(loginUsersAsText);
     window.location.href = 'index.html';
 }
 
 
-async function saveUsers() {
-    await backend.setItem('loginUsersBackend', JSON.stringify(loginUsersBackend));
-}
 
-
-function saveInLocalStorage(loginUsersAsText) {
-    localStorage.setItem('loginUsers', loginUsersAsText)
-}

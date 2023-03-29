@@ -187,11 +187,13 @@ async function saveCheck(i) {
     };
 }
 
+
 async function saveTrue(currentSubTask, i) {
     allTasks[currentTask]['subTasks'][currentSubTask]['check'] = true;
     await backend.setItem('allTasks', JSON.stringify(allTasks));
     proofCheckState(i);
 }
+
 
 async function saveFalse(currentSubTask, i) {
     allTasks[currentTask]['subTasks'][currentSubTask]['check'] = false;
