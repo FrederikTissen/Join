@@ -31,7 +31,7 @@ async function onload() {
     hideLoader();
 }
 
-async function clear() {
+async function clearAllFields() {
     await deleteSelectedAllContacts();
     selectedContacts = 0;
     allSubTasks = [];
@@ -82,7 +82,7 @@ function clock() {
 }
 
 
-function addTask() {
+async function addTask() {
     let title = document.getElementById('title');
     let description = document.getElementById('description');
     let date = document.getElementById('date');
@@ -100,9 +100,9 @@ function addTask() {
         'split': 'todo-box',
     };
 
-    saveTask(task);
-    countOfAllUrgentTasks();
-    reset();
+    await saveTask(task);
+    await countOfAllUrgentTasks();
+    await clearAllFields();
 }
 
 
