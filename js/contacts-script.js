@@ -62,17 +62,17 @@ let currentLetter = [];
 let saveBtn;
 let logoutButton = false;
 
-async function onloadContacts() {
-    //hideLoader();
 
+
+async function onloadContacts() {
     await init();
     await filterByLetters();
     hideLoader();
 }
 
-
-
-
+/**
+ * Init and fetch everything from backend
+ */
 async function init() {
     await downloadFromServer();
     loginUsersBackend = JSON.parse(backend.getItem('loginUsersBackend')) || [];
@@ -92,18 +92,17 @@ async function init() {
     currentUser = JSON.parse(backend.getItem('currentUser')) || [];
 }
 
-
-// function LogoutBtn() {
-//     if (logoutButton == false) {
-//         document.getElementById('header-logout').setAttribute('style', 'display: flex');
-//     }
-//     logoutButton = true;
-// }
-
+/**
+ * Showing logout button on hover
+ */
 function showLogout() {
     document.getElementById('header-logout').setAttribute('style', 'display: flex !important');
 }
 
+
+/**
+ * Hiding logout button
+ */
 function hideLogout() {
     setTimeout(() => {
         document.getElementById('header-logout').setAttribute('style', 'display: none !important');
@@ -111,6 +110,9 @@ function hideLogout() {
 }
 
 
+/**
+ * Logout and href back to index.html
+ */
 async function logout() {
     await resetCurrentUser();
     window.location.href = 'index.html';
@@ -119,7 +121,9 @@ async function logout() {
     }, 1000);
 }
 
-
+/**
+ * href to board.html
+ */
 async function leadToBoard() {
     window.location.href = 'board.html';
     setTimeout(() => {
@@ -127,7 +131,9 @@ async function leadToBoard() {
     }, 1000);
 }
 
-
+/**
+ * href to addTask.html
+ */
 async function leadToAddTask() {
     window.location.href = 'add-task.html';
     setTimeout(() => {
@@ -135,7 +141,9 @@ async function leadToAddTask() {
     }, 1000);
 }
 
-
+/**
+ * href to Contacts.html
+ */
 async function leadToContacts() {
     window.location.href = 'contacts.html';
     setTimeout(() => {
@@ -143,19 +151,25 @@ async function leadToContacts() {
     }, 1000);
 }
 
-
+/**
+ * hiding the loading sequence
+ */
 function hideLoader() {
     let loader = document.getElementById('loader').classList;
     loader.add("d-none");
 }
 
-
+/**
+ * removing blur
+ */
 function removeBlur() {
     let main = document.getElementById('contact-list');
     main.style.filter = '';
 }
 
-
+/**
+ * Popup of an html file
+ */
 async function includeHTMLaddContact() {
     let includeElements = document.querySelectorAll('[w3-include-html]');
     for (let i = 0; i < includeElements.length; i++) {
@@ -170,6 +184,9 @@ async function includeHTMLaddContact() {
     }
 }
 
+/**
+ * Pushing all contacts to backend 
+ */
 async function pushAllContactsInBackEnd() {
     await backend.setItem('contacts', JSON.stringify(''));
     contacts = JSON.parse(backend.getItem('contacts')) || [];
@@ -185,7 +202,12 @@ async function pushAllContactsInBackEnd() {
     }
 }
 
-
+/**
+ * Displaying contact to be shown
+ * 
+ * @param {firstname} firstName 
+ * @param {color} color 
+ */
 function showContact(firstName, color) {
     currentcontact = contacts.filter(t => t['firstName'] == firstName);
     let i = contacts.findIndex(x => x['firstName'] === firstName);
@@ -215,7 +237,19 @@ function showContact(firstName, color) {
     editedContact = i;
 }
 
-
+/**
+ * Generate HTML 
+ * 
+ * @param {index} i 
+ * @param {first letter} firstChar 
+ * @param {second letter} secondChar 
+ * @param {color} color 
+ * @param {firstname} fullFirstname 
+ * @param {secondname} fullName 
+ * @param {mail} mail 
+ * @param {phone} phone 
+ * @returns 
+ */
 function generateContactfield(i, firstChar, secondChar, color, fullFirstname, fullName, mail, phone) {
     return /*html*/`
     <div class="show-contact-headline">
@@ -263,7 +297,9 @@ function addNewContact() {
     }
 }
 
-
+/**
+ * Close popup
+ */
 function closePopup() {
     document.getElementById('add-new-contact-btn').style.display = "flex";
     document.getElementById('show-contact').style.display = "none";
@@ -276,6 +312,8 @@ function closePopup() {
 /**
  * Pop-up window to edit a contact
  * 
+ * @param {index of the edited contact} i 
+ * @param {color pof the edited contact} color 
  */
 async function editContact(i, color) {
     document.getElementById('show-contact').style.display = "";
@@ -295,11 +333,11 @@ async function editContact(i, color) {
         createdContact = false;
     }
 
-    //editedContact = i;
-
 }
 
-
+/**
+ * Blurring the background
+ */
 async function editContactWithBlur() {
     let main = document.getElementById('contact-list');
     main.style.filter = 'blur(5px)';
@@ -310,7 +348,9 @@ async function editContactWithBlur() {
     document.getElementById('add-new-contact-btn').style.display = 'none';
 }
 
-
+/**
+ * Blurring the background
+ */
 async function addContactWithBlur() {
     let main = document.getElementById('contact-list');
     main.style.filter = 'blur(5px)';
@@ -321,7 +361,12 @@ async function addContactWithBlur() {
     document.getElementById('add-new-contact-btn').style.display = 'none';
 }
 
-
+/**
+ * Get all values of the contact which will be edited
+ * 
+ * @param {index of edited contact} i 
+ * @param {color of edited contact} color 
+ */
 function editContactValues(i, color) {
     let editLastname = document.getElementById(`edit-input-lastname`);
     let editFirstname = document.getElementById(`edit-input-firstname`);
@@ -362,6 +407,9 @@ function saveBtnFalse() {
 }
 
 
+/**
+ * Saving the edited contact and push to backend
+ */
 async function saveEditContact() {
     let editLastname = document.getElementById(`edit-input-lastname`);
     let editFirstname = document.getElementById(`edit-input-firstname`);
@@ -380,7 +428,6 @@ async function saveEditContact() {
     createdContact = true;
     contacts.push(changedContact);
     contacts.splice(editedContact, 1);
-
     await backend.setItem('contacts', JSON.stringify(contacts));
     filterByLetters();
     closePopup();
@@ -389,13 +436,16 @@ async function saveEditContact() {
 }
 
 
+/**
+ * create a new Contact
+ */
 function createContact() {
     let inputName = document.getElementById('input-name');
     let inputFirstName = document.getElementById('input-first-name');
     let inputMail = document.getElementById('input-email');
     let inputPhone = document.getElementById('input-phone');
     let inputColor = document.getElementById('colors');
-
+    
     newContact = {
         name: inputName.value,
         firstName: inputFirstName.value,
@@ -406,8 +456,9 @@ function createContact() {
     pushCreatedContact();
 }
 
+
 /**
- * create the new contact
+ * push the new contact 
  * 
  */
 async function pushCreatedContact() {
@@ -421,17 +472,26 @@ async function pushCreatedContact() {
 }
 
 
+/**
+ * Show modal before using
+ */
 function showSuccessBtn() {
     let modal = document.getElementById('myModal');
     modal.style.display = 'block';
 }
 
 
+/**
+ * Hide Modal after using 
+ */
 function closeSuccessBtn() {
     document.getElementById('myModal').classList.add('d-none');
 }
 
 
+/**
+ * Clearing Inputfield after using
+ */
 function clearInputfields() {
     let inputName = document.getElementById('input-name');
     let inputFirstName = document.getElementById('input-first-name');
@@ -445,6 +505,9 @@ function clearInputfields() {
 }
 
 
+/**
+ * Delete User
+ */
 async function deleteUser() {
     contacts.splice(editedContact, 1);
     await backend.setItem('contacts', JSON.stringify(contacts));
@@ -456,10 +519,13 @@ async function deleteUser() {
     editedContact = false;
     saveBtn = false;
     deleteBtn = true;
-
 }
 
 
+/**
+ * Sorting Contacts section by their first character
+ * 
+ */
 function filterByLetters() {
     let contactSection = document.getElementById('contact-list');
     contactSection.innerHTML = '';
@@ -493,47 +559,50 @@ function filterByLetters() {
 }
 
 
+/**
+ * Push filtered contacts with same first characters in one section
+ * 
+ * @param {'First character of name'} letter 
+ */
 function filterLetter(letter) {
 
     for (let i = 0; i < contacts.length; i++) {
         let contact = contacts[i];
         let bigLetter = contact['firstName'].charAt(0).toUpperCase();
+
         if (bigLetter == letter) {
             currentLetter.push(contact);
         }
     }
-
     if (currentLetter.length > 0) {
         renderLetterBox(currentLetter, letter);
         currentLetter = [];
     }
 
     logoutButton = false;
-
 }
 
 
+/**
+ * 
+ * @param {'All contacts of the same character'} currentLetter 
+ * @param {'First character of name'} letter 
+ * 
+ */
 function renderLetterBox(currentLetter, letter) {
-    let contactSection = document.getElementById('contact-list');
     let firstChar = letter;
-
-    contactSection.innerHTML += `
+    document.getElementById('contact-list').innerHTML += `
         <div id="char-section${letter}" class="first-char">${firstChar}</div>
         <div class="same-letters" id='theSameLetters${letter}'></div>
     `
-
     for (let i = 0; i < currentLetter.length; i++) {
         currentcontact = currentLetter[i];
         let color = currentcontact['color'];
         let firstChar = currentcontact['firstName'].charAt(0).toUpperCase();
-
-
         let firstName = currentcontact['firstName'];
         let fullFirstname = firstName.charAt(0).toUpperCase() + firstName.slice(1);
         let name = currentcontact['name'];
         let fullName = name.charAt(0).toUpperCase() + name.slice(1);
-
-
         let secondChar = currentcontact['name'].charAt(0).toUpperCase();
         let charSection = document.getElementById(`char-section${i}`);
         let contactLetter = document.getElementById(`theSameLetters${firstChar}`);
