@@ -1,3 +1,5 @@
+
+
 async function onloadSummary() {
     await init();
     updateDate();
@@ -8,6 +10,9 @@ async function onloadSummary() {
 }
 
 
+/**
+ * Change the img if mouse hovers over
+ */
 function changeImg(id, hoverImg, standardImg) {
     let img = document.getElementById(`${id}`);
     if (img.src = `${standardImg}`) {
@@ -18,6 +23,9 @@ function changeImg(id, hoverImg, standardImg) {
 }
 
 
+/**
+ * Change the img back if mouse hovers out
+ */
 function changeImgBack(id, hoverImg, standardImg) {
     let img = document.getElementById(`${id}`);
     if (img.src = `${hoverImg}`) {
@@ -26,6 +34,9 @@ function changeImgBack(id, hoverImg, standardImg) {
 }
 
 
+/**
+ * Get current Date
+ */
 function updateDate() {
     const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     let date = new Date();
@@ -36,9 +47,12 @@ function updateDate() {
 }
 
 
+/**
+ * Update the count of all Tasks in board
+ */
 function updateCountOfTasks() {
     countOfAllTasks();
-    let tasksInBoard = allTasks.length;
+    let tasksInBoard = allTasks.length; //Get the Number of all Tasks in Board
     updateCountOfSingleTask(inprogressBoxCount, 'tasks-in-progress');
     updateCountOfSingleTask(tasksInBoard, 'tasks-in-board');
     updateCountOfSingleTask(feedbackBoxCount, 'tasks-awaiting-feedback');
@@ -48,6 +62,9 @@ function updateCountOfTasks() {
 }
 
 
+/**
+ * Update the count of a single Task
+ */
 function updateCountOfSingleTask(countOfTask, id) {
     if (countOfTask == 0) {
         document.getElementById(`${id}`).innerHTML = 0;

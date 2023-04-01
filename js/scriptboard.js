@@ -1,5 +1,5 @@
 
-let currentDragedElement;
+let currentDragedElement; 
 let todoCount;
 let inprogressBoxCount;
 let feedbackBoxCount;
@@ -16,30 +16,10 @@ async function onloadBoard() {
 }
 
 
-async function includeHTMLaddTask() {
-    let includeElements = document.querySelectorAll('[w3-include-html]');
-    for (let i = 0; i < includeElements.length; i++) {
-        const element = includeElements[i];
-        file = element.getAttribute("w3-include-html");
-        let resp = await fetch(file);
-        if (resp.ok) {
-            element.innerHTML = await resp.text();
-        } else {
-            element.innerHTML = 'Page not found';
-        }
-    }
-    onload();
-}
 
-
-function addNewTask() {
-    document.body.classList.add('overflow-hidden');
-    document.getElementById('show-addTaskInclude').innerHTML = /*html*/ `
-        <div w3-include-html="add-TaskInclude.html" ></div>`;
-    includeHTMLaddTask();
-}
-
-
+/**
+ * Render every Task in the correct split
+ */
 function updateHTML() {
     let todo = allTasks.filter(t => t['split'] == 'todo-box');
     let inprogressBox = allTasks.filter(t => t['split'] == 'inprogress-box');
@@ -54,6 +34,9 @@ function updateHTML() {
 }
 
 
+/**
+ * Render every SINGLE Task in his correct split
+ */
 function updateTaskBox(id, task) {
     document.getElementById(id).innerHTML = '';
     for (let index = 0; index < task.length; index++) {
@@ -65,12 +48,18 @@ function updateTaskBox(id, task) {
 }
 
 
-async function saveCount(nameOfTask, stringName) {
-    await backend.deleteItem(nameOfTask);
-    await backend.setItem(nameOfTask, JSON.stringify(stringName));
+/**
+ * Save the count of all Tasks of a split in backend
+ */
+async function saveCount(nameOfSplit, stringName) {
+    await backend.deleteItem(nameOfSplit);
+    await backend.setItem(nameOfSplit, JSON.stringify(stringName));
 }
 
 
+/**
+ * Save what task is dragged
+ */
 function startDragging(i) {
     currentDragedElement = i;
 }
@@ -88,15 +77,21 @@ function moveTo(split) {
 }
 
 
-function renderAssignedTo(element) {
-    let contact = element['AssignedTo'];
-    let contactHTML = document.getElementById(`assigned-to-currentTask${element['id']}`);
+/**
+ * Render all connected contacts of the Task
+ */
+function renderAssignedTo(currentTask) {
+    let contact = currentTask['AssignedTo'];
+    let contactHTML = document.getElementById(`assigned-to-currentTask${currentTask['id']}`);
     contactHTML.innerHTML = '';
 
     renderSelectedContact(contact, contactHTML);
 }
 
 
+/**
+ * Create a Logo with the first letter of the name and firstname of the contact
+ */
 function renderSelectedContact(contact, contactHTML) {
     for (let j = 0; j < contact.length; j++) {
         let thisContact = contact[j];
@@ -111,7 +106,10 @@ function renderSelectedContact(contact, contactHTML) {
 }
 
 
-
+/**
+ * Open a window with all details of the clicked Task
+ * @param {i} - Clicked Task 
+ */
 function openShowTask(i) {
     let title = allTasks[`${i}`]['title'];
     let description = allTasks[`${i}`]['description'];
@@ -133,6 +131,10 @@ function openShowTask(i) {
 }
 
 
+/**
+ * Pick the priority and order the correct img
+ * @param {priority} - Priority of the current Task
+ */
 function choosePriorityImg(priority) {
     if (priority == "urgent") {
         priorityImg = 'arrows-up';
@@ -148,6 +150,10 @@ function choosePriorityImg(priority) {
 }
 
 
+/**
+ * Render all Subtasks 
+ * @param {subTask} - All Subtasks of the clicked Task 
+ */
 function renderSubTaskBox(subTask) {
     subTaskBox = document.getElementById('subTask-box');
     subTaskBox.innerHTML = '';
@@ -160,11 +166,13 @@ function renderSubTaskBox(subTask) {
 }
 
 
-function proofCheckState(i) {
-    let currentSubTask = i;
-    let subTaskCheckbox = document.getElementById(`subTaskCheck${i}`);
-    let checkState = allTasks[currentTask]['subTasks'][currentSubTask]['check'];
-    let subTaskTitle = document.getElementById(`subTask${i}`);
+/**
+ * Cross checkbox or cross not  
+ */
+function proofCheckState(idOfCurrentSubtask) {
+    let subTaskCheckbox = document.getElementById(`subTaskCheck${idOfCurrentSubtask}`);
+    let checkState = allTasks[currentTask]['subTasks'][idOfCurrentSubtask]['check'];
+    let subTaskTitle = document.getElementById(`subTask${idOfCurrentSubtask}`);
 
     if (checkState) {
         subTaskTitle.classList.add('line-throug');
@@ -176,40 +184,48 @@ function proofCheckState(i) {
 }
 
 
-async function saveCheck(i) {
-    let subTaskCheckbox = document.getElementById(`subTaskCheck${i}`);
-    let currentSubTask = i;
+/**
+ * Save if the checkbox is checked or not
+ */
+async function saveCheck(currentSubTask) {
+    let subTaskCheckbox = document.getElementById(`subTaskCheck${currentSubTask}`);
 
     if (subTaskCheckbox.checked) {
-        saveTrue(currentSubTask, i);
+        saveTrue(currentSubTask);
     } else {
-        saveFalse(currentSubTask, i)
+        saveFalse(currentSubTask)
     };
 }
 
 
-async function saveTrue(currentSubTask, i) {
+/**
+ * Save if checkstate is true
+ */
+async function saveTrue(currentSubTask) {
     allTasks[currentTask]['subTasks'][currentSubTask]['check'] = true;
     await backend.setItem('allTasks', JSON.stringify(allTasks));
-    proofCheckState(i);
+    proofCheckState(currentSubTask);
 }
 
 
-async function saveFalse(currentSubTask, i) {
+/**
+ * Save if checkstate is false
+ */
+async function saveFalse(currentSubTask) {
     allTasks[currentTask]['subTasks'][currentSubTask]['check'] = false;
     await backend.setItem('allTasks', JSON.stringify(allTasks));
-    proofCheckState(i);
+    proofCheckState(currentSubTask);
 }
 
 
-function renderProgressbar(element) {
-    if (element['subTasks'].length > 0) {
-        let countOfallSubTasks = element['subTasks'].length;
+function renderProgressbar(currentTask) {
+    if (currentTask['subTasks'].length > 0) {
+        let countOfallSubTasks = currentTask['subTasks'].length;
 
-        toCountAllCheckedSubTasks(element);
+        toCountAllCheckedSubTasks(currentTask);
 
         let subWidth = (100 / countOfallSubTasks) * countOfAllCheckedSubtasks;
-        let progress = document.getElementById(`progress${element['id']}`);
+        let progress = document.getElementById(`progress${currentTask['id']}`);
         progress.classList.remove('d-none')
         progress.innerHTML = templateRenderProgressbar(countOfallSubTasks, subWidth);
         countOfAllCheckedSubtasks = 0;
@@ -217,6 +233,9 @@ function renderProgressbar(element) {
 }
 
 
+/**
+ * Update how many subtasks are checked
+ */
 function updateProgressbar() {
     let element = allTasks[currentTask];
     if (element['subTasks'].length > 0) {
@@ -232,6 +251,9 @@ function updateProgressbar() {
 }
 
 
+/**
+ * Count how many subtasks are checked
+ */
 function toCountAllCheckedSubTasks(element) {
     for (let i = 0; i < element['subTasks'].length; i++) {
         const subTask = element['subTasks'][i];
@@ -240,6 +262,7 @@ function toCountAllCheckedSubTasks(element) {
         }
     }
 }
+
 
 
 function renderAssignedBox(assignedTo) {
@@ -257,6 +280,26 @@ function renderAssignedBox(assignedTo) {
     }
 }
 
+
+/**
+ * Search function
+ */
+function updateSearchedHTML() {
+    let todo = allTasks.filter(t => t['split'] == 'todo-box');
+    let inprogressBox = allTasks.filter(t => t['split'] == 'inprogress-box');
+    let feedbackBox = allTasks.filter(t => t['split'] == 'feedback-box');
+    let doneBox = allTasks.filter(t => t['split'] == 'done-box');
+    loadAllTasks();
+    updateSearchedTask('todo-box', todo);
+    updateSearchedTask('inprogress-box', inprogressBox);
+    updateSearchedTask('feedback-box', feedbackBox);
+    updateSearchedTask('done-box', doneBox);
+}
+
+
+/**
+ * Render all founded Tasks in a Split 
+ */
 function updateSearchedTask(id, task) {
     let search = document.getElementById('search-task').value;
     search = search.toLowerCase();
@@ -274,23 +317,7 @@ function updateSearchedTask(id, task) {
 
 
 
-function updateSearchedHTML() {
-    let todo = allTasks.filter(t => t['split'] == 'todo-box');
-    let inprogressBox = allTasks.filter(t => t['split'] == 'inprogress-box');
-    let feedbackBox = allTasks.filter(t => t['split'] == 'feedback-box');
-    let doneBox = allTasks.filter(t => t['split'] == 'done-box');
-    loadAllTasks();
-    updateSearchedTask('todo-box', todo);
-    updateSearchedTask('inprogress-box', inprogressBox);
-    updateSearchedTask('feedback-box', feedbackBox);
-    updateSearchedTask('done-box', doneBox);
-}
 
-
-function addNewTaskBoard() {
-    includeBoard = true;
-    addNewTask();
-}
 
 
 function closeIncludeAddTask() {
@@ -306,6 +333,41 @@ function closeIncludeAddTask() {
 async function closeShowTask() {
     document.getElementById('show-Task-Background').classList = 'show-Task-Background d-none';
     updateProgressbar();
+}
+
+/**
+ * Include a window like the "Add Task" page
+ */
+async function includeHTMLaddTask() {
+    let includeElements = document.querySelectorAll('[w3-include-html]');
+    for (let i = 0; i < includeElements.length; i++) {
+        const element = includeElements[i];
+        file = element.getAttribute("w3-include-html");
+        let resp = await fetch(file);
+        if (resp.ok) {
+            element.innerHTML = await resp.text();
+        } else {
+            element.innerHTML = 'Page not found';
+        }
+    }
+    onload();
+}
+
+
+/**
+ * Include a window like the "Add Task" page
+ */
+function addNewTask() {
+    document.body.classList.add('overflow-hidden');
+    document.getElementById('show-addTaskInclude').innerHTML = /*html*/ `
+        <div w3-include-html="add-TaskInclude.html" ></div>`;
+    includeHTMLaddTask();
+}
+
+
+function addNewTaskBoard() {
+    includeBoard = true;
+    addNewTask();
 }
 
 

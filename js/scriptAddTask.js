@@ -109,17 +109,7 @@ async function addTask() {
 
 
 async function checkFormValidation() {
-    //let title = document.getElementById('title').value;
-    //let description = document.getElementById('description').value;
     let date = document.getElementById('date').value;
-
-
-
-    /*if (title == 0) {
-        showSuccessPopUp('Gib einen Titel ein!');
-    } else if (description == 0) {
-        showSuccessPopUp('Gib eine Beschreibung ein!');
-    } else*/
     if (!currentCategoryStat) {
         showSuccessPopUp('Wähle eine Kategorie!');
     } else if (date == 0) {
@@ -143,6 +133,7 @@ function showSuccessPopUp(content) {
     <h3>${content}</h3>
     `
 }
+
 
 function closeSuccessPopUp() {
     document.getElementById('popup-addTask').classList.add('d-none');
