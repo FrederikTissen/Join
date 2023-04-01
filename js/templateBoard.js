@@ -60,3 +60,13 @@ function templateRenderProgressbar(subLength, subWidth) {
     `;
 }
 
+
+function templateAssignedToBox(i, contactColor, firstLetter, secondLetter, firstName, lastName) {
+    return /*html*/ `
+    <div class="assigned-box">
+        <div id="assigned-icon${i}" class="assigned-icon" style ="background-color: ${contactColor}">${firstLetter}${secondLetter}</div>
+        <div id="assigned-name">${firstName} ${lastName}</div>
+    </div>
+    `
+}
+

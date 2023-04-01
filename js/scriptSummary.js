@@ -1,4 +1,4 @@
-async function updatePage() {
+async function onloadSummary() {
     await init();
     updateDate();
     updateCountOfTasks();
