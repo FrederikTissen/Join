@@ -35,6 +35,37 @@ function updateHTML() {
 
 
 /**
+ * Count all urgent tasks
+ */
+function countOfAllUrgentTasks() {
+    let allUrgentTasks = allTasks.filter(t => t['priority'] == 'urgent');
+    urgentTasksCount = allUrgentTasks.length;
+
+    saveCount('urgentTasksCount', urgentTasksCount);
+}
+
+
+/**
+ * Count all tasks
+ */
+async function countOfAllTasks() {
+    let todo = allTasks.filter(t => t['split'] == 'todo-box');
+    let inprogressBox = allTasks.filter(t => t['split'] == 'inprogress-box');
+    let feedbackBox = allTasks.filter(t => t['split'] == 'feedback-box');
+    let doneBox = allTasks.filter(t => t['split'] == 'done-box');
+
+    doneBoxCount = doneBox.length;
+    feedbackBoxCount = feedbackBox.length;
+    inprogressBoxCount = inprogressBox.length;
+    todoCount = todo.length;
+    await saveCount('doneBoxCount', doneBoxCount);
+    await saveCount('feedbackBoxCount', feedbackBoxCount);
+    await saveCount('inprogressBoxCount', inprogressBoxCount);
+    await saveCount('todoCount', todoCount);
+}
+
+
+/**
  * Render every SINGLE Task in his correct split
  */
 function updateTaskBox(id, task) {
@@ -316,10 +347,9 @@ function updateSearchedTask(id, task) {
 }
 
 
-
-
-
-
+/**
+ * Close the window to create a new task
+ */
 function closeIncludeAddTask() {
     document.getElementById('show-addTaskInclude').innerHTML = '';
     if (includeBoard) {
@@ -330,10 +360,14 @@ function closeIncludeAddTask() {
 }
 
 
+/**
+ * Close the window with task details
+ */
 async function closeShowTask() {
     document.getElementById('show-Task-Background').classList = 'show-Task-Background d-none';
     updateProgressbar();
 }
+
 
 /**
  * Include a window like the "Add Task" page

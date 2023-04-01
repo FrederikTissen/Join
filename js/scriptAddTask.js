@@ -27,10 +27,13 @@ async function onload() {
     renderContactBox();
     renderPrios();
     renderSubTask();
-    clock();
+    date();
     hideLoader();
 }
 
+/**
+ * Clear the page
+ */
 async function clearAllFields() {
     await deleteSelectedAllContacts();
     selectedContacts = 0;
@@ -42,6 +45,10 @@ async function clearAllFields() {
     renderSubTask();
 }
 
+
+/**
+ * Clear all input fields
+ */
 function resetHTML() {
     document.getElementById('title').value = '';
     document.getElementById('description').value = '';
@@ -50,38 +57,19 @@ function resetHTML() {
 }
 
 
-function countOfAllUrgentTasks() {
-    let allUrgentTasks = allTasks.filter(t => t['priority'] == 'urgent');
-    urgentTasksCount = allUrgentTasks.length;
-
-    saveCount('urgentTasksCount', urgentTasksCount);
-}
-
-
-async function countOfAllTasks() {
-    let todo = allTasks.filter(t => t['split'] == 'todo-box');
-    let inprogressBox = allTasks.filter(t => t['split'] == 'inprogress-box');
-    let feedbackBox = allTasks.filter(t => t['split'] == 'feedback-box');
-    let doneBox = allTasks.filter(t => t['split'] == 'done-box');
-
-    doneBoxCount = doneBox.length;
-    feedbackBoxCount = feedbackBox.length;
-    inprogressBoxCount = inprogressBox.length;
-    todoCount = todo.length;
-    await saveCount('doneBoxCount', doneBoxCount);
-    await saveCount('feedbackBoxCount', feedbackBoxCount);
-    await saveCount('inprogressBoxCount', inprogressBoxCount);
-    await saveCount('todoCount', todoCount);
-}
-
-
-function clock() {
+/**
+ * Get the current date
+ */
+function date() {
     var date = new Date();
     currentDate = date.toISOString().slice(0, 10);
     document.getElementById('date').value = currentDate;
 }
 
 
+/**
+ * Create a new Task
+ */
 async function addTask() {
     let title = document.getElementById('title');
     let description = document.getElementById('description');
@@ -106,8 +94,9 @@ async function addTask() {
 }
 
 
-
-
+/**
+ * Checks form validation and create the task
+ */
 async function checkFormValidation() {
     let date = document.getElementById('date').value;
     if (!currentCategoryStat) {
@@ -125,6 +114,9 @@ async function checkFormValidation() {
 }
 
 
+/**
+ * Show a popup
+ */
 function showSuccessPopUp(content) {
     let modal = document.getElementById('popup-addTask');
     modal.style.display = 'block';
@@ -135,12 +127,17 @@ function showSuccessPopUp(content) {
 }
 
 
+/**
+ * Close a popup
+ */
 function closeSuccessPopUp() {
     document.getElementById('popup-addTask').classList.add('d-none');
 }
 
 
-
+/**
+ * Render the box with all category options
+ */
 function renderCategories() {
     currentCategoryStat = false;
     color = false;
@@ -152,6 +149,9 @@ function renderCategories() {
 }
 
 
+/**
+ * Render a single category option
+ */
 function renderEveryCategory() {
     for (let i = 0; i < allCategories.length; i++) {
         currentCategory = allCategories[i];
@@ -169,6 +169,7 @@ function renderEveryCategory() {
 }
 
 
+
 function acceptCategory(i) {
     currentCategory = allCategories[i];
     currentCategoryStat = true;
@@ -183,7 +184,7 @@ function acceptCategory(i) {
 function acceptNewCategory() {
     currentCategoryStat = true;
     let newCategory = document.getElementById('category');
-    newCategory.innerHTML = templateAcceptNewCategory();
+    newCategory.innerHTML = templateAcceptCategory();
 }
 
 

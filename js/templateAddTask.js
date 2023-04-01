@@ -28,21 +28,6 @@ function templateAcceptCategory() {
 `;
 }
 
-
-function templateAcceptNewCategory() {
-    return /*html*/ `
-<span class="addTask-Subheaders">Category</span>
-<div onclick="renderCategories()" id="category-box" class="accepted-category">
-    <div class="accept-category">
-        <p class="accept-category addTask-Subheaders">${category} </p>
-        <img class="colors" src="./assets/img/${color}.png" alt="">
-    </div>
-    <img onclick="renderCategories()" class="arrow-icon" src="./assets/img/arrow-down.png" alt="">
-
-</div>
-`;
-}
-
 function templateOpenInput() {
     return /*html*/ `
     <span class="addTask-Subheaders">Category</span>
