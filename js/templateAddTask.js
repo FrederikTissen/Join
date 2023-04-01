@@ -35,7 +35,7 @@ function templateOpenInput() {
             <div id="input-nav-box" class="input-nav-box">
                 <img onclick="renderCategoryBox()" class="x-black" src="./assets/img/x-black.png">
                 <img class="line" src="./assets/img/line.png">
-                <img onclick="pushNewCategory()" class="hook" src="./assets/img/hook.png">
+                <img onclick="createNewCategory()" class="hook" src="./assets/img/hook.png">
             </div> 
             <div class="color-box">
                 <img id="turquoise" onclick="chooseColor('turquoise')" class="colors" src="./assets/img/turquoise.png" alt="">

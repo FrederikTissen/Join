@@ -169,7 +169,9 @@ function renderEveryCategory() {
 }
 
 
-
+/**
+ * Accept and render the choosen category
+ */
 function acceptCategory(i) {
     currentCategory = allCategories[i];
     currentCategoryStat = true;
@@ -181,6 +183,9 @@ function acceptCategory(i) {
 }
 
 
+/**
+ * Accept and render the new created category
+ */
 function acceptNewCategory() {
     currentCategoryStat = true;
     let newCategory = document.getElementById('category');
@@ -188,6 +193,9 @@ function acceptNewCategory() {
 }
 
 
+/**
+ * Render a inputfield to create a new category
+ */
 function openInput() {
     currentCategoryStat = true;
     color = false;
@@ -198,6 +206,9 @@ function openInput() {
 }
 
 
+/**
+ * Give the choosen color a shadow effect
+ */
 function chooseColor(colorOfCategory) {
     allColors();
     color = colorOfCategory;
@@ -206,6 +217,9 @@ function chooseColor(colorOfCategory) {
 }
 
 
+/**
+ * Remove all shadow effects from the color list
+ */
 function allColors() {
     document.getElementById('turquoise').classList.remove('color-box-hover');
     document.getElementById('red').classList.remove('color-box-hover');
@@ -216,7 +230,10 @@ function allColors() {
 }
 
 
-function pushNewCategory() {
+/**
+ * Check form validation and create new Category
+ */
+function createNewCategory() {
     category = document.getElementById('input-category').value;
     currentCategoryStat = true;
 
@@ -230,6 +247,9 @@ function pushNewCategory() {
 }
 
 
+/**
+ * Push a new Category and save in backend
+ */
 function newCategory() {
     let newCategory = {
         'categoryName': category,
@@ -241,6 +261,9 @@ function newCategory() {
 }
 
 
+/**
+ * Render the section to choose or create a category
+ */
 function renderCategoryBox() {
     currentCategoryStat = false;
     color = false;
@@ -251,6 +274,9 @@ function renderCategoryBox() {
 }
 
 
+/**
+ * Render the section to choose or create a contact
+ */
 function renderContacts() {
     let assignedTo = document.getElementById('assignedTo');
     assignedTo.innerHTML = templateRenderContacts();
@@ -267,6 +293,9 @@ function renderContacts() {
 }
 
 
+/**
+ * Accept the choosen contact and render a contact-icon under the container
+ */
 function acceptContact(i) {
     currentContactStat = true;
     currentContact = allContacts[i];
@@ -277,11 +306,14 @@ function acceptContact(i) {
     <div id="contact${i}" onclick="acceptNotContact(${i})" class="addTask-Subheaders">${contactFirstname}  ${contactLastName}</div>
     <img id="checkbox${i}" onclick="acceptNotContact(${i})" class="checkbox" src="./assets/img/checkbox-contact-full.png" alt="">
     `
-    pushSelctedContact(currentContact);
+    saveSelectedContact(currentContact);
     renderContactIcon();
 }
 
 
+/**
+ * Create the contact-icon from the selected contact
+ */
 function renderContactIcon() {
     let contactIcons = document.getElementById('contact-icons');
     contactIcons.innerHTML = '';
@@ -299,16 +331,14 @@ function renderContactIcon() {
 }
 
 
-async function acceptNotContact(i) {
+/**
+ * Reset the selected contacts
+ */
+async function acceptNotContact() {
     currentContactStat = false;
     selectedContacts = 0;
     await backend.setItem('selectedContacts', JSON.stringify(''));
     renderContacts();
-}
-
-
-function pushSelctedContact(currentContact) {
-    saveSelectedContact(currentContact);
 }
 
 
