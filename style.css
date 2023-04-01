@@ -1595,7 +1595,7 @@ optgroup {
 
 .show-Task-Background {
     display: flex;
-    position: absolute;
+    position: fixed;
     align-items: center;
     justify-content: center;
     top: 0px;

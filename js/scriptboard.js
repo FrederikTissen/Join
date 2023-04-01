@@ -250,15 +250,10 @@ function renderAssignedBox(assignedTo) {
         let secondLetter = currentPerson['name'].charAt(0);
         let firstName = currentPerson['firstName'];
         let lastName = currentPerson['name'];
-        let AssignedToBox = document.getElementById('assigned-box');
+        let assignedToBox = document.getElementById('assigned-box');
         let contactColor = currentPerson['color'];
 
-        AssignedToBox.innerHTML += /*html*/ `
-        <div class="assigned-box">
-            <div id="assigned-icon${i}" class="assigned-icon" style ="background-color: ${contactColor}">${firstLetter}${secondLetter}</div>
-            <div id="assigned-name">${firstName} ${lastName}</div>
-        </div>
-        `
+        assignedToBox.innerHTML += templateAssignedToBox(i, contactColor, firstLetter, secondLetter, firstName, lastName);
     }
 }
 
