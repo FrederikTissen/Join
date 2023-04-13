@@ -1,0 +1,63 @@
+/*
+    #### LEGAL NOTICE ####
+*/
+
+@media (max-width: 1400px) {
+    .legal-overview {
+        width: 63vw;
+    }
+
+    /*.arrow-left {
+        top: 230px;
+    }*/
+}
+
+@media (max-width: 1200px) {
+    .legal-overview {
+        /*height: 68vh;*/
+        left: 320px;
+    }
+}
+
+@media (max-width: 1000px) {
+    .legal-overview {
+        /*height: 63vh;*/
+        left: 280px;
+        width: 60vw;
+    }
+}
+
+@media (max-width: 850px) {
+    .legal-overview {
+        /*height: 63vh;*/
+        left: 100px;
+        width: 70vw;
+        /*top: 175px;*/
+    }
+
+    /*.arrow-left {
+        position: fixed;
+        width: 25px;
+        height: 24px;
+        left: 90vw;
+        top: 136px;
+        cursor: pointer;
+    }*/
+}
+
+@media (max-width: 700px) {
+    .legal-overview {
+        left: 60px;
+    }
+
+    .headline-index {
+        left: 60px;
+
+    }
+}
+
+@media (max-width: 420px) {
+    .legal-overview {
+        padding-bottom: 122px;
+    }
+}
