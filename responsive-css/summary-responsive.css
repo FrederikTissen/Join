@@ -2,7 +2,6 @@
    #### SUMMARY ####
 */
 
-
 @media (max-width: 1500px) {
     .sum-mid-greeting {
         left: 1000px;
@@ -75,7 +74,6 @@
 }
 
 
-
 @media (max-width: 1000px) {
     .sum-mid-greeting {
         display: none;
@@ -100,6 +98,7 @@
         font-size: 23px;
     }
 }
+
 
 @media (max-width: 850px) {
     .header {
@@ -207,8 +206,8 @@
         border-bottom: 0 !important;
         font-size: 20px;
     }
-
 }
+
 
 @media (max-width: 650px) {
     .sidebar-mid a {
@@ -219,13 +218,15 @@
     .sidebar-mid a div {
         width: 35px;
     }
+
+    .sidebar-mid a:nth-child(2) {
+        padding-right: 0;
+    }
 }
 
 @media (max-width: 550px) {
     .sidebar-mid a {
-
         font-size: 18px;
-
     }
 
     .sidebar-mid a div {
@@ -310,5 +311,13 @@
 
     .headline-index-summary {
         height: 135px;
+    }
+
+    .sidebar-mid {
+        width: 93vw;
+    }
+
+    .sidebar-center {
+        width: 93vw;
     }
 }

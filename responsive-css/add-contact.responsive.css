@@ -203,9 +203,9 @@
 
 @media (max-width: 850px) {
     .full-container {
-        left: 85px !important;
+        left: 130px !important;
         width: 550px !important;
-        top: -135px !important;
+        top: -80px !important;
     }
 
     .w3-add {
@@ -221,7 +221,7 @@
 
 @media (max-width: 800px) {
     .full-container {
-        left: 75px !important;
+        left: 110px !important;
     }
 }
 

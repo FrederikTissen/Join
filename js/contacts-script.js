@@ -224,6 +224,7 @@ function showContact(firstName, color) {
 
     if (window.innerWidth > 450) {
         contactfield.innerHTML = generateContactfield(i, firstChar, secondChar, color, fullFirstname, fullName, mail, phone);
+        document.getElementById('add-new-contact-btn').style.display = 'none';
     } else {
         let main = document.getElementById('contact-list');
         main.style.filter = 'blur(5px)';

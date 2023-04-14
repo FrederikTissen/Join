@@ -176,6 +176,12 @@
     }
 }
 
+@media (max-width: 400px) {
+    .sidebar-mid {
+        width: 93vw;
+    }
+}
+
 @media (max-width: 850px) and (min-height: 600px) {
 
     .content {
@@ -195,7 +201,7 @@
 @media (max-width: 850px) and (min-height: 700px) {
 
     .sidebar-header {
-        top: 87vh !important;
+        top: 89vh !important;
         z-index: 100;
 
     }

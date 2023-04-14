@@ -73,6 +73,7 @@ async function guestLogin() {
 
 function replaceUserName() {
     let greeting = document.getElementById('board-greeting');
+
     if (currentUser == 'guest') {
         greeting.innerHTML = 'Guest';
     } else {
