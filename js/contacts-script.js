@@ -224,7 +224,6 @@ function showContact(firstName, color) {
 
     if (window.innerWidth > 450) {
         contactfield.innerHTML = generateContactfield(i, firstChar, secondChar, color, fullFirstname, fullName, mail, phone);
-        document.getElementById('add-new-contact-btn').style.display = 'none';
     } else {
         let main = document.getElementById('contact-list');
         main.style.filter = 'blur(5px)';
@@ -324,8 +323,8 @@ async function editContact(i, color) {
                 <div class="w3-edit" w3-include-html="edit-contact.html"></div>`;
             await includeHTMLaddContact();
             document.getElementById('close-mobile-popup').style.display = "none";
+            document.getElementById('add-new-contact-btn').style.display = 'none';
         }
-
         editContactValues(i, color);
         createdContact = false;
     } else {
@@ -445,7 +444,7 @@ function createContact() {
     let inputMail = document.getElementById('input-email');
     let inputPhone = document.getElementById('input-phone');
     let inputColor = document.getElementById('colors');
-    
+
     newContact = {
         name: inputName.value,
         firstName: inputFirstName.value,

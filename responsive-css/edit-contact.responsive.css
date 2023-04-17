@@ -4,8 +4,7 @@
 
 @media (max-width: 1650px) {
     .full-container-edit {
-        scale: 0.7 !important;
-        left: -190px !important;
+        left: -80px !important;
     }
 }
 
@@ -42,6 +41,12 @@
 }
 
 @media (max-width: 1450px) {
+
+    .full-container-edit {
+        width: 800px !important;
+        left: -115px !important;
+    }
+
     .right-container-edit {
         width: 470px !important;
         flex-direction: column;
@@ -59,10 +64,6 @@
 
     .left-container-edit {
         width: 300px !important;
-    }
-
-    .full-container-edit {
-        left: -160px !important;
     }
 
     input {
