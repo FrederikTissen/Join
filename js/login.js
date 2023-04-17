@@ -121,6 +121,3 @@ async function addUser() {
     await pushAllUsersInBackEnd();
     window.location.href = 'index.html';
 }
-
-
-
