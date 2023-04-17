@@ -255,6 +255,7 @@
     .full-container-edit {
         left: -50px !important;
         top: -160px !important;
+        width: unset !important;
     }
 
     .w3-edit {

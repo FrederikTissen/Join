@@ -71,7 +71,7 @@
 @media (max-width: 1450px) {
     .full-container {
         left: 0 !important;
-        top: -40px !important;
+        top: 20px !important;
         width: 800px !important;
         height: 1000px !important;
         flex-direction: column !important;
@@ -227,7 +227,7 @@
 
 @media (max-width: 750px) {
     .full-container {
-        left: 165px !important;
+        left: 175px !important;
         width: 400px !important;
         height: 950px !important;
         top: -50px !important;
@@ -250,17 +250,17 @@
 
 @media (max-width: 600px) {
     .full-container {
-        position: unset !important;
-        width: 550px !important;
+        position: absolute !important;
+        width: 375px !important;
         padding-bottom: 30px !important;
         height: 1030px !important;
     }
 
     .left-container {
-        width: 525px !important;
+        width: 350px !important;
         border-radius: 30px 30px 0 0 !important;
         padding-top: 50px !important;
-        height: 380px !important;
+        /* height: 380px !important; */
         gap: 30px;
         padding-left: 25px !important;
     }
@@ -279,7 +279,7 @@
     }
 
     .right-container {
-        width: 550px !important;
+        width: 370px !important;
         border-radius: 0 0 30px 30px !important;
         align-items: center;
     }
@@ -314,35 +314,56 @@
     }
 }
 
+@media (max-width: 550px) {
+    .full-container {
+        left: 120px !important;
+    }
+}
+
 @media (max-width: 500px) {
 
     .full-container {
-        position: unset !important;
-        width: 420px !important;
+        position: absolute !important;
+        left: 100px !important;
+        /* width: 420px !important; */
         /*margin-left: -50px;*/
     }
 
-    .left-container {
+    /* .left-container {
         width: 397px !important;
     }
 
     .right-container {
         width: 418px !important;
-    }
+    } */
 
     .x-container-add {
         right: -180px !important;
         top: -1040px !important;
     }
 
-    .log-in-input {
+    /* .log-in-input {
         width: 370px !important;
-    }
+    } */
 
     .x-container {
         left: 175px !important;
         right: 0;
     }
+}
+
+@media (max-width: 450px) {
+    .full-container {
+        position: unset !important;
+        width: 420px !important;
+    }
+    .left-container {
+        width: 397px !important;
+    }
+
+    .right-container {
+        width: 418px !important;
+    } 
 }
 
 @media (max-width: 400px) {
