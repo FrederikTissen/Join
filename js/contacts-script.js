@@ -194,21 +194,19 @@ async function pushAllContactsInBackEnd() {
     if (contacts.length == 0) {
         for (let i = 0; i < dataContacts.length; i++) {
             const thisContact = dataContacts[i];
-
             contacts.push(thisContact);
         }
         await backend.setItem('contacts', JSON.stringify(contacts));
-
     }
 }
 
 /**
- * Displaying contact to be shown
+ * get variables for a shorter function
  * 
- * @param {firstname} firstName 
- * @param {color} color 
+ * @param {first name of the contact} firstName 
+ * @param {color of the contact image} color 
  */
-function showContact(firstName, color) {
+function showContactVariables(firstName, color) {
     currentcontact = contacts.filter(t => t['firstName'] == firstName);
     let i = contacts.findIndex(x => x['firstName'] === firstName);
     let firstChar = currentcontact['0']['firstName'].charAt(0).toUpperCase();
@@ -219,22 +217,44 @@ function showContact(firstName, color) {
     let fullName = name.charAt(0).toUpperCase() + name.slice(1);
     let mail = currentcontact['0']['mail'];
     let phone = currentcontact['0']['phone'];
+
+    showContact(color, i, firstChar, secondChar, color, fullFirstname, fullName, mail, phone);
+}
+
+/**
+ * 
+ * Displaying the chosen contact
+ * 
+ * @param {*} color 
+ * @param {*} i 
+ * @param {*} firstChar 
+ * @param {*} secondChar 
+ * @param {*} color 
+ * @param {*} fullFirstname 
+ * @param {*} fullName 
+ * @param {*} mail 
+ * @param {*} phone 
+ */
+function showContact(color, i, firstChar, secondChar, color, fullFirstname, fullName, mail, phone) {
     let contactfield = document.getElementById('show-contact');
     contactfield.style.display = "";
 
     if (window.innerWidth > 450) {
         contactfield.innerHTML = generateContactfield(i, firstChar, secondChar, color, fullFirstname, fullName, mail, phone);
     } else {
-        let main = document.getElementById('contact-list');
-        main.style.filter = 'blur(5px)';
-        document.getElementById('show-contact').style.display = "unset";
-        document.getElementById('add-new-contact-btn').style.display = 'none';
+        mobileContactfield();
         contactfield.innerHTML = generateContactfield(i, firstChar, secondChar, color, fullFirstname, fullName, mail, phone);
-        document.getElementById('cancel-popup').classList.remove('d-none');
     }
-
-    document.getElementById('contact-headline').style.display = "none";
+    document.getElementById('contact-headline').style.display = 'none';
     editedContact = i;
+}
+
+
+function mobileContactfield() {
+    document.getElementById('contact-list').style.filter = 'blur(5px)';
+    document.getElementById('show-contact').style.display = 'unset';
+    document.getElementById('add-new-contact-btn').style.display = 'none';
+    document.getElementById('cancel-popup').classList.remove('d-none');
 }
 
 /**
@@ -382,14 +402,13 @@ function editContactValues(i, color) {
     editPhone.value = contacts[i]['phone'];
     editImage.innerHTML += `${firstChar} ${secondChar}`;
     editImage.style = `background-color:${color};`;
-
     document.getElementById('add-new-contact-btn').style.display = "none";
 }
 
 
 async function editBtn() {
     if (saveBtn) {
-        await saveEditContact();
+        editContactVariables();
     } else {
         await deleteUser();
     }
@@ -405,25 +424,27 @@ function saveBtnFalse() {
     saveBtn = false;
 }
 
-
-/**
- * Saving the edited contact and push to backend
- */
-async function saveEditContact() {
+function editContactVariables() {
     let editLastname = document.getElementById(`edit-input-lastname`);
     let editFirstname = document.getElementById(`edit-input-firstname`);
     let editMail = document.getElementById(`edit-input-mail`);
     let editPhone = document.getElementById(`edit-input-phone`);
     let newColor = contacts[editedContact]['color'];
-
     let changedContact = {
         name: editLastname.value,
         firstName: editFirstname.value,
         mail: editMail.value,
         phone: editPhone.value,
-        color: newColor,
+        color: newColor
     }
+    saveEditContact(changedContact);
+}
 
+
+/**
+ * Saving the edited contact and push to backend
+ */
+async function saveEditContact(changedContact) {
     createdContact = true;
     contacts.push(changedContact);
     contacts.splice(editedContact, 1);
@@ -623,7 +644,7 @@ function renderLetterBox(currentLetter, letter) {
 function generateAllContacts1(currentcontact, firstChar, secondChar, i, color, firstName, fullFirstname, fullName) {
 
     return /*html*/ `
-    <div onclick="showContact('${firstName}', '${color}')" id="contact-card${i}" class="contact-card">
+    <div onclick="showContactVariables('${firstName}', '${color}')" id="contact-card${i}" class="contact-card">
         <div id="contact-img${i}" class="contact-img" style='background-color: ${color};'>${firstChar} ${secondChar}</div>
         <div id="contactInfo${i}" class="contact-info">
             <span>${fullFirstname} ${fullName}</span>
